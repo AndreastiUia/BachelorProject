@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx02hlec84uwt"]
+
+[ext_resource type="PackedScene" uid="uid://c7s3igx2pk0i3" path="res://Player.tscn" id="1_swnku"]
+[ext_resource type="PackedScene" uid="uid://c8yyga2bb346y" path="res://red_box.tscn" id="2_n8kyu"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="World" parent="." instance=ExtResource("1_swnku")]
+position = Vector2(187, 132)
+
+[node name="RedBox" parent="." instance=ExtResource("2_n8kyu")]
+position = Vector2(405, 74)
+
+[node name="RedBox2" parent="." instance=ExtResource("2_n8kyu")]
+position = Vector2(591, 144)
