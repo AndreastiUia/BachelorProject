@@ -3,9 +3,10 @@
 [ext_resource type="Script" path="res://Player.gd" id="1_6jcbd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kubdg"]
+size = Vector2(8, 8)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j6fkr"]
-radius = 76.0
+radius = 122.037
 
 [node name="Player" type="Node2D"]
 
@@ -16,13 +17,16 @@ script = ExtResource("1_6jcbd")
 shape = SubResource("RectangleShape2D_kubdg")
 
 [node name="ColorRect" type="ColorRect" parent="Player"]
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 16.0
+offset_bottom = 16.0
+scale = Vector2(0.39763, 0.398113)
 color = Color(0, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="Player"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
 shape = SubResource("CircleShape2D_j6fkr")
