@@ -5,6 +5,10 @@ extends Node2D
 var astar_grid: AStarGrid2D
 var current_id_path: Array[Vector2i]
 var gold: int = 0
+var gold_position = Vector2(185,-200)
+var base_position = Vector2(20,-20)
+var inventory = 0
+var inventory_size = 100
 
 func _ready():
 	astar_grid = AStarGrid2D.new()
@@ -31,27 +35,35 @@ func _process(delta):
 	var tile_data = tile_map.get_cell_tile_data(1, tile_map.local_to_map(global_position))
 	if tile_data == null:
 		return
-	if tile_data.get_custom_data("gold"):
+	if tile_data.get_custom_data("resource_type") == "gold":
+		inventory += 1
 		gold += 1
-		get_node("Camera2D/gold").text = "Gold: " + str(gold)
+		if inventory > inventory_size:
+			inventory = inventory_size
 	elif tile_data.get_custom_data("base"):
+		#TODO: Rewrite this to empty inventory and not hardcoded gold
 		if gold > 0:
+			inventory -= 1
 			gold -= 1
-			get_node("Camera2D/gold").text = "Gold: " + str(gold)
-		
-func _input(event):
-	if event.is_action_pressed("move") == false:
-		return
+			Global.base_gold += 1
 	
-	var id_path = astar_grid.get_id_path(
-		tile_map.local_to_map(global_position),
-		tile_map.local_to_map((get_global_mouse_position())
-		)
-	).slice(1)
-	print(id_path)
-	if id_path.is_empty() == false:
-		current_id_path = id_path
-		
+	# Gather gold loop
+	var path: Array[Vector2i]
+	
+	if gold <= 0:
+		path = astar_grid.get_id_path(
+			tile_map.local_to_map(global_position),
+			tile_map.local_to_map(gold_position)
+		).slice(1)
+	elif gold >= 100:
+		path = astar_grid.get_id_path(
+			tile_map.local_to_map(global_position),
+			tile_map.local_to_map(base_position)
+		).slice(1)
+	if path.is_empty() == false:
+		current_id_path = path
+	
+	
 func _physics_process(delta):
 	
 	if current_id_path.is_empty():
@@ -59,7 +71,7 @@ func _physics_process(delta):
 	
 	var target_position = tile_map.map_to_local(current_id_path.front())
 	
-	global_position = global_position.move_toward(target_position, 10)
+	global_position = global_position.move_toward(target_position, 5)
 	
 	if global_position == target_position:
 		current_id_path.pop_front()
