@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8yyga2bb346y"]
+
+[ext_resource type="Script" path="res://red_box.gd" id="1_lrfxm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bfymk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utwje"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyyts"]
+size = Vector2(31, 31)
+
+[node name="RedBox" type="Node2D"]
+script = ExtResource("1_lrfxm")
+
+[node name="RedBox" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_bfymk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RedBox"]
+position = Vector2(12, 12)
+shape = SubResource("RectangleShape2D_utwje")
+
+[node name="Area2D" type="Area2D" parent="RedBox"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RedBox/Area2D"]
+position = Vector2(13, 12)
+shape = SubResource("RectangleShape2D_gyyts")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 25.0
+offset_bottom = 25.0
+color = Color(0.631373, 0, 0, 1)
+
+[connection signal="body_entered" from="RedBox/Area2D" to="." method="_on_area_2d_body_entered"]
