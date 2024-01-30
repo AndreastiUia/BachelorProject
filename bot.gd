@@ -8,7 +8,7 @@ var current_id_path: Array[Vector2i]
 
 # Inventory
 var gold: int = 0
-var tree: int = 0
+var wood: int = 0
 var stone: int = 0
 var inventory: int = 0
 var inventory_size: int = 100
@@ -77,7 +77,7 @@ func _process(delta):
 		if gold > 0:
 			gold -= 1
 			Global.base_gold += 1
-	inventory = gold + tree + stone
+	inventory = gold + wood + stone
 			
 	
 	# Gather gold loop
