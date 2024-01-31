@@ -16,10 +16,9 @@ script = ExtResource("1_o25m3")
 [node name="bot" type="CharacterBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bot"]
-position = Vector2(360, 248)
 shape = SubResource("RectangleShape2D_fbhmt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(360, 248)
+position = Vector2(3.05176e-05, 3.05176e-05)
 scale = Vector2(1, 0.954772)
 texture = SubResource("AtlasTexture_md5yk")
