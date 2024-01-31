@@ -23,21 +23,27 @@ script = ExtResource("1_qsvga")
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1152.0
+offset_bottom = 647.0
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
-layout_mode = 0
-offset_right = 1151.0
-offset_bottom = 650.0
+[node name="Background" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = -1
+anchor_right = 0.999
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.15186
+offset_bottom = 2.0
 color = Color(0.372549, 0.235294, 0.0705882, 1)
 
-[node name="Icon" type="Sprite2D" parent="Control/ColorRect"]
+[node name="Icon" type="Sprite2D" parent="Background/ColorRect"]
 position = Vector2(1070, 585)
 scale = Vector2(0.679688, 0.671875)
 texture = ExtResource("2_kl8rn")
 
-[node name="Godot_Label" type="Label" parent="Control/ColorRect"]
+[node name="Godot_Label" type="Label" parent="Background/ColorRect"]
 layout_mode = 0
 offset_left = 1035.0
 offset_top = 513.0
@@ -47,12 +53,12 @@ theme_override_fonts/font = ExtResource("3_eese3")
 theme_override_font_sizes/font_size = 25
 text = "Made with"
 
-[node name="Sprite2D" type="Sprite2D" parent="Control/ColorRect"]
+[node name="MonkeIcon" type="Sprite2D" parent="Background/ColorRect"]
 position = Vector2(1074, 444)
 scale = Vector2(0.107031, 0.102344)
 texture = ExtResource("4_4risx")
 
-[node name="Monkey_label" type="Label" parent="Control/ColorRect"]
+[node name="Monkey_label" type="Label" parent="Background/ColorRect"]
 layout_mode = 0
 offset_left = 1045.0
 offset_top = 371.0
@@ -62,18 +68,18 @@ theme_override_fonts/font = ExtResource("3_eese3")
 theme_override_font_sizes/font_size = 25
 text = "Made by"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 54.0
-offset_top = 399.0
-offset_right = 175.0
-offset_bottom = 594.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Background"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 55.0
+offset_top = 398.0
+offset_right = 176.0
+offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 9
 
-[node name="StartButton" type="Button" parent="Control/VBoxContainer"]
+[node name="StartButton" type="Button" parent="Background/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
 theme = SubResource("Theme_1eteu")
@@ -83,13 +89,13 @@ theme_override_font_sizes/font_size = 35
 text = "Start
 "
 
-[node name="OptionsButton" type="Button" parent="Control/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="Background/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_eese3")
 theme_override_font_sizes/font_size = 35
 text = "Options"
 
-[node name="QuitButton" type="Button" parent="Control/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="Background/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../StartButton")
 theme_override_fonts/font = ExtResource("3_eese3")
@@ -97,5 +103,5 @@ theme_override_font_sizes/font_size = 35
 text = "Quit
 "
 
-[connection signal="pressed" from="Control/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Background/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Background/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

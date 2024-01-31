@@ -9,6 +9,7 @@ var camera_zoom = 1.0
 var min_zoom = 0.5
 var max_zoom = 1.5
 
+
 func _ready():
 	var screen_center = get_viewport_rect().size / 2
 	var zoom_vector = Vector2(camera_zoom, camera_zoom)
