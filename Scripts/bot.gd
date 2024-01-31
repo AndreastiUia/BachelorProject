@@ -29,7 +29,6 @@ var program_if_end_index = []
 var program_array = [program_func.WHILE_START, program_func.MOVE_TO_POS, Vector2i(12,-12), program_func.WHILE_START, program_func.GATHER_RESOURCE, program_func.IF, "inventory >= inventory_size", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.MOVE_TO_POS, Vector2i(2,-1), program_func.WHILE_START, program_func.DELIVER_RESOURCE, program_func.IF, "inventory == 0", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.WHILE_END]
 enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE, DELIVER_RESOURCE}
 
-
 func _ready():
 	# Setup pathfinding
 	astar_grid = AStarGrid2D.new()
@@ -55,6 +54,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
 	
 func _physics_process(delta):
 	if !current_id_path.is_empty():
@@ -69,6 +69,7 @@ func move_path(delta):
 	var velocity = SPEED * delta
 	var target_position = tile_map.map_to_local(current_id_path.front())
 	global_position = global_position.move_toward(target_position, velocity)
+
 	if global_position == target_position:
 		current_id_path.pop_front()
 		if current_id_path.is_empty():
@@ -81,7 +82,7 @@ func calc_target_tile_by_direction(direction: Vector2):
 		current_tile.x + direction.x,
 		current_tile.y + direction.y
 	)
-	
+
 	return target_tile
 
 func calc_path(target_position: Vector2i):
@@ -95,6 +96,7 @@ func calc_path(target_position: Vector2i):
 func program_bot(function: Array):
 	if !idle:
 		return
+		
 	match function[program_index]:
 		program_func.MOVE_UP:
 			calc_path(calc_target_tile_by_direction(Vector2i.UP))
