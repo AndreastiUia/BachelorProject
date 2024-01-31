@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dv48c1hfsupwh"]
+[gd_scene load_steps=7 format=3 uid="uid://dv48c1hfsupwh"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_jbqlk"]
 [ext_resource type="Texture2D" uid="uid://cfjo1jnl5l27e" path="res://tinyFantazyTileSet/tiny fantasy rpg_strategy.png" id="1_yo7l1"]
 [ext_resource type="Script" path="res://TileMap.gd" id="3_hjf80"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="4_p5x22"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4gbcf"]
 texture = ExtResource("1_yo7l1")
@@ -120,19 +121,21 @@ layer_1/tile_data = PackedInt32Array(-1835008, 458752, 5, -1835007, 458752, 5, -
 script = ExtResource("3_hjf80")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(69, -118)
+position = Vector2(-578, -514)
+anchor_mode = 0
+script = ExtResource("4_p5x22")
 
 [node name="gold" type="Label" parent="Camera2D"]
-offset_left = -483.0
-offset_top = -244.0
-offset_right = -443.0
-offset_bottom = -221.0
+offset_left = 83.0
+offset_top = 86.0
+offset_right = 123.0
+offset_bottom = 109.0
 
 [node name="Button" type="Button" parent="Camera2D"]
-offset_left = -490.0
-offset_top = -202.0
-offset_right = -482.0
-offset_bottom = -194.0
+offset_left = 67.0
+offset_top = 122.0
+offset_right = 132.0
+offset_bottom = 153.0
 scale = Vector2(2.71312, 2.97661)
 text = "SPAWN"
 
