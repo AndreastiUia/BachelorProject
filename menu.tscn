@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://menu.gd" id="1_syiyj"]
 [ext_resource type="Texture2D" uid="uid://dm8nkplh1yqq7" path="res://icon.svg" id="2_0daog"]
-[ext_resource type="FontFile" uid="uid://ct4ox56t42ck3" path="res://Fonts/Teko-VariableFont_wght.ttf" id="3_t3mdh"]
+[ext_resource type="FontFile" uid="uid://ct4ox56t42ck3" path="res://Fonts/Teko/Teko-VariableFont_wght.ttf" id="3_padbv"]
 
 [sub_resource type="Theme" id="Theme_1eteu"]
 Button/fonts/font = null
@@ -42,7 +42,7 @@ offset_left = 1035.0
 offset_top = 513.0
 offset_right = 1117.0
 offset_bottom = 549.0
-theme_override_fonts/font = ExtResource("3_t3mdh")
+theme_override_fonts/font = ExtResource("3_padbv")
 theme_override_font_sizes/font_size = 25
 text = "Made with"
 
@@ -62,21 +62,21 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
 theme = SubResource("Theme_1eteu")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_t3mdh")
+theme_override_fonts/font = ExtResource("3_padbv")
 theme_override_font_sizes/font_size = 35
 text = "Start
 "
 
 [node name="OptionsButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_t3mdh")
+theme_override_fonts/font = ExtResource("3_padbv")
 theme_override_font_sizes/font_size = 35
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../StartButton")
-theme_override_fonts/font = ExtResource("3_t3mdh")
+theme_override_fonts/font = ExtResource("3_padbv")
 theme_override_font_sizes/font_size = 35
 text = "Quit
 "
