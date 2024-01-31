@@ -2,6 +2,10 @@ extends Node2D
 
 @onready var tile_map = $"../TileMap"
 
+# Bot atributes
+var SPEED = 3
+var idle = true
+
 # Pathfinding
 var astar_grid: AStarGrid2D
 var current_id_path: Array[Vector2i]
@@ -12,6 +16,10 @@ var wood: int = 0
 var stone: int = 0
 var inventory: int = 0
 var inventory_size: int = 100
+
+# Programming bots
+var program_array = [program_func.MOVE_TO_POS, Vector2i(185,-200), program_func.MOVE_TO_POS, Vector2i(20,-20), program_func.MOVE_UP, program_func.MOVE_UP]
+enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, LOOP_START, LOOP_BREAK, LOOP_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE}
 
 # TESTING: Test variables. These are to be revomed after testing
 var gold_position = Vector2(185,-200)
@@ -79,7 +87,7 @@ func _process(delta):
 			Global.base_gold += 1
 	inventory = gold + wood + stone
 			
-	
+	"""
 	# Gather gold loop
 	var path: Array[Vector2i]
 	
@@ -95,17 +103,63 @@ func _process(delta):
 		).slice(1)
 	if path.is_empty() == false:
 		current_id_path = path
-	
+	"""
 	
 func _physics_process(delta):
-	
-	if current_id_path.is_empty():
+	if !current_id_path.is_empty():
+		idle = false
+		move_path()
+	if program_array.is_empty():
 		return
-	
+	if idle:
+		program_bot(program_array)
+
+func move_path():
 	var target_position = tile_map.map_to_local(current_id_path.front())
-	
-	global_position = global_position.move_toward(target_position, 5)
-	
+	global_position = global_position.move_toward(target_position, SPEED)
 	if global_position == target_position:
 		current_id_path.pop_front()
+		if current_id_path.is_empty():
+			idle = true
+
+func move_direction(direction: Vector2):
+	var current_tile: Vector2i = tile_map.local_to_map(global_position)
+	var target_tile: Vector2i = Vector2i(
+		current_tile.x + direction.x,
+		current_tile.y + direction.y
+	)
+	
+	var tile_data: TileData = tile_map.get_cell_tile_data(0, target_tile)
+
+	if tile_data.get_custom_data("walkable") == false:
+		return
+	var target_position = tile_map.map_to_local(target_tile)
+	global_position = global_position.move_toward(target_position, SPEED)
+	
+	if global_position == target_position:
+		idle = true
+
+func calc_path(target_position: Vector2i):
+	var path = astar_grid.get_id_path(
+		tile_map.local_to_map(global_position),
+		tile_map.local_to_map(target_position)
+	).slice(1)
+	current_id_path = path
+
+func program_bot(function: Array):
+	if !idle:
+		return
+	if function.front() == program_func.MOVE_UP:
+		move_direction(Vector2i.UP)
+	if function.front() == program_func.MOVE_DOWN:
+		move_direction(Vector2i.DOWN)
+	if function.front() == program_func.MOVE_LEFT:
+		move_direction(Vector2i.LEFT)
+	if function.front() == program_func.MOVE_RIGHT:
+		move_direction(Vector2i.RIGHT)
+	if function.front() == program_func.MOVE_TO_POS:
+		calc_path(program_array[1])
+		function.pop_front()
 		
+	
+	function.pop_front()
