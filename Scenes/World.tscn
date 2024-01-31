@@ -161,10 +161,13 @@ theme_override_font_sizes/font_size = 25
 text = "Temp Button Spawn"
 
 [node name="SideGUI" type="NinePatchRect" parent="Camera2D/GUI"]
+anchors_preset = -1
+anchor_right = 0.073
+anchor_bottom = 0.293
 offset_left = 5.0
 offset_top = 1.0
-offset_right = 84.0
-offset_bottom = 190.0
+offset_right = -0.0960083
+offset_bottom = 0.135986
 texture = ExtResource("7_bdgie")
 patch_margin_left = 4
 patch_margin_top = 4
@@ -179,7 +182,7 @@ anchor_bottom = 1.0
 offset_left = 9.0
 offset_top = 6.0
 offset_right = -31.0
-offset_bottom = -159.0
+offset_bottom = -158.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)

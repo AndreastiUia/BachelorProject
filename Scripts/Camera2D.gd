@@ -7,7 +7,7 @@ var camera_speed = 300.0
 
 var camera_zoom = 0.5
 var min_zoom = 1.0
-var max_zoom = 1.3
+var max_zoom = 1.7	#1.3
 
 func _input(input):
 	if input.is_action_pressed("zoom+"):

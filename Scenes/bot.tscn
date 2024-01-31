@@ -1,14 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuhi4t00wx2iu"]
+[gd_scene load_steps=12 format=3 uid="uid://cuhi4t00wx2iu"]
 
 [ext_resource type="Script" path="res://Scripts/bot.gd" id="1_bmq70"]
-[ext_resource type="Texture2D" uid="uid://cfjo1jnl5l27e" path="res://External Resources/tinyFantazyTileSet/tiny fantasy rpg_strategy.png" id="2_mwl36"]
+[ext_resource type="Texture2D" uid="uid://cq5gwt08d2ev1" path="res://Sprites/Bot/botsprite_left_idle.png" id="3_vhjvu"]
+[ext_resource type="Texture2D" uid="uid://ue5pjgbpl2fn" path="res://Sprites/Bot/botsprite_right_idle.png" id="4_ohab4"]
+[ext_resource type="Texture2D" uid="uid://6wei4smbnvsw" path="res://Sprites/Bot/botsprite_left_0.png" id="5_1vg1p"]
+[ext_resource type="Texture2D" uid="uid://d3al7j1fhsjif" path="res://Sprites/Bot/botsprite_left_1.png" id="6_d6goi"]
+[ext_resource type="Texture2D" uid="uid://dh0py3fdnppn3" path="res://Sprites/Bot/botsprite_left_2.png" id="7_qdiet"]
+[ext_resource type="Texture2D" uid="uid://dfpxkmf6vsf68" path="res://Sprites/Bot/botsprite_right_0.png" id="8_sfma6"]
+[ext_resource type="Texture2D" uid="uid://ddtx4yvs8p2l6" path="res://Sprites/Bot/botsprite_right_1.png" id="9_utsi4"]
+[ext_resource type="Texture2D" uid="uid://hxb5bopn3l70" path="res://Sprites/Bot/botsprite_right_3.png" id="10_sxtvm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fbhmt"]
-size = Vector2(11, 12)
+size = Vector2(12, 11)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_md5yk"]
-atlas = ExtResource("2_mwl36")
-region = Rect2(64, 0, 16, 16)
+[sub_resource type="SpriteFrames" id="SpriteFrames_dmixi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vhjvu")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ohab4")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_1vg1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_d6goi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qdiet")
+}],
+"loop": true,
+"name": &"left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_sfma6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_utsi4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_sxtvm")
+}],
+"loop": true,
+"name": &"right",
+"speed": 8.0
+}]
 
 [node name="Bot" type="Node2D"]
 script = ExtResource("1_bmq70")
@@ -16,9 +66,18 @@ script = ExtResource("1_bmq70")
 [node name="bot" type="CharacterBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bot"]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_fbhmt")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3.05176e-05, 3.05176e-05)
-scale = Vector2(1, 0.954772)
-texture = SubResource("AtlasTexture_md5yk")
+[node name="Sprite2D" type="Sprite2D" parent="bot"]
+position = Vector2(0, -1)
+scale = Vector2(0.0374999, 0.0386931)
+texture = ExtResource("4_ohab4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bot"]
+visible = false
+position = Vector2(21, 15)
+scale = Vector2(0.0640625, 0.0640625)
+sprite_frames = SubResource("SpriteFrames_dmixi")
+animation = &"idle_left"
+frame_progress = 0.415288
