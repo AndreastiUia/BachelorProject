@@ -1,6 +1,7 @@
 extends Camera2D
 
 # Threshold for where it register mouse near the edge ( in pixels)
+
 var edge_threshold = 20.0
 var camera_speed = 300.0
 
@@ -19,7 +20,6 @@ func zoom(delta):
 	camera_zoom = clamp(camera_zoom, min_zoom, max_zoom)  
 	set_zoom(Vector2(camera_zoom, camera_zoom))
 	
-
 
 func _process(delta):
 	# Used for getting size of game windows

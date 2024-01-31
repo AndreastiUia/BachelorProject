@@ -112,6 +112,7 @@ sources/0 = SubResource("TileSetAtlasSource_4gbcf")
 script = ExtResource("1_jbqlk")
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2(366, 260)
 tile_set = SubResource("TileSet_iwlt4")
 format = 2
 layer_0/name = "Ground"
@@ -121,7 +122,11 @@ layer_1/tile_data = PackedInt32Array(-1835008, 458752, 5, -1835007, 458752, 5, -
 script = ExtResource("3_hjf80")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+<<<<<<< HEAD
 position = Vector2(-534, -631)
+=======
+position = Vector2(0, 1)
+>>>>>>> 62aad2c5003b5aee8d6b69fccf0db8b660d7147f
 anchor_mode = 0
 script = ExtResource("4_p5x22")
 
