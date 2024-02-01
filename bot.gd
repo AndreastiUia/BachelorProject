@@ -18,13 +18,9 @@ var inventory: int = 0
 var inventory_size: int = 100
 
 # Programming bots
-var program_array = [program_func.MOVE_TO_POS, Vector2i(185,-200), program_func.MOVE_TO_POS, Vector2i(20,-20), program_func.MOVE_UP, program_func.MOVE_UP]
+var program_array = [program_func.MOVE_TO_POS, Vector2i(18,-20), program_func.MOVE_TO_POS, Vector2i(10,-20), program_func.MOVE_UP, program_func.MOVE_UP]
 enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, LOOP_START, LOOP_BREAK, LOOP_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE}
 
-# TESTING: Test variables. These are to be revomed after testing
-var gold_position = Vector2(185,-200)
-var base_position = Vector2(20,-20)
-var depleted = false
 
 func _ready():
 	# Setup pathfinding
@@ -63,13 +59,6 @@ func _process(delta):
 		if resource_count <= 0 && !tile_data.get_custom_data("base"):
 			tile_map.set_cell(1, tile_map.local_to_map(global_position), -1)
 			
-			# TESTING Go home when tile is depleted.
-			var path: Array[Vector2i]
-			path = astar_grid.get_id_path(
-				tile_map.local_to_map(global_position),
-				tile_map.local_to_map(base_position)
-			).slice(1)
-			current_id_path = path
 		
 		# Gather resource if inventory is less than inventory_size
 		if resource_count > 0:
@@ -122,41 +111,34 @@ func move_path():
 		if current_id_path.is_empty():
 			idle = true
 
-func move_direction(direction: Vector2):
+func calc_path_direction(direction: Vector2):
 	var current_tile: Vector2i = tile_map.local_to_map(global_position)
 	var target_tile: Vector2i = Vector2i(
 		current_tile.x + direction.x,
 		current_tile.y + direction.y
 	)
 	
-	var tile_data: TileData = tile_map.get_cell_tile_data(0, target_tile)
-
-	if tile_data.get_custom_data("walkable") == false:
-		return
-	var target_position = tile_map.map_to_local(target_tile)
-	global_position = global_position.move_toward(target_position, SPEED)
-	
-	if global_position == target_position:
-		idle = true
+	return target_tile
 
 func calc_path(target_position: Vector2i):
 	var path = astar_grid.get_id_path(
 		tile_map.local_to_map(global_position),
-		tile_map.local_to_map(target_position)
+		target_position
 	).slice(1)
+	print(target_position)
 	current_id_path = path
 
 func program_bot(function: Array):
 	if !idle:
 		return
 	if function.front() == program_func.MOVE_UP:
-		move_direction(Vector2i.UP)
+		calc_path(calc_path_direction(Vector2i.UP))
 	if function.front() == program_func.MOVE_DOWN:
-		move_direction(Vector2i.DOWN)
+		calc_path(calc_path_direction(Vector2i.DOWN))
 	if function.front() == program_func.MOVE_LEFT:
-		move_direction(Vector2i.LEFT)
+		calc_path(calc_path_direction(Vector2i.LEFT))
 	if function.front() == program_func.MOVE_RIGHT:
-		move_direction(Vector2i.RIGHT)
+		calc_path(calc_path_direction(Vector2i.RIGHT))
 	if function.front() == program_func.MOVE_TO_POS:
 		calc_path(program_array[1])
 		function.pop_front()
