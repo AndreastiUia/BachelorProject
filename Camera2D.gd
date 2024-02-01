@@ -7,7 +7,7 @@ var camera_speed = 300.0
 
 var camera_zoom = 0.5
 var min_zoom = 1.0
-var max_zoom = 1.3
+var max_zoom = 2.3
 
 func _input(input):
 	if input.is_action_pressed("zoom+"):
@@ -16,11 +16,20 @@ func _input(input):
 		zoom(-0.1)
 
 func zoom(delta):
+	var screen_center = get_viewport_rect().size / 2
+	var zoom_vector = Vector2(camera_zoom, camera_zoom)
+
 	camera_zoom += delta
-	camera_zoom = clamp(camera_zoom, min_zoom, max_zoom)  
-	set_zoom(Vector2(camera_zoom, camera_zoom))
-	
-	
+	camera_zoom = clamp(camera_zoom, min_zoom, max_zoom)
+
+	set_zoom(zoom_vector)
+
+	# Adjust the camera position manually based on the new zoom level and center of the screen
+	var new_camera_position = screen_center - (screen_center / get_zoom().x)
+	set_offset(new_camera_position)
+
+
+
 func _process(delta):
 	# Used for getting size of game windows
 	var viewport_rect = get_viewport_rect()
