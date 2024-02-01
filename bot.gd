@@ -3,7 +3,7 @@ extends Node2D
 @onready var tile_map = $"../TileMap"
 
 # Bot atributes
-var SPEED = 3
+var SPEED = 50
 var idle = true
 
 # Pathfinding
@@ -100,15 +100,16 @@ func _process(delta):
 func _physics_process(delta):
 	if !current_id_path.is_empty():
 		idle = false
-		move_path()
+		move_path(delta)
 	if program_array.is_empty():
 		return
 	if idle && program_index < program_array.size():
 		program_bot(program_array)
 
-func move_path():
+func move_path(delta):
+	var velocity = SPEED * delta
 	var target_position = tile_map.map_to_local(current_id_path.front())
-	global_position = global_position.move_toward(target_position, SPEED)
+	global_position = global_position.move_toward(target_position, velocity)
 	if global_position == target_position:
 		current_id_path.pop_front()
 		if current_id_path.is_empty():
@@ -131,32 +132,6 @@ func calc_path(target_position: Vector2i):
 		target_position
 	).slice(1)
 	current_id_path = path
-"""
-func program_bot(function: Array):
-	if !idle:
-		return
-	if function.front() == program_func.MOVE_UP:
-		calc_path(calc_target_tile_by_direction(Vector2i.UP))
-	if function.front() == program_func.MOVE_DOWN:
-		calc_path(calc_target_tile_by_direction(Vector2i.DOWN))
-	if function.front() == program_func.MOVE_LEFT:
-		calc_path(calc_target_tile_by_direction(Vector2i.LEFT))
-	if function.front() == program_func.MOVE_RIGHT:
-		calc_path(calc_target_tile_by_direction(Vector2i.RIGHT))
-	if function.front() == program_func.MOVE_TO_POS:
-		calc_path(program_array[1])
-		function.pop_front()
-	if function.front() == program_func.WHILE_START:
-		var while_array = []
-		program_array.pop_front()
-		while program_array.front() != program_func.WHILE_END:
-			while_array.append(program_array.front())
-			if program_array.front() == program_func.MOVE_TO_POS:
-				while_array.append(program_array[1])
-				program_array.pop_front()
-			program_array.pop_front()
-	function.pop_front()
-"""
 
 func program_bot(function: Array):
 	if !idle:
@@ -195,7 +170,6 @@ func program_bot(function: Array):
 			
 		program_func.WHILE_BREAK:
 			program_index = program_loop_end_index.front()
-			print(program_index)
 			program_loop_index.pop_back()
 			program_loop_end_index.pop_front()
 			
