@@ -18,8 +18,11 @@ var inventory: int = 0
 var inventory_size: int = 100
 
 # Programming bots
-var program_array = [program_func.MOVE_TO_POS, Vector2i(18,-20), program_func.MOVE_TO_POS, Vector2i(10,-20), program_func.MOVE_UP, program_func.MOVE_UP]
-enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, LOOP_START, LOOP_BREAK, LOOP_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE}
+var program_index = 0
+var program_loop_index = []
+var program_loop_end_index = []
+var program_array = [program_func.WHILE_START, program_func.MOVE_TO_POS, Vector2i(1,-5), program_func.MOVE_TO_POS, Vector2i(5,-6),program_func.WHILE_START, program_func.MOVE_UP, program_func.WHILE_BREAK, program_func.WHILE_END, program_func.WHILE_END, program_func.MOVE_UP]
+enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE}
 
 
 func _ready():
@@ -100,7 +103,7 @@ func _physics_process(delta):
 		move_path()
 	if program_array.is_empty():
 		return
-	if idle:
+	if idle && program_index < program_array.size():
 		program_bot(program_array)
 
 func move_path():
@@ -111,7 +114,8 @@ func move_path():
 		if current_id_path.is_empty():
 			idle = true
 
-func calc_path_direction(direction: Vector2):
+func calc_target_tile_by_direction(direction: Vector2):
+	# Returns target tile based on direction.
 	var current_tile: Vector2i = tile_map.local_to_map(global_position)
 	var target_tile: Vector2i = Vector2i(
 		current_tile.x + direction.x,
@@ -121,27 +125,78 @@ func calc_path_direction(direction: Vector2):
 	return target_tile
 
 func calc_path(target_position: Vector2i):
+	# Calculate path from current position to targegt position.
 	var path = astar_grid.get_id_path(
 		tile_map.local_to_map(global_position),
 		target_position
 	).slice(1)
-	print(target_position)
 	current_id_path = path
-
+"""
 func program_bot(function: Array):
 	if !idle:
 		return
 	if function.front() == program_func.MOVE_UP:
-		calc_path(calc_path_direction(Vector2i.UP))
+		calc_path(calc_target_tile_by_direction(Vector2i.UP))
 	if function.front() == program_func.MOVE_DOWN:
-		calc_path(calc_path_direction(Vector2i.DOWN))
+		calc_path(calc_target_tile_by_direction(Vector2i.DOWN))
 	if function.front() == program_func.MOVE_LEFT:
-		calc_path(calc_path_direction(Vector2i.LEFT))
+		calc_path(calc_target_tile_by_direction(Vector2i.LEFT))
 	if function.front() == program_func.MOVE_RIGHT:
-		calc_path(calc_path_direction(Vector2i.RIGHT))
+		calc_path(calc_target_tile_by_direction(Vector2i.RIGHT))
 	if function.front() == program_func.MOVE_TO_POS:
 		calc_path(program_array[1])
 		function.pop_front()
-		
-	
+	if function.front() == program_func.WHILE_START:
+		var while_array = []
+		program_array.pop_front()
+		while program_array.front() != program_func.WHILE_END:
+			while_array.append(program_array.front())
+			if program_array.front() == program_func.MOVE_TO_POS:
+				while_array.append(program_array[1])
+				program_array.pop_front()
+			program_array.pop_front()
 	function.pop_front()
+"""
+
+func program_bot(function: Array):
+	if !idle:
+		return
+	match function[program_index]:
+		program_func.MOVE_UP:
+			calc_path(calc_target_tile_by_direction(Vector2i.UP))
+			
+		program_func.MOVE_DOWN:
+			calc_path(calc_target_tile_by_direction(Vector2i.DOWN))
+			
+		program_func.MOVE_LEFT:
+			calc_path(calc_target_tile_by_direction(Vector2i.LEFT))
+			
+		program_func.MOVE_RIGHT:
+			calc_path(calc_target_tile_by_direction(Vector2i.RIGHT))
+			
+		program_func.MOVE_TO_POS:
+			program_index += 1
+			calc_path(program_array[program_index])
+			
+		program_func.WHILE_START:
+			# Intereate trough the program_array to find the next loop_end
+			program_loop_index.append(program_index)
+			while function[program_index] != program_func.WHILE_END || program_loop_end_index.find(program_index) > -1:
+				if function[program_index] == program_func.MOVE_TO_POS:
+					program_index += 2
+				else:
+					program_index += 1
+			program_loop_end_index.append(program_index)
+			program_loop_end_index.sort()
+			program_index = program_loop_index.back()
+			
+		program_func.WHILE_END:
+			program_index = program_loop_index.back()
+			
+		program_func.WHILE_BREAK:
+			program_index = program_loop_end_index.front()
+			print(program_index)
+			program_loop_index.pop_back()
+			program_loop_end_index.pop_front()
+			
+	program_index += 1
