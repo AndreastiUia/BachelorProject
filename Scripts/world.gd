@@ -12,6 +12,8 @@ func _ready():
 func _process(delta):
 	
 	get_node("Camera2D/GUI/SideGUI/Gold_Label").text = str(Global.base_gold)
+	get_node("Camera2D/GUI/SideGUI/Wood_Label").text = str(Global.base_wood)
+	get_node("Camera2D/GUI/SideGUI/Stone_Label").text = str(Global.base_stone)
 	
 
 func _on_temp_button_pressed():
