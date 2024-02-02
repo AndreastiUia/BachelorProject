@@ -15,7 +15,7 @@ var gold: int = 0
 var wood: int = 0
 var stone: int = 0
 var inventory: int = 0
-var inventory_size: int = 100
+var inventory_size: int = 10
 
 # Programming bots
 var program_index = 0
@@ -23,8 +23,8 @@ var program_loop_index = []
 var program_loop_end_index = []
 var program_if_not_index = []
 var program_if_end_index = []
-var program_array = [program_func.WHILE_START, program_func.MOVE_TO_POS, Vector2i(1,-5), program_func.MOVE_TO_POS, Vector2i(5,-6),program_func.WHILE_START, program_func.MOVE_UP, program_func.IF, "5 == 10", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.WHILE_END, program_func.MOVE_UP]
-enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE}
+var program_array = [program_func.WHILE_START, program_func.MOVE_TO_POS, Vector2i(12,-12), program_func.WHILE_START, program_func.GATHER_RESOURCE, program_func.IF, "inventory >= inventory_size", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.MOVE_TO_POS, Vector2i(2,-1), program_func.WHILE_START, program_func.DELIVER_RESOURCE, program_func.IF, "inventory == 0", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.WHILE_END]
+enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE, DELIVER_RESOURCE}
 
 
 func _ready():
@@ -56,31 +56,13 @@ func _process(delta):
 	# Return if there is no resource on the current tile
 	if tile_data == null:
 		return
-			
-	var resource_count = Global.resource_count.get(tile_map.local_to_map(global_position))
-	
-	if !resource_count == null:
-		# Remove the resource if the resource is depleted
-		if resource_count <= 0 && !tile_data.get_custom_data("base"):
-			tile_map.set_cell(1, tile_map.local_to_map(global_position), -1)
-			
-		
-		# Gather resource if inventory is less than inventory_size
-		if resource_count > 0:
-			resource_count -= 1
-			if inventory < inventory_size:
-				if tile_data.get_custom_data("resource_type") == "gold":
-					gold += 1
-				# Decrement resource_count on current tile
-				Global.resource_count[tile_map.local_to_map(global_position)] = resource_count
-				
+	"""			
 	if tile_data.get_custom_data("base"):
 		# "deliver" inventory at base
 		if gold > 0:
 			gold -= 1
 			Global.base_gold += 1
-	inventory = gold + wood + stone
-			
+		"""	
 	"""
 	# Gather gold loop
 	var path: Array[Vector2i]
@@ -196,6 +178,41 @@ func program_bot(function: Array):
 			if !test_expression(program_array[program_index]):
 				program_index = program_if_end_index.front()
 			program_if_end_index.pop_front()
+			
+		program_func.GATHER_RESOURCE:
+			# Get resource_count on current tile from global dict
+			var resource_count = Global.resource_count.get(tile_map.local_to_map(global_position))
+			var tile_data = tile_map.get_cell_tile_data(1, tile_map.local_to_map(global_position))
+			
+			if !resource_count == null:
+				# Gather resource if inventory is less than inventory_size
+				if resource_count > 0 && inventory < inventory_size:
+					resource_count -= 1
+					# Remove the resource if the resource is depleted
+					if resource_count <= 0 && !tile_data.get_custom_data("base"):
+						tile_map.set_cell(1, tile_map.local_to_map(global_position), -1)
+					if tile_data.get_custom_data("resource_type") == "gold":
+						gold += 1
+				# Decrement resource_count on current tile
+				Global.resource_count[tile_map.local_to_map(global_position)] = resource_count
+			
+			update_inventory()
+			print(inventory)
+		
+		program_func.DELIVER_RESOURCE:
+			var tile_data = tile_map.get_cell_tile_data(1, tile_map.local_to_map(global_position))
+	
+			# Return if there is no resource on the current tile
+			if tile_data == null:
+				return
+						
+			if tile_data.get_custom_data("base"):
+				# "deliver" inventory at base
+				if gold > 0:
+					gold -= 1
+					Global.base_gold += 1
+				update_inventory()
+			
 	program_index += 1
 
 func test_expression(statement):
@@ -204,3 +221,6 @@ func test_expression(statement):
 	var result = expression.execute([], self)
 	print(result)
 	return result
+
+func update_inventory():
+	inventory = gold + stone + wood
