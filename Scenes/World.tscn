@@ -165,12 +165,11 @@ text = "Temp Button Spawn"
 
 [node name="SideGUI" type="NinePatchRect" parent="Camera2D/GUI"]
 anchors_preset = -1
-anchor_right = 0.073
-anchor_bottom = 0.293
-offset_left = 5.0
-offset_top = 1.0
-offset_right = -0.0960083
-offset_bottom = 0.135986
+anchor_right = 1.001
+anchor_bottom = 0.083
+offset_top = -4.0
+offset_right = -0.1521
+offset_bottom = -4.784
 texture = ExtResource("7_bdgie")
 patch_margin_left = 4
 patch_margin_top = 4
@@ -178,59 +177,84 @@ patch_margin_right = 4
 patch_margin_bottom = 4
 
 [node name="Wood_Icon" type="Sprite2D" parent="Camera2D/GUI/SideGUI"]
-position = Vector2(26, 25)
+visible = false
+position = Vector2(54, 156)
 scale = Vector2(0.0523437, 0.0492188)
 texture = ExtResource("10_xy4hm")
 
 [node name="Stone_Icon" type="Sprite2D" parent="Camera2D/GUI/SideGUI"]
-position = Vector2(26, 74)
+visible = false
+position = Vector2(138, 148)
 scale = Vector2(0.0523437, 0.0492188)
 texture = ExtResource("9_0m3tn")
 
 [node name="Gold_Icon" type="Sprite2D" parent="Camera2D/GUI/SideGUI"]
-position = Vector2(26, 118)
+visible = false
+position = Vector2(190, 138)
 scale = Vector2(0.0523437, 0.0492188)
 texture = ExtResource("8_12uut")
 
-[node name="Wood_Label" type="Label" parent="Camera2D/GUI/SideGUI"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/GUI/SideGUI"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 47.0
-offset_top = 16.0
-offset_right = -3.99999
-offset_bottom = -149.0
+anchors_preset = -1
+anchor_left = 0.021
+anchor_top = 0.102
+anchor_right = 0.989
+anchor_bottom = 0.918
+offset_left = 25.787
+offset_top = 3.594
+offset_right = -33.317
+offset_bottom = -4.654
+theme_override_constants/separation = 70
+
+[node name="WoodIcon" type="TextureRect" parent="Camera2D/GUI/SideGUI/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Wood"
+texture = ExtResource("10_xy4hm")
+expand_mode = 2
+
+[node name="Wood_Label" type="Label" parent="Camera2D/GUI/SideGUI/HBoxContainer/WoodIcon"]
+layout_mode = 2
+offset_left = 44.0
+offset_top = 5.0
+offset_right = 72.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_mai7t")
 theme_override_font_sizes/font_size = 20
 text = "0"
 
-[node name="Stone_Label" type="Label" parent="Camera2D/GUI/SideGUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 45.0
-offset_top = 64.0
-offset_right = -5.99999
-offset_bottom = -101.0
+[node name="StoneIcon" type="TextureRect" parent="Camera2D/GUI/SideGUI/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Stone"
+texture = ExtResource("9_0m3tn")
+expand_mode = 2
+
+[node name="Stone_Label" type="Label" parent="Camera2D/GUI/SideGUI/HBoxContainer/StoneIcon"]
+layout_mode = 2
+offset_left = 41.0
+offset_top = 5.0
+offset_right = 96.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_mai7t")
 theme_override_font_sizes/font_size = 20
 text = "0"
 
-[node name="Gold_Label" type="Label" parent="Camera2D/GUI/SideGUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 48.0
-offset_top = 111.0
-offset_right = -2.99999
-offset_bottom = -54.0
+[node name="GoldIcon" type="TextureRect" parent="Camera2D/GUI/SideGUI/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Gold"
+texture = ExtResource("8_12uut")
+expand_mode = 2
+
+[node name="Gold_Label" type="Label" parent="Camera2D/GUI/SideGUI/HBoxContainer/GoldIcon"]
+layout_mode = 2
+offset_left = 44.0
+offset_top = 5.0
+offset_right = 98.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_mai7t")
