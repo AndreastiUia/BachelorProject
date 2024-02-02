@@ -5,9 +5,11 @@ extends Camera2D
 var edge_threshold = 20.0
 var camera_speed = 300.0
 
+
 var camera_zoom = 1.0
 var min_zoom = 0.5
 var max_zoom = 1.5
+
 
 
 func _ready():
