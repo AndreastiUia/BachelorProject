@@ -3,7 +3,7 @@ extends Node2D
 @onready var tile_map = $"../TileMap"
 
 # Bot atributes
-var SPEED = 50
+var SPEED = 500
 var idle = true
 
 # Pathfinding
@@ -21,7 +21,9 @@ var inventory_size: int = 100
 var program_index = 0
 var program_loop_index = []
 var program_loop_end_index = []
-var program_array = [program_func.WHILE_START, program_func.MOVE_TO_POS, Vector2i(1,-5), program_func.MOVE_TO_POS, Vector2i(5,-6),program_func.WHILE_START, program_func.MOVE_UP, program_func.WHILE_BREAK, program_func.WHILE_END, program_func.WHILE_END, program_func.MOVE_UP]
+var program_if_not_index = []
+var program_if_end_index = []
+var program_array = [program_func.WHILE_START, program_func.MOVE_TO_POS, Vector2i(1,-5), program_func.MOVE_TO_POS, Vector2i(5,-6),program_func.WHILE_START, program_func.MOVE_UP, program_func.IF, "5 < 10", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.WHILE_END, program_func.MOVE_UP]
 enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE}
 
 
@@ -46,7 +48,7 @@ func _ready():
 			if tile_data == null or tile_data.get_custom_data("walkable") == false:
 				astar_grid.set_point_solid(tile_position)
 	
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var tile_data = tile_map.get_cell_tile_data(1, tile_map.local_to_map(global_position))
@@ -157,7 +159,7 @@ func program_bot(function: Array):
 			# Intereate trough the program_array to find the next loop_end
 			program_loop_index.append(program_index)
 			while function[program_index] != program_func.WHILE_END || program_loop_end_index.find(program_index) > -1:
-				if function[program_index] == program_func.MOVE_TO_POS:
+				if function[program_index] == program_func.MOVE_TO_POS || function[program_index] == program_func.IF:
 					program_index += 2
 				else:
 					program_index += 1
@@ -172,5 +174,45 @@ func program_bot(function: Array):
 			program_index = program_loop_end_index.front()
 			program_loop_index.pop_back()
 			program_loop_end_index.pop_front()
+		
+		program_func.IF:
+			# Iterate trough the program_array to find the next if_end
+			# Increment 1 to save the position of the if statement to test
+			program_index += 1
+			var temp_program_index = program_index
+			var if_count = 0
+			# Increment 1 to prevent error when trying to check if_statement-string against enum.
+			program_index += 1
+			while function[program_index] != program_func.IF_END || program_if_end_index.find(program_index) > -1 || if_count > 0:
+				if function[program_index] == program_func.IF:
+					if_count += 1
+				if function[program_index] == program_func.MOVE_TO_POS || function[program_index] == program_func.IF:
+					program_index += 2
+				else:
+					"""
+					if function[program_index] == program_func.IF_NOT || if_count > 0:
+						program_if_not_index.append(program_index)
+					"""
+					program_index += 1
+			program_if_end_index.append(program_index)
+			program_index = temp_program_index
 			
+			if !test_expression(program_array[program_index]):
+				# Since we increment the program_index after the match test,
+				# we need to decrement 1 here so that the progam_index point to the program_if_not_index. in the next match test.
+				program_index = program_if_end_index.front()
+			program_if_end_index.pop_front()
+			"""
+			program_func.IF_NOT:
+				if test_expression(program_array[program_index]):
+					program_index = program_if_end_index.front()
+					program_if_end_index.pop_front()
+			"""
 	program_index += 1
+
+func test_expression(statement):
+	var expression = Expression.new()
+	expression.parse("5 < 10", [])
+	var result = expression.execute([], self)
+	print(result)
+	return result
