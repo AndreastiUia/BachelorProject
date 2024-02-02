@@ -11,7 +11,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	get_node("Camera2D/GUI/SideGUI/Temp_Gold").text = "Gold: " + str(Global.base_gold)
+	get_node("Camera2D/GUI/SideGUI/Gold_Label").text = str(Global.base_gold)
 	
 
 func _on_temp_button_pressed():

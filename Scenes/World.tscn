@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv48c1hfsupwh"]
+[gd_scene load_steps=13 format=3 uid="uid://dv48c1hfsupwh"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_ngqvp"]
 [ext_resource type="Texture2D" uid="uid://cfjo1jnl5l27e" path="res://External Resources/tinyFantazyTileSet/tiny fantasy rpg_strategy.png" id="2_f25sg"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://elpw3ix44wg0" path="res://External Resources/Pictures/GUI_Texture_Bottom.png" id="5_00b4k"]
 [ext_resource type="FontFile" uid="uid://ct4ox56t42ck3" path="res://External Resources/Fonts/Teko/Teko-VariableFont_wght.ttf" id="5_mai7t"]
 [ext_resource type="Texture2D" uid="uid://c0vox0k6hkcjt" path="res://External Resources/Pictures/GUI_Texture_SideBar.png" id="7_bdgie"]
+[ext_resource type="Texture2D" uid="uid://bn652nl1w7rue" path="res://Sprites/Icons/Resources/Gold_Icon.png" id="8_12uut"]
+[ext_resource type="Texture2D" uid="uid://5tfakxg43a0y" path="res://Sprites/Icons/Resources/Stone_Icon.png" id="9_0m3tn"]
+[ext_resource type="Texture2D" uid="uid://d3wonm53p64sy" path="res://Sprites/Icons/Resources/Wood_Icon.png" id="10_xy4hm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4gbcf"]
 texture = ExtResource("2_f25sg")
@@ -174,20 +177,34 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="Temp_Gold" type="Label" parent="Camera2D/GUI/SideGUI"]
+[node name="Wood_Icon" type="Sprite2D" parent="Camera2D/GUI/SideGUI"]
+position = Vector2(26, 25)
+scale = Vector2(0.0523437, 0.0492188)
+texture = ExtResource("10_xy4hm")
+
+[node name="Stone_Icon" type="Sprite2D" parent="Camera2D/GUI/SideGUI"]
+position = Vector2(26, 74)
+scale = Vector2(0.0523437, 0.0492188)
+texture = ExtResource("9_0m3tn")
+
+[node name="Gold_Icon" type="Sprite2D" parent="Camera2D/GUI/SideGUI"]
+position = Vector2(26, 118)
+scale = Vector2(0.0523437, 0.0492188)
+texture = ExtResource("8_12uut")
+
+[node name="Gold_Label" type="Label" parent="Camera2D/GUI/SideGUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 9.0
-offset_top = 6.0
-offset_right = -31.0
-offset_bottom = -158.0
+offset_left = 48.0
+offset_top = 111.0
+offset_right = -2.99999
+offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.627451, 0.65098, 0.137255, 1)
 theme_override_fonts/font = ExtResource("5_mai7t")
-text = "Gold:"
 
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/Temp_Button" to="." method="_on_temp_button_pressed"]
