@@ -23,7 +23,7 @@ var program_loop_index = []
 var program_loop_end_index = []
 var program_if_not_index = []
 var program_if_end_index = []
-var program_array = [program_func.WHILE_START, program_func.MOVE_TO_POS, Vector2i(1,-5), program_func.MOVE_TO_POS, Vector2i(5,-6),program_func.WHILE_START, program_func.MOVE_UP, program_func.IF, "5 < 10", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.WHILE_END, program_func.MOVE_UP]
+var program_array = [program_func.WHILE_START, program_func.MOVE_TO_POS, Vector2i(1,-5), program_func.MOVE_TO_POS, Vector2i(5,-6),program_func.WHILE_START, program_func.MOVE_UP, program_func.IF, "5 == 10", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.WHILE_END, program_func.MOVE_UP]
 enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE}
 
 
@@ -189,30 +189,18 @@ func program_bot(function: Array):
 				if function[program_index] == program_func.MOVE_TO_POS || function[program_index] == program_func.IF:
 					program_index += 2
 				else:
-					"""
-					if function[program_index] == program_func.IF_NOT || if_count > 0:
-						program_if_not_index.append(program_index)
-					"""
 					program_index += 1
 			program_if_end_index.append(program_index)
 			program_index = temp_program_index
 			
 			if !test_expression(program_array[program_index]):
-				# Since we increment the program_index after the match test,
-				# we need to decrement 1 here so that the progam_index point to the program_if_not_index. in the next match test.
 				program_index = program_if_end_index.front()
 			program_if_end_index.pop_front()
-			"""
-			program_func.IF_NOT:
-				if test_expression(program_array[program_index]):
-					program_index = program_if_end_index.front()
-					program_if_end_index.pop_front()
-			"""
 	program_index += 1
 
 func test_expression(statement):
 	var expression = Expression.new()
-	expression.parse("5 < 10", [])
+	expression.parse(statement, [])
 	var result = expression.execute([], self)
 	print(result)
 	return result
