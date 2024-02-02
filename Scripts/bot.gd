@@ -1,6 +1,8 @@
 extends Node2D
 
 @onready var tile_map = $"../TileMap"
+@onready var timer_reset_idle = $timer_reset_idle
+
 
 # Bot atributes
 var SPEED = 500
@@ -16,6 +18,7 @@ var wood: int = 0
 var stone: int = 0
 var inventory: int = 0
 var inventory_size: int = 10
+var mining_time = 1
 
 # Programming bots
 var program_index = 0
@@ -51,35 +54,7 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var tile_data = tile_map.get_cell_tile_data(1, tile_map.local_to_map(global_position))
-	
-	# Return if there is no resource on the current tile
-	if tile_data == null:
-		return
-	"""			
-	if tile_data.get_custom_data("base"):
-		# "deliver" inventory at base
-		if gold > 0:
-			gold -= 1
-			Global.base_gold += 1
-		"""	
-	"""
-	# Gather gold loop
-	var path: Array[Vector2i]
-	
-	if gold <= 0 && !depleted:
-		path = astar_grid.get_id_path(
-			tile_map.local_to_map(global_position),
-			tile_map.local_to_map(gold_position)
-		).slice(1)
-	elif gold >= 100:
-		path = astar_grid.get_id_path(
-			tile_map.local_to_map(global_position),
-			tile_map.local_to_map(base_position)
-		).slice(1)
-	if path.is_empty() == false:
-		current_id_path = path
-	"""
+	pass
 	
 func _physics_process(delta):
 	if !current_id_path.is_empty():
@@ -134,11 +109,12 @@ func program_bot(function: Array):
 			calc_path(calc_target_tile_by_direction(Vector2i.RIGHT))
 			
 		program_func.MOVE_TO_POS:
+			# Move to tile based on grid-coordinates.
 			program_index += 1
 			calc_path(program_array[program_index])
 			
 		program_func.WHILE_START:
-			# Intereate trough the program_array to find the next loop_end
+			# Intereate trough the program_array to find the next loop_end.
 			program_loop_index.append(program_index)
 			while function[program_index] != program_func.WHILE_END || program_loop_end_index.find(program_index) > -1:
 				if function[program_index] == program_func.MOVE_TO_POS || function[program_index] == program_func.IF:
@@ -150,16 +126,18 @@ func program_bot(function: Array):
 			program_index = program_loop_index.back()
 			
 		program_func.WHILE_END:
+			# Jump back to start of the start of the loop.
 			program_index = program_loop_index.back()
 			
 		program_func.WHILE_BREAK:
+			# Skip to end of loop. Since program_index is incremented after this, the program will cuntinue on first command after WHILE_END.
 			program_index = program_loop_end_index.front()
 			program_loop_index.pop_back()
 			program_loop_end_index.pop_front()
 		
 		program_func.IF:
-			# Iterate trough the program_array to find the next if_end
-			# Increment 1 to save the position of the if statement to test
+			# Iterate trough the program_array to find the next if_end.
+			# Increment 1 to save the position of the if statement to test.
 			program_index += 1
 			var temp_program_index = program_index
 			var if_count = 0
@@ -175,17 +153,20 @@ func program_bot(function: Array):
 			program_if_end_index.append(program_index)
 			program_index = temp_program_index
 			
+			# If the statement is false, then skip to IF_END.
 			if !test_expression(program_array[program_index]):
 				program_index = program_if_end_index.front()
 			program_if_end_index.pop_front()
 			
 		program_func.GATHER_RESOURCE:
-			# Get resource_count on current tile from global dict
+			idle = false
+			timer_reset_idle.start(mining_time)
+			# Get resource_count on current tile from global dict.
 			var resource_count = Global.resource_count.get(tile_map.local_to_map(global_position))
 			var tile_data = tile_map.get_cell_tile_data(1, tile_map.local_to_map(global_position))
 			
 			if !resource_count == null:
-				# Gather resource if inventory is less than inventory_size
+				# Gather resource if inventory is less than inventory_size.
 				if resource_count > 0 && inventory < inventory_size:
 					resource_count -= 1
 					# Remove the resource if the resource is depleted
@@ -197,17 +178,18 @@ func program_bot(function: Array):
 				Global.resource_count[tile_map.local_to_map(global_position)] = resource_count
 			
 			update_inventory()
-			print(inventory)
 		
 		program_func.DELIVER_RESOURCE:
+			idle = false
+			timer_reset_idle.start(mining_time)
 			var tile_data = tile_map.get_cell_tile_data(1, tile_map.local_to_map(global_position))
 	
-			# Return if there is no resource on the current tile
+			# Return if there is no resource on the current tile.
 			if tile_data == null:
 				return
-						
+			
+			# Deliver resources in inventory.
 			if tile_data.get_custom_data("base"):
-				# "deliver" inventory at base
 				if gold > 0:
 					gold -= 1
 					Global.base_gold += 1
@@ -219,8 +201,12 @@ func test_expression(statement):
 	var expression = Expression.new()
 	expression.parse(statement, [])
 	var result = expression.execute([], self)
-	print(result)
 	return result
 
 func update_inventory():
 	inventory = gold + stone + wood
+	print(inventory)
+
+
+func _on_timer_reset_idle_timeout():
+	idle = true
