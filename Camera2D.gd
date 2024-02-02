@@ -5,22 +5,43 @@ extends Camera2D
 var edge_threshold = 20.0
 var camera_speed = 300.0
 
-var camera_zoom = 0.5
-var min_zoom = 1.0
-var max_zoom = 1.3
+var camera_zoom = 1.0
+var min_zoom = 0.5
+var max_zoom = 1.5
 
-func _input(input):
-	if input.is_action_pressed("zoom+"):
-		zoom(0.1)
-	elif input.is_action_pressed("zoom-"):
-		zoom(-0.1)
+func _ready():
+	var screen_center = get_viewport_rect().size / 2
+	var zoom_vector = Vector2(camera_zoom, camera_zoom)
+	set_zoom(zoom_vector)
 
+	# Sets the initial camera position based on where the center of the game window is. ( This is bacause we are using anchor mode "topleft" )
+	var initial_camera_position = screen_center - (screen_center / get_zoom().x)
+	set_offset(initial_camera_position)
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				zoom(0.1)
+			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				zoom(-0.1)
+
+#Clamp is used top make sure that the zoom stays within the set range
 func zoom(delta):
 	camera_zoom += delta
-	camera_zoom = clamp(camera_zoom, min_zoom, max_zoom)  
-	set_zoom(Vector2(camera_zoom, camera_zoom))
-	
-	
+	camera_zoom = clamp(camera_zoom, min_zoom, max_zoom)
+
+	var zoom_vector = Vector2(camera_zoom, camera_zoom)
+	set_zoom(zoom_vector)
+
+	# Adjusts the camera position based on the new zoom level
+	var screen_center = get_viewport_rect().size / 2
+	var new_camera_position = screen_center - (screen_center / get_zoom().x)
+	set_offset(new_camera_position)
+
+
+
+
 func _process(delta):
 	# Used for getting size of game windows
 	var viewport_rect = get_viewport_rect()
