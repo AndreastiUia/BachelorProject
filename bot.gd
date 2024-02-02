@@ -205,8 +205,6 @@ func test_expression(statement):
 
 func update_inventory():
 	inventory = gold + stone + wood
-	print("Inventory: ", inventory)
-
 
 func _on_timer_reset_idle_timeout():
 	idle = true
