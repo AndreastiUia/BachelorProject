@@ -139,6 +139,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -137.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_00b4k")
@@ -147,18 +148,43 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Temp_Button" type="Button" parent="Camera2D/GUI/BottomGUI"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/GUI/BottomGUI"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.836
-anchor_right = 0.982
-anchor_bottom = 1.0
-offset_left = -0.0720215
-offset_top = 18.0
-offset_right = -0.264038
-offset_bottom = -83.0
-grow_horizontal = 2
-grow_vertical = 2
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 30.0
+offset_right = -22.0
+offset_bottom = 109.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Temp_Button" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_mai7t")
+theme_override_font_sizes/font_size = 25
+text = "Temp Button Spawn"
+
+[node name="Temp_Button5" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_mai7t")
+theme_override_font_sizes/font_size = 25
+text = "Temp Button Spawn"
+
+[node name="Temp_Button2" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_mai7t")
+theme_override_font_sizes/font_size = 25
+text = "Temp Button Spawn"
+
+[node name="Temp_Button3" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_mai7t")
+theme_override_font_sizes/font_size = 25
+text = "Temp Button Spawn"
+
+[node name="Temp_Button4" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("5_mai7t")
 theme_override_font_sizes/font_size = 25
 text = "Temp Button Spawn"
@@ -242,4 +268,8 @@ theme_override_fonts/font = ExtResource("5_mai7t")
 theme_override_font_sizes/font_size = 20
 text = "0"
 
-[connection signal="pressed" from="Camera2D/GUI/BottomGUI/Temp_Button" to="." method="_on_temp_button_pressed"]
+[connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button" to="." method="_on_temp_button_pressed"]
+[connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button5" to="." method="_on_temp_button_pressed"]
+[connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button2" to="." method="_on_temp_button_pressed"]
+[connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button3" to="." method="_on_temp_button_pressed"]
+[connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button4" to="." method="_on_temp_button_pressed"]
