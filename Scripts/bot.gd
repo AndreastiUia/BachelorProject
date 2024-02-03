@@ -18,7 +18,7 @@ var wood: int = 0
 var stone: int = 0
 var inventory: int = 0
 var inventory_size: int = 10
-var mining_time = 1
+var mining_time = 0.1
 
 # Programming bots
 var program_index = 0
