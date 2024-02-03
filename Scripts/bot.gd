@@ -20,6 +20,7 @@ var inventory: int = 0
 var inventory_size: int = 10
 var mining_time = 0.1
 
+<<<<<<< HEAD
 # Programming bots
 var program_index = 0
 var program_loop_index = []
@@ -28,6 +29,12 @@ var program_if_not_index = []
 var program_if_end_index = []
 var program_array = [program_func.WHILE_START, program_func.MOVE_TO_POS, Vector2i(12,-12), program_func.WHILE_START, program_func.GATHER_RESOURCE, program_func.IF, "inventory >= inventory_size", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.MOVE_TO_POS, Vector2i(2,-1), program_func.WHILE_START, program_func.DELIVER_RESOURCE, program_func.IF, "inventory == 0", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.WHILE_END]
 enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE, DELIVER_RESOURCE}
+=======
+# TESTING: Test variables. These are to be revomed after testing
+var gold_position = Vector2(170,-200)
+var base_position = Vector2(20,-20)
+var depleted = false
+>>>>>>> b47d0ab (Randomly generates resources and makes the non walkable)
 
 func _ready():
 	# Setup pathfinding
@@ -47,10 +54,19 @@ func _ready():
 			
 			var tile_data = tile_map.get_cell_tile_data(0, tile_position)
 			
-			if tile_data == null or tile_data.get_custom_data("walkable") == false:
+			if tile_data == null || tile_data.get_custom_data("walkable") == false:
 				astar_grid.set_point_solid(tile_position)
+			
+			# Make resources non walkable
+			var tile_data_2 = tile_map.get_cell_tile_data(1, tile_position)
+			if !tile_data_2 == null && !tile_data_2.get_custom_data("base"):
+				astar_grid.set_point_solid(tile_position)
+<<<<<<< HEAD
 	
 	
+=======
+
+>>>>>>> b47d0ab (Randomly generates resources and makes the non walkable)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
