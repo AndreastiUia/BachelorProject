@@ -8,6 +8,35 @@ var forest = FastNoiseLite.new()
 var forest_type = FastNoiseLite.new()
 var gold = FastNoiseLite.new()
 
+var width = 800
+var height = 800
+
+func generate_chunk(position):
+	var tile_pos = local_to_map(position)
+	for x in range(width):
+		for y in range(height):
+			set_cell(0, Vector2i(tile_pos.x-width/2+y,tile_pos.y-height/2+x), 0, Vector2i(1,4))
+			
+			# Do not place resource if the tile is base
+			var tile_data = get_cell_tile_data(1, Vector2i(tile_pos.x-width/2+y,tile_pos.y-height/2+x))
+			if !tile_data == null:
+				if tile_data.get_custom_data("base"):
+					continue
+			
+			var st = (stone.get_noise_2d(x,y))
+			var gld = (gold.get_noise_2d(x,y))
+			var tree = (forest.get_noise_2d(x,y))
+			var tree_type = (forest_type.get_noise_2d(x,y))
+			
+			if st > 0.4:
+				set_cell(1, Vector2i(tile_pos.x-width/2+y,tile_pos.y-height/2+x), 0, Vector2i(5,3))
+			if gld > 0.45:
+				set_cell(1, Vector2i(tile_pos.x-width/2+y,tile_pos.y-height/2+x), 0, Vector2i(6,3))
+			if tree > 0.2:
+				if tree_type < (0):
+					set_cell(1, Vector2i(tile_pos.x-width/2+y,tile_pos.y-height/2+x), 0, Vector2i(7,3))
+				else:
+					set_cell(1, Vector2i(tile_pos.x-width/2+y,tile_pos.y-height/2+x), 0, Vector2i(7,5))
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
@@ -20,6 +49,9 @@ func _ready():
 	gold.seed = randi()
 	gold.frequency = 0.08
 	
+	
+	generate_chunk(Vector2i(0,0))
+	
 	# Randomly generate resources.
 	for x in get_used_rect().size.x:
 		for y in get_used_rect().size.y:
@@ -27,19 +59,7 @@ func _ready():
 			if !tile_data == null:
 				if !tile_data.get_custom_data("walkable"):
 					continue
-				var st = (stone.get_noise_2d(x,y))
-				var gld = (gold.get_noise_2d(x,y))
-				var tree = (forest.get_noise_2d(x,y))
-				var tree_type = (forest_type.get_noise_2d(x,y))
-				if st > 0.3:
-					set_cell(1, Vector2i(x,y*-1), 0, Vector2i(5,3))
-				if gld > 0.3:
-					set_cell(1, Vector2i(x,y*-1), 0, Vector2i(6,3))
-				if tree > 0.3:
-					if tree_type < (0):
-						set_cell(1, Vector2i(x,y*-1), 0, Vector2i(7,3))
-					else:
-						set_cell(1, Vector2i(x,y*-1), 0, Vector2i(7,5))
+				
 			
 	
 	# Set a random resouce_count on tiles with a resource.
