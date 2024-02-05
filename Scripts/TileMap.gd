@@ -29,6 +29,7 @@ func _input(event):
 		if resource_count == null:
 			return
 		print(resource_count)
+		print(local_to_map(get_global_mouse_position()))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
