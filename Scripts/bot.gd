@@ -162,9 +162,13 @@ func program_bot(function: Array):
 		program_func.GATHER_RESOURCE:
 			idle = false
 			timer_reset_idle.start(mining_time)
+			# check if there is resources on adjacent tiles.
+			var resource_tile = check_adjacent_tile()
+			if resource_tile == null:
+				return
 			# Get resource_count on current tile from global dict.
-			var resource_count = Global.resource_count.get(tile_map.local_to_map(global_position))
-			var tile_data = tile_map.get_cell_tile_data(1, tile_map.local_to_map(global_position))
+			var resource_count = Global.resource_count.get(resource_tile)
+			var tile_data = tile_map.get_cell_tile_data(1, resource_tile)
 			
 			if !resource_count == null:
 				# Gather resource if inventory is less than inventory_size.
@@ -172,11 +176,11 @@ func program_bot(function: Array):
 					resource_count -= 1
 					# Remove the resource if the resource is depleted
 					if resource_count <= 0 && !tile_data.get_custom_data("base"):
-						tile_map.set_cell(1, tile_map.local_to_map(global_position), -1)
+						tile_map.set_cell(1, resource_tile, -1)
 					if tile_data.get_custom_data("resource_type") == "gold":
 						gold += 1
 				# Decrement resource_count on current tile
-				Global.resource_count[tile_map.local_to_map(global_position)] = resource_count
+				Global.resource_count[resource_tile] = resource_count
 			
 			update_inventory()
 		
@@ -208,6 +212,17 @@ func update_inventory():
 	inventory = gold + stone + wood
 	print("Inventory: ", inventory)
 
+func check_adjacent_tile():
+	# Check if there is a tile resource/base tile adjacent to the bot.
+	var directions = [Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN, Vector2i.LEFT]
+	var bot_position_tile = tile_map.local_to_map(global_position)
+	for direction in directions:
+		var target_tile = bot_position_tile + direction
+		var tile_data = tile_map.get_cell_tile_data(1, target_tile)
+		if tile_data != null:
+			return target_tile
+	
+		
 
 func _on_timer_reset_idle_timeout():
 	idle = true
