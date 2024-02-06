@@ -6,6 +6,7 @@ extends Node2D
 
 # Bot atributes
 var SPEED = 500
+var search_radius = 5
 var idle = true
 
 # Pathfinding
@@ -54,7 +55,7 @@ func move_path(delta):
 	var velocity = SPEED * delta
 	var target_position = tile_map.map_to_local(current_id_path.front())
 	global_position = global_position.move_toward(target_position, velocity)
-	tile_map.uncover_map(global_position, 5)
+	tile_map.uncover_map(global_position, search_radius)
 	
 	if global_position == target_position:
 		current_id_path.pop_front()

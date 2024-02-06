@@ -21,7 +21,7 @@ func _ready():
 	setup_astargrid2d()
 	cover_map()
 	generate_resources()
-	uncover_map(Vector2i(0,0), 15)
+	uncover_map(Vector2i(0,0), 10)
 	
 func generate_map():
 	# Generate a random map from noise
@@ -122,10 +122,11 @@ func setup_astargrid2d():
 	astar_grid.update()
 
 func uncover_map(position: Vector2i, radius: int):
+	var diameter = radius*2
 	var tile_pos = local_to_map(position)
-	for x in range(radius):
-		for y in range(radius):
-			var center_chunk = Vector2i(tile_pos.x-radius/2+y,tile_pos.y-radius/2+x)
+	for x in range(diameter):
+		for y in range(diameter):
+			var center_chunk = Vector2i(tile_pos.x-diameter/2+y,tile_pos.y-diameter/2+x)
 			set_cell(2, center_chunk, -1, Vector2i(0,0))
 			# Make cell walkable if there is no resources/base tile and there is a floor tile.
 			var tile_data_resources = get_cell_tile_data(1, center_chunk)
