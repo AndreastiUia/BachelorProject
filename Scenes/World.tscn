@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dv48c1hfsupwh"]
+[gd_scene load_steps=14 format=3 uid="uid://dv48c1hfsupwh"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_ngqvp"]
 [ext_resource type="Texture2D" uid="uid://cfjo1jnl5l27e" path="res://External Resources/tinyFantazyTileSet/tiny fantasy rpg_strategy.png" id="2_f25sg"]
 [ext_resource type="Script" path="res://Scripts/TileMap.gd" id="3_ed4y8"]
+[ext_resource type="Texture2D" path="res://External Resources/Pictures/black.png" id="3_v7hv1"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="4_jur47"]
 [ext_resource type="Texture2D" uid="uid://elpw3ix44wg0" path="res://External Resources/Pictures/GUI_Texture_Bottom.png" id="5_00b4k"]
 [ext_resource type="FontFile" uid="uid://ct4ox56t42ck3" path="res://External Resources/Fonts/Teko/Teko-VariableFont_wght.ttf" id="5_mai7t"]
@@ -102,6 +103,10 @@ texture = ExtResource("2_f25sg")
 5:7/0 = 0
 6:7/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q5s10"]
+texture = ExtResource("3_v7hv1")
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_iwlt4"]
 custom_data_layer_0/name = "walkable"
 custom_data_layer_0/type = 1
@@ -112,6 +117,7 @@ custom_data_layer_2/type = 1
 custom_data_layer_3/name = "base"
 custom_data_layer_3/type = 1
 sources/0 = SubResource("TileSetAtlasSource_4gbcf")
+sources/1 = SubResource("TileSetAtlasSource_q5s10")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_ngqvp")
@@ -122,6 +128,8 @@ format = 2
 layer_0/name = "Ground"
 layer_1/name = "Assets"
 layer_1/tile_data = PackedInt32Array(-1, 327680, 4, 65535, 327680, 5, -65536, 393216, 4, 0, 393216, 5)
+layer_2/name = "Blacked"
+layer_2/tile_data = PackedInt32Array()
 script = ExtResource("3_ed4y8")
 
 [node name="Camera2D" type="Camera2D" parent="."]

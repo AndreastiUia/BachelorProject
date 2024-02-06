@@ -15,7 +15,7 @@ const resource_count_max = 1000
 var astar_grid: AStarGrid2D
 var current_id_path: Array[Vector2i]
 
-func generate_map(position):
+func generate_map():
 	# Generate a random map from noise
 	
 	stone.seed = randi()
@@ -29,11 +29,12 @@ func generate_map(position):
 	forest_type.frequency = 0.08
 	gold.frequency = 0.08
 	
-	var tile_pos = local_to_map(position)
+	var tile_pos = local_to_map(Vector2i(0,0))
 	for x in range(width):
 		for y in range(height):
 			var center_chunk = Vector2i(tile_pos.x-width/2+y,tile_pos.y-height/2+x)
 			set_cell(0, center_chunk, 0, Vector2i(1,4))
+			set_cell(2, center_chunk, 1, Vector2i(0,0))
 			
 			# Do not place resource if the tile is base
 			var tile_data = get_cell_tile_data(1, center_chunk)
@@ -58,8 +59,9 @@ func generate_map(position):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 		
-	generate_map(Vector2i(0,0))
+	generate_map()
 	setup_astargrid2d()
+	uncover_map(Vector2i(0,0), 15)
 	
 	
 	# Randomly generate resources.
@@ -126,3 +128,9 @@ func setup_astargrid2d():
 			if !tile_data_2 == null && !tile_data_2.get_custom_data("base"):
 				astar_grid.set_point_solid(tile_position)
 
+func uncover_map(position: Vector2i, radius: int):
+	var tile_pos = local_to_map(position)
+	for x in range(radius):
+		for y in range(radius):
+			var center_chunk = Vector2i(tile_pos.x-radius/2+y,tile_pos.y-radius/2+x)
+			set_cell(2, center_chunk, -1, Vector2i(0,0))
