@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cuhi4t00wx2iu"]
+[gd_scene load_steps=13 format=3 uid="uid://cuhi4t00wx2iu"]
 
 [ext_resource type="Script" path="res://Scripts/bot.gd" id="1_bmq70"]
 [ext_resource type="Texture2D" uid="uid://cq5gwt08d2ev1" path="res://Sprites/Bot/botsprite_left_idle.png" id="3_vhjvu"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dh0py3fdnppn3" path="res://Sprites/Bot/botsprite_left_2.png" id="7_qdiet"]
 [ext_resource type="Texture2D" uid="uid://dfpxkmf6vsf68" path="res://Sprites/Bot/botsprite_right_0.png" id="8_sfma6"]
 [ext_resource type="Texture2D" uid="uid://ddtx4yvs8p2l6" path="res://Sprites/Bot/botsprite_right_1.png" id="9_utsi4"]
+[ext_resource type="PackedScene" uid="uid://cymsqhhusayl5" path="res://healthComponent.tscn" id="10_mangu"]
 [ext_resource type="Texture2D" uid="uid://hxb5bopn3l70" path="res://Sprites/Bot/botsprite_right_3.png" id="10_sxtvm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fbhmt"]
@@ -83,5 +84,7 @@ animation = &"idle_left"
 frame_progress = 0.415288
 
 [node name="timer_reset_idle" type="Timer" parent="."]
+
+[node name="healthComponent" parent="." instance=ExtResource("10_mangu")]
 
 [connection signal="timeout" from="timer_reset_idle" to="." method="_on_timer_reset_idle_timeout"]
