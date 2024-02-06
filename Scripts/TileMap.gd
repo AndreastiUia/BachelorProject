@@ -15,6 +15,14 @@ const resource_count_max = 1000
 var astar_grid: AStarGrid2D
 var current_id_path: Array[Vector2i]
 
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	generate_map()
+	setup_astargrid2d()
+	cover_map()
+	generate_resources()
+	uncover_map(Vector2i(0,0), 15)
+	
 func generate_map():
 	# Generate a random map from noise
 	
@@ -34,7 +42,6 @@ func generate_map():
 		for y in range(height):
 			var center_chunk = Vector2i(tile_pos.x-width/2+y,tile_pos.y-height/2+x)
 			set_cell(0, center_chunk, 0, Vector2i(1,4))
-			set_cell(2, center_chunk, 1, Vector2i(0,0))
 			
 			# Do not place resource if the tile is base
 			var tile_data = get_cell_tile_data(1, center_chunk)
@@ -56,14 +63,18 @@ func generate_map():
 					set_cell(1, center_chunk, 0, Vector2i(7,3))
 				else:
 					set_cell(1, center_chunk, 0, Vector2i(7,5))
-# Called when the node enters the scene tree for the first time.
-func _ready():
-		
-	generate_map()
-	setup_astargrid2d()
-	uncover_map(Vector2i(0,0), 15)
-	
-	
+
+func cover_map():
+	var tile_pos = local_to_map(Vector2i(0,0))
+	for x in range(width):
+		for y in range(height):
+			var center_chunk = Vector2i(tile_pos.x-width/2+y,tile_pos.y-height/2+x)
+			# Make cell blacked out
+			set_cell(2, center_chunk, 1, Vector2i(0,0))
+			# Diable pathfinding on undiscovered map
+			astar_grid.set_point_solid(center_chunk, true)
+
+func generate_resources():
 	# Randomly generate resources.
 	for x in get_used_rect().size.x:
 		for y in get_used_rect().size.y:
@@ -86,8 +97,7 @@ func _ready():
 				if !tile_data.get_custom_data("resource_type") == null && !tile_data.get_custom_data("base"):
 					var resource_count = randi_range(rasource_count_min,resource_count_max)
 					Global.resource_count[tile_position] = resource_count
-
-
+	
 func _input(event):
 	# TESTING: This is just used to check resource_count on a spesific tile.
 	if event.is_action_pressed("clicked"):
@@ -96,6 +106,7 @@ func _input(event):
 			return
 		print(resource_count)
 		print(local_to_map(get_global_mouse_position()))
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -109,24 +120,6 @@ func setup_astargrid2d():
 	astar_grid.cell_size = Vector2(16, 16)
 	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar_grid.update()
-	
-	# Iterate trought all tiles to find out which one is walkable.
-	for x in get_used_rect().size.x:
-		for y in get_used_rect().size.y:
-			var tile_position = Vector2i(
-				x + get_used_rect().position.x,
-				y + get_used_rect().position.y
-			)
-			
-			var tile_data = get_cell_tile_data(0, tile_position)
-			
-			if tile_data == null || tile_data.get_custom_data("walkable") == false:
-				astar_grid.set_point_solid(tile_position)
-			
-			# Make resources non walkable
-			var tile_data_2 = get_cell_tile_data(1, tile_position)
-			if !tile_data_2 == null && !tile_data_2.get_custom_data("base"):
-				astar_grid.set_point_solid(tile_position)
 
 func uncover_map(position: Vector2i, radius: int):
 	var tile_pos = local_to_map(position)
@@ -134,3 +127,9 @@ func uncover_map(position: Vector2i, radius: int):
 		for y in range(radius):
 			var center_chunk = Vector2i(tile_pos.x-radius/2+y,tile_pos.y-radius/2+x)
 			set_cell(2, center_chunk, -1, Vector2i(0,0))
+			# Make cell walkable if there is no resources/base tile and there is a floor tile.
+			var tile_data_resources = get_cell_tile_data(1, center_chunk)
+			var tile_data_floor = get_cell_tile_data(0, center_chunk)
+			
+			if tile_data_resources == null && tile_data_floor != null:
+				astar_grid.set_point_solid(center_chunk, false)

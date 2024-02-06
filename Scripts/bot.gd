@@ -17,7 +17,7 @@ var wood: int = 0
 var stone: int = 0
 var inventory: int = 0
 var inventory_size: int = 10
-var mining_time = 0.1
+var mining_time = 1
 
 # Programming bots
 var program_index = 0
@@ -38,14 +38,7 @@ func _input(event):
 	if event.is_action_pressed("move") == false:
 		return
 	
-	var id_path = tile_map.astar_grid.get_id_path(
-		tile_map.local_to_map(global_position),
-		tile_map.local_to_map((get_global_mouse_position())
-		)
-	).slice(1)
-	print(id_path)
-	if id_path.is_empty() == false:
-		current_id_path = id_path
+	calc_path(tile_map.local_to_map(get_global_mouse_position()))
 
 	
 func _physics_process(delta):
@@ -155,6 +148,7 @@ func program_bot(function: Array):
 			program_if_end_index.pop_front()
 			
 		program_func.GATHER_RESOURCE:
+			var bot_position_map = tile_map.local_to_map(global_position)
 			idle = false
 			timer_reset_idle.start(mining_time)
 			# Get resource_count on current tile from global dict.
@@ -167,11 +161,12 @@ func program_bot(function: Array):
 					resource_count -= 1
 					# Remove the resource if the resource is depleted
 					if resource_count <= 0 && !tile_data.get_custom_data("base"):
-						tile_map.set_cell(1, tile_map.local_to_map(global_position), -1)
+						tile_map.set_cell(1, bot_position_map, -1)
+						tile_map.astar_grid.set_point_solid(bot_position_map, false)
 					if tile_data.get_custom_data("resource_type") == "gold":
 						gold += 1
 				# Decrement resource_count on current tile
-				Global.resource_count[tile_map.local_to_map(global_position)] = resource_count
+				Global.resource_count[bot_position_map] = resource_count
 			
 			update_inventory()
 		
