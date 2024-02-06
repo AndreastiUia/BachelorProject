@@ -9,7 +9,6 @@ var SPEED = 500
 var idle = true
 
 # Pathfinding
-var astar_grid: AStarGrid2D
 var current_id_path: Array[Vector2i]
 
 # Inventory
@@ -20,7 +19,6 @@ var inventory: int = 0
 var inventory_size: int = 10
 var mining_time = 0.1
 
-<<<<<<< HEAD
 # Programming bots
 var program_index = 0
 var program_loop_index = []
@@ -29,47 +27,25 @@ var program_if_not_index = []
 var program_if_end_index = []
 var program_array = [program_func.WHILE_START, program_func.MOVE_TO_POS, Vector2i(12,-12), program_func.WHILE_START, program_func.GATHER_RESOURCE, program_func.IF, "inventory >= inventory_size", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.MOVE_TO_POS, Vector2i(2,-1), program_func.WHILE_START, program_func.DELIVER_RESOURCE, program_func.IF, "inventory == 0", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.WHILE_END]
 enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE, DELIVER_RESOURCE}
-=======
-# TESTING: Test variables. These are to be revomed after testing
-var gold_position = Vector2(170,-200)
-var base_position = Vector2(20,-20)
-var depleted = false
->>>>>>> b47d0ab (Randomly generates resources and makes the non walkable)
 
 func _ready():
-	# Setup pathfinding
-	astar_grid = AStarGrid2D.new()
-	astar_grid.region = tile_map.get_used_rect()
-	astar_grid.cell_size = Vector2(16, 16)
-	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-	astar_grid.update()
-	
-	# Iterate trought all tiles to find out which one is walkable.
-	for x in tile_map.get_used_rect().size.x:
-		for y in tile_map.get_used_rect().size.y:
-			var tile_position = Vector2i(
-				x + tile_map.get_used_rect().position.x,
-				y + tile_map.get_used_rect().position.y
-			)
-			
-			var tile_data = tile_map.get_cell_tile_data(0, tile_position)
-			
-			if tile_data == null || tile_data.get_custom_data("walkable") == false:
-				astar_grid.set_point_solid(tile_position)
-			
-			# Make resources non walkable
-			var tile_data_2 = tile_map.get_cell_tile_data(1, tile_position)
-			if !tile_data_2 == null && !tile_data_2.get_custom_data("base"):
-				astar_grid.set_point_solid(tile_position)
-<<<<<<< HEAD
-	
-	
-=======
-
->>>>>>> b47d0ab (Randomly generates resources and makes the non walkable)
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func _input(event):
+	if event.is_action_pressed("move") == false:
+		return
+	
+	var id_path = tile_map.astar_grid.get_id_path(
+		tile_map.local_to_map(global_position),
+		tile_map.local_to_map((get_global_mouse_position())
+		)
+	).slice(1)
+	print(id_path)
+	if id_path.is_empty() == false:
+		current_id_path = id_path
 
 	
 func _physics_process(delta):
@@ -87,6 +63,7 @@ func move_path(delta):
 	global_position = global_position.move_toward(target_position, velocity)
 	if global_position == target_position:
 		current_id_path.pop_front()
+
 		if current_id_path.is_empty():
 			idle = true
 
@@ -102,7 +79,7 @@ func calc_target_tile_by_direction(direction: Vector2):
 
 func calc_path(target_position: Vector2i):
 	# Calculate path from current position to targegt position.
-	var path = astar_grid.get_id_path(
+	var path = tile_map.astar_grid.get_id_path(
 		tile_map.local_to_map(global_position),
 		target_position
 	).slice(1)
