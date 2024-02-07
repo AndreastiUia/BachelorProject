@@ -73,7 +73,7 @@ offset_bottom = -91.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_mh3d5")
-theme_override_constants/separation = 1
+theme_override_constants/separation = 5
 
 [node name="CheckButton" type="CheckButton" parent="Background/OptionsContainer"]
 layout_mode = 2
@@ -81,36 +81,31 @@ theme = ExtResource("3_mh3d5")
 theme_override_font_sizes/font_size = 30
 button_pressed = true
 text = "Fullscreen"
+alignment = 1
 
-[node name="Res_Label" type="Label" parent="Background/OptionsContainer"]
+[node name="OptionButton" type="OptionButton" parent="Background/OptionsContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
+alignment = 1
+allow_reselect = true
+script = SubResource("GDScript_3uvha")
+
+[node name="Res_Label" type="Label" parent="Background/OptionsContainer/OptionButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -98.192
+offset_top = 6.0
+offset_right = -426.192
+offset_bottom = -4.0
 size_flags_horizontal = 0
-size_flags_vertical = 0
+size_flags_vertical = 8
 theme = ExtResource("3_mh3d5")
 theme_override_font_sizes/font_size = 30
 text = "Resolution
 "
 
-[node name="OptionButton" type="OptionButton" parent="Background/OptionsContainer/Res_Label"]
-layout_mode = 0
-offset_left = 88.0
-offset_top = 3.0
-offset_right = 354.0
-offset_bottom = 57.0
-theme_override_font_sizes/font_size = 30
-alignment = 1
-item_count = 4
-selected = 1
-popup/item_0/text = "1280x720"
-popup/item_0/id = 0
-popup/item_1/text = "1920x1080"
-popup/item_1/id = 1
-popup/item_2/text = "2560x1440"
-popup/item_2/id = 2
-popup/item_3/text = "3440x1440"
-popup/item_3/id = 3
-script = SubResource("GDScript_3uvha")
-
 [connection signal="pressed" from="Background/LeftSideButtons/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="toggled" from="Background/OptionsContainer/CheckButton" to="." method="_on_check_button_toggled"]
-[connection signal="item_selected" from="Background/OptionsContainer/Res_Label/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="Background/OptionsContainer/OptionButton" to="." method="_on_option_button_item_selected"]
