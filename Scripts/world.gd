@@ -1,7 +1,5 @@
 extends Node2D
 
-@onready var tile_map = $"TileMap"
-
 var bot = preload("res://Scenes/bot.tscn")
 
 

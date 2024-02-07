@@ -2,15 +2,13 @@ extends Node2D
 
 @onready var tile_map = $"../TileMap"
 @onready var timer_reset_idle = $timer_reset_idle
+@onready var movement = $Movement
 
 
 # Bot atributes
 var SPEED = 100
 var search_radius = 5
 var idle = true
-
-# Pathfinding
-var current_id_path: Array[Vector2i]
 
 # Inventory
 var gold: int = 0
@@ -35,12 +33,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
 	
 func _physics_process(delta):
-	if !current_id_path.is_empty():
-		idle = false
-		move_path(delta)
 	if program_array.is_empty():
 		return
 	if idle && program_index < program_array.size():
@@ -53,57 +47,27 @@ func reset_program_state():
 	program_if_not_index = []
 	program_if_end_index = []
 
-func move_path(delta):
-	var velocity = SPEED * delta
-	var target_position = tile_map.map_to_local(current_id_path.front())
-	global_position = global_position.move_toward(target_position, velocity)
-	tile_map.uncover_map(global_position, search_radius)
-	
-	if global_position == target_position:
-		current_id_path.pop_front()
-
-		if current_id_path.is_empty():
-			idle = true
-
-func calc_target_tile_by_direction(direction: Vector2):
-	# Returns target tile based on direction.
-	var current_tile: Vector2i = tile_map.local_to_map(global_position)
-	var target_tile: Vector2i = Vector2i(
-		current_tile.x + direction.x,
-		current_tile.y + direction.y
-	)
-
-	return target_tile
-
-func calc_path(target_position: Vector2i):
-	# Calculate path from current position to targegt position.
-	var path = tile_map.astar_grid.get_id_path(
-		tile_map.local_to_map(global_position),
-		target_position
-	).slice(1)
-	current_id_path = path
-
 func program_bot(function: Array):
 	if !idle:
 		return
 	
 	match function[program_index]:
 		program_func.MOVE_UP:
-			calc_path(calc_target_tile_by_direction(Vector2i.UP))
+			movement.calc_path(movement.calc_target_tile_by_direction(Vector2i.UP))
 			
 		program_func.MOVE_DOWN:
-			calc_path(calc_target_tile_by_direction(Vector2i.DOWN))
+			movement.calc_path(movement.calc_target_tile_by_direction(Vector2i.DOWN))
 			
 		program_func.MOVE_LEFT:
-			calc_path(calc_target_tile_by_direction(Vector2i.LEFT))
+			movement.calc_path(movement.calc_target_tile_by_direction(Vector2i.LEFT))
 			
 		program_func.MOVE_RIGHT:
-			calc_path(calc_target_tile_by_direction(Vector2i.RIGHT))
+			movement.calc_path(movement.calc_target_tile_by_direction(Vector2i.RIGHT))
 			
 		program_func.MOVE_TO_POS:
 			# Move to tile based on grid-coordinates.
 			program_index += 1
-			calc_path(program_array[program_index])
+			movement.calc_path(program_array[program_index])
 			
 		program_func.WHILE_START:
 			# Intereate trough the program_array to find the next loop_end.
@@ -245,3 +209,6 @@ func check_if_statement(statement):
 			statement_string = "inventory <= 0"
 
 	return test_expression(statement_string)
+
+func move(target_position, velocity):
+	global_position = global_position.move_toward(target_position, velocity)
