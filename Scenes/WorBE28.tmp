@@ -272,9 +272,7 @@ theme_override_fonts/font = ExtResource("5_mai7t")
 theme_override_font_sizes/font_size = 20
 text = "0"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
-
-[node name="Programbot" parent="Camera2D/CanvasLayer" instance=ExtResource("10_bdgyb")]
+[node name="Programbot" parent="." instance=ExtResource("10_bdgyb")]
 offset_left = 1.0
 offset_top = 3.0
 offset_right = 1.0
@@ -284,4 +282,4 @@ offset_bottom = 3.0
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button5" to="." method="_on_temp_button_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button2" to="." method="_on_temp_button_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button3" to="." method="_on_temp_button_pressed"]
-[connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Program_Robots" to="Camera2D/CanvasLayer/Programbot" method="_on_program_robots_pressed"]
+[connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Program_Robots" to="." method="_on_program_robots_pressed"]
