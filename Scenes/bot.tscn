@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cuhi4t00wx2iu"]
+[gd_scene load_steps=14 format=3 uid="uid://cuhi4t00wx2iu"]
 
 [ext_resource type="Script" path="res://Scripts/bot.gd" id="1_bmq70"]
 [ext_resource type="Texture2D" uid="uid://cq5gwt08d2ev1" path="res://Sprites/Bot/botsprite_left_idle.png" id="3_vhjvu"]
@@ -8,8 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dh0py3fdnppn3" path="res://Sprites/Bot/botsprite_left_2.png" id="7_qdiet"]
 [ext_resource type="Texture2D" uid="uid://dfpxkmf6vsf68" path="res://Sprites/Bot/botsprite_right_0.png" id="8_sfma6"]
 [ext_resource type="Texture2D" uid="uid://ddtx4yvs8p2l6" path="res://Sprites/Bot/botsprite_right_1.png" id="9_utsi4"]
-[ext_resource type="PackedScene" uid="uid://cymsqhhusayl5" path="res://healthComponent.tscn" id="10_mangu"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/healthComponent.tscn" id="10_rufj1"]
 [ext_resource type="Texture2D" uid="uid://hxb5bopn3l70" path="res://Sprites/Bot/botsprite_right_3.png" id="10_sxtvm"]
+[ext_resource type="PackedScene" uid="uid://0hel61iqys76" path="res://Scenes/Components/movement.tscn" id="11_u4kmm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fbhmt"]
 size = Vector2(12, 11)
@@ -61,31 +62,29 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Bot" type="Node2D"]
-process_mode = 1
+[node name="bot" type="CharacterBody2D"]
 script = ExtResource("1_bmq70")
 
-[node name="bot" type="CharacterBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bot"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_fbhmt")
 
-[node name="Sprite2D" type="Sprite2D" parent="bot"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
 scale = Vector2(0.0374999, 0.0386931)
 texture = ExtResource("4_ohab4")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bot"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(21, 15)
 scale = Vector2(0.0640625, 0.0640625)
 sprite_frames = SubResource("SpriteFrames_dmixi")
 animation = &"right"
-frame_progress = 0.273245
+frame_progress = 0.331972
 
-[node name="timer_reset_idle" type="Timer" parent="."]
+[node name="Timer_reset_idle" type="Timer" parent="."]
 
-[node name="healthComponent" parent="." instance=ExtResource("10_mangu")]
+[node name="healthComponent" parent="." instance=ExtResource("10_rufj1")]
 
-[connection signal="timeout" from="timer_reset_idle" to="." method="_on_timer_reset_idle_timeout"]
+[node name="Movement" parent="." instance=ExtResource("11_u4kmm")]
+SPEED = 100
