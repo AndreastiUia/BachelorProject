@@ -6,10 +6,10 @@ extends Node2D
 
 # Bot atributes
 var SPEED = 500
+var search_radius = 5
 var idle = true
 
 # Pathfinding
-var astar_grid: AStarGrid2D
 var current_id_path: Array[Vector2i]
 
 # Inventory
@@ -18,7 +18,7 @@ var wood: int = 0
 var stone: int = 0
 var inventory: int = 0
 var inventory_size: int = 10
-var mining_time = 0.1
+var mining_time = 1
 
 # Programming bots
 var program_index = 0
@@ -30,30 +30,16 @@ var program_array = [program_func.WHILE_START, program_func.MOVE_TO_POS, Vector2
 enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE, DELIVER_RESOURCE}
 
 func _ready():
-	# Setup pathfinding
-	astar_grid = AStarGrid2D.new()
-	astar_grid.region = tile_map.get_used_rect()
-	astar_grid.cell_size = Vector2(16, 16)
-	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-	astar_grid.update()
-	
-	# Iterate trought all tiles to find out which one is walkable.
-	for x in tile_map.get_used_rect().size.x:
-		for y in tile_map.get_used_rect().size.y:
-			var tile_position = Vector2i(
-				x + tile_map.get_used_rect().position.x,
-				y + tile_map.get_used_rect().position.y
-			)
-			
-			var tile_data = tile_map.get_cell_tile_data(0, tile_position)
-			
-			if tile_data == null or tile_data.get_custom_data("walkable") == false:
-				astar_grid.set_point_solid(tile_position)
-	
-	
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func _input(event):
+	if event.is_action_pressed("move") == false:
+		return
+	
+	calc_path(tile_map.local_to_map(get_global_mouse_position()))
 
 	
 func _physics_process(delta):
@@ -69,8 +55,11 @@ func move_path(delta):
 	var velocity = SPEED * delta
 	var target_position = tile_map.map_to_local(current_id_path.front())
 	global_position = global_position.move_toward(target_position, velocity)
+	tile_map.uncover_map(global_position, search_radius)
+	
 	if global_position == target_position:
 		current_id_path.pop_front()
+
 		if current_id_path.is_empty():
 			idle = true
 
@@ -86,7 +75,7 @@ func calc_target_tile_by_direction(direction: Vector2):
 
 func calc_path(target_position: Vector2i):
 	# Calculate path from current position to targegt position.
-	var path = astar_grid.get_id_path(
+	var path = tile_map.astar_grid.get_id_path(
 		tile_map.local_to_map(global_position),
 		target_position
 	).slice(1)
@@ -160,6 +149,7 @@ func program_bot(function: Array):
 			program_if_end_index.pop_front()
 			
 		program_func.GATHER_RESOURCE:
+			var bot_position_map = tile_map.local_to_map(global_position)
 			idle = false
 			timer_reset_idle.start(mining_time)
 			# Get resource_count on current tile from global dict.
@@ -172,11 +162,12 @@ func program_bot(function: Array):
 					resource_count -= 1
 					# Remove the resource if the resource is depleted
 					if resource_count <= 0 && !tile_data.get_custom_data("base"):
-						tile_map.set_cell(1, tile_map.local_to_map(global_position), -1)
+						tile_map.set_cell(1, bot_position_map, -1)
+						tile_map.astar_grid.set_point_solid(bot_position_map, false)
 					if tile_data.get_custom_data("resource_type") == "gold":
 						gold += 1
 				# Decrement resource_count on current tile
-				Global.resource_count[tile_map.local_to_map(global_position)] = resource_count
+				Global.resource_count[bot_position_map] = resource_count
 			
 			update_inventory()
 		

@@ -3,11 +3,11 @@ extends Camera2D
 # Threshold for where it register mouse near the edge ( in pixels)
 
 var edge_threshold = 20.0
-var camera_speed = 300.0
+var camera_speed = 800.0
 
 
 var camera_zoom = 1.0
-var min_zoom = 0.5
+var min_zoom = 0.3
 var max_zoom = 1.5
 
 
