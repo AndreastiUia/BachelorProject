@@ -176,6 +176,7 @@ func program_bot(function: Array):
 						wood += 1
 				# Decrement resource_count on current tile
 				Global.resource_count[bot_position_map] = resource_count
+
 			
 			update_inventory()
 		
@@ -216,6 +217,7 @@ func update_inventory():
 	inventory = gold + stone + wood
 	print("Inventory: ", inventory)
 
+
 func check_adjacent_tile(check_base: bool = false):
 	# Check if there is a tile resource/base tile adjacent to the bot.
 	var directions = [Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN, Vector2i.LEFT]
@@ -228,8 +230,6 @@ func check_adjacent_tile(check_base: bool = false):
 				return target_tile
 			elif !check_base and !tile_data.get_custom_data("base"):
 				return target_tile
-	
-		
 
 func _on_timer_reset_idle_timeout():
 	idle = true
