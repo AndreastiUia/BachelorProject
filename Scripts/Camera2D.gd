@@ -63,7 +63,9 @@ func _process(delta):
 	if Input.is_action_pressed("ui_up"):
 		arrow_movement.y -= 1
 
-
+	# Go back to main menu
+	if Input.is_action_pressed("quit_to_menu"):
+		get_tree().change_scene_to_file("res://Scenes/menu.tscn")
 
 	# Check mouse position and update movement vector if near the screen edge
 	if mouse_pos.x < edge_threshold:

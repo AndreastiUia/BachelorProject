@@ -1,0 +1,116 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3mxpqbdpvuf3"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu_options.gd" id="1_aqwv6"]
+[ext_resource type="FontFile" uid="uid://ct4ox56t42ck3" path="res://External Resources/Fonts/Teko/Teko-VariableFont_wght.ttf" id="2_1wgma"]
+[ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="3_mh3d5"]
+
+[sub_resource type="Theme" id="Theme_8ckso"]
+Button/fonts/font = null
+
+[sub_resource type="GDScript" id="GDScript_3uvha"]
+script/source = "extends OptionButton
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="MainMenuOptions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aqwv6")
+
+[node name="Background" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.372549, 0.235294, 0.0705882, 1)
+
+[node name="LeftSideButtons" type="VBoxContainer" parent="Background"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 19.0
+offset_right = 163.0
+offset_bottom = -434.0
+grow_vertical = 2
+theme_override_constants/separation = 9
+
+[node name="BackButton" type="Button" parent="Background/LeftSideButtons"]
+layout_mode = 2
+theme = SubResource("Theme_8ckso")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_1wgma")
+theme_override_font_sizes/font_size = 35
+text = "Back
+"
+
+[node name="OptionsContainer" type="VBoxContainer" parent="Background"]
+anchors_preset = -1
+anchor_left = 0.464
+anchor_right = 0.536
+anchor_bottom = 1.0
+offset_left = -126.528
+offset_top = 57.0
+offset_right = 145.528
+offset_bottom = -91.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_mh3d5")
+theme_override_constants/separation = 1
+
+[node name="CheckButton" type="CheckButton" parent="Background/OptionsContainer"]
+layout_mode = 2
+theme = ExtResource("3_mh3d5")
+theme_override_font_sizes/font_size = 30
+button_pressed = true
+text = "Fullscreen"
+
+[node name="Res_Label" type="Label" parent="Background/OptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_mh3d5")
+theme_override_font_sizes/font_size = 30
+text = "Resolution
+"
+
+[node name="OptionButton" type="OptionButton" parent="Background/OptionsContainer/Res_Label"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 3.0
+offset_right = 354.0
+offset_bottom = 57.0
+theme_override_font_sizes/font_size = 30
+alignment = 1
+item_count = 4
+selected = 0
+popup/item_0/text = "1280x720"
+popup/item_0/id = 0
+popup/item_1/text = "1920x1080"
+popup/item_1/id = 1
+popup/item_2/text = "2560x1440"
+popup/item_2/id = 2
+popup/item_3/text = "3440x1440"
+popup/item_3/id = 3
+script = SubResource("GDScript_3uvha")
+
+[connection signal="pressed" from="Background/LeftSideButtons/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="toggled" from="Background/OptionsContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="item_selected" from="Background/OptionsContainer/Res_Label/OptionButton" to="." method="_on_option_button_item_selected"]
