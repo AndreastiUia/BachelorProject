@@ -1,11 +1,42 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdm3mv4p0o6on"]
+[gd_scene load_steps=10 format=3 uid="uid://bdm3mv4p0o6on"]
 
 [ext_resource type="Script" path="res://Scripts/programbot.gd" id="1_sum28"]
 [ext_resource type="Shader" path="res://Shaders/programbot.gdshader" id="2_4ox4k"]
+[ext_resource type="Texture2D" uid="uid://dm8nkplh1yqq7" path="res://Sprites/Icons/icon.svg" id="4_ct43d"]
+[ext_resource type="Script" path="res://Scenes/program1.gd" id="5_ffsgj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vr5kn"]
 shader = ExtResource("2_4ox4k")
 shader_parameter/lod = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33ax0"]
+
+[sub_resource type="Animation" id="Animation_j8a24"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_p8upn"]
 resource_name = "blur"
@@ -35,33 +66,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_j8a24"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Panel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jc0he"]
 _data = {
 "RESET": SubResource("Animation_j8a24"),
@@ -70,7 +74,6 @@ _data = {
 
 [node name="Programbot" type="Control"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,19 +97,93 @@ grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 315.0
-offset_top = 105.0
-offset_right = 826.0
-offset_bottom = 482.0
+offset_left = 15.0
+offset_top = 57.0
+offset_right = 1136.0
+offset_bottom = 498.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
-offset_right = 497.0
-offset_bottom = 137.0
+offset_left = 948.0
+offset_top = 18.0
+offset_right = 1103.0
+offset_bottom = 55.0
 
 [node name="TempReturn" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 text = "Temp Return"
+
+[node name="ItemList" type="ItemList" parent="Panel"]
+layout_mode = 0
+offset_top = 27.0
+offset_right = 176.0
+offset_bottom = 439.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_right = 174.0
+offset_bottom = 40.0
+text = "Robots:"
+
+[node name="Program1" type="Sprite2D" parent="Panel"]
+position = Vector2(567, 71.25)
+scale = Vector2(0.53125, 0.574219)
+texture = ExtResource("4_ct43d")
+script = ExtResource("5_ffsgj")
+
+[node name="Button" type="Button" parent="Panel/Program1"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Up" type="Area2D" parent="Panel/Program1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Panel/Program1/Up"]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_33ax0")
+
+[node name="Down" type="Area2D" parent="Panel/Program1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Panel/Program1/Down"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_33ax0")
+
+[node name="Program2" type="Sprite2D" parent="Panel"]
+position = Vector2(571.5, 157.75)
+scale = Vector2(0.570312, 0.566406)
+texture = ExtResource("4_ct43d")
+script = ExtResource("5_ffsgj")
+
+[node name="Button" type="Button" parent="Panel/Program2"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Up" type="Area2D" parent="Panel/Program2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Panel/Program2/Up"]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_33ax0")
+
+[node name="Down" type="Area2D" parent="Panel/Program2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Panel/Program2/Down"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_33ax0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -114,3 +191,11 @@ libraries = {
 }
 
 [connection signal="pressed" from="Panel/VBoxContainer/TempReturn" to="." method="_on_temp_return_pressed"]
+[connection signal="button_down" from="Panel/Program1/Button" to="Panel/Program1" method="_on_button_button_down"]
+[connection signal="button_up" from="Panel/Program1/Button" to="Panel/Program1" method="_on_button_button_up"]
+[connection signal="area_entered" from="Panel/Program1/Up" to="Panel/Program1" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Panel/Program1/Down" to="Panel/Program1" method="_on_area_2d_area_entered"]
+[connection signal="button_down" from="Panel/Program2/Button" to="Panel/Program2" method="_on_button_button_down"]
+[connection signal="button_up" from="Panel/Program2/Button" to="Panel/Program2" method="_on_button_button_up"]
+[connection signal="area_entered" from="Panel/Program2/Up" to="Panel/Program2" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Panel/Program2/Down" to="Panel/Program2" method="_on_area_2d_area_entered"]

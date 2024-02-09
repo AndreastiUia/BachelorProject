@@ -131,6 +131,14 @@ position = Vector2(-569, -534)
 anchor_mode = 0
 script = ExtResource("4_jur47")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="Programbot" parent="Camera2D/CanvasLayer" instance=ExtResource("10_bdgyb")]
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 1.0
+offset_bottom = 3.0
+
 [node name="GUI" type="CanvasLayer" parent="Camera2D"]
 layer = 2
 
@@ -271,14 +279,6 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_mai7t")
 theme_override_font_sizes/font_size = 20
 text = "0"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
-
-[node name="Programbot" parent="Camera2D/CanvasLayer" instance=ExtResource("10_bdgyb")]
-offset_left = 1.0
-offset_top = 3.0
-offset_right = 1.0
-offset_bottom = 3.0
 
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button" to="." method="_on_temp_button_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button5" to="." method="_on_temp_button_pressed"]
