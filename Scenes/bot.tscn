@@ -66,18 +66,16 @@ animations = [{
 process_mode = 1
 script = ExtResource("1_bmq70")
 
-[node name="bot" type="CharacterBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bot"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_fbhmt")
 
-[node name="Sprite2D" type="Sprite2D" parent="bot"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
 scale = Vector2(0.0374999, 0.0386931)
 texture = ExtResource("4_ohab4")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bot"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(21, 15)
 scale = Vector2(0.0640625, 0.0640625)
@@ -90,5 +88,3 @@ frame_progress = 0.331972
 [node name="healthComponent" parent="." instance=ExtResource("10_mangu")]
 
 [node name="Movement" parent="." instance=ExtResource("11_6iot3")]
-
-[connection signal="timeout" from="timer_reset_idle" to="." method="_on_timer_reset_idle_timeout"]
