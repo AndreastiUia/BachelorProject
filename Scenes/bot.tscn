@@ -84,7 +84,4 @@ frame_progress = 0.331972
 
 [node name="Timer_reset_idle" type="Timer" parent="."]
 
-[node name="healthComponent" parent="." instance=ExtResource("10_rufj1")]
-
-[node name="Movement" parent="." instance=ExtResource("11_u4kmm")]
-SPEED = 100
+[node name="Movement" parent="." instance=ExtResource("11_6iot3")]
