@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=23 format=3 uid="uid://cvdn2gv12w2k1"]
+
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://cdoqi5n024d64"]
+
 
 [ext_resource type="FontFile" uid="uid://ct4ox56t42ck3" path="res://External Resources/Fonts/Teko/Teko-VariableFont_wght.ttf" id="1_xgt1e"]
 
