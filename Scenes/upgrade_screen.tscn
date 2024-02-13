@@ -1,0 +1,163 @@
+[gd_scene load_steps=5 format=3 uid="uid://cltsq8d5dcqme"]
+
+[ext_resource type="Script" path="res://Scripts/upgrade_screen.gd" id="1_26mdu"]
+[ext_resource type="FontFile" uid="uid://ct4ox56t42ck3" path="res://External Resources/Fonts/Teko/Teko-VariableFont_wght.ttf" id="2_n5l7s"]
+[ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="3_4cy3u"]
+
+[sub_resource type="Theme" id="Theme_umx0h"]
+Button/fonts/font = null
+
+[node name="UpgradeScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_26mdu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.372549, 0.235294, 0.0705882, 1)
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.013
+anchor_top = 0.012
+anchor_right = 0.987
+anchor_bottom = 0.1
+offset_left = -0.74
+offset_top = 0.04
+offset_right = 0.739868
+grow_horizontal = 2
+
+[node name="BackButton" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.088
+offset_right = 0.159988
+offset_bottom = 94.0
+theme = SubResource("Theme_umx0h")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_n5l7s")
+theme_override_font_sizes/font_size = 35
+text = "Back
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 261.0
+offset_top = 1.0
+offset_right = -3.0
+offset_bottom = 85.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Base_Tab_Button" type="Button" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n5l7s")
+theme_override_font_sizes/font_size = 25
+text = "                Base                "
+
+[node name="Bot_Tab_Button" type="Button" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n5l7s")
+theme_override_font_sizes/font_size = 25
+text = "                Bot1                "
+
+[node name="Bot_Tab_Button2" type="Button" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n5l7s")
+theme_override_font_sizes/font_size = 25
+text = "                Bot2                "
+
+[node name="BasePanel" type="Panel" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.221
+anchor_right = 1.0
+anchor_bottom = 10.884
+offset_left = 1.0
+offset_top = 0.00498199
+offset_bottom = 0.0198975
+
+[node name="baseTempLabel" type="Label" parent="CanvasLayer/Panel/BasePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.282
+anchor_top = 0.375
+anchor_right = 0.743
+anchor_bottom = 0.538
+offset_left = 162.022
+offset_top = -5.25003
+offset_right = -208.247
+offset_bottom = -4.88403
+theme = ExtResource("3_4cy3u")
+theme_override_font_sizes/font_size = 60
+text = "This is the Base Upgrade Panel"
+
+[node name="BotPanel" type="Panel" parent="CanvasLayer/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.221
+anchor_right = 1.0
+anchor_bottom = 10.884
+offset_left = 1.0
+offset_top = 0.00498199
+offset_bottom = 0.0198975
+
+[node name="TempLabel" type="Label" parent="CanvasLayer/Panel/BotPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.282
+anchor_top = 0.375
+anchor_right = 0.743
+anchor_bottom = 0.538
+offset_left = 162.022
+offset_top = -5.25003
+offset_right = -208.247
+offset_bottom = -4.88403
+theme = ExtResource("3_4cy3u")
+theme_override_font_sizes/font_size = 60
+text = "This is the Bot 1 Upgrade Panel"
+
+[node name="BotPanel2" type="Panel" parent="CanvasLayer/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.221
+anchor_right = 1.0
+anchor_bottom = 10.884
+offset_left = 1.0
+offset_top = 0.00498199
+offset_bottom = 0.0198975
+
+[node name="TempLabel" type="Label" parent="CanvasLayer/Panel/BotPanel2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.282
+anchor_top = 0.375
+anchor_right = 0.743
+anchor_bottom = 0.538
+offset_left = 162.022
+offset_top = -5.25003
+offset_right = -208.247
+offset_bottom = -4.88403
+theme = ExtResource("3_4cy3u")
+theme_override_font_sizes/font_size = 60
+text = "This is the Bot 2 Upgrade Panel"
+
+[connection signal="pressed" from="CanvasLayer/Panel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Base_Tab_Button" to="." method="_on_base_tab_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Bot_Tab_Button" to="." method="_on_bot_tab_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Bot_Tab_Button2" to="." method="_on_bot_tab_button_2_pressed"]

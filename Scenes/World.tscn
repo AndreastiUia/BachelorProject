@@ -203,6 +203,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("5_mai7t")
 theme_override_font_sizes/font_size = 25
 text = "Program Robots"
+[node name="UpgradeScreen" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_mai7t")
+theme_override_font_sizes/font_size = 25
+text = "   Upgrade   "
 
 [node name="SideGUI" type="NinePatchRect" parent="Camera2D/GUI"]
 anchors_preset = -1
