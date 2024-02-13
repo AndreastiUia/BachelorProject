@@ -1,0 +1,67 @@
+[gd_scene load_steps=2 format=3 uid="uid://cltsq8d5dcqme"]
+
+[ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="1_sukvs"]
+
+[node name="UpgradeScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.372549, 0.235294, 0.0705882, 1)
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.013
+anchor_top = 0.012
+anchor_right = 0.987
+anchor_bottom = 0.1
+offset_left = -0.74
+offset_top = 0.04
+offset_right = 0.739868
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.018
+anchor_top = 0.027
+anchor_right = 0.985
+anchor_bottom = 0.175
+offset_left = -24.74
+offset_top = 12.651
+offset_right = -24.0502
+offset_bottom = 63.775
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_sukvs")
+text = "Base"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_sukvs")
+text = "Bot 1"
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.221
+anchor_right = 1.0
+anchor_bottom = 10.884
+offset_left = 1.0
+offset_top = 0.00498199
+offset_bottom = 0.0198975
