@@ -137,6 +137,19 @@ offset_right = 0.192978
 offset_bottom = -0.0310248
 script = ExtResource("4_jju46")
 
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.049
+anchor_top = 0.096
+anchor_right = 1.181
+anchor_bottom = 0.21
+offset_left = -297.929
+offset_top = 28.664
+offset_right = -297.769
+offset_bottom = 28.494
+text = "Remove"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_jc0he")
@@ -145,3 +158,4 @@ libraries = {
 [connection signal="pressed" from="Panel/VBoxContainer/TempReturn" to="." method="_on_temp_return_pressed"]
 [connection signal="item_selected" from="Panel/Programs" to="Panel/Programs" method="_on_item_selected"]
 [connection signal="item_selected" from="Panel/ActiveProgram" to="Panel/ActiveProgram" method="_on_item_selected"]
+[connection signal="pressed" from="Panel/Button" to="Panel/ActiveProgram" method="_on_button_pressed"]

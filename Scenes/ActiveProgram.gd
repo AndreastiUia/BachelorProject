@@ -7,20 +7,23 @@ var Programs = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Access the original ItemList and assign it to original_item_list
+	# Access the original ItemList and assign it to Programs
 	Programs = get_parent().get_node("Programs")
 
-	# Connect the item_selected signal to a function
-  #  connect("item_selected", self, "_on_item_selected")
 
-# Function to handle item selection
-func _on_item_selected(index):
-	# Get the text of the selected item
-	var selected_item_text = get_item_text(index)
+# Function to move the selected item back to the original list
+func move_item_back_to_original_list():
+	var selected_index = get_selected_items()[0]
+	var selected_item_text = get_item_text(selected_index)
 	
-	# If the original_item_list is valid, add the selected item to it
+	# If Programs is valid, add the selected item back to it
 	if Programs:
 		Programs.add_item(selected_item_text, new_icon, true)
 
 	# Remove the selected item from the current ItemList
-	remove_item(index)
+	remove_item(selected_index)
+
+# Function called when the button is pressed
+func _on_button_pressed():
+	# Call move_item_back_to_original_list() when the button is pressed
+	move_item_back_to_original_list()
