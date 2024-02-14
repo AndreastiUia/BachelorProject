@@ -17,26 +17,26 @@ func _on_back_button_pressed():
 	quitupgradescreen()
 
 func _on_base_tab_button_pressed():
-	if $GUI/BasePanel.visible == false:
-		$GUI/BasePanel.visible = true
-		$GUI/BotPanel.visible = false
-		$GUI/BotPanel2.visible = false
+	if $BasePanel.visible == false:
+		$BasePanel.visible = true
+		$BotPanel.visible = false
+		$BotPanel2.visible = false
 	else:
 		pass
 	
 
 func _on_bot_tab_button_pressed():
-	if $GUI/BotPanel.visible == false:
-		$GUI/BasePanel.visible = false
-		$GUI/BotPanel.visible = true
-		$GUI/BotPanel2.visible = false
+	if $BotPanel.visible == false:
+		$BasePanel.visible = false
+		$BotPanel.visible = true
+		$BotPanel2.visible = false
 
 
 func _on_bot_tab_button_2_pressed():
-	if $GUI/BotPanel2.visible == false:
-		$GUI/BasePanel.visible = false
-		$GUI/BotPanel.visible = false
-		$GUI/BotPanel2.visible = true
+	if $BotPanel2.visible == false:
+		$BasePanel.visible = false
+		$BotPanel.visible = false
+		$BotPanel2.visible = true
 
 
 

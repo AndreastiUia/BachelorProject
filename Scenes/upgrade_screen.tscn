@@ -16,9 +16,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_26mdu")
 
-[node name="GUI" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="GUI"]
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -26,19 +26,19 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.372549, 0.235294, 0.0705882, 1)
 
-[node name="Top_TabPanel" type="Panel" parent="GUI"]
+[node name="Top_TabPanel" type="Panel" parent="."]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.013
 anchor_top = 0.012
 anchor_right = 0.987
-anchor_bottom = 0.012
+anchor_bottom = 0.1
 offset_left = -0.74
 offset_top = 0.04
 offset_right = 0.739746
-offset_bottom = 95.04
 grow_horizontal = 2
 
-[node name="BackButton" type="Button" parent="GUI/Top_TabPanel"]
+[node name="BackButton" type="Button" parent="Top_TabPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.088
@@ -51,7 +51,7 @@ theme_override_font_sizes/font_size = 35
 text = "Back
 "
 
-[node name="TabRow" type="HBoxContainer" parent="GUI/Top_TabPanel"]
+[node name="TabRow" type="HBoxContainer" parent="Top_TabPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.099
@@ -62,25 +62,26 @@ offset_right = -14.9999
 offset_bottom = 84.0
 theme_override_constants/separation = 20
 
-[node name="Base_Tab_Button" type="Button" parent="GUI/Top_TabPanel/TabRow"]
+[node name="Base_Tab_Button" type="Button" parent="Top_TabPanel/TabRow"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_n5l7s")
 theme_override_font_sizes/font_size = 25
 text = "                Base                "
 
-[node name="Bot_Tab_Button" type="Button" parent="GUI/Top_TabPanel/TabRow"]
+[node name="Bot_Tab_Button" type="Button" parent="Top_TabPanel/TabRow"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_n5l7s")
 theme_override_font_sizes/font_size = 25
 text = "                Bot1                "
 
-[node name="Bot_Tab_Button2" type="Button" parent="GUI/Top_TabPanel/TabRow"]
+[node name="Bot_Tab_Button2" type="Button" parent="Top_TabPanel/TabRow"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_n5l7s")
 theme_override_font_sizes/font_size = 25
 text = "                Bot2                "
 
-[node name="BasePanel" type="Panel" parent="GUI"]
+[node name="BasePanel" type="Panel" parent="."]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.014
 anchor_top = 0.114
@@ -93,7 +94,7 @@ offset_bottom = -0.400024
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="baseTempLabel" type="Label" parent="GUI/BasePanel"]
+[node name="baseTempLabel" type="Label" parent="BasePanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.282
@@ -108,8 +109,9 @@ theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 60
 text = "This is the Base Upgrade Panel"
 
-[node name="BotPanel" type="Panel" parent="GUI"]
+[node name="BotPanel" type="Panel" parent="."]
 visible = false
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.013
 anchor_top = 0.131
@@ -121,7 +123,7 @@ offset_right = 0.699829
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TempLabel" type="Label" parent="GUI/BotPanel"]
+[node name="TempLabel" type="Label" parent="BotPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.282
@@ -136,8 +138,9 @@ theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 60
 text = "This is the Bot 1 Upgrade Panel"
 
-[node name="BotPanel2" type="Panel" parent="GUI"]
+[node name="BotPanel2" type="Panel" parent="."]
 visible = false
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.013
 anchor_top = 0.119
@@ -148,7 +151,7 @@ offset_top = 0.479996
 offset_right = -0.200195
 offset_bottom = -6.64001
 
-[node name="TempLabel" type="Label" parent="GUI/BotPanel2"]
+[node name="TempLabel" type="Label" parent="BotPanel2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.282
@@ -163,7 +166,7 @@ theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 60
 text = "This is the Bot 2 Upgrade Panel"
 
-[connection signal="pressed" from="GUI/Top_TabPanel/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="GUI/Top_TabPanel/TabRow/Base_Tab_Button" to="." method="_on_base_tab_button_pressed"]
-[connection signal="pressed" from="GUI/Top_TabPanel/TabRow/Bot_Tab_Button" to="." method="_on_bot_tab_button_pressed"]
-[connection signal="pressed" from="GUI/Top_TabPanel/TabRow/Bot_Tab_Button2" to="." method="_on_bot_tab_button_2_pressed"]
+[connection signal="pressed" from="Top_TabPanel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Top_TabPanel/TabRow/Base_Tab_Button" to="." method="_on_base_tab_button_pressed"]
+[connection signal="pressed" from="Top_TabPanel/TabRow/Bot_Tab_Button" to="." method="_on_bot_tab_button_pressed"]
+[connection signal="pressed" from="Top_TabPanel/TabRow/Bot_Tab_Button2" to="." method="_on_bot_tab_button_2_pressed"]
