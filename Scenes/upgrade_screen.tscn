@@ -16,29 +16,29 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_26mdu")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="GUI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.372549, 0.235294, 0.0705882, 1)
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Top_TabPanel" type="Panel" parent="GUI"]
 anchors_preset = -1
 anchor_left = 0.013
 anchor_top = 0.012
 anchor_right = 0.987
-anchor_bottom = 0.1
+anchor_bottom = 0.012
 offset_left = -0.74
 offset_top = 0.04
-offset_right = 0.739868
+offset_right = 0.739746
+offset_bottom = 95.04
 grow_horizontal = 2
 
-[node name="BackButton" type="Button" parent="CanvasLayer/Panel"]
+[node name="BackButton" type="Button" parent="GUI/Top_TabPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.088
@@ -51,46 +51,49 @@ theme_override_font_sizes/font_size = 35
 text = "Back
 "
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+[node name="TabRow" type="HBoxContainer" parent="GUI/Top_TabPanel"]
 layout_mode = 1
 anchors_preset = -1
+anchor_left = 0.099
 anchor_right = 1.0
-offset_left = 261.0
-offset_top = 1.0
-offset_right = -3.0
-offset_bottom = 85.0
+offset_left = -0.0700073
+offset_top = 11.0
+offset_right = -14.9999
+offset_bottom = 84.0
 theme_override_constants/separation = 20
-alignment = 1
 
-[node name="Base_Tab_Button" type="Button" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="Base_Tab_Button" type="Button" parent="GUI/Top_TabPanel/TabRow"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_n5l7s")
 theme_override_font_sizes/font_size = 25
 text = "                Base                "
 
-[node name="Bot_Tab_Button" type="Button" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="Bot_Tab_Button" type="Button" parent="GUI/Top_TabPanel/TabRow"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_n5l7s")
 theme_override_font_sizes/font_size = 25
 text = "                Bot1                "
 
-[node name="Bot_Tab_Button2" type="Button" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="Bot_Tab_Button2" type="Button" parent="GUI/Top_TabPanel/TabRow"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_n5l7s")
 theme_override_font_sizes/font_size = 25
 text = "                Bot2                "
 
-[node name="BasePanel" type="Panel" parent="CanvasLayer/Panel"]
-layout_mode = 1
+[node name="BasePanel" type="Panel" parent="GUI"]
 anchors_preset = -1
-anchor_top = 1.221
-anchor_right = 1.0
-anchor_bottom = 10.884
-offset_left = 1.0
-offset_top = 0.00498199
-offset_bottom = 0.0198975
+anchor_left = 0.014
+anchor_top = 0.114
+anchor_right = 0.989
+anchor_bottom = 0.98
+offset_left = -0.720001
+offset_top = -0.12001
+offset_right = -0.220093
+offset_bottom = -0.400024
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="baseTempLabel" type="Label" parent="CanvasLayer/Panel/BasePanel"]
+[node name="baseTempLabel" type="Label" parent="GUI/BasePanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.282
@@ -105,18 +108,20 @@ theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 60
 text = "This is the Base Upgrade Panel"
 
-[node name="BotPanel" type="Panel" parent="CanvasLayer/Panel"]
+[node name="BotPanel" type="Panel" parent="GUI"]
 visible = false
-layout_mode = 1
 anchors_preset = -1
-anchor_top = 1.221
-anchor_right = 1.0
-anchor_bottom = 10.884
-offset_left = 1.0
-offset_top = 0.00498199
-offset_bottom = 0.0198975
+anchor_left = 0.013
+anchor_top = 0.131
+anchor_right = 0.985
+anchor_bottom = 0.975
+offset_left = -0.74
+offset_top = -0.480011
+offset_right = 0.699829
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="TempLabel" type="Label" parent="CanvasLayer/Panel/BotPanel"]
+[node name="TempLabel" type="Label" parent="GUI/BotPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.282
@@ -131,18 +136,19 @@ theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 60
 text = "This is the Bot 1 Upgrade Panel"
 
-[node name="BotPanel2" type="Panel" parent="CanvasLayer/Panel"]
+[node name="BotPanel2" type="Panel" parent="GUI"]
 visible = false
-layout_mode = 1
 anchors_preset = -1
-anchor_top = 1.221
-anchor_right = 1.0
-anchor_bottom = 10.884
-offset_left = 1.0
-offset_top = 0.00498199
-offset_bottom = 0.0198975
+anchor_left = 0.013
+anchor_top = 0.119
+anchor_right = 0.99
+anchor_bottom = 0.983
+offset_left = 0.26
+offset_top = 0.479996
+offset_right = -0.200195
+offset_bottom = -6.64001
 
-[node name="TempLabel" type="Label" parent="CanvasLayer/Panel/BotPanel2"]
+[node name="TempLabel" type="Label" parent="GUI/BotPanel2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.282
@@ -157,7 +163,7 @@ theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 60
 text = "This is the Bot 2 Upgrade Panel"
 
-[connection signal="pressed" from="CanvasLayer/Panel/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Base_Tab_Button" to="." method="_on_base_tab_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Bot_Tab_Button" to="." method="_on_bot_tab_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Bot_Tab_Button2" to="." method="_on_bot_tab_button_2_pressed"]
+[connection signal="pressed" from="GUI/Top_TabPanel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="GUI/Top_TabPanel/TabRow/Base_Tab_Button" to="." method="_on_base_tab_button_pressed"]
+[connection signal="pressed" from="GUI/Top_TabPanel/TabRow/Bot_Tab_Button" to="." method="_on_bot_tab_button_pressed"]
+[connection signal="pressed" from="GUI/Top_TabPanel/TabRow/Bot_Tab_Button2" to="." method="_on_bot_tab_button_2_pressed"]
