@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/programbot.gd" id="1_sum28"]
 [ext_resource type="Shader" path="res://Shaders/programbot.gdshader" id="2_4ox4k"]
-[ext_resource type="Script" path="res://Scenes/Programs.gd" id="3_tkffs"]
+[ext_resource type="Script" path="res://Programs.gd" id="3_tkffs"]
 [ext_resource type="Script" path="res://Scenes/ActiveProgram.gd" id="4_jju46"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vr5kn"]
