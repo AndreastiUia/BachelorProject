@@ -101,87 +101,113 @@ offset_right = 1136.0
 offset_bottom = 498.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-layout_mode = 0
-offset_left = 948.0
-offset_top = 18.0
-offset_right = 1103.0
-offset_bottom = 55.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.923
+anchor_top = 0.016
+anchor_right = 0.995
+anchor_bottom = 0.1
+offset_left = 0.316958
+offset_top = -0.0560003
+offset_right = -0.395072
+offset_bottom = -0.100001
 
 [node name="TempReturn" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
-text = "Temp Return"
+text = "Return"
 
 [node name="Programs" type="ItemList" parent="Panel"]
-layout_mode = 0
-offset_top = 27.0
-offset_right = 375.0
-offset_bottom = 439.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.353
+anchor_top = 0.088
+anchor_right = 0.55
+anchor_bottom = 0.982
+offset_left = 0.286983
+offset_top = 0.191997
+offset_right = -0.550013
+offset_bottom = -0.0620233
 script = ExtResource("3_tkffs")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.806
-anchor_top = 0.356
-anchor_right = 0.806
-anchor_bottom = 0.356
-offset_left = -903.526
-offset_top = -156.996
-offset_right = -729.526
-offset_bottom = -116.996
+anchor_right = 0.155
+anchor_bottom = 0.091
+offset_right = 0.244999
+offset_bottom = -0.131002
 text = "Robots:"
 
 [node name="ActiveProgram" type="ItemList" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.437
-anchor_top = 0.073
-anchor_right = 0.767
-anchor_bottom = 0.991
-offset_left = 0.122993
-offset_top = -0.193003
-offset_right = 0.192978
-offset_bottom = -0.0310248
+anchor_left = 0.563
+anchor_top = 0.086
+anchor_right = 0.749
+anchor_bottom = 0.977
+offset_left = -0.123026
+offset_top = 0.0739987
+offset_right = 0.370986
+offset_bottom = 0.142975
 script = ExtResource("4_jju46")
 
-[node name="Remove" type="Button" parent="Panel"]
+[node name="Control" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.783
-anchor_top = 0.161
-anchor_right = 0.915
-anchor_bottom = 0.275
-offset_left = 0.256942
-offset_top = -0.00100589
-offset_right = 0.416934
-offset_bottom = -0.170999
+anchor_left = 0.772
+anchor_top = 0.132
+anchor_right = 0.919
+anchor_bottom = 0.735
+offset_left = -0.412017
+offset_top = -0.212
+offset_right = -0.199033
+offset_bottom = -0.135006
+
+[node name="Remove" type="Button" parent="Panel/Control"]
+layout_mode = 2
 text = "Remove"
 
-[node name="Moveup" type="Button" parent="Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.789
-anchor_top = 0.329
-anchor_right = 0.913
-anchor_bottom = 0.424
-offset_left = 0.530962
-offset_top = -0.0890115
-offset_right = 0.526947
-offset_bottom = 0.0159891
+[node name="Moveup" type="Button" parent="Panel/Control"]
+layout_mode = 2
 text = "Move Up"
 
-[node name="Movedown" type="Button" parent="Panel"]
+[node name="Movedown" type="Button" parent="Panel/Control"]
+layout_mode = 2
+text = "Move Down"
+
+[node name="Robots" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.792
-anchor_top = 0.469
-anchor_right = 0.908
-anchor_bottom = 0.567
-offset_left = -0.832062
-offset_top = -2.82901
-offset_right = 0.131942
-offset_bottom = -0.0470139
-text = "Move Down"
+anchor_top = 0.07
+anchor_right = 0.141
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 0.13
+offset_right = -0.0610029
+offset_bottom = -3.0
+
+[node name="Codeblocks" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.356
+anchor_right = 0.547
+anchor_bottom = 0.091
+offset_left = -0.0760069
+offset_right = -0.187057
+offset_bottom = -0.131002
+text = "Codeblocks
+"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.564
+anchor_right = 0.747
+anchor_bottom = 0.091
+offset_left = -0.244012
+offset_right = -0.387043
+offset_bottom = -0.131002
+text = "Active Program"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -191,6 +217,6 @@ libraries = {
 [connection signal="pressed" from="Panel/VBoxContainer/TempReturn" to="." method="_on_temp_return_pressed"]
 [connection signal="item_selected" from="Panel/Programs" to="Panel/Programs" method="_on_item_selected"]
 [connection signal="item_selected" from="Panel/ActiveProgram" to="Panel/ActiveProgram" method="_on_item_selected"]
-[connection signal="pressed" from="Panel/Remove" to="Panel/ActiveProgram" method="_on_button_pressed"]
-[connection signal="pressed" from="Panel/Moveup" to="Panel/ActiveProgram" method="_on_moveup_pressed"]
-[connection signal="pressed" from="Panel/Movedown" to="Panel/ActiveProgram" method="_on_movedown_pressed"]
+[connection signal="pressed" from="Panel/Control/Remove" to="Panel/ActiveProgram" method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/Control/Moveup" to="Panel/ActiveProgram" method="_on_moveup_pressed"]
+[connection signal="pressed" from="Panel/Control/Movedown" to="Panel/ActiveProgram" method="_on_movedown_pressed"]

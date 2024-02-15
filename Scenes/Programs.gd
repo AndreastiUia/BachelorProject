@@ -1,6 +1,7 @@
 extends ItemList
 
 var new_icon = preload("res://Sprites/Icons/icon.svg")
+var icon_size = Vector2(16, 16)
 
 # Reference to the second ItemList
 var target_item_list = null
@@ -11,12 +12,12 @@ func _ready():
 	target_item_list = get_parent().get_node("ActiveProgram")
 
 	# Add items to the first ItemList
-	add_item("While: ", new_icon, true)
-	add_item("If: ", new_icon, true)
-	add_item("move_up: ", new_icon, true)
-	add_item("move_down: ", new_icon, true)
-	add_item("move_left: ", new_icon, true)
-	add_item("move_right: ", new_icon, true)
+	add_item("While: ")
+	add_item("If: ")
+	add_item("move_up: ")
+	add_item("move_down: ")
+	add_item("move_left: ")
+	add_item("move_right: ")
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,7 +31,7 @@ func _on_item_selected(index):
 	
 	# If the target_item_list is valid, add the selected item to it
 	if target_item_list:
-		target_item_list.add_item(selected_item_text, new_icon, true)
+		target_item_list.add_item(selected_item_text)
 
 	# Remove the selected item from the current ItemList
 	remove_item(index)

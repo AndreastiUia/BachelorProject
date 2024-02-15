@@ -13,7 +13,7 @@ func move_item_back_to_original_list():
 	var selected_item_text = get_item_text(selected_index)
 	
 	if Programs:
-		Programs.add_item(selected_item_text, new_icon, true)
+		Programs.add_item(selected_item_text)
 
 	remove_item(selected_index)
 
