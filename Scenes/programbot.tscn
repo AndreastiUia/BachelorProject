@@ -232,7 +232,7 @@ layout_mode = 2
 theme = ExtResource("3_rtihc")
 text = "Move Down"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="BlurAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_jc0he")
 }

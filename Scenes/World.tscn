@@ -1,7 +1,4 @@
-
-[gd_scene load_steps=14 format=3 uid="uid://dv48c1hfsupwh"]
-
-
+[gd_scene load_steps=15 format=3 uid="uid://dv48c1hfsupwh"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_ngqvp"]
 [ext_resource type="Texture2D" uid="uid://cfjo1jnl5l27e" path="res://External Resources/tinyFantazyTileSet/tiny fantasy rpg_strategy.png" id="2_f25sg"]
