@@ -1,0 +1,223 @@
+[gd_scene load_steps=9 format=3 uid="uid://bdm3mv4p0o6on"]
+
+[ext_resource type="Script" path="res://Scripts/programbot.gd" id="1_sum28"]
+[ext_resource type="Shader" path="res://Shaders/programbot.gdshader" id="2_4ox4k"]
+[ext_resource type="Script" path="res://Programs.gd" id="3_tkffs"]
+[ext_resource type="Script" path="res://Scenes/ActiveProgram.gd" id="4_jju46"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vr5kn"]
+shader = ExtResource("2_4ox4k")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_j8a24"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p8upn"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.805]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jc0he"]
+_data = {
+"RESET": SubResource("Animation_j8a24"),
+"blur": SubResource("Animation_p8upn")
+}
+
+[node name="Programbot" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sum28")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_vr5kn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 57.0
+offset_right = 1942.0
+offset_bottom = 928.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.923
+anchor_top = 0.016
+anchor_right = 0.995
+anchor_bottom = 0.1
+offset_left = 0.316958
+offset_top = -0.0560003
+offset_right = -0.395072
+offset_bottom = -0.100001
+
+[node name="TempReturn" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Return"
+
+[node name="Programs" type="ItemList" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.353
+anchor_top = 0.088
+anchor_right = 0.55
+anchor_bottom = 0.982
+offset_left = 0.286983
+offset_top = 0.191997
+offset_right = -0.550013
+offset_bottom = -0.0620233
+script = ExtResource("3_tkffs")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.155
+anchor_bottom = 0.091
+offset_right = 0.244999
+offset_bottom = -0.131002
+text = "Robots:"
+
+[node name="ActiveProgram" type="ItemList" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.563
+anchor_top = 0.086
+anchor_right = 0.749
+anchor_bottom = 0.977
+offset_left = -0.123026
+offset_top = 0.0739987
+offset_right = 0.370986
+offset_bottom = 0.142975
+script = ExtResource("4_jju46")
+
+[node name="Control" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.772
+anchor_top = 0.132
+anchor_right = 0.919
+anchor_bottom = 0.735
+offset_left = -0.412017
+offset_top = -0.212
+offset_right = -0.199033
+offset_bottom = -0.135006
+
+[node name="Remove" type="Button" parent="Panel/Control"]
+layout_mode = 2
+text = "Remove"
+
+[node name="Moveup" type="Button" parent="Panel/Control"]
+layout_mode = 2
+text = "Move Up"
+
+[node name="Movedown" type="Button" parent="Panel/Control"]
+layout_mode = 2
+text = "Move Down"
+
+[node name="Robots" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.07
+anchor_right = 0.141
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 0.13
+offset_right = -0.0610029
+offset_bottom = -3.0
+
+[node name="Codeblocks" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.356
+anchor_right = 0.547
+anchor_bottom = 0.091
+offset_left = -0.0760069
+offset_right = -0.187057
+offset_bottom = -0.131002
+text = "Codeblocks
+"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.564
+anchor_right = 0.747
+anchor_bottom = 0.091
+offset_left = -0.244012
+offset_right = -0.387043
+offset_bottom = -0.131002
+text = "Active Program"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jc0he")
+}
+
+[connection signal="pressed" from="Panel/VBoxContainer/TempReturn" to="." method="_on_temp_return_pressed"]
+[connection signal="item_selected" from="Panel/Programs" to="Panel/Programs" method="_on_item_selected"]
+[connection signal="item_selected" from="Panel/ActiveProgram" to="Panel/ActiveProgram" method="_on_item_selected"]
+[connection signal="pressed" from="Panel/Control/Remove" to="Panel/ActiveProgram" method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/Control/Moveup" to="Panel/ActiveProgram" method="_on_moveup_pressed"]
+[connection signal="pressed" from="Panel/Control/Movedown" to="Panel/ActiveProgram" method="_on_movedown_pressed"]
