@@ -143,11 +143,11 @@ anchors_preset = -1
 anchor_left = 0.353
 anchor_top = 0.086
 anchor_right = 0.55
-anchor_bottom = 0.982
+anchor_bottom = 0.977
 offset_left = 0.591029
 offset_top = 0.0939975
 offset_right = -0.150023
-offset_bottom = -0.321994
+offset_bottom = 0.0329497
 theme = ExtResource("3_rtihc")
 script = ExtResource("3_tkffs")
 
