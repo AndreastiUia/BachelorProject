@@ -268,3 +268,4 @@ func check_if_statement(statement):
 
 func move(target_position, velocity):
 	global_position = global_position.move_toward(target_position, velocity)
+
