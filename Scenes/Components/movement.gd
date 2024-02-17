@@ -22,8 +22,7 @@ func _physics_process(delta):
 func move_path(delta):
 	var velocity = SPEED * delta
 	var target_position = tile_map.map_to_local(current_id_path.front())
-	if get_parent().has_method("move"):
-		get_parent().move(target_position, velocity)
+	get_parent().global_position = global_position.move_toward(target_position, velocity)
 	tile_map.uncover_map(global_position, search_radius)
 	
 	if global_position == target_position:
