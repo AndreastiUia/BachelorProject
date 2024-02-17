@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://bv237guggxs74"]
+
+[ext_resource type="Script" path="res://Scripts/basic_enemy.gd" id="1_awpoy"]
+[ext_resource type="PackedScene" uid="uid://0hel61iqys76" path="res://Scenes/Components/movement.tscn" id="2_6jov8"]
+[ext_resource type="PackedScene" path="res://healthComponent.tscn" id="3_e01po"]
+[ext_resource type="Texture2D" uid="uid://pmqeo4y5u1g5" path="res://External Resources/Lively_NPCs_v3.0/sprite sheets/steampunk/steambot_01.png" id="4_bk6ku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjrjx"]
+size = Vector2(16, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10ime"]
+atlas = ExtResource("4_bk6ku")
+region = Rect2(0, 0, 128, 32)
+
+[node name="basic_enemy" type="CharacterBody2D"]
+script = ExtResource("1_awpoy")
+
+[node name="Movement" parent="." instance=ExtResource("2_6jov8")]
+SPEED = 10000
+
+[node name="healthComponent" parent="." instance=ExtResource("3_e01po")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_bjrjx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 1)
+scale = Vector2(0.65625, 0.59375)
+texture = SubResource("AtlasTexture_10ime")
+hframes = 4

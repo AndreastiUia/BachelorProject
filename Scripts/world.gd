@@ -10,6 +10,7 @@ var newbotname:String = ""
 var botnamecounter:int = 1
 
 var bot = preload("res://Scenes/bot.tscn")
+var enemy = preload("res://Scenes/basic_enemy.tscn")
 
 func incrementbotname(botnamecounter):
 	botnamecounter += 1
@@ -27,7 +28,10 @@ func spawnbot():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	var e = enemy.instantiate()
+	position = Vector2(50,-50)
+	e.position = position
+	add_child(e)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

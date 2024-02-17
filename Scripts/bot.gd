@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var tile_map = $"../TileMap"
 @onready var timer_reset_idle = $Timer_reset_idle
-@onready var health = $healthComponent
+@onready var health_component = $healthComponent
 @onready var movement = $Movement
 
 # Bot attributes
@@ -83,12 +83,14 @@ enum program_if {INVENTORY_FULL, INVENTORY_EMPTY, ATTACKED, GOLD, STONE, WOOD, R
 
 func _ready():
 	pass
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var bot_position_map = tile_map.local_to_map(global_position)
 	current_bot_position = bot_position_map
 	
 func _physics_process(delta):
+	
 	if program_array.is_empty():
 		return
 	if idle && program_index < program_array.size():
@@ -254,6 +256,7 @@ func check_adjacent_tile(check_base: bool = false):
 func _on_timer_reset_idle_timeout():
 	idle = true
 
+
 func check_if_statement(statement):
 	var statement_string
 	match statement:
@@ -266,3 +269,4 @@ func check_if_statement(statement):
 
 func move(target_position, velocity):
 	global_position = global_position.move_toward(target_position, velocity)
+
