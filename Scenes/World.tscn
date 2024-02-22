@@ -336,17 +336,17 @@ theme_override_fonts/font = ExtResource("5_mai7t")
 theme_override_font_sizes/font_size = 25
 text = "Temp Button Spawn"
 
-[node name="Temp_Button3" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_mai7t")
-theme_override_font_sizes/font_size = 25
-text = "Temp Button Spawn"
-
 [node name="UpgradeScreen" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_mai7t")
 theme_override_font_sizes/font_size = 25
 text = "   Upgrade   "
+
+[node name="Temp_Button3" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_mai7t")
+theme_override_font_sizes/font_size = 25
+text = "Temp Button Spawn"
 
 [node name="UpgradeScreen" parent="Camera2D/GUI" instance=ExtResource("5_m2mt4")]
 visible = false
@@ -363,3 +363,4 @@ offset_bottom = 0.0799561
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button3" to="." method="_on_temp_button_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Program_Robots" to="Camera2D/CanvasLayer/Programbot" method="_on_program_robots_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/UpgradeScreen" to="Camera2D/GUI/UpgradeScreen" method="_on_upgrade_screen_pressed"]
+
