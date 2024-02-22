@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dv48c1hfsupwh"]
+[gd_scene load_steps=16 format=3 uid="uid://dv48c1hfsupwh"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_ngqvp"]
 [ext_resource type="Texture2D" uid="uid://cfjo1jnl5l27e" path="res://External Resources/tinyFantazyTileSet/tiny fantasy rpg_strategy.png" id="2_f25sg"]
@@ -138,7 +138,17 @@ script = ExtResource("4_jur47")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
+[node name="UpgradeScreen" parent="Camera2D/CanvasLayer" instance=ExtResource("5_m2mt4")]
+visible = false
+anchors_preset = -1
+anchor_top = 0.04
+anchor_bottom = 0.874
+offset_top = -0.200001
+offset_right = 3.0
+offset_bottom = 0.079895
+
 [node name="Programbot" parent="Camera2D/CanvasLayer" instance=ExtResource("10_bdgyb")]
+visible = false
 offset_left = 1.0
 offset_top = 3.0
 offset_right = 1.0
@@ -204,6 +214,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("5_mai7t")
 theme_override_font_sizes/font_size = 25
 text = "Program Robots"
+
 [node name="UpgradeScreen" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_mai7t")
@@ -290,77 +301,9 @@ theme_override_fonts/font = ExtResource("5_mai7t")
 theme_override_font_sizes/font_size = 20
 text = "0"
 
-[node name="BottomGUI" type="NinePatchRect" parent="Camera2D/GUI"]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -3.0
-offset_top = -137.0
-offset_right = 2.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("5_00b4k")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/GUI/BottomGUI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-offset_left = 24.0
-offset_top = 30.0
-offset_right = -22.0
-offset_bottom = 109.0
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="Temp_Button" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_mai7t")
-theme_override_font_sizes/font_size = 25
-text = "Temp Button Spawn"
-
-[node name="Temp_Button5" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_mai7t")
-theme_override_font_sizes/font_size = 25
-text = "Temp Button Spawn"
-
-[node name="Temp_Button2" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_mai7t")
-theme_override_font_sizes/font_size = 25
-text = "Temp Button Spawn"
-
-[node name="UpgradeScreen" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_mai7t")
-theme_override_font_sizes/font_size = 25
-text = "   Upgrade   "
-
-[node name="Temp_Button3" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_mai7t")
-theme_override_font_sizes/font_size = 25
-text = "Temp Button Spawn"
-
-[node name="UpgradeScreen" parent="Camera2D/GUI" instance=ExtResource("5_m2mt4")]
-visible = false
-anchors_preset = -1
-anchor_top = 0.04
-anchor_bottom = 0.874
-offset_top = -0.200005
-offset_right = 3.0
-offset_bottom = 0.0799561
-
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button" to="." method="_on_temp_button_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button5" to="." method="_on_temp_button_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button2" to="." method="_on_temp_button_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button3" to="." method="_on_temp_button_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Program_Robots" to="Camera2D/CanvasLayer/Programbot" method="_on_program_robots_pressed"]
-[connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/UpgradeScreen" to="Camera2D/GUI/UpgradeScreen" method="_on_upgrade_screen_pressed"]
-
+[connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/UpgradeScreen" to="Camera2D/CanvasLayer/UpgradeScreen" method="_on_upgrade_screen_pressed"]

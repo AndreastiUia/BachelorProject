@@ -1,13 +1,78 @@
-[gd_scene load_steps=5 format=3 uid="uid://cltsq8d5dcqme"]
+[gd_scene load_steps=10 format=3 uid="uid://cltsq8d5dcqme"]
 
 [ext_resource type="Script" path="res://Scripts/upgrade_screen.gd" id="1_26mdu"]
+[ext_resource type="Shader" path="res://Shaders/programbot.gdshader" id="2_2hd7g"]
 [ext_resource type="FontFile" uid="uid://ct4ox56t42ck3" path="res://External Resources/Fonts/Teko/Teko-VariableFont_wght.ttf" id="2_n5l7s"]
 [ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="3_4cy3u"]
+[ext_resource type="Script" path="res://Scripts/UpgradeBase.gd" id="5_n8nts"]
 
-[sub_resource type="Theme" id="Theme_umx0h"]
-Button/fonts/font = null
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5hv1b"]
+shader = ExtResource("2_2hd7g")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_j8a24"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackdropPanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p8upn"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.805]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackdropPanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jc0he"]
+_data = {
+"RESET": SubResource("Animation_j8a24"),
+"blur": SubResource("Animation_p8upn")
+}
 
 [node name="UpgradeScreen" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,84 +82,55 @@ grow_vertical = 2
 script = ExtResource("1_26mdu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
+material = SubResource("ShaderMaterial_5hv1b")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -17.0
+offset_right = 1.0
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.372549, 0.235294, 0.0705882, 1)
 
-[node name="Top_TabPanel" type="Panel" parent="."]
+[node name="ReturnButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.013
-anchor_top = 0.012
-anchor_right = 0.987
-anchor_bottom = 0.1
-offset_left = -0.74
-offset_top = 0.04
-offset_right = 0.739746
-grow_horizontal = 2
-
-[node name="BackButton" type="Button" parent="Top_TabPanel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.088
-offset_right = 0.159988
-offset_bottom = 94.0
-theme = SubResource("Theme_umx0h")
+anchor_left = 0.938
+anchor_right = 0.995
+anchor_bottom = 0.056
+offset_left = -0.23999
+offset_top = 2.0
+offset_right = -0.100098
+offset_bottom = 0.519997
+theme = ExtResource("3_4cy3u")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_n5l7s")
 theme_override_font_sizes/font_size = 35
-text = "Back
+text = "Return
 "
 
-[node name="TabRow" type="HBoxContainer" parent="Top_TabPanel"]
+[node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.099
-anchor_right = 1.0
-offset_left = -0.0700073
-offset_top = 11.0
-offset_right = -14.9999
-offset_bottom = 84.0
-theme_override_constants/separation = 20
+anchor_left = 0.005
+anchor_top = 0.063
+anchor_right = 0.996
+anchor_bottom = 0.993
+offset_left = -0.900001
+offset_top = -0.0400009
+offset_right = -0.0800781
+offset_bottom = -0.440063
+theme = ExtResource("3_4cy3u")
+theme_override_font_sizes/font_size = 30
+tab_alignment = 1
 
-[node name="Base_Tab_Button" type="Button" parent="Top_TabPanel/TabRow"]
+[node name="Base" type="Panel" parent="TabContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_n5l7s")
-theme_override_font_sizes/font_size = 25
-text = "                Base                "
+script = ExtResource("5_n8nts")
 
-[node name="Bot_Tab_Button" type="Button" parent="Top_TabPanel/TabRow"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_n5l7s")
-theme_override_font_sizes/font_size = 25
-text = "                Bot1                "
-
-[node name="Bot_Tab_Button2" type="Button" parent="Top_TabPanel/TabRow"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_n5l7s")
-theme_override_font_sizes/font_size = 25
-text = "                Bot2                "
-
-[node name="BasePanel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.014
-anchor_top = 0.114
-anchor_right = 0.989
-anchor_bottom = 0.98
-offset_left = -0.720001
-offset_top = -0.12001
-offset_right = -0.220093
-offset_bottom = -0.400024
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="baseTempLabel" type="Label" parent="BasePanel"]
+[node name="baseTempLabel" type="Label" parent="TabContainer/Base"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.282
@@ -109,64 +145,81 @@ theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 60
 text = "This is the Base Upgrade Panel"
 
-[node name="BotPanel" type="Panel" parent="."]
-visible = false
+[node name="Temp_button_armor" type="Button" parent="TabContainer/Base"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.013
-anchor_top = 0.131
-anchor_right = 0.985
-anchor_bottom = 0.975
-offset_left = -0.74
-offset_top = -0.480011
-offset_right = 0.699829
-grow_horizontal = 2
-grow_vertical = 2
+anchor_left = 0.031
+anchor_top = 0.861
+anchor_right = 0.132
+anchor_bottom = 0.965
+offset_left = -0.853004
+offset_top = 0.327942
+offset_right = 0.884003
+offset_bottom = 0.319946
+text = "Upgrade  Base Armor"
 
-[node name="TempLabel" type="Label" parent="BotPanel"]
+[node name="armor_label" type="Label" parent="TabContainer/Base"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.059
+anchor_top = 0.782
+anchor_right = 0.088
+anchor_bottom = 0.831
+offset_left = -0.817009
+offset_top = -0.46405
+offset_right = -0.744019
+offset_bottom = -0.112
+text = "Armor:"
+
+[node name="armor_value" type="Label" parent="TabContainer/Base/armor_label"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 1.0
+offset_right = 200.0
+offset_bottom = 45.0
+text = "0"
+
+[node name="Robots" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="botTempLabel" type="Label" parent="TabContainer/Robots"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.282
-anchor_top = 0.375
-anchor_right = 0.743
-anchor_bottom = 0.538
-offset_left = 162.022
-offset_top = -5.25003
-offset_right = -208.247
-offset_bottom = -4.88403
+anchor_right = 0.282
+offset_left = 750.0
+offset_top = 431.0
+offset_right = 1216.0
+offset_bottom = 518.0
 theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 60
-text = "This is the Bot 1 Upgrade Panel"
+text = "This is the Bot Upgrade Panel"
 
-[node name="BotPanel2" type="Panel" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.013
-anchor_top = 0.119
-anchor_right = 0.99
-anchor_bottom = 0.983
-offset_left = 0.26
-offset_top = 0.479996
-offset_right = -0.200195
-offset_bottom = -6.64001
-
-[node name="TempLabel" type="Label" parent="BotPanel2"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.282
-anchor_top = 0.375
-anchor_right = 0.743
-anchor_bottom = 0.538
-offset_left = 162.022
-offset_top = -5.25003
-offset_right = -208.247
-offset_bottom = -4.88403
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Robots"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 188.0
+offset_right = 534.0
+offset_bottom = 713.0
 theme = ExtResource("3_4cy3u")
-theme_override_font_sizes/font_size = 60
-text = "This is the Bot 2 Upgrade Panel"
+alignment = 1
 
-[connection signal="pressed" from="Top_TabPanel/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="Top_TabPanel/TabRow/Base_Tab_Button" to="." method="_on_base_tab_button_pressed"]
-[connection signal="pressed" from="Top_TabPanel/TabRow/Bot_Tab_Button" to="." method="_on_bot_tab_button_pressed"]
-[connection signal="pressed" from="Top_TabPanel/TabRow/Bot_Tab_Button2" to="." method="_on_bot_tab_button_2_pressed"]
+[node name="Label" type="Label" parent="TabContainer/Robots/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_4cy3u")
+text = "Robot 1"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="TabContainer/Robots/VBoxContainer"]
+layout_mode = 2
+text = "Robot 2"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jc0he")
+}
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="TabContainer/Base/Temp_button_armor" to="TabContainer/Base" method="_on_temp_button_armor_pressed"]
