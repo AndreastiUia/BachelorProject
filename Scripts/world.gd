@@ -26,4 +26,5 @@ func _on_temp_button_pressed():
 	print(Global.bots)
 	add_child(b)
 	
+	
 
