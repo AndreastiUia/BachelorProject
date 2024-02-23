@@ -215,7 +215,7 @@ func test_expression(statement):
 
 func update_inventory():
 	inventory = gold + stone + wood
-	print("Inventory: ", inventory)
+	#print("Inventory: ", inventory)
 
 
 func check_adjacent_tile(check_base: bool = false):
