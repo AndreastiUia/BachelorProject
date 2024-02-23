@@ -6,6 +6,8 @@ var icon_size = Vector2(16, 16)
 # Reference to the second ItemList
 var target_item_list = null
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Access the second ItemList and assign it to target_item_list
@@ -18,6 +20,9 @@ func _ready():
 	add_item("move_down: ")
 	add_item("move_left: ")
 	add_item("move_right: ")
+	
+	
+	
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

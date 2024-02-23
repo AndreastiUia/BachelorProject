@@ -1,5 +1,8 @@
 extends Node
 
+
+
+
 # base variables
 var base_gold = 0
 var base_wood = 0
@@ -10,3 +13,12 @@ var resource_count:Dictionary = {}
 
 # Array storing bots
 var bots:Array = []
+<<<<<<< HEAD
+=======
+
+var botarray = ["Bot 1", "Bot 2"]
+
+
+
+
+>>>>>>> f95b200 (When bots are added now, they show up on list on programbot.tscn)
