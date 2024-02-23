@@ -2,10 +2,7 @@ extends Control
 
 
 func _ready():
-	for element in Global.BotArray:
-		var label = Label.new()
-		label.text = element
-		$TabContainer/Robots/RobotList.add_child(label)
+	pass
 
 #Temp back button for easier testing
 func _process(delta):
@@ -23,8 +20,17 @@ func resume():
 	get_tree().paused = false
 	$AnimationPlayer.play_backwards("blur")
 
+#Add bots to Robot tab in upgradescrene
+func populate_bot_list():
+	for bot in Global.bots:
+		var label = Label.new()
+		label.text = str(bot)
+		print("Adding bot:", str(bot))
+		$TabContainer/Robots/RobotList.add_child(label)
+
 func _on_upgrade_screen_pressed():
 	upgradescreen()
+	populate_bot_list()
 
 func _on_return_button_pressed():
 	resume()

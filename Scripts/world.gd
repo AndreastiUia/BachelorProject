@@ -22,11 +22,8 @@ func _on_temp_button_pressed():
 	var b = bot.instantiate()
 	var position = Vector2(25, -20)
 	b.position = position
+	Global.bots.append(b)
+	print(Global.bots)
 	add_child(b)
 	
-	var botProperties = {
-		"instance": b
-	}
-	
-	Global.BotArray.append(botProperties)
 
