@@ -24,4 +24,9 @@ func _on_temp_button_pressed():
 	b.position = position
 	add_child(b)
 	
+	var botProperties = {
+		"instance": b
+	}
+	
+	Global.BotArray.append(botProperties)
 

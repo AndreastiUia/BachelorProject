@@ -1,5 +1,12 @@
 extends Control
 
+
+func _ready():
+	for element in Global.BotArray:
+		var label = Label.new()
+		label.text = element
+		$TabContainer/Robots/RobotList.add_child(label)
+
 #Temp back button for easier testing
 func _process(delta):
 	# Go back to main menu
