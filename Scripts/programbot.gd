@@ -24,10 +24,9 @@ func _on_program_robots_pressed():
 	
 	for bot in Global.bots:
 		if bot not in added_bots:
-			var label = Label.new()
-			label.text = str(bot)
-			print("Adding bot:", str(bot))
-			$BackdropPanel/Robots.add_child(label)
+			var label_text = str(bot)
+			# print("Adding bot:", str(bot))
+			$BackdropPanel/Robots.add_item(label_text)
 			added_bots[bot] = true
 
 
