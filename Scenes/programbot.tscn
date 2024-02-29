@@ -165,7 +165,7 @@ offset_bottom = 0.319995
 theme = ExtResource("3_rtihc")
 text = "Robots"
 
-[node name="Robots" type="VBoxContainer" parent="BackdropPanel"]
+[node name="Robots" type="ItemList" parent="BackdropPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.07
