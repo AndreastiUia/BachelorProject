@@ -39,6 +39,5 @@ func _on_program_robots_pressed():
 			added_bots[bot] = true
 
 
-
 func _on_temp_return_pressed():
 	resume()
