@@ -20,6 +20,7 @@ func _ready():
 	add_item("move_down: ")
 	add_item("move_left: ")
 	add_item("move_right: ")
+	add_item("move_to_pos")
 	
 	
 	
