@@ -1,5 +1,7 @@
 extends Control
 
+
+
 func _ready():
 	print("Global bots:", Global.bots)
 	
@@ -39,5 +41,4 @@ func _on_program_robots_pressed():
 
 func _on_temp_return_pressed():
 	resume()
-
 
