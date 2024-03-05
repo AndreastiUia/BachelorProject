@@ -29,4 +29,4 @@ func _on_confirm_pressed():
 
 func _on_start_program_pressed():
 	print("Coordinates:", saved_coordinates)
-	
+
