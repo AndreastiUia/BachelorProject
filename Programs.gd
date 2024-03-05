@@ -13,6 +13,7 @@ func _ready():
 	# Access the second ItemList and assign it to target_item_list
 	target_item_list = get_parent().get_node("ActiveProgram")
 
+
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
