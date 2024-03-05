@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4j5exqg0xymp"]
+[gd_scene load_steps=3 format=3 uid="uid://d4j5exqg0xymp"]
 
 [ext_resource type="Script" path="res://Scenes/CoordinateInputDialog.gd" id="1_tv8mx"]
+[ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="2_ash5y"]
 
 [node name="CoordinateInputDialog" type="Control"]
 layout_mode = 3
@@ -25,21 +26,26 @@ offset_bottom = 0.359985
 
 [node name="Xcoord" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ash5y")
 text = "X-Coordinate"
 
 [node name="Xcoordfield" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ash5y")
 
 [node name="Ycoord" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ash5y")
 text = "Y-Coordinate
 "
 
 [node name="LineEdit2" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ash5y")
 
 [node name="Confirm" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ash5y")
 text = "Confirm"
 
 [connection signal="pressed" from="VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
