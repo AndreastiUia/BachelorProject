@@ -39,7 +39,7 @@ theme = ExtResource("2_ash5y")
 text = "Y-Coordinate
 "
 
-[node name="LineEdit2" type="LineEdit" parent="VBoxContainer"]
+[node name="Ycoordfield" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_ash5y")
 

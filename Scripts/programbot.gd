@@ -1,5 +1,7 @@
 extends Control
 
+
+
 func _ready():
 	print("Global bots:", Global.bots)
 	
@@ -9,6 +11,14 @@ func programbots():
 	show()
 	get_tree().paused = true
 	$AnimationPlayer.play("blur")
+	
+	
+func program_bots_with_coordinates(coordinates):
+	# Iterate over each bot and send the coordinates
+	for bot in Global.bots:
+		bot.set_destination(coordinates)
+
+
 
 
 func resume():
@@ -32,5 +42,4 @@ func _on_program_robots_pressed():
 
 func _on_temp_return_pressed():
 	resume()
-
 
