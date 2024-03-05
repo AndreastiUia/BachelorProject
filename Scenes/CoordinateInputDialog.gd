@@ -20,7 +20,6 @@ func _on_confirm_pressed():
 	# Save the entered coordinates
 	saved_coordinates = Vector2(x, y)
 	print("Coordinates saved:", saved_coordinates)
-
 	# Emit signal with entered coordinates
 	emit_signal("coordinates_entered", saved_coordinates)
 
@@ -29,4 +28,3 @@ func _on_confirm_pressed():
 
 func _on_start_program_pressed():
 	print("Coordinates:", saved_coordinates)
-
