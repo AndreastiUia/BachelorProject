@@ -1,5 +1,7 @@
 extends Control
 
+
+
 func _ready():
 	print("Global bots:", Global.bots)
 	
