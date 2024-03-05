@@ -16,10 +16,6 @@ func _ready():
 	# Add items to the first ItemList
 	add_item("While: ")
 	add_item("If: ")
-	add_item("move_up: ")
-	add_item("move_down: ")
-	add_item("move_left: ")
-	add_item("move_right: ")
 	add_item("move_to_pos")
 	
 	
