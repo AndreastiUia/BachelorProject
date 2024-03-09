@@ -20,13 +20,15 @@ func resume():
 	get_tree().paused = false
 	$AnimationPlayer.play_backwards("blur")
 
-#Add bots to Robot tab in upgradescrene
+#Add bots to Robotlist in upgradescreen
 func populate_bot_list():
 	for bot in Global.bots:
-		var label = Label.new()
-		label.text = str(bot)
+		$TabContainer/Robots/RobotList.add_item(str(bot), null)
 		print("Adding bot:", str(bot))
-		$TabContainer/Robots/RobotList.add_child(label)
+
+#Clears the RobotList when resuming from upgradescreen
+func clear_bot_list():
+	$TabContainer/Robots/RobotList.clear()
 
 func _on_upgrade_screen_pressed():
 	upgradescreen()
@@ -34,3 +36,4 @@ func _on_upgrade_screen_pressed():
 
 func _on_return_button_pressed():
 	resume()
+	clear_bot_list()

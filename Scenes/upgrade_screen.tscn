@@ -127,6 +127,7 @@ theme_override_font_sizes/font_size = 30
 tab_alignment = 1
 
 [node name="Base" type="Panel" parent="TabContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("5_n8nts")
 
@@ -148,27 +149,27 @@ text = "This is the Base Upgrade Panel"
 [node name="Temp_button_armor" type="Button" parent="TabContainer/Base"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.031
-anchor_top = 0.861
-anchor_right = 0.132
-anchor_bottom = 0.965
-offset_left = -0.853004
-offset_top = 0.327942
-offset_right = 0.884003
-offset_bottom = 0.319946
+anchor_left = 0.302
+anchor_top = 0.75
+anchor_right = 0.403
+anchor_bottom = 0.854
+offset_left = -0.825989
+offset_top = 6.10352e-05
+offset_right = 0.911011
+offset_bottom = -0.00793457
 text = "Upgrade  Base Armor"
 
 [node name="armor_label" type="Label" parent="TabContainer/Base"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.059
-anchor_top = 0.782
-anchor_right = 0.088
-anchor_bottom = 0.831
-offset_left = -0.817009
-offset_top = -0.46405
-offset_right = -0.744019
-offset_bottom = -0.112
+anchor_left = 0.332
+anchor_top = 0.676
+anchor_right = 0.373
+anchor_bottom = 0.726
+offset_left = 0.283997
+offset_top = 0.447998
+offset_right = -23.199
+offset_bottom = -0.151917
 text = "Armor:"
 
 [node name="armor_value" type="Label" parent="TabContainer/Base/armor_label"]
@@ -180,7 +181,6 @@ offset_bottom = 45.0
 text = "0"
 
 [node name="Robots" type="Panel" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="botTempLabel" type="Label" parent="TabContainer/Robots"]
@@ -196,14 +196,14 @@ theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 60
 text = "This is the Bot Upgrade Panel"
 
-[node name="RobotList" type="VBoxContainer" parent="TabContainer/Robots"]
+[node name="RobotList" type="ItemList" parent="TabContainer/Robots"]
 layout_mode = 0
-offset_left = 264.0
-offset_top = 188.0
-offset_right = 534.0
-offset_bottom = 713.0
+offset_left = 24.0
+offset_top = 75.0
+offset_right = 365.0
+offset_bottom = 980.0
 theme = ExtResource("3_4cy3u")
-alignment = 1
+auto_height = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
