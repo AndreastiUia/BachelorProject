@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpp01alcayl7g"]
+
+[ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="1_e111s"]
+[ext_resource type="Script" path="res://Scripts/robotlist.gd" id="2_7xvwh"]
+
+[sub_resource type="GDScript" id="GDScript_34bib"]
+
+[node name="RobotlistControlNode" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1678.0
+offset_bottom = -236.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_e111s")
+script = ExtResource("2_7xvwh")
+
+[node name="RobotList" type="ItemList" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.007
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -1.0
+offset_right = -0.114014
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_34bib")
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="draw" from="RobotList" to="." method="_on_robot_list_draw"]
+[connection signal="hidden" from="RobotList" to="." method="_on_robot_list_hidden"]

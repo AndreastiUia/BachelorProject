@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cltsq8d5dcqme"]
+[gd_scene load_steps=11 format=3 uid="uid://cltsq8d5dcqme"]
 
 [ext_resource type="Script" path="res://Scripts/upgrade_screen.gd" id="1_26mdu"]
 [ext_resource type="Shader" path="res://Shaders/programbot.gdshader" id="2_2hd7g"]
 [ext_resource type="FontFile" uid="uid://ct4ox56t42ck3" path="res://External Resources/Fonts/Teko/Teko-VariableFont_wght.ttf" id="2_n5l7s"]
 [ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="3_4cy3u"]
 [ext_resource type="Script" path="res://Scripts/UpgradeBase.gd" id="5_n8nts"]
+[ext_resource type="PackedScene" uid="uid://cpp01alcayl7g" path="res://Scenes/robotlist.tscn" id="6_dvjda"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5hv1b"]
 shader = ExtResource("2_2hd7g")
@@ -127,7 +128,6 @@ theme_override_font_sizes/font_size = 30
 tab_alignment = 1
 
 [node name="Base" type="Panel" parent="TabContainer"]
-visible = false
 layout_mode = 2
 script = ExtResource("5_n8nts")
 
@@ -181,6 +181,7 @@ offset_bottom = 45.0
 text = "0"
 
 [node name="Robots" type="Panel" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="botTempLabel" type="Label" parent="TabContainer/Robots"]
@@ -196,14 +197,15 @@ theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 60
 text = "This is the Bot Upgrade Panel"
 
-[node name="RobotList" type="ItemList" parent="TabContainer/Robots"]
+[node name="RobotlistPanelContainer" type="PanelContainer" parent="TabContainer/Robots"]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 75.0
-offset_right = 365.0
-offset_bottom = 980.0
-theme = ExtResource("3_4cy3u")
-auto_height = true
+offset_top = 79.0
+offset_right = 511.0
+offset_bottom = 972.0
+
+[node name="RobotlistControlNode" parent="TabContainer/Robots/RobotlistPanelContainer" instance=ExtResource("6_dvjda")]
+layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
