@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://131f82am03rr"]
+
+[ext_resource type="PackedScene" uid="uid://b6retb0oty3v5" path="res://Scenes/Upgrade_button.tscn" id="1_us5tp"]
+[ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="2_ts13g"]
+
+[node name="UpgradeBaseTree" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.423529, 0.423529, 0.423529, 1)
+
+[node name="HealthUpgradeButton1" parent="." instance=ExtResource("1_us5tp")]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 704.0
+offset_right = 384.0
+offset_bottom = 832.0
+disabled = false
+MaxUpgrade = 2
+
+[node name="HitpointsLabel" type="Label" parent="HealthUpgradeButton1"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 136.0
+offset_right = 117.0
+offset_bottom = 196.0
+theme = ExtResource("2_ts13g")
+theme_override_font_sizes/font_size = 40
+text = "Hit Points"
+
+[node name="HealthUpgradeButton2" parent="HealthUpgradeButton1" instance=ExtResource("1_us5tp")]
+layout_mode = 0
+offset_top = -256.0
+offset_right = 128.0
+offset_bottom = -128.0
+MaxUpgrade = 1
+UpgradeLabelVis = false
+
+[node name="ArmorUpgradeButton1" parent="HealthUpgradeButton1/HealthUpgradeButton2" instance=ExtResource("1_us5tp")]
+layout_mode = 0
+offset_left = 256.0
+offset_right = 383.0
+offset_bottom = 128.0
+MaxUpgrade = 1
+UpgradeLabelVis = false
+
+[node name="ArmorUpgradeButton2" parent="HealthUpgradeButton1/HealthUpgradeButton2/ArmorUpgradeButton1" instance=ExtResource("1_us5tp")]
+layout_mode = 0
+offset_top = -256.0
+offset_right = 128.0
+offset_bottom = -128.0
+MaxUpgrade = 1
+UpgradeLabelVis = false
+
+[node name="HealthUpgradeButton3" parent="HealthUpgradeButton1/HealthUpgradeButton2" instance=ExtResource("1_us5tp")]
+layout_mode = 0
+offset_top = -256.0
+offset_right = 128.0
+offset_bottom = -128.0
+MaxUpgrade = 1
+UpgradeLabelVis = false
