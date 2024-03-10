@@ -19,32 +19,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="ColorRect" parent="."]
-visible = false
+[node name="HitpointsBackground" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+offset_right = 512.0
+offset_bottom = 832.0
+color = Color(0.560784, 0.376471, 0.219608, 0.54902)
+
+[node name="DefenseBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 576.0
+offset_right = 832.0
+offset_bottom = 832.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.423529, 0.423529, 0.423529, 1)
+color = Color(0.352941, 0.388235, 0.701961, 0.54902)
 
 [node name="HealthUpgradeButton1" parent="." instance=ExtResource("1_us5tp")]
 layout_mode = 0
-offset_left = 256.0
-offset_top = 704.0
-offset_right = 384.0
-offset_bottom = 832.0
+offset_left = 64.0
+offset_top = 640.0
+offset_right = 192.0
+offset_bottom = 768.0
 disabled = false
 texture_normal = ExtResource("2_ebgv1")
 MaxUpgrade = 2
 
 [node name="HitpointsLabel" type="Label" parent="HealthUpgradeButton1"]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 128.0
-offset_right = 109.0
-offset_bottom = 188.0
+offset_left = 144.0
+offset_top = -632.0
+offset_right = 245.0
+offset_bottom = -572.0
 theme = ExtResource("2_ts13g")
 theme_override_font_sizes/font_size = 40
 text = "Hit Points"
@@ -87,10 +94,10 @@ UpgradeLabelVis = false
 
 [node name="DefenseUpgradeButton1" parent="." instance=ExtResource("1_us5tp")]
 layout_mode = 0
-offset_left = 896.0
-offset_top = 704.0
-offset_right = 1024.0
-offset_bottom = 832.0
+offset_left = 640.0
+offset_top = 640.0
+offset_right = 768.0
+offset_bottom = 768.0
 disabled = false
 texture_normal = ExtResource("8_qclpu")
 MaxUpgrade = 2
@@ -98,9 +105,9 @@ MaxUpgrade = 2
 [node name="DefenseLabel" type="Label" parent="DefenseUpgradeButton1"]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 128.0
+offset_top = -632.0
 offset_right = 117.0
-offset_bottom = 188.0
+offset_bottom = -572.0
 theme = ExtResource("2_ts13g")
 theme_override_font_sizes/font_size = 40
 text = "Defense"

@@ -132,46 +132,110 @@ tab_alignment = 1
 layout_mode = 2
 script = ExtResource("5_n8nts")
 
-[node name="UpgradeBaseTree" parent="TabContainer/Base" instance=ExtResource("6_yd21q")]
-layout_mode = 1
-offset_left = 405.0
-offset_top = -50.0
-offset_right = -443.0
-offset_bottom = -106.0
-
-[node name="Temp_button_armor" type="Button" parent="TabContainer/Base"]
+[node name="HitpointsBackground" type="ColorRect" parent="TabContainer/Base"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.025
-anchor_top = 0.854
-anchor_right = 0.127
-anchor_bottom = 0.962
-offset_left = -0.0749969
-offset_top = 3.99213
-offset_right = -0.300995
-offset_bottom = 0.176025
-text = "Upgrade  Base Armor"
+anchor_left = 0.093
+anchor_right = 0.321
+offset_left = 0.44101
+offset_top = 136.0
+offset_right = 0.877014
+offset_bottom = 392.0
+color = Color(0.560784, 0.376471, 0.219608, 0.54902)
 
-[node name="armor_label" type="Label" parent="TabContainer/Base/Temp_button_armor"]
+[node name="Health_label" type="Label" parent="TabContainer/Base/HitpointsBackground"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.028
-anchor_top = 0.791
-anchor_right = 0.057
-anchor_bottom = 0.84
-offset_left = 0.4
-offset_top = -142.309
-offset_right = 45.6
-offset_bottom = -103.16
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 70.632
+offset_top = 36.128
+offset_right = -267.208
+offset_bottom = -185.288
+theme = ExtResource("3_4cy3u")
+theme_override_font_sizes/font_size = 60
+text = "Health:"
+
+[node name="Health_value" type="Label" parent="TabContainer/Base/HitpointsBackground/Health_label"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 5.0
+offset_right = 279.0
+offset_bottom = 92.0
+theme = ExtResource("3_4cy3u")
+theme_override_font_sizes/font_size = 60
+text = "0"
+
+[node name="Armor_label" type="Label" parent="TabContainer/Base/HitpointsBackground"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 68.696
+offset_top = 138.456
+offset_right = -277.144
+offset_bottom = -82.96
+theme = ExtResource("3_4cy3u")
+theme_override_font_sizes/font_size = 60
 text = "Armor:"
 
-[node name="armor_value" type="Label" parent="TabContainer/Base/Temp_button_armor/armor_label"]
+[node name="armor_value" type="Label" parent="TabContainer/Base/HitpointsBackground/Armor_label"]
 layout_mode = 0
-offset_left = 66.0
-offset_top = 1.0
-offset_right = 200.0
-offset_bottom = 45.0
+offset_left = 130.0
+offset_top = 5.0
+offset_right = 279.0
+offset_bottom = 92.0
+theme = ExtResource("3_4cy3u")
+theme_override_font_sizes/font_size = 60
 text = "0"
+
+[node name="DefenseBackground" type="ColorRect" parent="TabContainer/Base"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.093
+anchor_right = 0.321
+offset_left = 0.44101
+offset_top = 464.0
+offset_right = 0.877014
+offset_bottom = 584.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.352941, 0.388235, 0.701961, 0.54902)
+
+[node name="AttackPower_label" type="Label" parent="TabContainer/Base/DefenseBackground"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = 16.0
+offset_right = -127.92
+offset_bottom = -17.0
+theme = ExtResource("3_4cy3u")
+theme_override_font_sizes/font_size = 60
+text = "Attack Power:"
+metadata/_edit_use_anchors_ = true
+
+[node name="AttackPower_value" type="Label" parent="TabContainer/Base/DefenseBackground/AttackPower_label"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 2.0
+offset_right = 441.0
+offset_bottom = 89.0
+theme = ExtResource("3_4cy3u")
+theme_override_font_sizes/font_size = 60
+text = "0"
+
+[node name="UpgradeBaseTree" parent="TabContainer/Base" instance=ExtResource("6_yd21q")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.419
+anchor_right = 0.847
+anchor_bottom = 0.0
+offset_left = 0.502991
+offset_top = 72.0
+offset_right = 0.338989
+offset_bottom = 911.0
 
 [node name="Robots" type="Panel" parent="TabContainer"]
 visible = false
@@ -206,4 +270,3 @@ libraries = {
 }
 
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="TabContainer/Base/Temp_button_armor" to="TabContainer/Base" method="_on_temp_button_armor_pressed"]
