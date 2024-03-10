@@ -7,3 +7,6 @@ var base_stone = 0
 
 # amount resources on a given tile
 var resource_count:Dictionary = {}
+
+# Array storing bots
+var bots:Array = []
