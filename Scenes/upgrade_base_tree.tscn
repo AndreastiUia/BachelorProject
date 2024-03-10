@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://131f82am03rr"]
+[gd_scene load_steps=8 format=3 uid="uid://131f82am03rr"]
 
 [ext_resource type="PackedScene" uid="uid://b6retb0oty3v5" path="res://Scenes/Upgrade_button.tscn" id="1_us5tp"]
+[ext_resource type="Texture2D" uid="uid://dkqvargws3q5e" path="res://Sprites/Icons/BaseUpgrades/HeartOne_sprite_BaseUpgradeIcons0.png" id="2_ebgv1"]
 [ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="2_ts13g"]
+[ext_resource type="Texture2D" uid="uid://bk7jssauy7icg" path="res://Sprites/Icons/BaseUpgrades/HeartTwo_sprite_BaseUpgradeIcons1.png" id="4_u3f6p"]
+[ext_resource type="Texture2D" uid="uid://d11dh0s0swg82" path="res://Sprites/Icons/BaseUpgrades/ArmorOne_sprite_BaseUpgradeIcons3.png" id="5_k6s1s"]
+[ext_resource type="Texture2D" uid="uid://byptftgiaq5yh" path="res://Sprites/Icons/BaseUpgrades/ArmorTwo_sprite_BaseUpgradeIcons4.png" id="6_2xh13"]
+[ext_resource type="Texture2D" uid="uid://bwyt24ltii0fx" path="res://Sprites/Icons/BaseUpgrades/HeartThree_sprite_BaseUpgradeIcons2.png" id="7_dn656"]
 
 [node name="UpgradeBaseTree" type="Control"]
 layout_mode = 3
@@ -28,6 +33,7 @@ offset_top = 704.0
 offset_right = 384.0
 offset_bottom = 832.0
 disabled = false
+texture_normal = ExtResource("2_ebgv1")
 MaxUpgrade = 2
 
 [node name="HitpointsLabel" type="Label" parent="HealthUpgradeButton1"]
@@ -45,6 +51,7 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
+texture_normal = ExtResource("4_u3f6p")
 MaxUpgrade = 1
 UpgradeLabelVis = false
 
@@ -53,6 +60,7 @@ layout_mode = 0
 offset_left = 256.0
 offset_right = 383.0
 offset_bottom = 128.0
+texture_normal = ExtResource("5_k6s1s")
 MaxUpgrade = 1
 UpgradeLabelVis = false
 
@@ -61,6 +69,7 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
+texture_normal = ExtResource("6_2xh13")
 MaxUpgrade = 1
 UpgradeLabelVis = false
 
@@ -69,5 +78,6 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
+texture_normal = ExtResource("7_dn656")
 MaxUpgrade = 1
 UpgradeLabelVis = false
