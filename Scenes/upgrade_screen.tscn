@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cltsq8d5dcqme"]
+[gd_scene load_steps=12 format=3 uid="uid://cltsq8d5dcqme"]
 
 [ext_resource type="Script" path="res://Scripts/upgrade_screen.gd" id="1_26mdu"]
 [ext_resource type="Shader" path="res://Shaders/programbot.gdshader" id="2_2hd7g"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="3_4cy3u"]
 [ext_resource type="Script" path="res://Scripts/UpgradeBase.gd" id="5_n8nts"]
 [ext_resource type="PackedScene" uid="uid://cpp01alcayl7g" path="res://Scenes/robotlist.tscn" id="6_dvjda"]
+[ext_resource type="PackedScene" uid="uid://131f82am03rr" path="res://Scenes/upgrade_base_tree.tscn" id="6_yd21q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5hv1b"]
 shader = ExtResource("2_2hd7g")
@@ -131,48 +132,40 @@ tab_alignment = 1
 layout_mode = 2
 script = ExtResource("5_n8nts")
 
-[node name="baseTempLabel" type="Label" parent="TabContainer/Base"]
+[node name="UpgradeBaseTree" parent="TabContainer/Base" instance=ExtResource("6_yd21q")]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.282
-anchor_top = 0.375
-anchor_right = 0.743
-anchor_bottom = 0.538
-offset_left = 162.022
-offset_top = -5.25003
-offset_right = -208.247
-offset_bottom = -4.88403
-theme = ExtResource("3_4cy3u")
-theme_override_font_sizes/font_size = 60
-text = "This is the Base Upgrade Panel"
+offset_left = 405.0
+offset_top = -50.0
+offset_right = -443.0
+offset_bottom = -106.0
 
 [node name="Temp_button_armor" type="Button" parent="TabContainer/Base"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.302
-anchor_top = 0.75
-anchor_right = 0.403
-anchor_bottom = 0.854
-offset_left = -0.825989
-offset_top = 6.10352e-05
-offset_right = 0.911011
-offset_bottom = -0.00793457
+anchor_left = 0.025
+anchor_top = 0.854
+anchor_right = 0.127
+anchor_bottom = 0.962
+offset_left = -0.0749969
+offset_top = 3.99213
+offset_right = -0.300995
+offset_bottom = 0.176025
 text = "Upgrade  Base Armor"
 
-[node name="armor_label" type="Label" parent="TabContainer/Base"]
+[node name="armor_label" type="Label" parent="TabContainer/Base/Temp_button_armor"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.332
-anchor_top = 0.676
-anchor_right = 0.373
-anchor_bottom = 0.726
-offset_left = 0.283997
-offset_top = 0.447998
-offset_right = -23.199
-offset_bottom = -0.151917
+anchor_left = 0.028
+anchor_top = 0.791
+anchor_right = 0.057
+anchor_bottom = 0.84
+offset_left = 0.4
+offset_top = -142.309
+offset_right = 45.6
+offset_bottom = -103.16
 text = "Armor:"
 
-[node name="armor_value" type="Label" parent="TabContainer/Base/armor_label"]
+[node name="armor_value" type="Label" parent="TabContainer/Base/Temp_button_armor/armor_label"]
 layout_mode = 0
 offset_left = 66.0
 offset_top = 1.0

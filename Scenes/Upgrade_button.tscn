@@ -6,6 +6,7 @@
 
 [node name="UpgradeButton" type="TextureButton"]
 self_modulate = Color(0.431373, 0.431373, 0.431373, 1)
+z_index = 1
 offset_right = 135.0
 offset_bottom = 136.0
 disabled = true
@@ -33,7 +34,6 @@ vertical_alignment = 1
 
 [node name="UpgradeLine" type="Line2D" parent="."]
 top_level = true
-z_index = -1
 width = 3.0
 default_color = Color(0.792157, 0.792157, 0.792157, 1)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://131f82am03rr"]
+[gd_scene load_steps=11 format=3 uid="uid://131f82am03rr"]
 
 [ext_resource type="PackedScene" uid="uid://b6retb0oty3v5" path="res://Scenes/Upgrade_button.tscn" id="1_us5tp"]
 [ext_resource type="Texture2D" uid="uid://dkqvargws3q5e" path="res://Sprites/Icons/BaseUpgrades/HeartOne_sprite_BaseUpgradeIcons0.png" id="2_ebgv1"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://d11dh0s0swg82" path="res://Sprites/Icons/BaseUpgrades/ArmorOne_sprite_BaseUpgradeIcons3.png" id="5_k6s1s"]
 [ext_resource type="Texture2D" uid="uid://byptftgiaq5yh" path="res://Sprites/Icons/BaseUpgrades/ArmorTwo_sprite_BaseUpgradeIcons4.png" id="6_2xh13"]
 [ext_resource type="Texture2D" uid="uid://bwyt24ltii0fx" path="res://Sprites/Icons/BaseUpgrades/HeartThree_sprite_BaseUpgradeIcons2.png" id="7_dn656"]
+[ext_resource type="Texture2D" uid="uid://cffcdogo70ht1" path="res://Sprites/Icons/BaseUpgrades/DefenseOne_sprite_BaseUpgradeIcons7.png.png" id="8_qclpu"]
+[ext_resource type="Texture2D" uid="uid://bibycaw26jhmg" path="res://Sprites/Icons/BaseUpgrades/DefenseTwo_sprite_BaseUpgradeIcons5.png" id="9_pesab"]
+[ext_resource type="Texture2D" uid="uid://cyo6g2uun2h82" path="res://Sprites/Icons/BaseUpgrades/DefenseThree_sprite_BaseUpgradeIcons6.png" id="10_ctvlu"]
 
 [node name="UpgradeBaseTree" type="Control"]
 layout_mode = 3
@@ -38,10 +41,10 @@ MaxUpgrade = 2
 
 [node name="HitpointsLabel" type="Label" parent="HealthUpgradeButton1"]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 136.0
-offset_right = 117.0
-offset_bottom = 196.0
+offset_left = 8.0
+offset_top = 128.0
+offset_right = 109.0
+offset_bottom = 188.0
 theme = ExtResource("2_ts13g")
 theme_override_font_sizes/font_size = 40
 text = "Hit Points"
@@ -58,7 +61,7 @@ UpgradeLabelVis = false
 [node name="ArmorUpgradeButton1" parent="HealthUpgradeButton1/HealthUpgradeButton2" instance=ExtResource("1_us5tp")]
 layout_mode = 0
 offset_left = 256.0
-offset_right = 383.0
+offset_right = 384.0
 offset_bottom = 128.0
 texture_normal = ExtResource("5_k6s1s")
 MaxUpgrade = 1
@@ -79,5 +82,43 @@ offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
 texture_normal = ExtResource("7_dn656")
+MaxUpgrade = 1
+UpgradeLabelVis = false
+
+[node name="DefenseUpgradeButton1" parent="." instance=ExtResource("1_us5tp")]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 704.0
+offset_right = 1024.0
+offset_bottom = 832.0
+disabled = false
+texture_normal = ExtResource("8_qclpu")
+MaxUpgrade = 2
+
+[node name="DefenseLabel" type="Label" parent="DefenseUpgradeButton1"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 117.0
+offset_bottom = 188.0
+theme = ExtResource("2_ts13g")
+theme_override_font_sizes/font_size = 40
+text = "Defense"
+
+[node name="DefenseUpgradeButton2" parent="DefenseUpgradeButton1" instance=ExtResource("1_us5tp")]
+layout_mode = 0
+offset_top = -256.0
+offset_right = 128.0
+offset_bottom = -128.0
+texture_normal = ExtResource("9_pesab")
+MaxUpgrade = 1
+UpgradeLabelVis = false
+
+[node name="DefenseUpgradeButton3" parent="DefenseUpgradeButton1/DefenseUpgradeButton2" instance=ExtResource("1_us5tp")]
+layout_mode = 0
+offset_top = -256.0
+offset_right = 128.0
+offset_bottom = -128.0
+texture_normal = ExtResource("10_ctvlu")
 MaxUpgrade = 1
 UpgradeLabelVis = false

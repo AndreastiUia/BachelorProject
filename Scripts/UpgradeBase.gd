@@ -14,5 +14,4 @@ func _process(delta):
 
 func _on_temp_button_armor_pressed():
 	armorvalue += 5
-	$armor_label/armor_value.text = str(armorvalue)
-	
+	$Temp_button_armor/armor_label/armor_value.text = str(armorvalue)
