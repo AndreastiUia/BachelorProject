@@ -223,6 +223,11 @@ layout_mode = 2
 theme = ExtResource("3_rtihc")
 text = "Remove"
 
+[node name="Clear" type="Button" parent="BackdropPanel/Control"]
+layout_mode = 2
+theme = ExtResource("3_rtihc")
+text = "Clear"
+
 [node name="Moveup" type="Button" parent="BackdropPanel/Control"]
 layout_mode = 2
 theme = ExtResource("3_rtihc")
@@ -260,9 +265,14 @@ visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="BackdropPanel/ReturnVbox/TempReturn" to="." method="_on_temp_return_pressed"]
+[connection signal="item_clicked" from="BackdropPanel/Programs" to="BackdropPanel/Programs" method="_on_item_clicked"]
 [connection signal="item_selected" from="BackdropPanel/Programs" to="BackdropPanel/Programs" method="_on_item_selected"]
+[connection signal="item_selected" from="BackdropPanel/Robots" to="BackdropPanel/Programs" method="_on_robots_item_selected"]
+[connection signal="item_selected" from="BackdropPanel/Robots" to="BackdropPanel/ActiveProgram" method="_on_robots_item_selected"]
 [connection signal="item_selected" from="BackdropPanel/ActiveProgram" to="BackdropPanel/ActiveProgram" method="_on_item_selected"]
 [connection signal="pressed" from="BackdropPanel/Control/Remove" to="BackdropPanel/ActiveProgram" method="_on_button_pressed"]
+[connection signal="pressed" from="BackdropPanel/Control/Clear" to="BackdropPanel/ActiveProgram" method="_on_clear_pressed"]
 [connection signal="pressed" from="BackdropPanel/Control/Moveup" to="BackdropPanel/ActiveProgram" method="_on_moveup_pressed"]
 [connection signal="pressed" from="BackdropPanel/Control/Movedown" to="BackdropPanel/ActiveProgram" method="_on_movedown_pressed"]
+[connection signal="pressed" from="BackdropPanel/HBoxContainer/StartProgram" to="BackdropPanel/ActiveProgram" method="_on_start_program_pressed"]
 [connection signal="pressed" from="BackdropPanel/HBoxContainer/StartProgram" to="CoordinateInputDialog" method="_on_start_program_pressed"]

@@ -5,7 +5,7 @@ extends Node2D
 
 
 # Bot atributes
-var SPEED = 500
+var SPEED = 100
 var search_radius = 5
 var idle = true
 
@@ -26,7 +26,8 @@ var program_loop_index = []
 var program_loop_end_index = []
 var program_if_not_index = []
 var program_if_end_index = []
-var program_array = [program_func.WHILE_START, program_func.MOVE_TO_POS, Vector2i(12,-12), program_func.WHILE_START, program_func.GATHER_RESOURCE, program_func.IF, "inventory >= inventory_size", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.MOVE_TO_POS, Vector2i(2,-1), program_func.WHILE_START, program_func.DELIVER_RESOURCE, program_func.IF, "inventory == 0", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.WHILE_END]
+var program_array = []
+#var program_array = [program_func.WHILE_START, program_func.MOVE_TO_POS, Vector2i(12,-12), program_func.WHILE_START, program_func.GATHER_RESOURCE, program_func.IF, "inventory >= inventory_size", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.MOVE_TO_POS, Vector2i(2,-1), program_func.WHILE_START, program_func.DELIVER_RESOURCE, program_func.IF, "inventory == 0", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.WHILE_END]
 enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE, DELIVER_RESOURCE}
 
 func _ready():

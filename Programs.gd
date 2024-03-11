@@ -12,22 +12,13 @@ var target_item_list = null
 func _ready():
 	# Access the second ItemList and assign it to target_item_list
 	target_item_list = get_parent().get_node("ActiveProgram")
-
-	# Add items to the first ItemList
-	add_item("While: ")
-	add_item("If: ")
-	add_item("move_to_pos")
-	
-	
-	
-
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 # Function to handle item selection
-func _on_item_selected(index):
+func _on_item_clicked(index, at_position, mouse_button_index):
 	# Get the text of the selected item
 	var selected_item_text = get_item_text(index)
 	
@@ -35,5 +26,11 @@ func _on_item_selected(index):
 	if target_item_list:
 		target_item_list.add_item(selected_item_text)
 
-	# Remove the selected item from the current ItemList
-	remove_item(index)
+
+# Populate list of function basen on bot selected.
+func _on_robots_item_selected(index):
+	var bot = Global.bots[index]
+	clear()
+	for i in bot.program_func:
+		add_item(i)
+

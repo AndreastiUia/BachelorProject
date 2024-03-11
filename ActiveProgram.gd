@@ -4,6 +4,7 @@ var new_icon = preload("res://Sprites/Icons/icon.svg")
 var Programs = null
 var CoordinateInputDialog = preload("res://Scenes/CoordinateInputDialog.tscn")
 var selected_item_index = -1
+var bot
 
 func _ready():
 	Programs = get_parent().get_node("Programs")
@@ -13,8 +14,6 @@ func move_item_back_to_original_list():
 	if selected_items.size() > 0:
 		var selected_index = selected_items[0]
 		var selected_item_text = get_item_text(selected_index)
-		if Programs:
-			Programs.add_item(selected_item_text)
 		remove_item(selected_index)
 
 func move_selected_item_up():
@@ -56,3 +55,18 @@ func _on_moveup_pressed():
 
 func _on_movedown_pressed():
 	move_selected_item_down()
+
+# store selected bot
+func _on_robots_item_selected(index):
+	bot = Global.bots[index]
+
+# Push active program to selected bot
+func _on_start_program_pressed():
+	var program = []
+	for i in item_count:
+		program.append(bot.program_func.get(get_item_text(i)))
+	
+	bot.program_array = program
+
+func _on_clear_pressed():
+	clear()
