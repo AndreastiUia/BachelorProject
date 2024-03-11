@@ -11,8 +11,3 @@ func _ready():
 func _process(delta):
 	pass
 
-
-func _on_temp_button_armor_pressed():
-	armorvalue += 5
-	$armor_label/armor_value.text = str(armorvalue)
-	
