@@ -128,6 +128,7 @@ offset_bottom = -0.440063
 theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 30
 tab_alignment = 1
+all_tabs_in_front = true
 
 [node name="Base" type="Panel" parent="TabContainer"]
 layout_mode = 2
@@ -242,26 +243,28 @@ offset_bottom = 911.0
 visible = false
 layout_mode = 2
 
+[node name="UpgradeBotTree" parent="TabContainer/Robots" instance=ExtResource("8_spp0o")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 663.0
+offset_top = -8.0
+offset_right = 663.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="RobotlistPanelContainer" type="PanelContainer" parent="TabContainer/Robots"]
 layout_mode = 1
 anchors_preset = -1
-offset_left = 143.0
-offset_top = 84.0
-offset_right = 630.0
-offset_bottom = 977.0
+offset_left = 55.0
+offset_top = 24.0
+offset_right = 542.0
+offset_bottom = 917.0
 
 [node name="RobotlistControlNode" parent="TabContainer/Robots/RobotlistPanelContainer" instance=ExtResource("6_dvjda")]
 layout_mode = 2
-
-[node name="UpgradeBotTree" parent="TabContainer/Robots" instance=ExtResource("8_spp0o")]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 695.0
-offset_top = 52.0
-offset_right = 695.0
-offset_bottom = 52.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

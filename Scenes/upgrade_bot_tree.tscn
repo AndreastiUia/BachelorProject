@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dqowxkh0efe2x"]
+[gd_scene load_steps=17 format=3 uid="uid://dqowxkh0efe2x"]
 
 [ext_resource type="PackedScene" uid="uid://b6retb0oty3v5" path="res://Scenes/Upgrade_button.tscn" id="1_wkdpk"]
 [ext_resource type="Texture2D" uid="uid://cffcdogo70ht1" path="res://Sprites/Icons/BaseUpgrades/DefenseOne_sprite_BaseUpgradeIcons7.png.png" id="2_rb0hu"]
@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://b0egugpd1k7oi" path="res://Sprites/Icons/BaseUpgrades/Inventory_sprite_Upgradebot15.png" id="4_32nwd"]
 [ext_resource type="Texture2D" uid="uid://cyo6g2uun2h82" path="res://Sprites/Icons/BaseUpgrades/DefenseThree_sprite_BaseUpgradeIcons6.png" id="4_piobm"]
 [ext_resource type="Texture2D" uid="uid://c1yf6nmrk50dl" path="res://Sprites/Icons/BaseUpgrades/MiningOne_sprite_Upgradebot08.png" id="5_4tjtw"]
+[ext_resource type="Texture2D" uid="uid://ccwve58dvy1w0" path="res://Sprites/Icons/BaseUpgrades/FuelCapacity_sprite_BaseUpgradeicons.png" id="5_pje4b"]
 [ext_resource type="Texture2D" uid="uid://bwyt24ltii0fx" path="res://Sprites/Icons/BaseUpgrades/HeartThree_sprite_BaseUpgradeIcons2.png" id="5_y47u5"]
 [ext_resource type="Texture2D" uid="uid://byptftgiaq5yh" path="res://Sprites/Icons/BaseUpgrades/ArmorTwo_sprite_BaseUpgradeIcons4.png" id="6_4tys1"]
+[ext_resource type="Texture2D" uid="uid://6ctu2banq6f0" path="res://Sprites/Icons/BaseUpgrades/Speed_sprite_BaseUpgradeIcons.png" id="6_h6gow"]
 [ext_resource type="Texture2D" uid="uid://c3waqclmtsjfq" path="res://Sprites/Icons/BaseUpgrades/MiningTwo_sprite_Upgradebot09.png" id="6_kljhr"]
 [ext_resource type="Texture2D" uid="uid://yagsnuwvvua8" path="res://Sprites/Icons/BaseUpgrades/MiningThree_sprite_Upgradebot10.png" id="7_t27wh"]
 [ext_resource type="Texture2D" uid="uid://cgt2ppqxqx3p" path="res://Sprites/Icons/BaseUpgrades/SearchOne_sprite_Upgradebot11.png" id="8_5oj08"]
@@ -29,6 +31,15 @@ offset_top = 736.0
 offset_right = 1248.0
 offset_bottom = 928.0
 color = Color(0.243137, 0.490196, 0.286275, 0.54902)
+
+[node name="IndiUpgradesBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 992.0
+offset_bottom = 736.0
+color = Color(0.763933, 0.356062, 0.314272, 0.54902)
 
 [node name="HealthUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
@@ -56,6 +67,7 @@ offset_left = 576.0
 offset_top = 768.0
 offset_right = 704.0
 offset_bottom = 896.0
+tooltip_text = "Increase Inventory Size"
 disabled = false
 texture_normal = ExtResource("4_32nwd")
 MaxUpgrade = 1
@@ -67,7 +79,9 @@ offset_left = 832.0
 offset_top = 768.0
 offset_right = 960.0
 offset_bottom = 896.0
+tooltip_text = "Increase Fuel Capacity"
 disabled = false
+texture_normal = ExtResource("5_pje4b")
 MaxUpgrade = 4
 
 [node name="SpeedUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
@@ -76,17 +90,10 @@ offset_left = 1088.0
 offset_top = 768.0
 offset_right = 1216.0
 offset_bottom = 896.0
+tooltip_text = "Increase Speed"
 disabled = false
+texture_normal = ExtResource("6_h6gow")
 MaxUpgrade = 4
-
-[node name="IndiUpgradesBackground" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 992.0
-offset_bottom = 736.0
-color = Color(0.763933, 0.356062, 0.314272, 0.54902)
 
 [node name="MiningBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
@@ -94,6 +101,7 @@ offset_left = 64.0
 offset_top = 576.0
 offset_right = 192.0
 offset_bottom = 704.0
+tooltip_text = "Mining Bot Upgrade"
 disabled = false
 texture_normal = ExtResource("5_4tjtw")
 MaxUpgrade = 1
@@ -104,6 +112,7 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
+tooltip_text = "Increase Mining Speed"
 texture_normal = ExtResource("6_kljhr")
 MaxUpgrade = 1
 UpgradeLabelVis = false
@@ -113,6 +122,7 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
+tooltip_text = "Increase Mining Speed Tier 2"
 texture_normal = ExtResource("7_t27wh")
 MaxUpgrade = 1
 UpgradeLabelVis = false
@@ -123,6 +133,7 @@ offset_left = 320.0
 offset_top = 576.0
 offset_right = 448.0
 offset_bottom = 704.0
+tooltip_text = "Search Bot Upgrade"
 disabled = false
 texture_normal = ExtResource("8_5oj08")
 MaxUpgrade = 1
@@ -133,6 +144,7 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
+tooltip_text = "Increase Search Size"
 texture_normal = ExtResource("9_6pc2w")
 MaxUpgrade = 1
 UpgradeLabelVis = false
@@ -143,6 +155,7 @@ offset_left = 576.0
 offset_top = 576.0
 offset_right = 704.0
 offset_bottom = 704.0
+tooltip_text = "Attack Bot Upgrade"
 disabled = false
 texture_normal = ExtResource("2_rb0hu")
 MaxUpgrade = 1
@@ -153,6 +166,7 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
+tooltip_text = "Increase Attack Power "
 texture_normal = ExtResource("3_qg1gi")
 MaxUpgrade = 1
 UpgradeLabelVis = false
@@ -162,6 +176,7 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
+tooltip_text = "Increase Attack Power Tier 2"
 texture_normal = ExtResource("4_piobm")
 MaxUpgrade = 2
 
@@ -171,6 +186,7 @@ offset_left = 832.0
 offset_top = 576.0
 offset_right = 960.0
 offset_bottom = 704.0
+tooltip_text = "Transport Bot Upgrade"
 disabled = false
 texture_normal = ExtResource("13_p5v32")
 MaxUpgrade = 1
@@ -181,5 +197,6 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
+tooltip_text = "Increase Inventory Size"
 texture_normal = ExtResource("14_yornm")
 MaxUpgrade = 5
