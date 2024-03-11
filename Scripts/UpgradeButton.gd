@@ -1,27 +1,26 @@
 extends TextureButton
 class_name Upgrade_Node
 
+#Variables
 @onready var UpgradeLevelLabel = $UpgradeLevelLabel
 @onready var UpgradeLine = $UpgradeLine
 @export var MaxUpgrade:int = 3
 @export var UpgradeLabelVis:bool = true
 
-var upgradelevel:int = 0:
+@export var upgradeLevel:int = 0:
 	set(value):
-		upgradelevel = value
-		UpgradeLevelLabel.text = str(upgradelevel) + "/" + str(MaxUpgrade)
+		upgradeLevel = value
+		UpgradeLevelLabel.text = str(upgradeLevel) + "/" + str(MaxUpgrade)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	UpgradeLevelLabel.text = str(upgradelevel) + "/" + str(MaxUpgrade)
+	UpgradeLevelLabel.text = str(upgradeLevel) + "/" + str(MaxUpgrade)
 	
 	if UpgradeLabelVis == false:
 		UpgradeLevelLabel.visible = false
 	else:
 		UpgradeLevelLabel.visible = true
-	
 	
 	if get_parent() is Upgrade_Node:
 		UpgradeLine.add_point(self.global_position + self.size/2)
@@ -34,14 +33,14 @@ func _process(delta):
 
 
 func _on_pressed():
-	upgradelevel = min(upgradelevel+1, MaxUpgrade)
+	upgradeLevel = min(upgradeLevel+1, MaxUpgrade)
 	self.self_modulate = Color(1, 1, 1)
 	
 	UpgradeLine.default_color = Color(0.30851498246193, 0.78534024953842, 0.58209604024887)
 	
 	var upgrades = get_children()
 	for upgrade in upgrades:
-		if upgrade is Upgrade_Node and upgradelevel == MaxUpgrade:
+		if upgrade is Upgrade_Node and upgradeLevel == MaxUpgrade:
 			upgrade.disabled = false
 	
 	# Temp: For "kjop" av upgrades legg inn ein check her for global variables = upgrade cost.
