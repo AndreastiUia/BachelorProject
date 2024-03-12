@@ -42,10 +42,8 @@ func _on_pressed():
 	for upgrade in upgrades:
 		if upgrade is Upgrade_Node and upgradeLevel == MaxUpgrade:
 			upgrade.disabled = false
-	
-	# Temp: For "kjop" av upgrades legg inn ein check her for global variables = upgrade cost.
-	# Og reduser global vars når du kjøper upgrades.
-	
+
+
 
 
 
