@@ -33,3 +33,4 @@ script = SubResource("GDScript_34bib")
 [connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="draw" from="RobotList" to="." method="_on_robot_list_draw"]
 [connection signal="hidden" from="RobotList" to="." method="_on_robot_list_hidden"]
+[connection signal="item_selected" from="RobotList" to="." method="_on_robot_list_item_selected"]

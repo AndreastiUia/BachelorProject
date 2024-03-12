@@ -5,9 +5,10 @@ extends Node2D
 
 
 # Bot atributes
-var SPEED = 500
+var SPEED = 50
 var search_radius = 5
 var idle = true
+var botname: String = "KevinRobot"
 
 # Pathfinding
 var current_id_path: Array[Vector2i]
@@ -19,6 +20,46 @@ var stone: int = 0
 var inventory: int = 0
 var inventory_size: int = 10
 var mining_time = 0.01
+
+# Robot Upgrade Bools
+var healthupgrade_1: bool = false
+var healthupgrade_2: bool = false
+var healthupgrade_3: bool = false
+
+var armorupgrade_1: bool = false
+var armorupgrade_2: bool = false
+var armorupgrade_3: bool = false
+
+var inventoryupgrade: bool = false
+
+var fuelupgarde_1: bool = false
+var fuelupgarde_2: bool = false
+var fuelupgarde_3: bool = false
+var fuelupgarde_4: bool = false
+
+var speedupgrade_1: bool = false
+var speedupgrade_2: bool = false
+var speedupgrade_3: bool = false
+var speedupgrade_4: bool = false
+
+var miningupgrade: bool = false
+var miningspeedupgrade_1: bool = false
+var miningspeedupgrade_2: bool = false
+
+var searchupgrade: bool = false
+var searchsizeupgrade: bool = false
+
+var attackupgrade: bool = false
+var attackdmgupgrade_1: bool = false
+var attackdmgupgrade_2: bool = false
+var attackdmgupgrade_3: bool = false
+
+var transportupgrade: bool = false
+var transportinvupgrade_1: bool = false
+var transportinvupgrade_2: bool = false
+var transportinvupgrade_3: bool = false
+var transportinvupgrade_4: bool = false
+var transportinvupgrade_5: bool = false
 
 # Programming bots
 var program_index = 0

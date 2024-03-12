@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cltsq8d5dcqme"]
+[gd_scene load_steps=12 format=3 uid="uid://cltsq8d5dcqme"]
 
 [ext_resource type="Script" path="res://Scripts/upgrade_screen.gd" id="1_26mdu"]
 [ext_resource type="Shader" path="res://Shaders/programbot.gdshader" id="2_2hd7g"]
 [ext_resource type="FontFile" uid="uid://ct4ox56t42ck3" path="res://External Resources/Fonts/Teko/Teko-VariableFont_wght.ttf" id="2_n5l7s"]
 [ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="3_4cy3u"]
 [ext_resource type="Script" path="res://Scripts/UpgradeBase.gd" id="5_n8nts"]
-[ext_resource type="PackedScene" uid="uid://cpp01alcayl7g" path="res://Scenes/robotlist.tscn" id="6_dvjda"]
 [ext_resource type="PackedScene" uid="uid://131f82am03rr" path="res://Scenes/upgrade_base_tree.tscn" id="6_yd21q"]
 [ext_resource type="PackedScene" uid="uid://dqowxkh0efe2x" path="res://Scenes/upgrade_bot_tree.tscn" id="8_spp0o"]
 
@@ -248,23 +247,12 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 663.0
-offset_top = -8.0
-offset_right = 663.0
-offset_bottom = -8.0
+offset_left = 215.0
+offset_top = -20.0
+offset_right = 215.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="RobotlistPanelContainer" type="PanelContainer" parent="TabContainer/Robots"]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 55.0
-offset_top = 24.0
-offset_right = 542.0
-offset_bottom = 917.0
-
-[node name="RobotlistControlNode" parent="TabContainer/Robots/RobotlistPanelContainer" instance=ExtResource("6_dvjda")]
-layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
