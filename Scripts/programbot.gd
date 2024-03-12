@@ -19,8 +19,6 @@ func program_bots_with_coordinates(coordinates):
 		bot.set_destination(coordinates)
 
 
-
-
 func resume():
 	hide()
 	get_tree().paused = false

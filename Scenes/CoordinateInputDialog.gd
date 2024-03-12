@@ -22,9 +22,10 @@ func _on_confirm_pressed():
 	print("Coordinates saved:", saved_coordinates)
 	# Emit signal with entered coordinates
 	emit_signal("coordinates_entered", saved_coordinates)
-
+	
+	var coord_string = "     " + str(x) + "," + str(y)
+	
+	get_parent().get_node("ActiveProgram").add_item(coord_string)
 	# Close the dialog
 	hide()
 
-func _on_start_program_pressed():
-	print("Coordinates:", saved_coordinates)

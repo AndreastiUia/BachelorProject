@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdm3mv4p0o6on"]
+[gd_scene load_steps=11 format=3 uid="uid://cbgundcup65l7"]
 
 [ext_resource type="Script" path="res://Scripts/programbot.gd" id="1_sum28"]
 [ext_resource type="Shader" path="res://Shaders/programbot.gdshader" id="2_4ox4k"]
 [ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="3_rtihc"]
 [ext_resource type="Script" path="res://Programs.gd" id="3_tkffs"]
 [ext_resource type="Script" path="res://ActiveProgram.gd" id="4_jju46"]
-[ext_resource type="PackedScene" uid="uid://d4j5exqg0xymp" path="res://Scenes/CoordinateInputDialog.tscn" id="6_666pr"]
+[ext_resource type="PackedScene" uid="uid://cycqis5gblfun" path="res://Scenes/CoordinateInputDialog.tscn" id="6_666pr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vr5kn"]
 shader = ExtResource("2_4ox4k")
@@ -269,6 +269,7 @@ layout_mode = 1
 [connection signal="item_selected" from="BackdropPanel/Programs" to="BackdropPanel/Programs" method="_on_item_selected"]
 [connection signal="item_selected" from="BackdropPanel/Robots" to="BackdropPanel/Programs" method="_on_robots_item_selected"]
 [connection signal="item_selected" from="BackdropPanel/Robots" to="BackdropPanel/ActiveProgram" method="_on_robots_item_selected"]
+[connection signal="item_clicked" from="BackdropPanel/ActiveProgram" to="BackdropPanel/ActiveProgram" method="_on_item_clicked"]
 [connection signal="item_selected" from="BackdropPanel/ActiveProgram" to="BackdropPanel/ActiveProgram" method="_on_item_selected"]
 [connection signal="pressed" from="BackdropPanel/Control/Remove" to="BackdropPanel/ActiveProgram" method="_on_button_pressed"]
 [connection signal="pressed" from="BackdropPanel/Control/Clear" to="BackdropPanel/ActiveProgram" method="_on_clear_pressed"]
