@@ -1,5 +1,8 @@
 extends Control
 
+
+var bot
+
 #Add bots to Robotlist in upgradescreen
 func populate_bot_list():
 	for bot in Global.bots:
@@ -17,3 +20,7 @@ func _on_robot_list_hidden():
 #Populate robotlist on RobotlistControlNode draw
 func _on_draw():
 	populate_bot_list()
+
+#Store the selected robotlist item
+func _on_robot_list_item_selected(index):
+	bot = Global.bots[index]

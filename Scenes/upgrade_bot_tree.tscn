@@ -1,7 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dqowxkh0efe2x"]
+[gd_scene load_steps=20 format=3 uid="uid://dqowxkh0efe2x"]
 
+[ext_resource type="Script" path="res://Scenes/bot_upgrades.gd" id="1_bo34p"]
 [ext_resource type="PackedScene" uid="uid://b6retb0oty3v5" path="res://Scenes/Upgrade_button.tscn" id="1_wkdpk"]
 [ext_resource type="Texture2D" uid="uid://cffcdogo70ht1" path="res://Sprites/Icons/BaseUpgrades/DefenseOne_sprite_BaseUpgradeIcons7.png.png" id="2_rb0hu"]
+[ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="2_v0wl0"]
 [ext_resource type="Texture2D" uid="uid://bibycaw26jhmg" path="res://Sprites/Icons/BaseUpgrades/DefenseTwo_sprite_BaseUpgradeIcons5.png" id="3_qg1gi"]
 [ext_resource type="Texture2D" uid="uid://b0egugpd1k7oi" path="res://Sprites/Icons/BaseUpgrades/Inventory_sprite_Upgradebot15.png" id="4_32nwd"]
 [ext_resource type="Texture2D" uid="uid://cyo6g2uun2h82" path="res://Sprites/Icons/BaseUpgrades/DefenseThree_sprite_BaseUpgradeIcons6.png" id="4_piobm"]
@@ -16,57 +18,87 @@
 [ext_resource type="Texture2D" uid="uid://d3wefhhnbllfr" path="res://Sprites/Icons/BaseUpgrades/SearchTwo_sprite_Upgradebot12.png" id="9_6pc2w"]
 [ext_resource type="Texture2D" uid="uid://db0u58dckkxx1" path="res://Sprites/Icons/BaseUpgrades/TransportOne_sprite_Upgradebot13.png" id="13_p5v32"]
 [ext_resource type="Texture2D" uid="uid://66q7lprgsaxy" path="res://Sprites/Icons/BaseUpgrades/TransportTwo_sprite_Upgradebot14.png" id="14_yornm"]
+[ext_resource type="PackedScene" uid="uid://cpp01alcayl7g" path="res://Scenes/robotlist.tscn" id="17_02cm6"]
 
 [node name="UpgradeBotTree" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1984.0
 offset_bottom = 1088.0
+script = ExtResource("1_bo34p")
+
+[node name="SelectedLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 72.0
+offset_right = 600.0
+offset_bottom = 144.0
+theme = ExtResource("2_v0wl0")
+theme_override_font_sizes/font_size = 50
+text = "Selected Bot:"
+
+[node name="BotNameLabel" type="Label" parent="SelectedLabel"]
+layout_mode = 0
+offset_left = 192.0
+offset_right = 376.0
+offset_bottom = 72.0
+theme = ExtResource("2_v0wl0")
+theme_override_font_sizes/font_size = 50
+text = "No Bot Selected"
 
 [node name="UniUpgradesBackground" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-offset_left = 32.0
-offset_top = 736.0
-offset_right = 1248.0
-offset_bottom = 928.0
+offset_left = 416.0
+offset_top = 864.0
+offset_right = 1632.0
+offset_bottom = 1056.0
 color = Color(0.243137, 0.490196, 0.286275, 0.54902)
 
 [node name="IndiUpgradesBackground" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 992.0
-offset_bottom = 736.0
+offset_left = 416.0
+offset_top = 160.0
+offset_right = 1376.0
+offset_bottom = 864.0
 color = Color(0.763933, 0.356062, 0.314272, 0.54902)
+
+[node name="ListUpgradesBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 56.0
+offset_top = 160.0
+offset_right = 392.0
+offset_bottom = 1056.0
+color = Color(0.329412, 0.466667, 0.87451, 0.54902)
 
 [node name="HealthUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 768.0
-offset_right = 192.0
-offset_bottom = 896.0
+offset_left = 448.0
+offset_top = 896.0
+offset_right = 576.0
+offset_bottom = 1024.0
 tooltip_text = "Increase Health"
 disabled = false
 texture_normal = ExtResource("5_y47u5")
 
 [node name="ArmorUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
-offset_left = 320.0
-offset_top = 768.0
-offset_right = 448.0
-offset_bottom = 896.0
+offset_left = 704.0
+offset_top = 896.0
+offset_right = 832.0
+offset_bottom = 1024.0
 tooltip_text = "Increase Armor"
 disabled = false
 texture_normal = ExtResource("6_4tys1")
 
 [node name="InventoryUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
-offset_left = 576.0
-offset_top = 768.0
-offset_right = 704.0
-offset_bottom = 896.0
+offset_left = 960.0
+offset_top = 896.0
+offset_right = 1088.0
+offset_bottom = 1024.0
 tooltip_text = "Increase Inventory Size"
 disabled = false
 texture_normal = ExtResource("4_32nwd")
@@ -75,10 +107,10 @@ UpgradeLabelVis = false
 
 [node name="FuelCapacityUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
-offset_left = 832.0
-offset_top = 768.0
-offset_right = 960.0
-offset_bottom = 896.0
+offset_left = 1216.0
+offset_top = 896.0
+offset_right = 1344.0
+offset_bottom = 1024.0
 tooltip_text = "Increase Fuel Capacity"
 disabled = false
 texture_normal = ExtResource("5_pje4b")
@@ -86,10 +118,10 @@ MaxUpgrade = 4
 
 [node name="SpeedUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
-offset_left = 1088.0
-offset_top = 768.0
-offset_right = 1216.0
-offset_bottom = 896.0
+offset_left = 1472.0
+offset_top = 896.0
+offset_right = 1600.0
+offset_bottom = 1024.0
 tooltip_text = "Increase Speed"
 disabled = false
 texture_normal = ExtResource("6_h6gow")
@@ -97,10 +129,10 @@ MaxUpgrade = 4
 
 [node name="MiningBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 576.0
-offset_right = 192.0
-offset_bottom = 704.0
+offset_left = 448.0
+offset_top = 704.0
+offset_right = 576.0
+offset_bottom = 832.0
 tooltip_text = "Mining Bot Upgrade"
 disabled = false
 texture_normal = ExtResource("5_4tjtw")
@@ -129,17 +161,17 @@ UpgradeLabelVis = false
 
 [node name="SearchBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
-offset_left = 320.0
-offset_top = 576.0
-offset_right = 448.0
-offset_bottom = 704.0
+offset_left = 704.0
+offset_top = 704.0
+offset_right = 832.0
+offset_bottom = 832.0
 tooltip_text = "Search Bot Upgrade"
 disabled = false
 texture_normal = ExtResource("8_5oj08")
 MaxUpgrade = 1
 UpgradeLabelVis = false
 
-[node name="SearchBotSpeedUpgradeButton1" parent="SearchBotUpgradeButton" instance=ExtResource("1_wkdpk")]
+[node name="SearchBotSizeUpgradeButton1" parent="SearchBotUpgradeButton" instance=ExtResource("1_wkdpk")]
 layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
@@ -151,17 +183,17 @@ UpgradeLabelVis = false
 
 [node name="AttackBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
-offset_left = 576.0
-offset_top = 576.0
-offset_right = 704.0
-offset_bottom = 704.0
+offset_left = 960.0
+offset_top = 704.0
+offset_right = 1088.0
+offset_bottom = 832.0
 tooltip_text = "Attack Bot Upgrade"
 disabled = false
 texture_normal = ExtResource("2_rb0hu")
 MaxUpgrade = 1
 UpgradeLabelVis = false
 
-[node name="AttackBotSpeedUpgradeButton1" parent="AttackBotUpgradeButton" instance=ExtResource("1_wkdpk")]
+[node name="AttackBotDmgUpgradeButton1" parent="AttackBotUpgradeButton" instance=ExtResource("1_wkdpk")]
 layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
@@ -171,7 +203,7 @@ texture_normal = ExtResource("3_qg1gi")
 MaxUpgrade = 1
 UpgradeLabelVis = false
 
-[node name="AttackBotSpeedUpgradeButton2" parent="AttackBotUpgradeButton/AttackBotSpeedUpgradeButton1" instance=ExtResource("1_wkdpk")]
+[node name="AttackBotDmgUpgradeButton2" parent="AttackBotUpgradeButton/AttackBotDmgUpgradeButton1" instance=ExtResource("1_wkdpk")]
 layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
@@ -182,17 +214,17 @@ MaxUpgrade = 2
 
 [node name="TransportBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
-offset_left = 832.0
-offset_top = 576.0
-offset_right = 960.0
-offset_bottom = 704.0
+offset_left = 1216.0
+offset_top = 704.0
+offset_right = 1344.0
+offset_bottom = 832.0
 tooltip_text = "Transport Bot Upgrade"
 disabled = false
 texture_normal = ExtResource("13_p5v32")
 MaxUpgrade = 1
 UpgradeLabelVis = false
 
-[node name="TransportBotSpeedUpgradeButton1" parent="TransportBotUpgradeButton" instance=ExtResource("1_wkdpk")]
+[node name="TransportBotInvUpgradeButton1" parent="TransportBotUpgradeButton" instance=ExtResource("1_wkdpk")]
 layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
@@ -200,3 +232,15 @@ offset_bottom = -128.0
 tooltip_text = "Increase Inventory Size"
 texture_normal = ExtResource("14_yornm")
 MaxUpgrade = 5
+
+[node name="RobotlistControlNode" parent="." instance=ExtResource("17_02cm6")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 64.0
+offset_top = 168.0
+offset_right = 384.0
+offset_bottom = 1048.0
+grow_horizontal = 1
+grow_vertical = 1
