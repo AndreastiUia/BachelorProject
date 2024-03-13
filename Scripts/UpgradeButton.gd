@@ -37,7 +37,7 @@ func _process(delta):
 
 func _on_pressed():
 	
-	if Global.base_gold >= UpgradeCost && Unlocked == true:
+	if Global.base_gold >= UpgradeCost: # && Unlocked == true: <- uncomment if the unlocked bool should be effective
 		
 		Global.base_gold -= UpgradeCost
 		

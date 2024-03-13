@@ -50,6 +50,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 9
 
+[node name="ContinueButton" type="Button" parent="Background/ColorRect/MenuContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+theme = SubResource("Theme_1eteu")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_eese3")
+theme_override_font_sizes/font_size = 35
+disabled = true
+text = "Continue
+"
+
 [node name="StartButton" type="Button" parent="Background/ColorRect/MenuContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
@@ -57,8 +68,7 @@ theme = SubResource("Theme_1eteu")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_eese3")
 theme_override_font_sizes/font_size = 35
-text = "Start
-"
+text = "New Game"
 
 [node name="OptionsButton" type="Button" parent="Background/ColorRect/MenuContainer"]
 layout_mode = 2
@@ -113,6 +123,7 @@ position = Vector2(35, 77)
 scale = Vector2(0.679688, 0.671875)
 texture = ExtResource("2_kl8rn")
 
+[connection signal="pressed" from="Background/ColorRect/MenuContainer/ContinueButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Background/ColorRect/MenuContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Background/ColorRect/MenuContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Background/ColorRect/MenuContainer/QuitButton" to="." method="_on_quit_button_pressed"]

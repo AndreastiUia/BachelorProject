@@ -11,7 +11,8 @@ extends Node2D
 @export var fueltank_size = 100
 @export var SPEED = 50
 @export var search_radius = 5
-@export var mining_time = 0.01
+@export var mining_time = 0.001
+@export var attackpower = 25
 var idle = true
 
 # Pathfinding
@@ -99,61 +100,61 @@ func UpgradeTreeUnlocks():
 		pass
 
 	if speedupgrade_1 == true:
-		pass
+		SPEED = 60
 
-	if speedupgrade_2 == true:
-		pass
+	if speedupgrade_2 == true && SPEED == 60:
+		SPEED = 80
 
-	if speedupgrade_3 == true:
-		pass
+	if speedupgrade_3 == true && SPEED == 80:
+		SPEED = 150
 
-	if speedupgrade_4 == true:
-		pass
+	if speedupgrade_4 == true && SPEED == 150:
+		SPEED = 250
 
 	if miningupgrade == true:
-		pass
+		mining_time = 0.01
 
-	if miningspeedupgrade_1 == true:
-		pass
+	if miningspeedupgrade_1 == true && mining_time == 0.01:
+		mining_time = 0.03
 
-	if miningspeedupgrade_2 == true:
-		pass
+	if miningspeedupgrade_2 == true && mining_time == 0.01:
+		mining_time = 0.05
 
 	if searchupgrade == true:
-		pass
+		search_radius = 8
 
-	if searchsizeupgrade == true:
-		pass
+	if searchsizeupgrade == true && search_radius == 8:
+		search_radius = 15
 
 	if attackupgrade == true:
-		pass
+		attackpower = 30
 
-	if attackdmgupgrade_1 == true:
-		pass
+	if attackdmgupgrade_1 == true && attackpower == 30:
+		attackpower = 50
 
-	if attackdmgupgrade_2 == true:
-		pass
+	if attackdmgupgrade_2 == true && attackpower == 50:
+		attackpower = 70
 
-	if attackdmgupgrade_3 == true:
-		pass
+	if attackdmgupgrade_3 == true && attackpower == 70:
+		attackpower = 90
 
-	if transportupgrade == true:
-		pass
+	if transportupgrade == true && inventory_size == 10 or 30:
+		inventory_size = 60
 
-	if transportinvupgrade_1 == true:
-		pass
+	if transportinvupgrade_1 == true && inventory_size == 60:
+		inventory_size = 100
 
-	if transportinvupgrade_2 == true:
-		pass
+	if transportinvupgrade_2 == true && inventory_size == 100:
+		inventory_size = 140
 
-	if transportinvupgrade_3 == true:
-		pass
+	if transportinvupgrade_3 == true && inventory_size == 140:
+		inventory_size = 200
 
-	if transportinvupgrade_4 == true:
-		pass
+	if transportinvupgrade_4 == true && inventory_size == 200:
+		inventory_size = 300
 
-	if transportinvupgrade_5 == true:
-		pass
+	if transportinvupgrade_5 == true && inventory_size == 300:
+		inventory_size = 500
 
 
 # Programming bots
