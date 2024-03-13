@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="3_rtihc"]
 [ext_resource type="Script" path="res://Programs.gd" id="3_tkffs"]
 [ext_resource type="Script" path="res://ActiveProgram.gd" id="4_jju46"]
-[ext_resource type="PackedScene" uid="uid://3sntkarpexim" path="res://Scenes/CoordinateInputDialog.tscn" id="6_666pr"]
+[ext_resource type="PackedScene" uid="uid://c1c4dv0ubdle" path="res://Scenes/CoordinateInputDialog.tscn" id="6_666pr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vr5kn"]
 shader = ExtResource("2_4ox4k")
@@ -127,14 +127,14 @@ text = "Return"
 [node name="ProgramsLabel" type="Label" parent="BackdropPanel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.143
-anchor_top = 0.014
-anchor_right = 0.192
-anchor_bottom = 0.064
-offset_left = 0.721008
-offset_top = -0.193994
-offset_right = -0.975922
-offset_bottom = 0.256008
+anchor_left = 0.145
+anchor_top = 0.016
+anchor_right = 0.196
+anchor_bottom = 0.067
+offset_left = -0.184998
+offset_top = 0.0640001
+offset_right = -0.787994
+offset_bottom = -0.356998
 theme = ExtResource("3_rtihc")
 text = "Codeblocks"
 
@@ -145,9 +145,9 @@ anchor_left = 0.144
 anchor_top = 0.071
 anchor_right = 0.341
 anchor_bottom = 0.977
-offset_left = -0.231934
+offset_left = 1.76804
 offset_top = 0.159004
-offset_right = -0.973022
+offset_right = 1.02692
 offset_bottom = -12.967
 theme = ExtResource("3_rtihc")
 script = ExtResource("3_tkffs")
@@ -155,39 +155,40 @@ script = ExtResource("3_tkffs")
 [node name="RobotListLabel" type="Label" parent="BackdropPanel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.014
-anchor_top = 0.03
-anchor_right = 0.051
-anchor_bottom = 0.08
-offset_left = -0.342001
-offset_top = -0.129999
-offset_right = -14.353
-offset_bottom = 0.319995
+anchor_left = 0.002
+anchor_top = 0.016
+anchor_right = 0.031
+anchor_bottom = 0.067
+offset_left = -0.906002
+offset_top = 0.0639982
+offset_right = 0.706993
+offset_bottom = -0.356998
 theme = ExtResource("3_rtihc")
 text = "Robots"
 
 [node name="Robots" type="ItemList" parent="BackdropPanel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.07
+anchor_left = 0.002
+anchor_top = 0.071
 anchor_right = 0.141
-anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 0.129998
-offset_right = -0.061009
-offset_bottom = -3.0
+anchor_bottom = 0.962
+offset_left = -0.906
+offset_top = 0.159004
+offset_right = -0.372986
+offset_bottom = 0.0980225
 
 [node name="ActiveProgramLabel" type="Label" parent="BackdropPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.345
 anchor_top = 0.016
-anchor_right = 0.406
+anchor_right = 0.407
 anchor_bottom = 0.065
-offset_left = -0.785034
-offset_top = -0.935994
-offset_right = 0.0820313
-offset_bottom = 0.385006
+offset_left = 1.21503
+offset_top = 0.0640001
+offset_right = 0.129028
+offset_bottom = 1.38501
 theme = ExtResource("3_rtihc")
 text = "Active Program
 "
@@ -245,11 +246,17 @@ disabled = true
 text = "Edit"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BackdropPanel"]
-layout_mode = 0
-offset_left = 1086.0
-offset_top = 746.0
-offset_right = 1185.0
-offset_bottom = 824.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.583
+anchor_top = 0.815
+anchor_right = 0.645
+anchor_bottom = 0.879
+offset_left = 0.401123
+offset_top = 0.13501
+offset_right = -21.6851
+offset_bottom = 22.391
+scale = Vector2(1.21438, 0.696289)
 
 [node name="StartProgram" type="Button" parent="BackdropPanel/HBoxContainer"]
 layout_mode = 2

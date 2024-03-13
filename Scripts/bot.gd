@@ -51,6 +51,13 @@ func _physics_process(delta):
 		return
 	if idle && program_index < program_array.size():
 		program_bot(program_array)
+		
+func reset_program_state():
+	program_index = 0
+	program_loop_index = []
+	program_loop_end_index = []
+	program_if_not_index = []
+	program_if_end_index = []
 
 func move_path(delta):
 	var velocity = SPEED * delta
@@ -216,7 +223,6 @@ func test_expression(statement):
 
 func update_inventory():
 	inventory = gold + stone + wood
-	#print("Inventory: ", inventory)
 
 
 func check_adjacent_tile(check_base: bool = false):

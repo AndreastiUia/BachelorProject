@@ -59,9 +59,7 @@ func get_current_program():
 			set_item_text(item_count-1, coord_string)
 		else:
 			add_item(bot.program_func.keys()[i])
-		
-		
-		
+			
 	set_color_active_step()
 
 # Set a text-color to show active step in program
@@ -87,7 +85,7 @@ func _on_start_program_pressed():
 	bot.program_array = program
 	
 	# Reset the program array to be ready for a new program.
-	bot.program_index = 0
+	bot.reset_program_state()
 	set_color_active_step()
 
 func _on_clear_pressed():
