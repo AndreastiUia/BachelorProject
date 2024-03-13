@@ -50,7 +50,17 @@ func get_current_program():
 	# Get current program from selected bot.
 	var ActiveProgram = bot.program_array
 	for i in ActiveProgram:
-		add_item(bot.program_func.keys()[i])
+		print(i)
+		if i is Vector2i:
+			var x = i.x
+			var y = i.y
+			var coord_string = "MOVE_TO_POS (" + str(x) + "," + str(y) + ")"
+			print(coord_string)
+			set_item_text(item_count-1, coord_string)
+		else:
+			add_item(bot.program_func.keys()[i])
+		
+		
 		
 	set_color_active_step()
 
@@ -66,7 +76,7 @@ func _on_start_program_pressed():
 		if get_item_text(i).contains("MOVE_TO_POS"):
 			var command = get_item_text(i)
 			var command_array = command.split(" ", 1)
-			program.append(command_array[0])
+			program.append(bot.program_func.get(command_array[0]))
 			command_array[1].lstrip("(")
 			command_array[1].rstrip(")")
 			var pos_array = command_array[1].split(",", 1)
