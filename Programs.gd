@@ -24,10 +24,11 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 	
 	# If the target_item_list is valid, add the selected item to it
 	if target_item_list:
-		target_item_list.add_item(selected_item_text)
+		if selected_item_text == "MOVE_TO_POS":
+			emit_signal("show_coordinate_edit_box")
+		else:
+			target_item_list.add_item(selected_item_text)
 	
-	if selected_item_text == "MOVE_TO_POS":
-		emit_signal("show_coordinate_edit_box")
 
 
 # Populate list of function basen on bot selected.
