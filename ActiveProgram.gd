@@ -1,5 +1,6 @@
 extends ItemList
 
+signal show_coordinate_edit_box
 var new_icon = preload("res://Sprites/Icons/icon.svg")
 var Programs = null
 var CoordinateInputDialog = preload("res://Scenes/CoordinateInputDialog.tscn")
@@ -33,9 +34,6 @@ func move_selected_item_down():
 			select(selected_index + 1)
 			
 
-func _on_button_pressed():
-	move_item_back_to_original_list()
-
 func _on_moveup_pressed():
 	move_selected_item_up()
 
@@ -68,12 +66,10 @@ func _on_clear_pressed():
 func _on_item_clicked(index, at_position, mouse_button_index):
 	selected_item_index = index
 	var selected_item_text = get_item_text(selected_item_index)
-	if selected_item_text == "MOVE_TO_POS":
-		# Load the CoordinateInputDialog.tscn scene
-		var dialog_scene = preload("res://Scenes/CoordinateInputDialog.tscn")
-		# Instantiate the scene
-		var dialog_instance = dialog_scene.instantiate()
-		# Add the instance as a child of the parent node
-		get_parent().add_child(dialog_instance)
-		# Show the dialog instance
-		dialog_instance.show()
+	var Edit_button = get_parent().get_node("Control").get_node("Edit")
+	if selected_item_text.contains(","):
+		emit_signal("show_coordinate_edit_box")
+
+
+func _on_item_selected(index):
+	selected_item_index = index
