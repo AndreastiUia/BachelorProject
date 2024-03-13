@@ -14,7 +14,6 @@ extends Node2D
 @export var mining_time = 0.001
 @export var attackpower = 25
 var idle = true
-var botname: String = "KevinRobot"
 
 # Pathfinding
 var current_id_path: Array[Vector2i]
@@ -48,49 +47,6 @@ var speedupgrade_3: bool = false
 var speedupgrade_4: bool = false
 
 var miningupgrade: bool = false
-
-var miningspeedupgrade_1: bool = false
-var miningspeedupgrade_2: bool = false
-
-var searchupgrade: bool = false
-var searchsizeupgrade: bool = false
-
-var attackupgrade: bool = false
-
-var attackdmgupgrade_1: bool = false
-var attackdmgupgrade_2: bool = false
-var attackdmgupgrade_3: bool = false
-
-var transportupgrade: bool = false
-
-var transportinvupgrade_1: bool = false
-var transportinvupgrade_2: bool = false
-var transportinvupgrade_3: bool = false
-var transportinvupgrade_4: bool = false
-var transportinvupgrade_5: bool = false
-
-# Robot Upgrade Bools
-var healthupgrade_1: bool = false
-var healthupgrade_2: bool = false
-var healthupgrade_3: bool = false
-
-var armorupgrade_1: bool = false
-var armorupgrade_2: bool = false
-var armorupgrade_3: bool = false
-
-var inventoryupgrade: bool = false
-
-var fuelupgarde_1: bool = false
-var fuelupgarde_2: bool = false
-var fuelupgarde_3: bool = false
-var fuelupgarde_4: bool = false
-
-var speedupgrade_1: bool = false
-var speedupgrade_2: bool = false
-var speedupgrade_3: bool = false
-var speedupgrade_4: bool = false
-
-var miningupgrade: bool = false
 var miningspeedupgrade_1: bool = false
 var miningspeedupgrade_2: bool = false
 
@@ -108,6 +64,98 @@ var transportinvupgrade_2: bool = false
 var transportinvupgrade_3: bool = false
 var transportinvupgrade_4: bool = false
 var transportinvupgrade_5: bool = false
+
+func UpgradeTreeUnlocks():
+	if healthupgrade_1 == true && health.MAX_HEALTH == 100:
+		health.MAX_HEALTH += 100
+
+	if healthupgrade_2 == true && health.MAX_HEALTH == 200:
+		health.MAX_HEALTH += 100
+
+	if healthupgrade_3 == true && health.MAX_HEALTH == 300:
+		health.MAX_HEALTH += 100
+
+	if armorupgrade_1 == true && armor == 0:
+		armor += 50
+
+	if armorupgrade_2 == true && armor == 50:
+		armor += 50
+
+	if armorupgrade_3 == true && armor == 100:
+		armor += 50
+
+	if inventoryupgrade == true && inventory_size > 15:
+		inventory_size = 30
+
+	if fuelupgrade_1 == true:
+		pass
+
+	if fuelupgrade_2 == true:
+		pass
+
+	if fuelupgrade_3 == true:
+		pass
+
+	if fuelupgrade_4 == true:
+		pass
+
+	if speedupgrade_1 == true:
+		pass
+
+	if speedupgrade_2 == true:
+		pass
+
+	if speedupgrade_3 == true:
+		pass
+
+	if speedupgrade_4 == true:
+		pass
+
+	if miningupgrade == true:
+		pass
+
+	if miningspeedupgrade_1 == true:
+		pass
+
+	if miningspeedupgrade_2 == true:
+		pass
+
+	if searchupgrade == true:
+		pass
+
+	if searchsizeupgrade == true:
+		pass
+
+	if attackupgrade == true:
+		pass
+
+	if attackdmgupgrade_1 == true:
+		pass
+
+	if attackdmgupgrade_2 == true:
+		pass
+
+	if attackdmgupgrade_3 == true:
+		pass
+
+	if transportupgrade == true:
+		pass
+
+	if transportinvupgrade_1 == true:
+		pass
+
+	if transportinvupgrade_2 == true:
+		pass
+
+	if transportinvupgrade_3 == true:
+		pass
+
+	if transportinvupgrade_4 == true:
+		pass
+
+	if transportinvupgrade_5 == true:
+		pass
+
 
 # Programming bots
 var program_index = 0
@@ -123,8 +171,7 @@ func _ready():
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#UpgradeTreeUnlocks()
-	pass
+	UpgradeTreeUnlocks()
 
 	
 func _physics_process(delta):
