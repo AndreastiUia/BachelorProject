@@ -47,4 +47,55 @@ func _process(delta):
 func BotUpgradeUnlockCheck(Bot):
 	
 	if HealthUpgrade.upgradeLevel == 1:
-		Bot.SPEED = 200
+		Bot.HealthUpgrade_1 = true
+	
+	if HealthUpgrade.upgradeLevel == 2:
+		Bot.HealthUpgrade_2 = true
+	
+	if HealthUpgrade.upgradeLevel == 3:
+		Bot.HealthUpgrade_3 = true
+	
+	
+	if ArmorUpgrade.upgradeLevel == 1:
+		Bot.ArmorUpgrade_1 = true
+	
+	if ArmorUpgrade.upgradeLevel == 2:
+		Bot.ArmorUpgrade_2 = true
+	
+	if ArmorUpgrade.upgradeLevel == 3:
+		Bot.ArmorUpgrade_3 = true
+	
+	
+	if InventoryUpgrade.upgradeLevel == 1:
+		Bot.InventoryUpgrade = true
+	
+	
+	if FuelUpgrade.upgradeLevel == 1:
+		Bot.FuelUpgrade_1 = true
+	
+	if FuelUpgrade.upgradeLevel == 2:
+		Bot.FuelUpgrade_2 = true
+	
+	if FuelUpgrade.upgradeLevel == 3:
+		Bot.FuelUpgrade_3 = true
+	
+	if FuelUpgrade.upgradeLevel == 4:
+		Bot.FuelUpgrade_4 = true
+	
+	
+	if SpeedUpgrade.upgradeLevel == 1:
+		Bot.speedupgrade_1 = true
+	
+	if SpeedUpgrade.upgradeLevel == 2:
+		Bot.speedupgrade_2 = true
+	
+	if SpeedUpgrade.upgradeLevel == 3:
+		Bot.speedupgrade_3 = true
+	
+	if SpeedUpgrade.upgradeLevel == 4:
+		Bot.speedupgrade_4 = true
+	
+	
+
+
+
