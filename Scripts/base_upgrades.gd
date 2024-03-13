@@ -12,6 +12,7 @@ extends Control
 @onready var AttackPowerUpgrade_2 = $DefenseUpgradeButton1/DefenseUpgradeButton2
 @onready var AttackPowerUpgrade_3 = $DefenseUpgradeButton1/DefenseUpgradeButton2/DefenseUpgradeButton3
 
+
 func UpgradeUnlockCheck():
 	
 	# Health Upgrade Checks
@@ -44,6 +45,7 @@ func UpgradeUnlockCheck():
 	
 	if Global.base_dmg == 70 && AttackPowerUpgrade_3.upgradeLevel == 1:
 		Global.base_dmg += 80
+
 
 
 # Called when the node enters the scene tree for the first time.
