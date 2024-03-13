@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cycqis5gblfun"]
+[gd_scene load_steps=3 format=3 uid="uid://3sntkarpexim"]
 
 [ext_resource type="Script" path="res://Scenes/CoordinateInputDialog.gd" id="1_tv8mx"]
 [ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="2_ash5y"]
