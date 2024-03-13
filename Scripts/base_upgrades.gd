@@ -46,8 +46,6 @@ func UpgradeUnlockCheck():
 	if Global.base_dmg == 70 && AttackPowerUpgrade_3.upgradeLevel == 1:
 		Global.base_dmg += 80
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
