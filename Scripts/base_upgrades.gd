@@ -32,6 +32,7 @@ func UpgradeUnlockUpdateLabel():
 		AttackPowerUpgrade_1.UpgradeLevelLabel.text = "2" + "/" + str(AttackPowerUpgrade_1.MaxUpgrade)
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
