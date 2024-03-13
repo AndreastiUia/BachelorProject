@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3mxpqbdpvuf3"]
+[gd_scene load_steps=6 format=3 uid="uid://cum7oq5h5gfk8"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu_options.gd" id="1_aqwv6"]
 [ext_resource type="FontFile" uid="uid://ct4ox56t42ck3" path="res://External Resources/Fonts/Teko/Teko-VariableFont_wght.ttf" id="2_1wgma"]
