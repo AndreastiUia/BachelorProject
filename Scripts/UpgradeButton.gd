@@ -4,8 +4,11 @@ class_name Upgrade_Node
 #Variables
 @onready var UpgradeLevelLabel = $UpgradeLevelLabel
 @onready var UpgradeLine = $UpgradeLine
+
 @export var MaxUpgrade:int = 3
 @export var UpgradeLabelVis:bool = true
+@export var Unlocked:bool = false
+@export var UpgradeCost: int = 0
 
 @export var upgradeLevel:int = 0:
 	set(value):
@@ -33,15 +36,22 @@ func _process(delta):
 
 
 func _on_pressed():
-	upgradeLevel = min(upgradeLevel+1, MaxUpgrade)
-	self.self_modulate = Color(1, 1, 1)
 	
-	UpgradeLine.default_color = Color(0.30851498246193, 0.78534024953842, 0.58209604024887)
-	
-	var upgrades = get_children()
-	for upgrade in upgrades:
-		if upgrade is Upgrade_Node and upgradeLevel == MaxUpgrade:
-			upgrade.disabled = false
+	if Global.base_gold >= UpgradeCost && Unlocked == true:
+		
+		Global.base_gold -= UpgradeCost
+		
+		upgradeLevel = min(upgradeLevel+1, MaxUpgrade)
+		self.self_modulate = Color(1, 1, 1)
+		UpgradeLine.default_color = Color(0.30851498246193, 0.78534024953842, 0.58209604024887)
+		
+		var upgrades = get_children()
+		for upgrade in upgrades:
+			if upgrade is Upgrade_Node and upgradeLevel == MaxUpgrade:
+				upgrade.disabled = false
+	else:
+		pass
+
 
 
 
