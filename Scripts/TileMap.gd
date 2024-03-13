@@ -40,8 +40,10 @@ func generate_map():
 	var tile_pos = local_to_map(Vector2i(0,0))
 	for x in range(width):
 		for y in range(height):
-			var center_chunk = Vector2i(tile_pos.x-width/2+y,tile_pos.y-height/2+x)
+			var center_chunk = Vector2i(tile_pos.x-width/2+x,tile_pos.y-height/2+y)
 			set_cell(0, center_chunk, 0, Vector2i(1,4))
+			if center_chunk.x > -4 && center_chunk.x < 3 && center_chunk.y > -4 && center_chunk.y < 3:
+				continue
 			
 			# Do not place resource if the tile is base
 			var tile_data = get_cell_tile_data(1, center_chunk)
@@ -75,7 +77,7 @@ func cover_map():
 			astar_grid.set_point_solid(center_chunk, true)
 
 func generate_resources():
-	# Randomly generate resources.
+	# Randomly generate resourcvalue.
 	for x in get_used_rect().size.x:
 		for y in get_used_rect().size.y:
 			var tile_data = get_cell_tile_data(0, Vector2i(x,y*-1))
