@@ -48,16 +48,21 @@ func _on_robots_item_selected(index):
 func _on_start_program_pressed():
 	var program = []
 	for i in item_count:
-		program.append(bot.program_func.get(get_item_text(i)))
-		if get_item_text(i) == "MOVE_TO_POS":
-			i += 1
-			var pos = get_item_text(i)
-			pos.trim_prefix("     ")
-			print(pos)
-			var pos_array = pos.split(",", 1)
+		if get_item_text(i).contains("MOVE_TO_POS"):
+			var command = get_item_text(i)
+			var command_array = command.split(" ", 1)
+			program.append(command_array[0])
+			command_array[1].lstrip("(")
+			command_array[1].rstrip(")")
+			var pos_array = command_array[1].split(",", 1)
 			var pos_vector = Vector2i(int(pos_array[0]), int(pos_array[1]))
 			program.append(pos_vector)
+		else:
+			program.append(bot.program_func.get(get_item_text(i)))
 	bot.program_array = program
+	
+	# Reset the program array to be ready for a new program.
+	bot.program_index = 0
 
 func _on_clear_pressed():
 	clear()
@@ -68,8 +73,14 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 	var selected_item_text = get_item_text(selected_item_index)
 	var Edit_button = get_parent().get_node("Control").get_node("Edit")
 	if selected_item_text.contains(","):
-		emit_signal("show_coordinate_edit_box")
+		Edit_button.set_disabled(false)
+	else:
+		Edit_button.set_disabled(true)
 
 
 func _on_item_selected(index):
 	selected_item_index = index
+
+
+func _on_edit_pressed():
+	emit_signal("show_coordinate_edit_box")

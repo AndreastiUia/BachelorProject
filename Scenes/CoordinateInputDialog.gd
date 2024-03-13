@@ -19,13 +19,12 @@ func _on_confirm_pressed():
 	var x = x_str.to_int()
 	var y = y_str.to_int()
 	
-	var coord_string = "     " + str(x) + "," + str(y)
+	var coord_string = "MOVE_TO_POS (" + str(x) + "," + str(y) + ")"
 	
 	if edit:
 		var index = ActiveProgram.get_selected_items()[0]
 		ActiveProgram.set_item_text(index, coord_string)
 	else:
-		print(ActiveProgram)
 		ActiveProgram.add_item(coord_string)
 	
 	# Close the dialog
