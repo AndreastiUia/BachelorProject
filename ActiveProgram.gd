@@ -43,7 +43,22 @@ func _on_movedown_pressed():
 # store selected bot
 func _on_robots_item_selected(index):
 	bot = Global.bots[index]
+	get_current_program()
 
+func get_current_program():
+	clear()
+	# Get current program from selected bot.
+	var ActiveProgram = bot.program_array
+	for i in ActiveProgram:
+		add_item(bot.program_func.keys()[i])
+		
+	set_color_active_step()
+
+# Set a text-color to show active step in program
+func set_color_active_step():
+	var bot_program_index = bot.program_index
+	set_item_custom_fg_color(bot_program_index, "green")
+	
 # Push active program to selected bot
 func _on_start_program_pressed():
 	var program = []
@@ -63,6 +78,7 @@ func _on_start_program_pressed():
 	
 	# Reset the program array to be ready for a new program.
 	bot.program_index = 0
+	set_color_active_step()
 
 func _on_clear_pressed():
 	clear()
