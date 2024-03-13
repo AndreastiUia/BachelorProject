@@ -6,11 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://y135gcc5ou0h" path="res://External Resources/Pictures/black.png" id="3_v7hv1"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="4_jur47"]
 [ext_resource type="Texture2D" uid="uid://elpw3ix44wg0" path="res://External Resources/Pictures/GUI_Texture_Bottom.png" id="5_00b4k"]
-[ext_resource type="PackedScene" uid="uid://cltsq8d5dcqme" path="res://Scenes/upgrade_screen.tscn" id="5_m2mt4"]
+[ext_resource type="PackedScene" path="res://Scenes/upgrade_screen.tscn" id="5_m2mt4"]
 [ext_resource type="FontFile" uid="uid://ct4ox56t42ck3" path="res://External Resources/Fonts/Teko/Teko-VariableFont_wght.ttf" id="5_mai7t"]
 [ext_resource type="Texture2D" uid="uid://bn652nl1w7rue" path="res://Sprites/Icons/Resources/Gold_Icon.png" id="8_12uut"]
 [ext_resource type="Texture2D" uid="uid://5tfakxg43a0y" path="res://Sprites/Icons/Resources/Stone_Icon.png" id="9_0m3tn"]
-[ext_resource type="PackedScene" uid="uid://bdm3mv4p0o6on" path="res://Scenes/programbot.tscn" id="10_bdgyb"]
+[ext_resource type="PackedScene" uid="uid://dls2umfb0fkhd" path="res://Scenes/programbot.tscn" id="10_bdgyb"]
 [ext_resource type="Texture2D" uid="uid://d3wonm53p64sy" path="res://Sprites/Icons/Resources/Wood_Icon.png" id="10_xy4hm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4gbcf"]

@@ -19,6 +19,8 @@ func _process(delta):
 
 # Function to handle item selection
 func _on_item_clicked(index, at_position, mouse_button_index):
+	if mouse_button_index != 1:
+		return
 	# Get the text of the selected item
 	var selected_item_text = get_item_text(index)
 	

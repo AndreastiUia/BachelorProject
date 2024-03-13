@@ -10,7 +10,7 @@ var bot
 func _ready():
 	Programs = get_parent().get_node("Programs")
 
-func move_item_back_to_original_list():
+func remove_item_from_list():
 	var selected_items = get_selected_items()
 	if selected_items.size() > 0:
 		var selected_index = selected_items[0]
@@ -69,6 +69,9 @@ func _on_clear_pressed():
 
 
 func _on_item_clicked(index, at_position, mouse_button_index):
+	if mouse_button_index != 1:
+		return
+		
 	selected_item_index = index
 	var selected_item_text = get_item_text(selected_item_index)
 	var Edit_button = get_parent().get_node("Control").get_node("Edit")
@@ -84,3 +87,7 @@ func _on_item_selected(index):
 
 func _on_edit_pressed():
 	emit_signal("show_coordinate_edit_box")
+
+
+func _on_remove_pressed():
+	remove_item_from_list()
