@@ -34,9 +34,6 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 		else:
 			target_item_list.add_item(selected_item_text)
 			
-	
-
-
 
 func _on_focus_exited():
 	deselect_all()

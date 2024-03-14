@@ -2,6 +2,7 @@ extends ItemList
 
 var edit = false
 
+# Add IF-statement to active program
 func _on_item_clicked(index, at_position, mouse_button_index):
 	var ActiveProgram = get_parent().get_node("ActiveProgram")
 	var selected_statement = get_item_text(index)
