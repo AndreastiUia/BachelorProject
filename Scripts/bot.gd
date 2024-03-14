@@ -18,7 +18,7 @@ var wood: int = 0
 var stone: int = 0
 var inventory: int = 0
 var inventory_size: int = 10
-var mining_time = 0.01
+var mining_time = 0.3
 
 # Programming bots
 var program_index = 0
@@ -86,7 +86,7 @@ func calc_path(target_position: Vector2i):
 func program_bot(function: Array):
 	if !idle:
 		return
-		
+	
 	match function[program_index]:
 		program_func.MOVE_UP:
 			calc_path(calc_target_tile_by_direction(Vector2i.UP))
@@ -146,7 +146,8 @@ func program_bot(function: Array):
 			program_index = temp_program_index
 			
 			# If the statement is false, then skip to IF_END.
-			if !test_expression(program_array[program_index]):
+			print(program_array[program_index])
+			if !check_if_statement(program_array[program_index]):
 				program_index = program_if_end_index.front()
 			program_if_end_index.pop_front()
 			
@@ -234,3 +235,13 @@ func check_adjacent_tile(check_base: bool = false):
 
 func _on_timer_reset_idle_timeout():
 	idle = true
+
+func check_if_statement(statement):
+	var statement_string
+	match statement:
+		program_if.INVENTORY_FULL:
+			statement_string = "inventory >= inventory_size"
+		program_if.INVENTORY_EMPTY:
+			statement_string = "inventory <= 0"
+
+	return test_expression(statement_string)

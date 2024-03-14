@@ -47,16 +47,13 @@ func get_current_program():
 	# Get current program from selected bot.
 	var ActiveProgram = bot.program_array
 	for i in ActiveProgram:
-		print(i)
 		if i is Vector2i:
 			var x = i.x
 			var y = i.y
 			var coord_string = "MOVE_TO_POS (" + str(x) + "," + str(y) + ")"
-			print(coord_string)
 			set_item_text(item_count-1, coord_string)
 		else:
 			add_item(bot.program_func.keys()[i])
-			
 	set_color_active_step()
 
 # Set a text-color to show active step in program
@@ -68,8 +65,8 @@ func set_color_active_step():
 func _on_start_program_pressed():
 	var program = []
 	for i in item_count:
-		if get_item_text(i).contains("MOVE_TO_POS"):
-			var command = get_item_text(i)
+		var command = get_item_text(i)
+		if command.contains("MOVE_TO_POS"):
 			var command_array = command.split(" ", 1)
 			program.append(bot.program_func.get(command_array[0]))
 			command_array[1].lstrip("(")
@@ -77,6 +74,10 @@ func _on_start_program_pressed():
 			var pos_array = command_array[1].split(",", 1)
 			var pos_vector = Vector2i(int(pos_array[0]), int(pos_array[1]))
 			program.append(pos_vector)
+		elif command.contains("IF "):
+			var command_array = command.split(" ", 1)
+			program.append(bot.program_func.get(command_array[0]))
+			program.append(bot.program_if.get(command_array[1]))
 		else:
 			program.append(bot.program_func.get(get_item_text(i)))
 	bot.program_array = program
@@ -96,7 +97,7 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 	selected_item_index = index
 	var selected_item_text = get_item_text(selected_item_index)
 	var Edit_button = get_parent().get_node("Control").get_node("Edit")
-	if selected_item_text.contains(","):
+	if selected_item_text.contains(",") || selected_item_text.contains("IF "):
 		Edit_button.set_disabled(false)
 	else:
 		Edit_button.set_disabled(true)
