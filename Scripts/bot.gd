@@ -65,98 +65,6 @@ var transportinvupgrade_3: bool = false
 var transportinvupgrade_4: bool = false
 var transportinvupgrade_5: bool = false
 
-func UpgradeTreeUnlocks():
-	if healthupgrade_1 == true && health.MAX_HEALTH == 100:
-		health.MAX_HEALTH += 100
-
-	if healthupgrade_2 == true && health.MAX_HEALTH == 200:
-		health.MAX_HEALTH += 100
-
-	if healthupgrade_3 == true && health.MAX_HEALTH == 300:
-		health.MAX_HEALTH += 100
-
-	if armorupgrade_1 == true && armor == 0:
-		armor += 50
-
-	if armorupgrade_2 == true && armor == 50:
-		armor += 50
-
-	if armorupgrade_3 == true && armor == 100:
-		armor += 50
-
-	if inventoryupgrade == true && inventory_size > 15:
-		inventory_size = 30
-
-	if fuelupgrade_1 == true:
-		pass
-
-	if fuelupgrade_2 == true:
-		pass
-
-	if fuelupgrade_3 == true:
-		pass
-
-	if fuelupgrade_4 == true:
-		pass
-
-	if speedupgrade_1 == true:
-		SPEED = 60
-
-	if speedupgrade_2 == true && SPEED == 60:
-		SPEED = 80
-
-	if speedupgrade_3 == true && SPEED == 80:
-		SPEED = 150
-
-	if speedupgrade_4 == true && SPEED == 150:
-		SPEED = 250
-
-	if miningupgrade == true:
-		mining_time = 0.01
-
-	if miningspeedupgrade_1 == true && mining_time == 0.01:
-		mining_time = 0.03
-
-	if miningspeedupgrade_2 == true && mining_time == 0.01:
-		mining_time = 0.05
-
-	if searchupgrade == true:
-		search_radius = 8
-
-	if searchsizeupgrade == true && search_radius == 8:
-		search_radius = 15
-
-	if attackupgrade == true:
-		attackpower = 30
-
-	if attackdmgupgrade_1 == true && attackpower == 30:
-		attackpower = 50
-
-	if attackdmgupgrade_2 == true && attackpower == 50:
-		attackpower = 70
-
-	if attackdmgupgrade_3 == true && attackpower == 70:
-		attackpower = 90
-
-	if transportupgrade == true && inventory_size == 10 or 30:
-		inventory_size = 60
-
-	if transportinvupgrade_1 == true && inventory_size == 60:
-		inventory_size = 100
-
-	if transportinvupgrade_2 == true && inventory_size == 100:
-		inventory_size = 140
-
-	if transportinvupgrade_3 == true && inventory_size == 140:
-		inventory_size = 200
-
-	if transportinvupgrade_4 == true && inventory_size == 200:
-		inventory_size = 300
-
-	if transportinvupgrade_5 == true && inventory_size == 300:
-		inventory_size = 500
-
-
 # Programming bots
 var program_index = 0
 var program_loop_index = []
@@ -170,7 +78,8 @@ func _ready():
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	UpgradeTreeUnlocks()
+	#UpgradeTreeUnlocks()
+	pass
 
 func _input(event):
 	if event.is_action_pressed("move") == false:

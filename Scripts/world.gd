@@ -28,6 +28,7 @@ func _on_temp_button_pressed():
 	var position = Vector2(25, -20)
 	b.position = position
 	Global.bots.append(b)
+	b.botname = "MatiasBot"
 	print(Global.bots)
 	add_child(b)
 	
