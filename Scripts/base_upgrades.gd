@@ -53,3 +53,35 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	UpgradeUnlockCheck()
+
+
+func _on_health_upgrade_button_1_pressed():
+	pass # Replace with function body.
+
+
+func _on_health_upgrade_button_2_pressed():
+	pass # Replace with function body.
+
+
+func _on_health_upgrade_button_3_pressed():
+	pass # Replace with function body.
+
+
+func _on_armor_upgrade_button_1_pressed():
+	pass # Replace with function body.
+
+
+func _on_armor_upgrade_button_2_pressed():
+	pass # Replace with function body.
+
+
+func _on_defense_upgrade_button_1_pressed():
+	pass # Replace with function body.
+
+
+func _on_defense_upgrade_button_2_pressed():
+	pass # Replace with function body.
+
+
+func _on_defense_upgrade_button_3_pressed():
+	pass # Replace with function body.

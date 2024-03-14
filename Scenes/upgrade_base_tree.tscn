@@ -141,3 +141,11 @@ UpgradeLabelVis = false
 MaxUpgrade = 1
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="HealthUpgradeButton1" to="." method="_on_health_upgrade_button_1_pressed"]
+[connection signal="pressed" from="HealthUpgradeButton1/HealthUpgradeButton2" to="." method="_on_health_upgrade_button_2_pressed"]
+[connection signal="pressed" from="HealthUpgradeButton1/HealthUpgradeButton2/ArmorUpgradeButton1" to="." method="_on_armor_upgrade_button_1_pressed"]
+[connection signal="pressed" from="HealthUpgradeButton1/HealthUpgradeButton2/ArmorUpgradeButton1/ArmorUpgradeButton2" to="." method="_on_armor_upgrade_button_2_pressed"]
+[connection signal="pressed" from="HealthUpgradeButton1/HealthUpgradeButton2/HealthUpgradeButton3" to="." method="_on_health_upgrade_button_3_pressed"]
+[connection signal="pressed" from="DefenseUpgradeButton1" to="." method="_on_defense_upgrade_button_1_pressed"]
+[connection signal="pressed" from="DefenseUpgradeButton1/DefenseUpgradeButton2" to="." method="_on_defense_upgrade_button_2_pressed"]
+[connection signal="pressed" from="DefenseUpgradeButton1/DefenseUpgradeButton2/DefenseUpgradeButton3" to="." method="_on_defense_upgrade_button_3_pressed"]
