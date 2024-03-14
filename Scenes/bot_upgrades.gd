@@ -220,6 +220,7 @@ func ButtonsUpgradeUnlockedCheck(Bot):
 		MiningBotSpeedUpgrade_2.UpgradeUnlocked = true
 	else:
 		MiningBotSpeedUpgrade_2.UpgradeUnlocked = false
+<<<<<<< HEAD
 
 #Search bot Upgrade
 	if Bot.searchupgrade == true:
@@ -463,44 +464,52 @@ func ButtonsUpgradeUnlockedCheck(Bot):
 		MiningBotUpgrade.UpgradeUnlocked = true
 	else:
 		MiningBotUpgrade.UpgradeUnlocked = false
+=======
+>>>>>>> 282fe78 (Finished UpgradeBotTree)
 
 #Search bot Upgrade
 	if Bot.searchupgrade == true:
-		SearchBotUpgrade = true
-	else: SearchBotUpgrade = false
+		SearchBotUpgrade.UpgradeUnlocked = true
+	else: SearchBotUpgrade.UpgradeUnlocked = false
 	
 	if Bot.searchsizeupgrade == true:
-		SearchBotSizeUpgrade = true
-	else: SearchBotSizeUpgrade = false
+		SearchBotSizeUpgrade.UpgradeUnlocked = true
+	else: SearchBotSizeUpgrade.UpgradeUnlocked = false
 
 #Attack bot Upgrade
-	if Bot.attackbotupgrade == true:
-		AttackBotUpgrade = true
-	else: AttackBotUpgrade = false
+	if Bot.attackupgrade == true:
+		AttackBotUpgrade.UpgradeUnlocked = true
+	else: AttackBotUpgrade.UpgradeUnlocked = false
 	
-	if Bot.attackbotdmgupgrade_1 == false:
-		AttackBotDmgUpgrade_1.UpgradeLevelLabel.text = "0" + "/" + str(AttackBotDmgUpgrade_1.MaxUpgrade)
+	if Bot.attackdmgupgrade_1 == true:
+		AttackBotDmgUpgrade_1.UpgradeUnlocked = true
+	else: AttackBotDmgUpgrade_1.UpgradeUnlocked = false
 	
-	if Bot.attackbotdmgupgrade_1 == true:
-		AttackBotDmgUpgrade_1 = true
-		AttackBotDmgUpgrade_1.UpgradeLevelLabel.text = "1" + "/" + str(AttackBotDmgUpgrade_1.MaxUpgrade)
-	else: AttackBotDmgUpgrade_1 = false
+	if Bot.attackdmgupgrade_2 == false:
+		AttackBotDmgUpgrade_2.UpgradeLevelLabel.text = "0" + "/" + str(AttackBotDmgUpgrade_2.MaxUpgrade)
 	
-	if Bot.attackbotdmgupgrade_2 == true:
-		AttackBotDmgUpgrade_2 = true
+	if Bot.attackdmgupgrade_2 == true:
+		AttackBotDmgUpgrade_2.UpgradeUnlocked = true
+		AttackBotDmgUpgrade_2.UpgradeLevelLabel.text = "1" + "/" + str(AttackBotDmgUpgrade_2.MaxUpgrade)
+	else: AttackBotDmgUpgrade_2.UpgradeUnlocked = false
+	
+	if Bot.attackdmgupgrade_3 == true:
 		AttackBotDmgUpgrade_2.UpgradeLevelLabel.text = "2" + "/" + str(AttackBotDmgUpgrade_2.MaxUpgrade)
-	else: AttackBotDmgUpgrade_2 = false
+
 
 #Transport bot Upgrades
-	if Bot.transportbotupgrade == true:
-		TransportBotUpgrade = true
-	else: TransportBotUpgrade = false
+	if Bot.transportupgrade == true:
+		TransportBotUpgrade.UpgradeUnlocked = true
+	else: TransportBotUpgrade.UpgradeUnlocked = false
 	
 	if Bot.transportinvupgrade_1 == false:
 		TransportBotInvUpgrade.UpgradeLevelLabel.text = "0" + "/" + str(TransportBotInvUpgrade.MaxUpgrade)
 	
 	if Bot.transportinvupgrade_1 == true:
+		TransportBotInvUpgrade.UpgradeUnlocked = true
 		TransportBotInvUpgrade.UpgradeLevelLabel.text = "1" + "/" + str(TransportBotInvUpgrade.MaxUpgrade)
+	else: TransportBotInvUpgrade.UpgradeUnlocked = false
+
 	
 	if Bot.transportinvupgrade_2 == true:
 		TransportBotInvUpgrade.UpgradeLevelLabel.text = "2" + "/" + str(TransportBotInvUpgrade.MaxUpgrade)
@@ -1100,7 +1109,7 @@ func _on_transport_bot_inv_upgrade_button_1_pressed():
 		#Decrease Base resource = The Upgrade Cost
 		Global.base_gold -= HealthUpgrade.UpgradeCost
 		
-		HealthUpgrade.IterateUpgradeLevel()
+		HealthUpgrade.IncrementUpgradeLevel()
 		
 		#Give Upgrade to selected bot
 		if HealthUpgrade.upgradeLevel == 1:
@@ -1114,4 +1123,432 @@ func _on_transport_bot_inv_upgrade_button_1_pressed():
 			print("Last health upgrade bought for " + "" + str(SelectedBot.botname))
 	else:
 		pass
+<<<<<<< HEAD
 >>>>>>> 560e1ca (Fixes connection between botupgrades annd botupgradestree UI)
+=======
+
+
+func _on_armor_upgrade_button_pressed():
+	#Store selected bot
+	var SelectedBot = $RobotlistControlNode.bot
+	
+	#Check of upgradecost is in range of inventory amount
+	if SelectedBot != null && Global.base_gold >= ArmorUpgrade.UpgradeCost:
+		
+		#Check what upgradelevel the SelectedBot already has
+		if SelectedBot.armorupgrade_1 == false:
+			ArmorUpgrade.upgradeLevel = 0
+		if SelectedBot.armorupgrade_1 == true:
+			ArmorUpgrade.upgradeLevel = 1
+		if SelectedBot.armorupgrade_2 == true:
+			ArmorUpgrade.upgradeLevel = 2
+		if SelectedBot.armorupgrade_3 == true:
+			ArmorUpgrade.upgradeLevel = 3
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= ArmorUpgrade.UpgradeCost
+		
+		ArmorUpgrade.IncrementUpgradeLevel()
+		
+		#Give Upgrade to selected bot
+		if ArmorUpgrade.upgradeLevel == 1:
+			SelectedBot.armorupgrade_1 = true
+			
+		elif ArmorUpgrade.upgradeLevel == 2:
+			SelectedBot.armorupgrade_2 = true
+			
+		elif ArmorUpgrade.upgradeLevel == 3:
+			SelectedBot.armorupgrade_3 = true
+	else:
+		pass
+
+
+func _on_inventory_upgrade_button_pressed():
+	#Store selected bot
+	var SelectedBot = $RobotlistControlNode.bot
+	
+	#Check of upgradecost is in range of inventory amount
+	if SelectedBot != null && Global.base_gold >= InventoryUpgrade.UpgradeCost:
+		
+		#Check what upgradelevel the SelectedBot already has
+		if SelectedBot.inventoryupgrade == false:
+			InventoryUpgrade.upgradeLevel = 0
+		if SelectedBot.inventoryupgrade == true:
+			InventoryUpgrade.upgradeLevel = 1
+
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= InventoryUpgrade.UpgradeCost
+		
+		InventoryUpgrade.IncrementUpgradeLevel()
+		
+		#Give Upgrade to selected bot
+		if InventoryUpgrade.upgradeLevel == 1:
+			SelectedBot.inventoryupgrade = true
+	else:
+		pass
+
+
+func _on_fuel_capacity_upgrade_button_pressed():
+	#Store selected bot
+	var SelectedBot = $RobotlistControlNode.bot
+	
+	#Check of upgradecost is in range of inventory amount
+	if SelectedBot != null && Global.base_gold >= FuelUpgrade.UpgradeCost:
+		
+		#Check what upgradelevel the SelectedBot already has
+		if SelectedBot.fuelupgrade_1 == false:
+			FuelUpgrade.upgradeLevel = 0
+		if SelectedBot.fuelupgrade_1 == true:
+			FuelUpgrade.upgradeLevel = 1
+		if SelectedBot.fuelupgrade_2 == true:
+			FuelUpgrade.upgradeLevel = 2
+		if SelectedBot.fuelupgrade_3 == true:
+			FuelUpgrade.upgradeLevel = 3
+		if SelectedBot.fuelupgrade_4 == true:
+			FuelUpgrade.upgradeLevel = 4
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= FuelUpgrade.UpgradeCost
+		
+		FuelUpgrade.IncrementUpgradeLevel()
+		
+		#Give Upgrade to selected bot
+		if FuelUpgrade.upgradeLevel == 1:
+			SelectedBot.fuelupgrade_1 = true
+			
+		elif FuelUpgrade.upgradeLevel == 2:
+			SelectedBot.fuelupgrade_2 = true
+			
+		elif FuelUpgrade.upgradeLevel == 3:
+			SelectedBot.fuelupgrade_3 = true
+			
+		elif FuelUpgrade.upgradeLevel == 4:
+			SelectedBot.fuelupgrade_4 = true
+	else:
+		pass
+
+
+func _on_speed_upgrade_button_pressed():
+	#Store selected bot
+	var SelectedBot = $RobotlistControlNode.bot
+	
+	#Check of upgradecost is in range of inventory amount
+	if SelectedBot != null && Global.base_gold >= SpeedUpgrade.UpgradeCost:
+		
+		#Check what upgradelevel the SelectedBot already has
+		if SelectedBot.speedupgrade_1 == false:
+			SpeedUpgrade.upgradeLevel = 0
+		if SelectedBot.speedupgrade_1 == true:
+			SpeedUpgrade.upgradeLevel = 1
+		if SelectedBot.speedupgrade_2 == true:
+			SpeedUpgrade.upgradeLevel = 2
+		if SelectedBot.speedupgrade_3 == true:
+			SpeedUpgrade.upgradeLevel = 3
+		if SelectedBot.speedupgrade_4 == true:
+			SpeedUpgrade.upgradeLevel = 4
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= SpeedUpgrade.UpgradeCost
+		
+		SpeedUpgrade.IncrementUpgradeLevel()
+		
+		#Give Upgrade to selected bot
+		if SpeedUpgrade.upgradeLevel == 1:
+			SelectedBot.speedupgrade_1 = true
+			
+		elif SpeedUpgrade.upgradeLevel == 2:
+			SelectedBot.speedupgrade_2 = true
+			
+		elif SpeedUpgrade.upgradeLevel == 3:
+			SelectedBot.speedupgrade_3 = true
+			
+		elif SpeedUpgrade.upgradeLevel == 4:
+			SelectedBot.speedupgrade_4 = true
+	else:
+		pass
+
+
+func _on_mining_bot_upgrade_button_pressed():
+	#Store selected bot
+	var SelectedBot = $RobotlistControlNode.bot
+	
+	#Check of upgradecost is in range of inventory amount
+	if SelectedBot != null && Global.base_gold >= MiningBotUpgrade.UpgradeCost:
+		
+		#Check what upgradelevel the SelectedBot already has
+		if SelectedBot.miningupgrade == false:
+			MiningBotUpgrade.upgradeLevel = 0
+		if SelectedBot.miningupgrade == true:
+			MiningBotUpgrade.upgradeLevel = 1
+
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= MiningBotUpgrade.UpgradeCost
+		
+		MiningBotUpgrade.IncrementUpgradeLevel()
+		
+		#Give Upgrade to selected bot
+		if MiningBotUpgrade.upgradeLevel == 1:
+			SelectedBot.miningupgrade = true
+	else:
+		pass
+
+
+func _on_mining_bot_speed_upgrade_button_1_pressed():
+	#Store selected bot
+	var SelectedBot = $RobotlistControlNode.bot
+	
+	#Check of upgradecost is in range of inventory amount
+	if SelectedBot != null && Global.base_gold >= MiningBotSpeedUpgrade_1.UpgradeCost:
+		
+		#Check what upgradelevel the SelectedBot already has
+		if SelectedBot.miningspeedupgrade_1 == false:
+			MiningBotSpeedUpgrade_1.upgradeLevel = 0
+		if SelectedBot.miningspeedupgrade_1 == true:
+			MiningBotSpeedUpgrade_1.upgradeLevel = 1
+
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= MiningBotSpeedUpgrade_1.UpgradeCost
+		
+		MiningBotSpeedUpgrade_1.IncrementUpgradeLevel()
+		
+		#Give Upgrade to selected bot
+		if MiningBotSpeedUpgrade_1.upgradeLevel == 1:
+			SelectedBot.miningspeedupgrade_1 = true
+	else:
+		pass
+
+
+func _on_mining_bot_speed_upgrade_button_2_pressed():
+	#Store selected bot
+	var SelectedBot = $RobotlistControlNode.bot
+	
+	#Check of upgradecost is in range of inventory amount
+	if SelectedBot != null && Global.base_gold >= MiningBotSpeedUpgrade_2.UpgradeCost:
+		
+		#Check what upgradelevel the SelectedBot already has
+		if SelectedBot.miningspeedupgrade_2 == false:
+			MiningBotSpeedUpgrade_2.upgradeLevel = 0
+		if SelectedBot.miningspeedupgrade_2 == true:
+			MiningBotSpeedUpgrade_2.upgradeLevel = 1
+
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= MiningBotSpeedUpgrade_2.UpgradeCost
+		
+		MiningBotSpeedUpgrade_2.IncrementUpgradeLevel()
+		
+		#Give Upgrade to selected bot
+		if MiningBotSpeedUpgrade_2.upgradeLevel == 1:
+			SelectedBot.miningspeedupgrade_2 = true
+	else:
+		pass
+
+
+func _on_search_bot_upgrade_button_pressed():
+	#Store selected bot
+	var SelectedBot = $RobotlistControlNode.bot
+	
+	#Check of upgradecost is in range of inventory amount
+	if SelectedBot != null && Global.base_gold >= SearchBotUpgrade.UpgradeCost:
+		
+		#Check what upgradelevel the SelectedBot already has
+		if SelectedBot.searchupgrade == false:
+			SearchBotUpgrade.upgradeLevel = 0
+		if SelectedBot.searchupgrade == true:
+			SearchBotUpgrade.upgradeLevel = 1
+
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= SearchBotUpgrade.UpgradeCost
+		
+		SearchBotUpgrade.IncrementUpgradeLevel()
+		
+		#Give Upgrade to selected bot
+		if SearchBotUpgrade.upgradeLevel == 1:
+			SelectedBot.searchupgrade = true
+	else:
+		pass
+
+
+func _on_search_bot_size_upgrade_button_1_pressed():
+	#Store selected bot
+	var SelectedBot = $RobotlistControlNode.bot
+	
+	#Check of upgradecost is in range of inventory amount
+	if SelectedBot != null && Global.base_gold >= SearchBotSizeUpgrade.UpgradeCost:
+		
+		#Check what upgradelevel the SelectedBot already has
+		if SelectedBot.searchsizeupgrade == false:
+			SearchBotSizeUpgrade.upgradeLevel = 0
+		if SelectedBot.searchsizeupgrade == true:
+			SearchBotSizeUpgrade.upgradeLevel = 1
+
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= SearchBotSizeUpgrade.UpgradeCost
+		
+		SearchBotSizeUpgrade.IncrementUpgradeLevel()
+		
+		#Give Upgrade to selected bot
+		if SearchBotSizeUpgrade.upgradeLevel == 1:
+			SelectedBot.searchsizeupgrade = true
+	else:
+		pass
+
+
+func _on_attack_bot_upgrade_button_pressed():
+	#Store selected bot
+	var SelectedBot = $RobotlistControlNode.bot
+	
+	#Check of upgradecost is in range of inventory amount
+	if SelectedBot != null && Global.base_gold >= AttackBotUpgrade.UpgradeCost:
+		
+		#Check what upgradelevel the SelectedBot already has
+		if SelectedBot.attackupgrade == false:
+			AttackBotUpgrade.upgradeLevel = 0
+		if SelectedBot.attackupgrade == true:
+			AttackBotUpgrade.upgradeLevel = 1
+
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= AttackBotUpgrade.UpgradeCost
+		
+		AttackBotUpgrade.IncrementUpgradeLevel()
+		
+		#Give Upgrade to selected bot
+		if AttackBotUpgrade.upgradeLevel == 1:
+			SelectedBot.attackupgrade = true
+	else:
+		pass 
+
+
+func _on_attack_bot_dmg_upgrade_button_1_pressed():
+	#Store selected bot
+	var SelectedBot = $RobotlistControlNode.bot
+	
+	#Check of upgradecost is in range of inventory amount
+	if SelectedBot != null && Global.base_gold >= AttackBotDmgUpgrade_1.UpgradeCost:
+		
+		#Check what upgradelevel the SelectedBot already has
+		if SelectedBot.attackdmgupgrade_1 == false:
+			AttackBotDmgUpgrade_1.upgradeLevel = 0
+		if SelectedBot.attackdmgupgrade_1 == true:
+			AttackBotDmgUpgrade_1.upgradeLevel = 1
+
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= AttackBotDmgUpgrade_1.UpgradeCost
+		
+		AttackBotDmgUpgrade_1.IncrementUpgradeLevel()
+		
+		#Give Upgrade to selected bot
+		if AttackBotDmgUpgrade_1.upgradeLevel == 1:
+			SelectedBot.attackdmgupgrade_1 = true
+	else:
+		pass 
+
+
+func _on_attack_bot_dmg_upgrade_button_2_pressed():
+	#Store selected bot
+	var SelectedBot = $RobotlistControlNode.bot
+	
+	#Check of upgradecost is in range of inventory amount
+	if SelectedBot != null && Global.base_gold >= AttackBotDmgUpgrade_2.UpgradeCost:
+		
+		#Check what upgradelevel the SelectedBot already has
+		if SelectedBot.attackdmgupgrade_2 == false:
+			AttackBotDmgUpgrade_2.upgradeLevel = 0
+		if SelectedBot.attackdmgupgrade_2 == true:
+			AttackBotDmgUpgrade_2.upgradeLevel = 1
+		if SelectedBot.attackdmgupgrade_3 == true:
+			AttackBotDmgUpgrade_2.upgradeLevel = 2
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= AttackBotDmgUpgrade_2.UpgradeCost
+		
+		AttackBotDmgUpgrade_2.IncrementUpgradeLevel()
+		
+		#Give Upgrade to selected bot
+		if AttackBotDmgUpgrade_2.upgradeLevel == 1:
+			SelectedBot.attackdmgupgrade_2 = true
+			
+		elif AttackBotDmgUpgrade_2.upgradeLevel == 2:
+			SelectedBot.attackdmgupgrade_3 = true
+			
+	else:
+		pass
+
+
+func _on_transport_bot_upgrade_button_pressed():
+	#Store selected bot
+	var SelectedBot = $RobotlistControlNode.bot
+	
+	#Check of upgradecost is in range of inventory amount
+	if SelectedBot != null && Global.base_gold >= TransportBotUpgrade.UpgradeCost:
+		
+		#Check what upgradelevel the SelectedBot already has
+		if SelectedBot.transportupgrade == false:
+			TransportBotUpgrade.upgradeLevel = 0
+		if SelectedBot.transportupgrade == true:
+			TransportBotUpgrade.upgradeLevel = 1
+
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= TransportBotUpgrade.UpgradeCost
+		
+		TransportBotUpgrade.IncrementUpgradeLevel()
+		
+		#Give Upgrade to selected bot
+		if TransportBotUpgrade.upgradeLevel == 1:
+			SelectedBot.transportupgrade = true
+	else:
+		pass
+
+
+func _on_transport_bot_inv_upgrade_button_1_pressed():
+	#Store selected bot
+	var SelectedBot = $RobotlistControlNode.bot
+	
+	#Check of upgradecost is in range of inventory amount
+	if SelectedBot != null && Global.base_gold >= TransportBotInvUpgrade.UpgradeCost:
+		
+		#Check what upgradelevel the SelectedBot already has
+		if SelectedBot.transportinvupgrade_1 == false:
+			TransportBotInvUpgrade.upgradeLevel = 0
+		if SelectedBot.transportinvupgrade_1 == true:
+			TransportBotInvUpgrade.upgradeLevel = 1
+		if SelectedBot.transportinvupgrade_2 == true:
+			TransportBotInvUpgrade.upgradeLevel = 2
+		if SelectedBot.transportinvupgrade_3 == true:
+			TransportBotInvUpgrade.upgradeLevel = 3
+		if SelectedBot.transportinvupgrade_4 == true:
+			TransportBotInvUpgrade.upgradeLevel = 4
+		if SelectedBot.transportinvupgrade_5 == true:
+			TransportBotInvUpgrade.upgradeLevel = 5
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= TransportBotInvUpgrade.UpgradeCost
+		
+		TransportBotInvUpgrade.IncrementUpgradeLevel()
+		
+		#Give Upgrade to selected bot
+		if TransportBotInvUpgrade.upgradeLevel == 1:
+			SelectedBot.transportinvupgrade_1 = true
+			
+		elif TransportBotInvUpgrade.upgradeLevel == 2:
+			SelectedBot.transportinvupgrade_2 = true
+			
+		elif TransportBotInvUpgrade.upgradeLevel == 3:
+			SelectedBot.transportinvupgrade_3 = true
+			
+		elif TransportBotInvUpgrade.upgradeLevel == 4:
+			SelectedBot.transportinvupgrade_4 = true
+			
+		elif TransportBotInvUpgrade.upgradeLevel == 5:
+			SelectedBot.transportinvupgrade_5 = true
+	else:
+		pass
+>>>>>>> 282fe78 (Finished UpgradeBotTree)
