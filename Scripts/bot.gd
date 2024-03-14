@@ -35,12 +35,6 @@ func _ready():
 func _process(delta):
 	pass
 
-func _input(event):
-	if event.is_action_pressed("move") == false:
-		return
-	
-	calc_path(tile_map.local_to_map(get_global_mouse_position()))
-
 	
 func _physics_process(delta):
 	if !current_id_path.is_empty():
