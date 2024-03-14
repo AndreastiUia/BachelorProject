@@ -10,10 +10,6 @@ class_name Upgrade_Node
 @export var UpgradeCost: int = 0
 @export var MaxUpgrade:int = 3
 @export var upgradeLevel:int = 0 #:
-	#set(value):
-		#upgradeLevel = value
-		#UpgradeLevelLabel.text = str(upgradeLevel) + "/" + str(MaxUpgrade)
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,7 +37,6 @@ func _process(_delta):
 func IncrementUpgradeLevel():
 	#Iterate the upgrade level once
 	upgradeLevel = min(upgradeLevel+1, MaxUpgrade)
-	print("DEBUG: IterateUpgradeLevel function iterated level to " + str(upgradeLevel) + " of Max " + str(MaxUpgrade))
 	#Unlock childnode if maxupgrade level reached on current node
 	var upgrades = get_children()
 	for upgrade in upgrades:
