@@ -13,38 +13,24 @@ extends Control
 @onready var AttackPowerUpgrade_3 = $DefenseUpgradeButton1/DefenseUpgradeButton2/DefenseUpgradeButton3
 
 
-func UpgradeUnlockCheck():
+func UpgradeUnlockUpdateLabel():
 	
 	# Health Upgrade Checks
-	if Global.base_health == 100 && HealthUpgrade_1.upgradeLevel == 1:
-		Global.base_health += 50
-	elif Global.base_health == 150 && HealthUpgrade_1.upgradeLevel == 2:
-		Global.base_health += 50
+	if HealthUpgrade_1.upgradeLevel == 0:
+		HealthUpgrade_1.UpgradeLevelLabel.text = "0" + "/" + str(HealthUpgrade_1.MaxUpgrade)
+	elif HealthUpgrade_1.upgradeLevel == 1:
+		HealthUpgrade_1.UpgradeLevelLabel.text = "1" + "/" + str(HealthUpgrade_1.MaxUpgrade)
+	elif HealthUpgrade_1.upgradeLevel == 2:
+		HealthUpgrade_1.UpgradeLevelLabel.text = "2" + "/" + str(HealthUpgrade_1.MaxUpgrade)
 	
-	if Global.base_health == 200 && HealthUpgrade_2.upgradeLevel == 1:
-		Global.base_health += 100
-	
-	if Global.base_health == 300 && HealthUpgrade_3.upgradeLevel == 1:
-		Global.base_health += 200
-	
-	# Armor Upgrade Checks
-	if Global.base_armor == 0 && ArmorUpgrade_1.upgradeLevel == 1:
-		Global.base_armor += 50
-	
-	if Global.base_armor == 50 && ArmorUpgrade_2.upgradeLevel == 1:
-		Global.base_armor += 50
-	
-	# Attack Power Upgrade Checks
-	if Global.base_dmg == 10 && AttackPowerUpgrade_1.upgradeLevel == 1:
-		Global.base_dmg += 5
-	elif Global.base_dmg == 15 && AttackPowerUpgrade_1.upgradeLevel == 2:
-		Global.base_dmg += 5
-	
-	if Global.base_dmg == 20 && AttackPowerUpgrade_2.upgradeLevel == 1:
-		Global.base_dmg += 50
-	
-	if Global.base_dmg == 70 && AttackPowerUpgrade_3.upgradeLevel == 1:
-		Global.base_dmg += 80
+	# DMG Upgrade Checks
+	if AttackPowerUpgrade_1.upgradeLevel == 0:
+		AttackPowerUpgrade_1.UpgradeLevelLabel.text = "0" + "/" + str(AttackPowerUpgrade_1.MaxUpgrade)
+	elif AttackPowerUpgrade_1.upgradeLevel == 1:
+		AttackPowerUpgrade_1.UpgradeLevelLabel.text = "1" + "/" + str(AttackPowerUpgrade_1.MaxUpgrade)
+	elif AttackPowerUpgrade_1.upgradeLevel == 2:
+		AttackPowerUpgrade_1.UpgradeLevelLabel.text = "2" + "/" + str(AttackPowerUpgrade_1.MaxUpgrade)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,36 +38,142 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	UpgradeUnlockCheck()
+	UpgradeUnlockUpdateLabel()
 
 
 func _on_health_upgrade_button_1_pressed():
-	pass # Replace with function body.
+	#Check of upgradecost is in range of inventory amount
+	if Global.base_gold >= HealthUpgrade_1.UpgradeCost && HealthUpgrade_1.upgradeLevel != HealthUpgrade_1.MaxUpgrade:
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= HealthUpgrade_1.UpgradeCost
+		
+		HealthUpgrade_1.IncrementUpgradeLevel()
+		#Give Upgrade to base
+		if HealthUpgrade_1.upgradeLevel == 1:
+			HealthUpgrade_1.UpgradeUnlocked = true
+			Global.base_health = 150
+		elif HealthUpgrade_1.upgradeLevel == 2:
+			Global.base_health = 200
+	else:
+		pass
 
 
 func _on_health_upgrade_button_2_pressed():
-	pass # Replace with function body.
+	#Check of upgradecost is in range of inventory amount
+	if Global.base_gold >= HealthUpgrade_2.UpgradeCost && HealthUpgrade_2.UpgradeUnlocked == false:
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= HealthUpgrade_2.UpgradeCost
+		
+		HealthUpgrade_2.IncrementUpgradeLevel()
+		
+		#Give Upgrade to base
+		if HealthUpgrade_2.upgradeLevel == 1:
+			HealthUpgrade_2.UpgradeUnlocked = true
+			Global.base_health = 300
+	else:
+		pass
 
 
 func _on_health_upgrade_button_3_pressed():
-	pass # Replace with function body.
+	#Check of upgradecost is in range of inventory amount
+	if Global.base_gold >= HealthUpgrade_3.UpgradeCost && HealthUpgrade_3.UpgradeUnlocked == false:
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= HealthUpgrade_3.UpgradeCost
+		
+		HealthUpgrade_3.IncrementUpgradeLevel()
+		
+		#Give Upgrade to base
+		if HealthUpgrade_3.upgradeLevel == 1:
+			HealthUpgrade_3.UpgradeUnlocked = true
+			Global.base_health = 500
+	else:
+		pass
 
 
 func _on_armor_upgrade_button_1_pressed():
-	pass # Replace with function body.
+	#Check of upgradecost is in range of inventory amount
+	if Global.base_gold >= ArmorUpgrade_1.UpgradeCost && ArmorUpgrade_1.UpgradeUnlocked == false :
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= ArmorUpgrade_1.UpgradeCost
+		
+		ArmorUpgrade_1.IncrementUpgradeLevel()
+		
+		#Give Upgrade to base
+		if ArmorUpgrade_1.upgradeLevel == 1:
+			ArmorUpgrade_1.UpgradeUnlocked = true
+			Global.base_armor += 50
+	else:
+		pass
 
 
 func _on_armor_upgrade_button_2_pressed():
-	pass # Replace with function body.
+	#Check of upgradecost is in range of inventory amount
+	if Global.base_gold >= ArmorUpgrade_2.UpgradeCost && ArmorUpgrade_2.UpgradeUnlocked == false :
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= ArmorUpgrade_2.UpgradeCost
+		
+		ArmorUpgrade_2.IncrementUpgradeLevel()
+		
+		#Give Upgrade to base
+		if ArmorUpgrade_2.upgradeLevel == 1:
+			ArmorUpgrade_2.UpgradeUnlocked = true
+			Global.base_armor += 50
+	else:
+		pass
 
 
 func _on_defense_upgrade_button_1_pressed():
-	pass # Replace with function body.
+	#Check of upgradecost is in range of inventory amount
+	if Global.base_gold >= AttackPowerUpgrade_1.UpgradeCost && AttackPowerUpgrade_1.upgradeLevel != AttackPowerUpgrade_1.MaxUpgrade:
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= AttackPowerUpgrade_1.UpgradeCost
+		
+		AttackPowerUpgrade_1.IncrementUpgradeLevel()
+		#Give Upgrade to base
+		if AttackPowerUpgrade_1.upgradeLevel == 1:
+			AttackPowerUpgrade_1.UpgradeUnlocked = true
+			Global.base_dmg = 15
+		elif AttackPowerUpgrade_1.upgradeLevel == 2:
+			Global.base_dmg = 20
+	else:
+		pass
 
 
 func _on_defense_upgrade_button_2_pressed():
-	pass # Replace with function body.
+	#Check of upgradecost is in range of inventory amount
+	if Global.base_gold >= AttackPowerUpgrade_2.UpgradeCost && AttackPowerUpgrade_2.upgradeLevel != AttackPowerUpgrade_2.MaxUpgrade:
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= AttackPowerUpgrade_2.UpgradeCost
+		
+		AttackPowerUpgrade_2.IncrementUpgradeLevel()
+		#Give Upgrade to base
+		if AttackPowerUpgrade_2.upgradeLevel == 1:
+			AttackPowerUpgrade_2.UpgradeUnlocked = true
+			Global.base_dmg = 50
+
+	else:
+		pass
 
 
 func _on_defense_upgrade_button_3_pressed():
-	pass # Replace with function body.
+	#Check of upgradecost is in range of inventory amount
+	if Global.base_gold >= AttackPowerUpgrade_3.UpgradeCost && AttackPowerUpgrade_3.upgradeLevel != AttackPowerUpgrade_3.MaxUpgrade:
+		
+		#Decrease Base resource = The Upgrade Cost
+		Global.base_gold -= AttackPowerUpgrade_3.UpgradeCost
+		
+		AttackPowerUpgrade_3.IncrementUpgradeLevel()
+		#Give Upgrade to base
+		if AttackPowerUpgrade_3.upgradeLevel == 1:
+			AttackPowerUpgrade_3.UpgradeUnlocked = true
+			Global.base_dmg = 80
+
+	else:
+		pass
