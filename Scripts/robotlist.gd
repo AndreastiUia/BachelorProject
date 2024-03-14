@@ -1,4 +1,6 @@
 extends Control
+signal _on_select(index:int)
+
 
 #Add bots to Robotlist in upgradescreen
 func populate_bot_list():
@@ -17,3 +19,7 @@ func _on_robot_list_hidden():
 #Populate robotlist on RobotlistControlNode draw
 func _on_draw():
 	populate_bot_list()
+
+
+func _on_robot_list_item_selected(index):
+	emit_signal("_on_select", index)

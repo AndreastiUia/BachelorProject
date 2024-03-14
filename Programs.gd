@@ -30,15 +30,20 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 			emit_signal("show_coordinate_edit_box")
 		else:
 			target_item_list.add_item(selected_item_text)
+			
+		if selected_item_text == "IF":
+			get_parent().get_node("IfStatements").visible = true
 	
 
 
+
+func _on_focus_exited():
+	deselect_all()
+
+
 # Populate list of function basen on bot selected.
-func _on_robots_item_selected(index):
+func _on_robotlist_control_node__on_select(index):
 	var bot = Global.bots[index]
 	clear()
 	for i in bot.program_func:
 		add_item(i)
-
-func _on_focus_exited():
-	deselect_all()
