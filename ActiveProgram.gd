@@ -40,10 +40,6 @@ func _on_moveup_pressed():
 func _on_movedown_pressed():
 	move_selected_item_down()
 
-# store selected bot
-func _on_robots_item_selected(index):
-	bot = Global.bots[index]
-	get_current_program()
 
 func get_current_program():
 	clear()
@@ -115,3 +111,12 @@ func _on_edit_pressed():
 
 func _on_remove_pressed():
 	remove_item_from_list()
+
+
+func _on_if_statements_item_selected(index):
+	add_item(get_parent().get_node("IfStatements").get_item_text(index))
+
+# store selected bot
+func _on_robotlist_control_node__on_select(index):
+	bot = Global.bots[index]
+	get_current_program()

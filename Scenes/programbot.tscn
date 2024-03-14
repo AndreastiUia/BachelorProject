@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dls2umfb0fkhd"]
+[gd_scene load_steps=13 format=3 uid="uid://dls2umfb0fkhd"]
 
 [ext_resource type="Script" path="res://Scripts/programbot.gd" id="1_sum28"]
 [ext_resource type="Shader" path="res://Shaders/programbot.gdshader" id="2_4ox4k"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Programs.gd" id="3_tkffs"]
 [ext_resource type="Script" path="res://ActiveProgram.gd" id="4_jju46"]
 [ext_resource type="PackedScene" uid="uid://c1c4dv0ubdle" path="res://Scenes/CoordinateInputDialog.tscn" id="6_666pr"]
+[ext_resource type="Script" path="res://Scripts/IfStatements.gd" id="6_ckbhm"]
+[ext_resource type="PackedScene" uid="uid://cpp01alcayl7g" path="res://Scenes/robotlist.tscn" id="7_m1pyj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vr5kn"]
 shader = ExtResource("2_4ox4k")
@@ -166,18 +168,6 @@ offset_bottom = -0.356998
 theme = ExtResource("3_rtihc")
 text = "Robots"
 
-[node name="Robots" type="ItemList" parent="BackdropPanel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.002
-anchor_top = 0.071
-anchor_right = 0.141
-anchor_bottom = 0.962
-offset_left = -0.906
-offset_top = 0.159004
-offset_right = -0.372986
-offset_bottom = 0.0980225
-
 [node name="ActiveProgramLabel" type="Label" parent="BackdropPanel"]
 layout_mode = 1
 anchors_preset = -1
@@ -268,6 +258,29 @@ layout_mode = 2
 theme = ExtResource("3_rtihc")
 text = "Stop"
 
+[node name="IfStatements" type="ItemList" parent="BackdropPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.538146
+anchor_top = 0.0711826
+anchor_right = 0.74296
+anchor_bottom = 0.594719
+theme = ExtResource("3_rtihc")
+script = ExtResource("6_ckbhm")
+metadata/_edit_use_anchors_ = true
+
+[node name="RobotlistControlNode" parent="BackdropPanel" instance=ExtResource("7_m1pyj")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0015361
+anchor_top = 0.0711826
+anchor_right = 0.140809
+anchor_bottom = 0.962113
+offset_right = 0.0
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_jc0he")
@@ -282,8 +295,6 @@ layout_mode = 1
 [connection signal="item_clicked" from="BackdropPanel/Programs" to="BackdropPanel/Programs" method="_on_item_clicked"]
 [connection signal="item_selected" from="BackdropPanel/Programs" to="BackdropPanel/Programs" method="_on_item_selected"]
 [connection signal="show_coordinate_edit_box" from="BackdropPanel/Programs" to="CoordinateInputDialog" method="_on_programs_show_coordinate_edit_box"]
-[connection signal="item_selected" from="BackdropPanel/Robots" to="BackdropPanel/Programs" method="_on_robots_item_selected"]
-[connection signal="item_selected" from="BackdropPanel/Robots" to="BackdropPanel/ActiveProgram" method="_on_robots_item_selected"]
 [connection signal="item_clicked" from="BackdropPanel/ActiveProgram" to="BackdropPanel/ActiveProgram" method="_on_item_clicked"]
 [connection signal="item_selected" from="BackdropPanel/ActiveProgram" to="BackdropPanel/ActiveProgram" method="_on_item_selected"]
 [connection signal="show_coordinate_edit_box" from="BackdropPanel/ActiveProgram" to="CoordinateInputDialog" method="_on_active_program_show_coordinate_edit_box"]
@@ -294,3 +305,8 @@ layout_mode = 1
 [connection signal="pressed" from="BackdropPanel/Control/Edit" to="BackdropPanel/ActiveProgram" method="_on_edit_pressed"]
 [connection signal="pressed" from="BackdropPanel/HBoxContainer/StartProgram" to="BackdropPanel/ActiveProgram" method="_on_start_program_pressed"]
 [connection signal="pressed" from="BackdropPanel/HBoxContainer/StartProgram" to="CoordinateInputDialog" method="_on_start_program_pressed"]
+[connection signal="item_clicked" from="BackdropPanel/IfStatements" to="BackdropPanel/IfStatements" method="_on_item_clicked"]
+[connection signal="item_selected" from="BackdropPanel/IfStatements" to="BackdropPanel/ActiveProgram" method="_on_if_statements_item_selected"]
+[connection signal="_on_select" from="BackdropPanel/RobotlistControlNode" to="BackdropPanel/Programs" method="_on_robotlist_control_node__on_select"]
+[connection signal="_on_select" from="BackdropPanel/RobotlistControlNode" to="BackdropPanel/ActiveProgram" method="_on_robotlist_control_node__on_select"]
+[connection signal="_on_select" from="BackdropPanel/RobotlistControlNode" to="BackdropPanel/IfStatements" method="_on_robotlist_control_node__on_select"]
