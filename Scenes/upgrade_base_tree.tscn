@@ -48,7 +48,6 @@ tooltip_text = "Increase Health"
 disabled = false
 texture_normal = ExtResource("2_ebgv1")
 MaxUpgrade = 2
-Unlocked = true
 
 [node name="HitpointsLabel" type="Label" parent="HealthUpgradeButton1"]
 layout_mode = 0
@@ -67,8 +66,8 @@ offset_right = 128.0
 offset_bottom = -128.0
 tooltip_text = "Increase Health Tier 2"
 texture_normal = ExtResource("4_u3f6p")
-MaxUpgrade = 1
 UpgradeLabelVis = false
+MaxUpgrade = 1
 
 [node name="ArmorUpgradeButton1" parent="HealthUpgradeButton1/HealthUpgradeButton2" instance=ExtResource("1_us5tp")]
 layout_mode = 0
@@ -77,8 +76,8 @@ offset_right = 384.0
 offset_bottom = 128.0
 tooltip_text = "Increase Armor"
 texture_normal = ExtResource("5_k6s1s")
-MaxUpgrade = 1
 UpgradeLabelVis = false
+MaxUpgrade = 1
 
 [node name="ArmorUpgradeButton2" parent="HealthUpgradeButton1/HealthUpgradeButton2/ArmorUpgradeButton1" instance=ExtResource("1_us5tp")]
 layout_mode = 0
@@ -87,8 +86,8 @@ offset_right = 128.0
 offset_bottom = -128.0
 tooltip_text = "Increase Armor Tier 2"
 texture_normal = ExtResource("6_2xh13")
-MaxUpgrade = 1
 UpgradeLabelVis = false
+MaxUpgrade = 1
 
 [node name="HealthUpgradeButton3" parent="HealthUpgradeButton1/HealthUpgradeButton2" instance=ExtResource("1_us5tp")]
 layout_mode = 0
@@ -97,8 +96,8 @@ offset_right = 128.0
 offset_bottom = -128.0
 tooltip_text = "Increase Health Tier 3"
 texture_normal = ExtResource("7_dn656")
-MaxUpgrade = 1
 UpgradeLabelVis = false
+MaxUpgrade = 1
 
 [node name="DefenseUpgradeButton1" parent="." instance=ExtResource("1_us5tp")]
 layout_mode = 0
@@ -110,7 +109,6 @@ tooltip_text = "Increase Attack Power"
 disabled = false
 texture_normal = ExtResource("8_qclpu")
 MaxUpgrade = 2
-Unlocked = true
 
 [node name="DefenseLabel" type="Label" parent="DefenseUpgradeButton1"]
 layout_mode = 0
@@ -129,8 +127,8 @@ offset_right = 128.0
 offset_bottom = -128.0
 tooltip_text = "Increase Attack Power Tier 2"
 texture_normal = ExtResource("9_pesab")
-MaxUpgrade = 1
 UpgradeLabelVis = false
+MaxUpgrade = 1
 
 [node name="DefenseUpgradeButton3" parent="DefenseUpgradeButton1/DefenseUpgradeButton2" instance=ExtResource("1_us5tp")]
 layout_mode = 0
@@ -139,7 +137,7 @@ offset_right = 128.0
 offset_bottom = -128.0
 tooltip_text = "Increase Attack Power Tier 3"
 texture_normal = ExtResource("10_ctvlu")
-MaxUpgrade = 1
 UpgradeLabelVis = false
+MaxUpgrade = 1
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
