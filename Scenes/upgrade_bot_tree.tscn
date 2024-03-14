@@ -82,7 +82,6 @@ offset_bottom = 1024.0
 tooltip_text = "Increase Health"
 disabled = false
 texture_normal = ExtResource("5_y47u5")
-Unlocked = true
 
 [node name="ArmorUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
@@ -93,7 +92,6 @@ offset_bottom = 1024.0
 tooltip_text = "Increase Armor"
 disabled = false
 texture_normal = ExtResource("6_4tys1")
-Unlocked = true
 
 [node name="InventoryUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
@@ -105,7 +103,7 @@ tooltip_text = "Increase Inventory Size"
 disabled = false
 texture_normal = ExtResource("4_32nwd")
 UpgradeLabelVis = false
-Unlocked = true
+MaxUpgrade = 1
 
 [node name="FuelCapacityUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
@@ -117,7 +115,6 @@ tooltip_text = "Increase Fuel Capacity"
 disabled = false
 texture_normal = ExtResource("5_pje4b")
 MaxUpgrade = 4
-Unlocked = true
 
 [node name="SpeedUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
@@ -129,7 +126,6 @@ tooltip_text = "Increase Speed"
 disabled = false
 texture_normal = ExtResource("6_h6gow")
 MaxUpgrade = 4
-Unlocked = true
 
 [node name="MiningBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 0
@@ -141,7 +137,7 @@ tooltip_text = "Mining Bot Upgrade"
 disabled = false
 texture_normal = ExtResource("5_4tjtw")
 UpgradeLabelVis = false
-Unlocked = true
+MaxUpgrade = 1
 
 [node name="MiningBotSpeedUpgradeButton1" parent="MiningBotUpgradeButton" instance=ExtResource("1_wkdpk")]
 layout_mode = 0
@@ -173,7 +169,7 @@ tooltip_text = "Search Bot Upgrade"
 disabled = false
 texture_normal = ExtResource("8_5oj08")
 UpgradeLabelVis = false
-Unlocked = true
+MaxUpgrade = 1
 
 [node name="SearchBotSizeUpgradeButton1" parent="SearchBotUpgradeButton" instance=ExtResource("1_wkdpk")]
 layout_mode = 0
@@ -195,7 +191,7 @@ tooltip_text = "Attack Bot Upgrade"
 disabled = false
 texture_normal = ExtResource("2_rb0hu")
 UpgradeLabelVis = false
-Unlocked = true
+MaxUpgrade = 1
 
 [node name="AttackBotDmgUpgradeButton1" parent="AttackBotUpgradeButton" instance=ExtResource("1_wkdpk")]
 layout_mode = 0
@@ -226,7 +222,7 @@ tooltip_text = "Transport Bot Upgrade"
 disabled = false
 texture_normal = ExtResource("13_p5v32")
 UpgradeLabelVis = false
-Unlocked = true
+MaxUpgrade = 1
 
 [node name="TransportBotInvUpgradeButton1" parent="TransportBotUpgradeButton" instance=ExtResource("1_wkdpk")]
 layout_mode = 0

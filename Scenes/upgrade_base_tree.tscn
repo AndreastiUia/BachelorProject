@@ -48,7 +48,6 @@ tooltip_text = "Increase Health"
 disabled = false
 texture_normal = ExtResource("2_ebgv1")
 MaxUpgrade = 2
-Unlocked = true
 
 [node name="HitpointsLabel" type="Label" parent="HealthUpgradeButton1"]
 layout_mode = 0
@@ -110,7 +109,6 @@ tooltip_text = "Increase Attack Power"
 disabled = false
 texture_normal = ExtResource("8_qclpu")
 MaxUpgrade = 2
-Unlocked = true
 
 [node name="DefenseLabel" type="Label" parent="DefenseUpgradeButton1"]
 layout_mode = 0
