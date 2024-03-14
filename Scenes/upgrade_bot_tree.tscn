@@ -246,3 +246,17 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [connection signal="pressed" from="HealthUpgradeButton" to="." method="_on_health_upgrade_button_pressed"]
+[connection signal="pressed" from="ArmorUpgradeButton" to="." method="_on_armor_upgrade_button_pressed"]
+[connection signal="pressed" from="InventoryUpgradeButton" to="." method="_on_inventory_upgrade_button_pressed"]
+[connection signal="pressed" from="FuelCapacityUpgradeButton" to="." method="_on_fuel_capacity_upgrade_button_pressed"]
+[connection signal="pressed" from="SpeedUpgradeButton" to="." method="_on_speed_upgrade_button_pressed"]
+[connection signal="pressed" from="MiningBotUpgradeButton" to="." method="_on_mining_bot_upgrade_button_pressed"]
+[connection signal="pressed" from="MiningBotUpgradeButton/MiningBotSpeedUpgradeButton1" to="." method="_on_mining_bot_speed_upgrade_button_1_pressed"]
+[connection signal="pressed" from="MiningBotUpgradeButton/MiningBotSpeedUpgradeButton1/MiningBotSpeedUpgradeButton2" to="." method="_on_mining_bot_speed_upgrade_button_2_pressed"]
+[connection signal="pressed" from="SearchBotUpgradeButton" to="." method="_on_search_bot_upgrade_button_pressed"]
+[connection signal="pressed" from="SearchBotUpgradeButton/SearchBotSizeUpgradeButton1" to="." method="_on_search_bot_size_upgrade_button_1_pressed"]
+[connection signal="pressed" from="AttackBotUpgradeButton" to="." method="_on_attack_bot_upgrade_button_pressed"]
+[connection signal="pressed" from="AttackBotUpgradeButton/AttackBotDmgUpgradeButton1" to="." method="_on_attack_bot_dmg_upgrade_button_1_pressed"]
+[connection signal="pressed" from="AttackBotUpgradeButton/AttackBotDmgUpgradeButton1/AttackBotDmgUpgradeButton2" to="." method="_on_attack_bot_dmg_upgrade_button_2_pressed"]
+[connection signal="pressed" from="TransportBotUpgradeButton" to="." method="_on_transport_bot_upgrade_button_pressed"]
+[connection signal="pressed" from="TransportBotUpgradeButton/TransportBotInvUpgradeButton1" to="." method="_on_transport_bot_inv_upgrade_button_1_pressed"]

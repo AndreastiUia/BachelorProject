@@ -47,6 +47,7 @@ var speedupgrade_3: bool = false
 var speedupgrade_4: bool = false
 
 var miningupgrade: bool = false
+
 var miningspeedupgrade_1: bool = false
 var miningspeedupgrade_2: bool = false
 
@@ -54,11 +55,13 @@ var searchupgrade: bool = false
 var searchsizeupgrade: bool = false
 
 var attackupgrade: bool = false
+
 var attackdmgupgrade_1: bool = false
 var attackdmgupgrade_2: bool = false
 var attackdmgupgrade_3: bool = false
 
 var transportupgrade: bool = false
+
 var transportinvupgrade_1: bool = false
 var transportinvupgrade_2: bool = false
 var transportinvupgrade_3: bool = false

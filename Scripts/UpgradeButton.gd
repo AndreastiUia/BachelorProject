@@ -38,7 +38,7 @@ func _process(_delta):
 		self.self_modulate = Color(0.4, 0.4, 0.4)
 		UpgradeLine.default_color = Color(0.8, 0.8, 0.8)
 
-func IterateUpgradeLevel():
+func IncrementUpgradeLevel():
 	#Iterate the upgrade level once
 	upgradeLevel = min(upgradeLevel+1, MaxUpgrade)
 	print("DEBUG: IterateUpgradeLevel function iterated level to " + str(upgradeLevel) + " of Max " + str(MaxUpgrade))
