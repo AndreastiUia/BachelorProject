@@ -1,6 +1,7 @@
 extends ItemList
 
 signal show_coordinate_edit_box
+signal show_ifStatement_edit_box
 var new_icon = preload("res://Sprites/Icons/icon.svg")
 var Programs = null
 var CoordinateInputDialog = preload("res://Scenes/CoordinateInputDialog.tscn")
@@ -106,15 +107,14 @@ func _on_item_selected(index):
 
 
 func _on_edit_pressed():
-	emit_signal("show_coordinate_edit_box")
+	if get_item_text(selected_item_index).contains("MOVE_TO_POS"):
+		emit_signal("show_coordinate_edit_box")
+	elif get_item_text(selected_item_index).contains("IF"):
+		emit_signal("show_ifStatement_edit_box")
 
 
 func _on_remove_pressed():
 	remove_item_from_list()
-
-
-func _on_if_statements_item_selected(index):
-	add_item(get_parent().get_node("IfStatements").get_item_text(index))
 
 # store selected bot
 func _on_robotlist_control_node__on_select(index):

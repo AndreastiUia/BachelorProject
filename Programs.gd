@@ -1,6 +1,7 @@
 extends ItemList
 
 signal show_coordinate_edit_box
+signal show_ifStatement_edit_box
 var new_icon = preload("res://Sprites/Icons/icon.svg")
 var icon_size = Vector2(16, 16)
 
@@ -28,11 +29,11 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 	if target_item_list:
 		if selected_item_text == "MOVE_TO_POS":
 			emit_signal("show_coordinate_edit_box")
+		elif selected_item_text == "IF":
+			emit_signal("show_ifStatement_edit_box")
 		else:
 			target_item_list.add_item(selected_item_text)
 			
-		if selected_item_text == "IF":
-			get_parent().get_node("IfStatements").visible = true
 	
 
 
