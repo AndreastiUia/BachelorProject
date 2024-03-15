@@ -5,7 +5,7 @@ extends Node2D
 
 
 # Bot atributes
-var SPEED = 500
+var SPEED = 100
 var search_radius = 5
 var idle = true
 
@@ -18,7 +18,7 @@ var wood: int = 0
 var stone: int = 0
 var inventory: int = 0
 var inventory_size: int = 10
-var mining_time = 0.01
+var mining_time = 0.3
 
 # Programming bots
 var program_index = 0
@@ -26,8 +26,9 @@ var program_loop_index = []
 var program_loop_end_index = []
 var program_if_not_index = []
 var program_if_end_index = []
-var program_array = [program_func.WHILE_START, program_func.MOVE_TO_POS, Vector2i(12,-12), program_func.WHILE_START, program_func.GATHER_RESOURCE, program_func.IF, "inventory >= inventory_size", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.MOVE_TO_POS, Vector2i(2,-1), program_func.WHILE_START, program_func.DELIVER_RESOURCE, program_func.IF, "inventory == 0", program_func.WHILE_BREAK, program_func.IF_END, program_func.WHILE_END, program_func.WHILE_END]
+var program_array = []
 enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE, DELIVER_RESOURCE}
+enum program_if {INVENTORY_FULL, INVENTORY_EMPTY, ATTACKED, GOLD, STONE, WOOD, RESOURCES}
 
 func _ready():
 	pass
@@ -44,6 +45,13 @@ func _physics_process(delta):
 		return
 	if idle && program_index < program_array.size():
 		program_bot(program_array)
+		
+func reset_program_state():
+	program_index = 0
+	program_loop_index = []
+	program_loop_end_index = []
+	program_if_not_index = []
+	program_if_end_index = []
 
 func move_path(delta):
 	var velocity = SPEED * delta
@@ -78,7 +86,7 @@ func calc_path(target_position: Vector2i):
 func program_bot(function: Array):
 	if !idle:
 		return
-		
+	
 	match function[program_index]:
 		program_func.MOVE_UP:
 			calc_path(calc_target_tile_by_direction(Vector2i.UP))
@@ -138,7 +146,8 @@ func program_bot(function: Array):
 			program_index = temp_program_index
 			
 			# If the statement is false, then skip to IF_END.
-			if !test_expression(program_array[program_index]):
+			print(program_array[program_index])
+			if !check_if_statement(program_array[program_index]):
 				program_index = program_if_end_index.front()
 			program_if_end_index.pop_front()
 			
@@ -209,7 +218,6 @@ func test_expression(statement):
 
 func update_inventory():
 	inventory = gold + stone + wood
-	print("Inventory: ", inventory)
 
 
 func check_adjacent_tile(check_base: bool = false):
@@ -227,3 +235,13 @@ func check_adjacent_tile(check_base: bool = false):
 
 func _on_timer_reset_idle_timeout():
 	idle = true
+
+func check_if_statement(statement):
+	var statement_string
+	match statement:
+		program_if.INVENTORY_FULL:
+			statement_string = "inventory >= inventory_size"
+		program_if.INVENTORY_EMPTY:
+			statement_string = "inventory <= 0"
+
+	return test_expression(statement_string)
