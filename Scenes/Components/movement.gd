@@ -16,7 +16,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	if !current_id_path.is_empty():
-		idle = false
+		get_parent().idle = false
 		move_path(delta)
 		
 func move_path(delta):
@@ -29,7 +29,7 @@ func move_path(delta):
 		current_id_path.pop_front()
 
 		if current_id_path.is_empty():
-			idle = true
+			get_parent().idle = true
 
 func calc_target_tile_by_direction(direction: Vector2):
 	# Returns target tile based on direction.
