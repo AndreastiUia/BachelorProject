@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://dqowxkh0efe2x"]
 
-[ext_resource type="Script" path="res://Scenes/bot_upgrades.gd" id="1_bo34p"]
+[ext_resource type="Script" path="res://Scripts/bot_upgrades.gd" id="1_eta5p"]
 [ext_resource type="PackedScene" uid="uid://b6retb0oty3v5" path="res://Scenes/Upgrade_button.tscn" id="1_wkdpk"]
 [ext_resource type="Texture2D" uid="uid://cffcdogo70ht1" path="res://Sprites/Icons/BaseUpgrades/DefenseOne_sprite_BaseUpgradeIcons7.png.png" id="2_rb0hu"]
 [ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="2_v0wl0"]
@@ -22,17 +22,24 @@
 
 [node name="UpgradeBotTree" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1984.0
-offset_bottom = 1088.0
-script = ExtResource("1_bo34p")
+anchor_left = 0.024
+anchor_top = 0.059
+anchor_right = 0.832
+anchor_bottom = 0.993
+offset_left = -47.52
+offset_top = -63.72
+offset_right = 336.64
+offset_bottom = 15.5599
+script = ExtResource("1_eta5p")
 
 [node name="SelectedLabel" type="Label" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.015
 offset_left = 416.0
 offset_top = 72.0
 offset_right = 600.0
-offset_bottom = 144.0
+offset_bottom = -944.08
 theme = ExtResource("2_v0wl0")
 theme_override_font_sizes/font_size = 50
 text = "Selected Bot:"
@@ -74,7 +81,8 @@ offset_bottom = 1056.0
 color = Color(0.329412, 0.466667, 0.87451, 0.54902)
 
 [node name="HealthUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 offset_left = 448.0
 offset_top = 896.0
 offset_right = 576.0
@@ -84,7 +92,8 @@ disabled = false
 texture_normal = ExtResource("5_y47u5")
 
 [node name="ArmorUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 offset_left = 704.0
 offset_top = 896.0
 offset_right = 832.0
@@ -94,7 +103,8 @@ disabled = false
 texture_normal = ExtResource("6_4tys1")
 
 [node name="InventoryUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 offset_left = 960.0
 offset_top = 896.0
 offset_right = 1088.0
@@ -106,7 +116,8 @@ UpgradeLabelVis = false
 MaxUpgrade = 1
 
 [node name="FuelCapacityUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 offset_left = 1216.0
 offset_top = 896.0
 offset_right = 1344.0
@@ -117,7 +128,8 @@ texture_normal = ExtResource("5_pje4b")
 MaxUpgrade = 4
 
 [node name="SpeedUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 offset_left = 1472.0
 offset_top = 896.0
 offset_right = 1600.0
@@ -128,7 +140,8 @@ texture_normal = ExtResource("6_h6gow")
 MaxUpgrade = 4
 
 [node name="MiningBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 offset_left = 448.0
 offset_top = 704.0
 offset_right = 576.0
@@ -162,7 +175,8 @@ UpgradeLabelVis = false
 MaxUpgrade = 1
 
 [node name="SearchBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 offset_left = 704.0
 offset_top = 704.0
 offset_right = 832.0
@@ -185,7 +199,8 @@ UpgradeLabelVis = false
 MaxUpgrade = 1
 
 [node name="AttackBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 offset_left = 960.0
 offset_top = 704.0
 offset_right = 1088.0
@@ -218,7 +233,8 @@ UpgradeVisible = false
 MaxUpgrade = 2
 
 [node name="TransportBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 offset_left = 1216.0
 offset_top = 704.0
 offset_right = 1344.0
@@ -241,7 +257,7 @@ MaxUpgrade = 5
 
 [node name="RobotlistControlNode" parent="." instance=ExtResource("17_02cm6")]
 layout_mode = 1
-anchors_preset = 0
+anchors_preset = -1
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 64.0
