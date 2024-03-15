@@ -30,6 +30,12 @@ func _on_confirm_pressed():
 	# Close the dialog
 	hide()
 
-func _on_start_program_pressed():
-	print("Coordinates:", saved_coordinates)
+	# Show the dialog when coordinates are selected in the active program list.
+func _on_active_program_show_coordinate_edit_box():
+	edit = true
+	show()
+
+func _on_programs_show_coordinate_edit_box():
+	edit = false
+	show()
 

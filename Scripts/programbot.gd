@@ -1,8 +1,10 @@
 extends Control
 
 
+
 func _ready():
 	print("Global bots:", Global.bots)
+
 
 func programbots():
 	show()
@@ -24,7 +26,7 @@ var added_bots = {}
 
 func _on_program_robots_pressed():
 	programbots()
-
+	
 	var bots = get_node("BackdropPanel/RobotlistControlNode/RobotList")
 	if bots.is_anything_selected():
 		get_node("BackdropPanel/ActiveProgram").get_current_program()
