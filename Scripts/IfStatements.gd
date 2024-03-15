@@ -18,9 +18,12 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 	
 	
 func _on_robotlist_control_node__on_select(index):
+	clear()
+	visible = false
 	var bot = Global.bots[index]
 	for i in bot.program_if:
 		add_item(i)
+	
 
 
 func _on_programs_show_if_statement_edit_box():
