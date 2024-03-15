@@ -76,11 +76,10 @@ _data = {
 [node name="UpgradeScreen" type="Control"]
 process_mode = 3
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchor_right = 1.002
+anchor_bottom = 1.007
+offset_right = -3.96021
+offset_bottom = -7.56006
 script = ExtResource("1_26mdu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -116,46 +115,63 @@ text = "Return
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.005
-anchor_top = 0.063
-anchor_right = 0.996
-anchor_bottom = 0.993
-offset_left = -0.900001
-offset_top = -0.0400009
-offset_right = -0.0800781
-offset_bottom = -0.440063
+anchor_right = 1.002
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 68.0
+offset_right = -11.9603
+offset_bottom = -8.00012
 theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 30
 tab_alignment = 1
 all_tabs_in_front = true
 
 [node name="Base" type="Panel" parent="TabContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("5_n8nts")
+
+[node name="UpgradeBaseTree" parent="TabContainer/Base" instance=ExtResource("6_yd21q")]
+layout_mode = 1
+anchor_left = 0.452
+anchor_top = 0.076
+anchor_right = 0.79
+anchor_bottom = 0.773
+offset_left = -0.276001
+offset_top = -0.351997
+offset_right = 166.23
+offset_bottom = 166.104
+scale = Vector2(0.8, 0.8)
 
 [node name="HitpointsBackground" type="ColorRect" parent="TabContainer/Base"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.093
-anchor_right = 0.321
-offset_left = 0.44101
-offset_top = 136.0
-offset_right = 0.877014
-offset_bottom = 392.0
+anchor_left = 0.183
+anchor_top = 0.076
+anchor_right = 0.388
+anchor_bottom = 0.318
+offset_left = -0.229004
+offset_top = -0.351997
+offset_right = 45.356
+offset_bottom = 25.264
+scale = Vector2(0.9, 0.9)
 color = Color(0.560784, 0.376471, 0.219608, 0.54902)
 
 [node name="Health_label" type="Label" parent="TabContainer/Base/HitpointsBackground"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 70.632
-offset_top = 36.128
-offset_right = -267.208
-offset_bottom = -185.288
+anchor_left = 0.161
+anchor_top = 0.141
+anchor_right = 0.429
+anchor_bottom = 0.5
+offset_left = -1.49599
+offset_top = 0.0319901
+offset_right = -11.4
+offset_bottom = -57.288
 theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 60
 text = "Health:"
+metadata/_edit_lock_ = true
 
 [node name="Health_value" type="Label" parent="TabContainer/Base/HitpointsBackground/Health_label"]
 layout_mode = 0
@@ -170,15 +186,18 @@ text = "0"
 [node name="Armor_label" type="Label" parent="TabContainer/Base/HitpointsBackground"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 68.696
-offset_top = 138.456
-offset_right = -277.144
-offset_bottom = -82.96
+anchor_left = 0.143
+anchor_top = 0.541
+anchor_right = 0.393
+anchor_bottom = 0.906
+offset_left = 4.63198
+offset_top = -0.0400085
+offset_right = -5.20804
+offset_bottom = -58.896
 theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 60
 text = "Armor:"
+metadata/_edit_lock_ = true
 
 [node name="armor_value" type="Label" parent="TabContainer/Base/HitpointsBackground/Armor_label"]
 layout_mode = 0
@@ -193,29 +212,35 @@ text = "0"
 [node name="DefenseBackground" type="ColorRect" parent="TabContainer/Base"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.093
-anchor_right = 0.321
-offset_left = 0.44101
-offset_top = 464.0
-offset_right = 0.877014
-offset_bottom = 584.0
+anchor_left = 0.183
+anchor_top = 0.412
+anchor_right = 0.388
+anchor_bottom = 0.521
+offset_left = -0.229004
+offset_top = -0.223999
+offset_right = 45.356
+offset_bottom = 16.008
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9, 0.9)
 color = Color(0.352941, 0.388235, 0.701961, 0.54902)
 
 [node name="AttackPower_label" type="Label" parent="TabContainer/Base/DefenseBackground"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 72.0
-offset_top = 16.0
-offset_right = -127.92
-offset_bottom = -17.0
+anchor_left = 0.159016
+anchor_top = 0.147815
+anchor_right = 0.712016
+anchor_bottom = 0.872815
+offset_left = -0.128006
+offset_top = 0.0399961
+offset_right = 0.208069
+offset_bottom = 0.0400009
 theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 60
 text = "Attack Power:"
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="AttackPower_value" type="Label" parent="TabContainer/Base/DefenseBackground/AttackPower_label"]
 layout_mode = 0
@@ -227,32 +252,20 @@ theme = ExtResource("3_4cy3u")
 theme_override_font_sizes/font_size = 60
 text = "0"
 
-[node name="UpgradeBaseTree" parent="TabContainer/Base" instance=ExtResource("6_yd21q")]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.419
-anchor_right = 0.847
-anchor_bottom = 0.0
-offset_left = 0.502991
-offset_top = 72.0
-offset_right = 0.338989
-offset_bottom = 911.0
-
 [node name="Robots" type="Panel" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="UpgradeBotTree" parent="TabContainer/Robots" instance=ExtResource("8_spp0o")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 215.0
-offset_top = -20.0
-offset_right = 215.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 95.0
+offset_top = 4.0
+offset_right = 95.0
+offset_bottom = 4.0
+scale = Vector2(0.7, 0.7)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
