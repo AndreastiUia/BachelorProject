@@ -127,6 +127,7 @@ tab_alignment = 1
 all_tabs_in_front = true
 
 [node name="Base" type="Panel" parent="TabContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("5_n8nts")
 
@@ -252,12 +253,10 @@ theme_override_font_sizes/font_size = 60
 text = "0"
 
 [node name="Robots" type="Panel" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="UpgradeBotTree" parent="TabContainer/Robots" instance=ExtResource("8_spp0o")]
 layout_mode = 1
-anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

@@ -1,7 +1,6 @@
 extends Node
 
 # Base variables
-
 var base_gold = 500
 var base_wood = 0
 var base_stone = 0

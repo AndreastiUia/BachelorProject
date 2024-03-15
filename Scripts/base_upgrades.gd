@@ -39,6 +39,7 @@ func UpgradeUnlockUpdateLabel():
 		AttackPowerUpgrade_1.UpgradeLevelLabel.text = "1" + "/" + str(AttackPowerUpgrade_1.MaxUpgrade)
 	elif AttackPowerUpgrade_1.upgradeLevel == 2:
 		AttackPowerUpgrade_1.UpgradeLevelLabel.text = "2" + "/" + str(AttackPowerUpgrade_1.MaxUpgrade)
+	
 	if AttackPowerUpgrade_2.upgradeLevel == 1:
 		AttackPowerUpgrade_3.UpgradeVisible = true
 
