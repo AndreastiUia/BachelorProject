@@ -146,6 +146,7 @@ offset_right = 128.0
 offset_bottom = -128.0
 tooltip_text = "Increase Mining Speed"
 texture_normal = ExtResource("6_kljhr")
+UpgradeVisible = false
 UpgradeLabelVis = false
 MaxUpgrade = 1
 
@@ -156,6 +157,7 @@ offset_right = 128.0
 offset_bottom = -128.0
 tooltip_text = "Increase Mining Speed Tier 2"
 texture_normal = ExtResource("7_t27wh")
+UpgradeVisible = false
 UpgradeLabelVis = false
 MaxUpgrade = 1
 
@@ -178,6 +180,7 @@ offset_right = 128.0
 offset_bottom = -128.0
 tooltip_text = "Increase Search Size"
 texture_normal = ExtResource("9_6pc2w")
+UpgradeVisible = false
 UpgradeLabelVis = false
 MaxUpgrade = 1
 
@@ -200,6 +203,7 @@ offset_right = 128.0
 offset_bottom = -128.0
 tooltip_text = "Increase Attack Power "
 texture_normal = ExtResource("3_qg1gi")
+UpgradeVisible = false
 UpgradeLabelVis = false
 MaxUpgrade = 1
 
@@ -210,6 +214,7 @@ offset_right = 128.0
 offset_bottom = -128.0
 tooltip_text = "Increase Attack Power Tier 2"
 texture_normal = ExtResource("4_piobm")
+UpgradeVisible = false
 MaxUpgrade = 2
 
 [node name="TransportBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
@@ -231,6 +236,7 @@ offset_right = 128.0
 offset_bottom = -128.0
 tooltip_text = "Increase Inventory Size"
 texture_normal = ExtResource("14_yornm")
+UpgradeVisible = false
 MaxUpgrade = 5
 
 [node name="RobotlistControlNode" parent="." instance=ExtResource("17_02cm6")]

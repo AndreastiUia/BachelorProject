@@ -206,13 +206,17 @@ func ButtonsUpgradeUnlockedCheck(Bot):
 #Minig bot Upgrades
 	if Bot.miningupgrade == true:
 		MiningBotUpgrade.UpgradeUnlocked = true
+		MiningBotSpeedUpgrade_1.UpgradeVisible = true
 	else:
 		MiningBotUpgrade.UpgradeUnlocked = false
+		MiningBotSpeedUpgrade_1.UpgradeVisible = false
 	
 	if Bot.miningspeedupgrade_1 == true:
 		MiningBotSpeedUpgrade_1.UpgradeUnlocked = true
+		MiningBotSpeedUpgrade_2.UpgradeVisible = true
 	else:
 		MiningBotSpeedUpgrade_1.UpgradeUnlocked = false
+		MiningBotSpeedUpgrade_2.UpgradeVisible = false
 	
 	if Bot.miningspeedupgrade_2 == true:
 		MiningBotSpeedUpgrade_2.UpgradeUnlocked = true
@@ -222,7 +226,10 @@ func ButtonsUpgradeUnlockedCheck(Bot):
 #Search bot Upgrade
 	if Bot.searchupgrade == true:
 		SearchBotUpgrade.UpgradeUnlocked = true
-	else: SearchBotUpgrade.UpgradeUnlocked = false
+		SearchBotSizeUpgrade.UpgradeVisible = true
+	else: 
+		SearchBotUpgrade.UpgradeUnlocked = false
+		SearchBotSizeUpgrade.UpgradeVisible = false
 	
 	if Bot.searchsizeupgrade == true:
 		SearchBotSizeUpgrade.UpgradeUnlocked = true
@@ -231,11 +238,17 @@ func ButtonsUpgradeUnlockedCheck(Bot):
 #Attack bot Upgrade
 	if Bot.attackupgrade == true:
 		AttackBotUpgrade.UpgradeUnlocked = true
-	else: AttackBotUpgrade.UpgradeUnlocked = false
+		AttackBotDmgUpgrade_1.UpgradeVisible = true
+	else: 
+		AttackBotUpgrade.UpgradeUnlocked = false
+		AttackBotDmgUpgrade_1.UpgradeVisible = false
 	
 	if Bot.attackdmgupgrade_1 == true:
 		AttackBotDmgUpgrade_1.UpgradeUnlocked = true
-	else: AttackBotDmgUpgrade_1.UpgradeUnlocked = false
+		AttackBotDmgUpgrade_2.UpgradeVisible = true
+	else: 
+		AttackBotDmgUpgrade_1.UpgradeUnlocked = false
+		AttackBotDmgUpgrade_2.UpgradeVisible = false
 	
 	if Bot.attackdmgupgrade_2 == false:
 		AttackBotDmgUpgrade_2.UpgradeLevelLabel.text = "0" + "/" + str(AttackBotDmgUpgrade_2.MaxUpgrade)
@@ -252,7 +265,10 @@ func ButtonsUpgradeUnlockedCheck(Bot):
 #Transport bot Upgrades
 	if Bot.transportupgrade == true:
 		TransportBotUpgrade.UpgradeUnlocked = true
-	else: TransportBotUpgrade.UpgradeUnlocked = false
+		TransportBotInvUpgrade.UpgradeVisible = true
+	else: 
+		TransportBotUpgrade.UpgradeUnlocked = false
+		TransportBotInvUpgrade.UpgradeVisible = false
 	
 	if Bot.transportinvupgrade_1 == false:
 		TransportBotInvUpgrade.UpgradeLevelLabel.text = "0" + "/" + str(TransportBotInvUpgrade.MaxUpgrade)
@@ -293,7 +309,6 @@ func _process(_delta):
 		# Run Upgrade Checks
 		ButtonsUpgradeUnlockedCheck(SelectedBot)
 		UpgradeTreeUnlocks(SelectedBot)
-
 
 
 func _on_health_upgrade_button_pressed():

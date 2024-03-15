@@ -15,21 +15,33 @@ extends Control
 
 func UpgradeUnlockUpdateLabel():
 	
-	# Health Upgrade Checks
+	# Health & Armor Upgrade and Visibility Checks
 	if HealthUpgrade_1.upgradeLevel == 0:
 		HealthUpgrade_1.UpgradeLevelLabel.text = "0" + "/" + str(HealthUpgrade_1.MaxUpgrade)
 	elif HealthUpgrade_1.upgradeLevel == 1:
+		HealthUpgrade_2.UpgradeVisible = true
 		HealthUpgrade_1.UpgradeLevelLabel.text = "1" + "/" + str(HealthUpgrade_1.MaxUpgrade)
 	elif HealthUpgrade_1.upgradeLevel == 2:
 		HealthUpgrade_1.UpgradeLevelLabel.text = "2" + "/" + str(HealthUpgrade_1.MaxUpgrade)
 	
-	# DMG Upgrade Checks
+	if HealthUpgrade_2.upgradeLevel == 1:
+		HealthUpgrade_3.UpgradeVisible = true
+		ArmorUpgrade_1.UpgradeVisible = true
+	
+	if ArmorUpgrade_1.upgradeLevel == 1:
+		ArmorUpgrade_2.UpgradeVisible = true
+	
+	# DMG Upgrade and Visibility Checks
 	if AttackPowerUpgrade_1.upgradeLevel == 0:
 		AttackPowerUpgrade_1.UpgradeLevelLabel.text = "0" + "/" + str(AttackPowerUpgrade_1.MaxUpgrade)
 	elif AttackPowerUpgrade_1.upgradeLevel == 1:
+		AttackPowerUpgrade_2.UpgradeVisible = true
 		AttackPowerUpgrade_1.UpgradeLevelLabel.text = "1" + "/" + str(AttackPowerUpgrade_1.MaxUpgrade)
 	elif AttackPowerUpgrade_1.upgradeLevel == 2:
 		AttackPowerUpgrade_1.UpgradeLevelLabel.text = "2" + "/" + str(AttackPowerUpgrade_1.MaxUpgrade)
+	
+	if AttackPowerUpgrade_2.upgradeLevel == 1:
+		AttackPowerUpgrade_3.UpgradeVisible = true
 
 
 # Called when the node enters the scene tree for the first time.

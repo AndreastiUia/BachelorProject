@@ -5,11 +5,12 @@ class_name Upgrade_Node
 @onready var UpgradeLevelLabel = $UpgradeLevelLabel
 @onready var UpgradeLine = $UpgradeLine
 
+@export var UpgradeVisible:bool = true
 @export var UpgradeLabelVis:bool = true
 @export var UpgradeUnlocked:bool = false
 @export var UpgradeCost: int = 0
 @export var MaxUpgrade:int = 3
-@export var upgradeLevel:int = 0 #:
+@export var upgradeLevel:int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,12 +28,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	
+	if UpgradeVisible == false:
+		visible = false
+	elif UpgradeVisible == true:
+		visible = true
+	
 	if UpgradeUnlocked == true && upgradeLevel > 0:
 		self.self_modulate = Color(1, 1, 1)
 		UpgradeLine.default_color = Color(0.30851498246193, 0.78534024953842, 0.58209604024887)
 	elif UpgradeUnlocked == false:
-		self.self_modulate = Color(0.4, 0.4, 0.4)
-		UpgradeLine.default_color = Color(0.8, 0.8, 0.8)
+			self.self_modulate = Color(0.4, 0.4, 0.4)
+			UpgradeLine.default_color = Color(0.8, 0.8, 0.8)
+
 
 func IncrementUpgradeLevel():
 	#Iterate the upgrade level once
@@ -42,4 +50,3 @@ func IncrementUpgradeLevel():
 	for upgrade in upgrades:
 		if upgrade is Upgrade_Node and upgradeLevel == MaxUpgrade:
 			upgrade.disabled = false
-
