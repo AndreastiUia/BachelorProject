@@ -6,7 +6,7 @@ extends Node2D
 @onready var movement = $Movement
 
 # Bot atributes
-var SPEED = 50
+var SPEED = 500
 var search_radius = 5
 var idle = true
 
