@@ -1,27 +1,25 @@
 extends TextureButton
 class_name Upgrade_Node
 
+#Variables
 @onready var UpgradeLevelLabel = $UpgradeLevelLabel
 @onready var UpgradeLine = $UpgradeLine
-@export var MaxUpgrade:int = 3
+
+@export var UpgradeVisible:bool = true
 @export var UpgradeLabelVis:bool = true
-
-var upgradelevel:int = 0:
-	set(value):
-		upgradelevel = value
-		UpgradeLevelLabel.text = str(upgradelevel) + "/" + str(MaxUpgrade)
-
+@export var UpgradeUnlocked:bool = false
+@export var UpgradeCost: int = 0
+@export var MaxUpgrade:int = 3
+@export var upgradeLevel:int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	UpgradeLevelLabel.text = str(upgradelevel) + "/" + str(MaxUpgrade)
+	UpgradeLevelLabel.text = str(upgradeLevel) + "/" + str(MaxUpgrade)
 	
 	if UpgradeLabelVis == false:
 		UpgradeLevelLabel.visible = false
 	else:
 		UpgradeLevelLabel.visible = true
-	
 	
 	if get_parent() is Upgrade_Node:
 		UpgradeLine.add_point(self.global_position + self.size/2)
@@ -29,29 +27,26 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _process(_delta):
+	
+	if UpgradeVisible == false:
+		visible = false
+	elif UpgradeVisible == true:
+		visible = true
+	
+	if UpgradeUnlocked == true && upgradeLevel > 0:
+		self.self_modulate = Color(1, 1, 1)
+		UpgradeLine.default_color = Color(0.30851498246193, 0.78534024953842, 0.58209604024887)
+	elif UpgradeUnlocked == false:
+			self.self_modulate = Color(0.4, 0.4, 0.4)
+			UpgradeLine.default_color = Color(0.8, 0.8, 0.8)
 
 
-func _on_pressed():
-	upgradelevel = min(upgradelevel+1, MaxUpgrade)
-	self.self_modulate = Color(1, 1, 1)
-	
-	UpgradeLine.default_color = Color(0.30851498246193, 0.78534024953842, 0.58209604024887)
-	
+func IncrementUpgradeLevel():
+	#Iterate the upgrade level once
+	upgradeLevel = min(upgradeLevel+1, MaxUpgrade)
+	#Unlock childnode if maxupgrade level reached on current node
 	var upgrades = get_children()
 	for upgrade in upgrades:
-		if upgrade is Upgrade_Node and upgradelevel == MaxUpgrade:
+		if upgrade is Upgrade_Node and upgradeLevel == MaxUpgrade:
 			upgrade.disabled = false
-	
-	# Temp: For "kjop" av upgrades legg inn ein check her for global variables = upgrade cost.
-	# Og reduser global vars når du kjøper upgrades.
-	
-
-
-
-
-
-
-
-

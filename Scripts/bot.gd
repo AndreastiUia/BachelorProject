@@ -2,23 +2,71 @@ extends Node2D
 
 @onready var tile_map = $"../TileMap"
 @onready var timer_reset_idle = $timer_reset_idle
+@onready var health = $healthComponent
 
-
-# Bot atributes
-var SPEED = 100
-var search_radius = 5
+# Bot attributes
+@export var botname: String = "KevinBot"
+@export var armor: int = 0
+@export var fueltank: int = 100
+@export var fueltank_size = 100
+@export var SPEED = 50
+@export var search_radius = 5
+@export var mining_time = 0.001
+@export var attackpower = 25
 var idle = true
 
 # Pathfinding
 var current_id_path: Array[Vector2i]
 
 # Inventory
-var gold: int = 0
-var wood: int = 0
-var stone: int = 0
-var inventory: int = 0
-var inventory_size: int = 10
-var mining_time = 0.3
+@export var gold: int = 0
+@export var wood: int = 0
+@export var stone: int = 0
+@export var inventory: int = 0
+@export var inventory_size: int = 10
+
+# Robot Upgrade Bools
+var healthupgrade_1: bool = false
+var healthupgrade_2: bool = false
+var healthupgrade_3: bool = false
+
+var armorupgrade_1: bool = false
+var armorupgrade_2: bool = false
+var armorupgrade_3: bool = false
+
+var inventoryupgrade: bool = false
+
+var fuelupgrade_1: bool = false
+var fuelupgrade_2: bool = false
+var fuelupgrade_3: bool = false
+var fuelupgrade_4: bool = false
+
+var speedupgrade_1: bool = false
+var speedupgrade_2: bool = false
+var speedupgrade_3: bool = false
+var speedupgrade_4: bool = false
+
+var miningupgrade: bool = false
+
+var miningspeedupgrade_1: bool = false
+var miningspeedupgrade_2: bool = false
+
+var searchupgrade: bool = false
+var searchsizeupgrade: bool = false
+
+var attackupgrade: bool = false
+
+var attackdmgupgrade_1: bool = false
+var attackdmgupgrade_2: bool = false
+var attackdmgupgrade_3: bool = false
+
+var transportupgrade: bool = false
+
+var transportinvupgrade_1: bool = false
+var transportinvupgrade_2: bool = false
+var transportinvupgrade_3: bool = false
+var transportinvupgrade_4: bool = false
+var transportinvupgrade_5: bool = false
 
 # Programming bots
 var program_index = 0
@@ -34,6 +82,7 @@ func _ready():
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#UpgradeTreeUnlocks()
 	pass
 
 	

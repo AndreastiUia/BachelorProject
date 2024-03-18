@@ -7,7 +7,12 @@ var bot = preload("res://Scenes/bot.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	var b = bot.instantiate()
+	var position = Vector2(25, -20)
+	b.position = position
+	Global.bots.append(b)
+	print(Global.bots)
+	add_child(b)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -23,6 +28,7 @@ func _on_temp_button_pressed():
 	var position = Vector2(25, -20)
 	b.position = position
 	Global.bots.append(b)
+	b.botname = "MatiasBot"
 	print(Global.bots)
 	add_child(b)
 	
