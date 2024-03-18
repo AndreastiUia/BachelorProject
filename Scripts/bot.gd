@@ -5,7 +5,7 @@ extends Node2D
 @onready var health = $healthComponent
 
 # Bot attributes
-@export var botname: String = "KevinBot"
+@export var botname: String = "ProgBot"
 @export var armor: int = 0
 @export var fueltank: int = 100
 @export var fueltank_size = 100

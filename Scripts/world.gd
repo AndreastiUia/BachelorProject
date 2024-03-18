@@ -8,11 +8,12 @@ var botnamecounter:int = 1
 var bot = preload("res://Scenes/bot.tscn")
 
 func incrementbotname(botnamecounter):
-	botnamecounter+1
+	botnamecounter += 1
+	return botnamecounter
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Robotlist.populate_bot_list()
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -20,7 +21,7 @@ func _process(delta):
 	get_node("Camera2D/GUI/SideGUI/HBoxContainer/WoodIcon/Wood_Label").text = str(Global.base_wood)
 	get_node("Camera2D/GUI/SideGUI/HBoxContainer/StoneIcon/Stone_Label").text = str(Global.base_stone)
 	
-	Robotlist.populate_bot_list()
+	var SelectedBot = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode.bot
 	
 
 
@@ -29,8 +30,8 @@ func _on_temp_button_pressed():
 	var position = Vector2(25, -20)
 	b.position = position
 	Global.bots.append(b)
-	b.botname = "ProgBot " + str(botnamecounter)
-	incrementbotname(botnamecounter)
+	b.botname += " " + str(botnamecounter)
+	botnamecounter = incrementbotname(botnamecounter)
 	print(Global.bots)
 	add_child(b)
 	
