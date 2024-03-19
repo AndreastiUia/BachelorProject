@@ -32,7 +32,6 @@ func _ready():
 	for i in range(number_enemies):
 		spawn_enemy()
 	
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	get_node("Camera2D/GUI/SideGUI/HBoxContainer/GoldIcon/Gold_Label").text = str(Global.base_gold)
