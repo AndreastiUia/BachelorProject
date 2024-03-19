@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c1c4dv0ubdle" path="res://Scenes/CoordinateInputDialog.tscn" id="6_666pr"]
 [ext_resource type="Script" path="res://Scripts/IfStatements.gd" id="6_ckbhm"]
 [ext_resource type="PackedScene" uid="uid://cpp01alcayl7g" path="res://Scenes/robotlist.tscn" id="7_m1pyj"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vr5kn"]
 shader = ExtResource("2_4ox4k")
 shader_parameter/lod = 0.0
