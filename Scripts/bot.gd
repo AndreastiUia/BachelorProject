@@ -7,7 +7,7 @@ extends Node2D
 
 # Bot atributes
 var SPEED = 500
-var search_radius = 5
+var search_radius = 50
 var idle = true
 
 # Inventory
@@ -112,7 +112,6 @@ func program_bot(function: Array):
 			program_index = temp_program_index
 			
 			# If the statement is false, then skip to IF_END.
-			print(program_array[program_index])
 			if !check_if_statement(program_array[program_index]):
 				program_index = program_if_end_index.front()
 			program_if_end_index.pop_front()

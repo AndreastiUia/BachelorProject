@@ -136,3 +136,24 @@ func uncover_map(position: Vector2i, radius: int):
 			
 			if tile_data_resources == null && tile_data_floor != null:
 				astar_grid.set_point_solid(center_chunk, false)
+			
+			var spawn_queue_result = Global.spawn_queue.find(center_chunk)
+			if spawn_queue_result != -1:
+				get_parent().spawn_enemy_from_queue(center_chunk)
+				Global.spawn_queue.remove_at(spawn_queue_result)
+
+func check_tile_free(position:Vector2i):
+	# Check if the tile is free
+	var tile_data = get_cell_tile_data(1, position)
+	if tile_data == null:
+		return true
+	else:
+		return false
+
+func check_tile_uncovered(position:Vector2i):
+	# Check if the tile is uncovered
+	var tile_data = get_cell_source_id(2, position)
+	if tile_data == null:
+		return true
+	else:
+		return false

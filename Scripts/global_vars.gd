@@ -13,3 +13,7 @@ var resource_count:Dictionary = {}
 
 # Array storing bots
 var bots:Array = []
+
+# Enemies
+var enemies:Array = []
+var spawn_queue = []
