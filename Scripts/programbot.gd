@@ -1,11 +1,5 @@
 extends Control
 
-
-
-func _ready():
-	print("Global bots:", Global.bots)
-
-
 func programbots():
 	show()
 	get_tree().paused = true
