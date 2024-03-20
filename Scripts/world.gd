@@ -150,7 +150,7 @@ func spawn_enemy():
 	
 	# Check if area is uncoverd at location.
 	if !tile_map.check_tile_uncovered(spawn_position):
-		Global.spawn_queue.append(tile_map.local_to_map(spawn_position))
+		Global.spawn_queue.append(spawn_position)
 	else:
 		e.position = spawn_position
 		add_child(e)
@@ -158,6 +158,6 @@ func spawn_enemy():
 		
 func spawn_enemy_from_queue(spawn_position:Vector2i):
 	var e = enemy.instantiate()
-	e.position = tile_map.map_to_local(spawn_position)
+	e.position = spawn_position
 	add_child(e)
 	Global.enemies.append(e)
