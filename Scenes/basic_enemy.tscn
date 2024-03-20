@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfre148rtjurk"]
+[gd_scene load_steps=9 format=3 uid="uid://dfre148rtjurk"]
 
 [ext_resource type="Script" path="res://Scripts/basic_enemy.gd" id="1_awpoy"]
 [ext_resource type="PackedScene" uid="uid://0hel61iqys76" path="res://Scenes/Components/movement.tscn" id="2_6jov8"]
@@ -12,6 +12,12 @@ size = Vector2(16, 16)
 atlas = ExtResource("4_2dohk")
 region = Rect2(16, 32, 16, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsybb"]
+size = Vector2(208, 208)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqk7l"]
+size = Vector2(112, 112)
+
 [node name="Basic_enemy" type="CharacterBody2D"]
 script = ExtResource("1_awpoy")
 
@@ -21,11 +27,24 @@ shape = SubResource("RectangleShape2D_rooba")
 [node name="healthComponent" parent="." instance=ExtResource("2_na5fj")]
 
 [node name="Movement" parent="." instance=ExtResource("2_6jov8")]
-SPEED = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_re4ae")
 
 [node name="Timer_wander" type="Timer" parent="."]
 
+[node name="Detection_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_area"]
+shape = SubResource("RectangleShape2D_jsybb")
+
+[node name="InRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InRange"]
+shape = SubResource("RectangleShape2D_dqk7l")
+
 [connection signal="timeout" from="Timer_wander" to="." method="_on_timer_wander_timeout"]
+[connection signal="body_entered" from="Detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="InRange" to="." method="_on_in_range_body_entered"]
+[connection signal="body_exited" from="InRange" to="." method="_on_in_range_body_exited"]
