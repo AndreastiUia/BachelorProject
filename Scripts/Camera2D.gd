@@ -43,8 +43,6 @@ func zoom(delta):
 	set_offset(new_camera_position)
 
 
-
-
 func _process(delta):
 	# Used for getting size of game windows
 	var viewport_rect = get_viewport_rect()
@@ -65,6 +63,7 @@ func _process(delta):
 
 	# Go back to main menu
 	if Input.is_action_pressed("quit_to_menu"):
+		Global.bots.clear()
 		get_tree().change_scene_to_file("res://Scenes/menu.tscn")
 
 	# Check mouse position and update movement vector if near the screen edge
