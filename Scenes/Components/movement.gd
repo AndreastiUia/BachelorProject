@@ -2,13 +2,17 @@ extends Node2D
 
 var tile_map
 var current_id_path: Array[Vector2i]
-@export var SPEED: int = 500
-@export var search_radius: int = 5
+var SPEED: int = 500
+var search_radius: int = 5
 var idle: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var parent = get_parent()
 	tile_map = get_node("../../TileMap")
+	SPEED = parent.SPEED
+	if parent.has_method("program_bot"):
+		search_radius = parent.search_radius
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
