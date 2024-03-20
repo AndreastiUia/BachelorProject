@@ -6,7 +6,7 @@ extends Node2D
 @onready var botmenu_lineEdit = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/LineEdit
 @onready var botmenu_console = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/consolePanel/Console
 
-var newbotname:String = "UnEdited"
+var newbotname:String = ""
 var botnamecounter:int = 1
 
 var bot = preload("res://Scenes/bot.tscn")
@@ -41,7 +41,7 @@ func _process(delta):
 		botmenu_lineEdit.placeholder_text = "No Bot Selected"
 	else:
 		botmenu_lineEdit.placeholder_text = str(SelectedBot.botname)
-		
+	
 
 
 func _on_temp_button_pressed():
@@ -72,24 +72,25 @@ func _on_rtn_to_base_btn_pressed():
 	SelectedBot.program_array.append(SelectedBot.program_func.MOVE_TO_POS)
 	SelectedBot.program_array.append(Vector2i(1,-1))
 	SelectedBot.reset_program_state()
-	SelectedBot.program_array.clear()
 	
 	botmenu_console.clear()
 	botmenu_console.append_text(str(SelectedBot.botname) + " returning to base")
 
 func get_current_program():
 	var SelectedBot = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode.bot
-	
-	# Get current program from selected bot.
+	# Get current program from selected bot and return it as string
 	var ActiveProgram = SelectedBot.program_array
-	for i in ActiveProgram:
-		if i is Vector2i:
-			var x = i.x
-			var y = i.y
-			var coord_string = "MOVE_TO_POS (" + str(x) + "," + str(y) + ")"
-			return coord_string
+	# Check if program array is not empty and program index is not over correct size
+	if ActiveProgram.size() > 0 and SelectedBot.program_index < ActiveProgram.size():
+		var current_task = ActiveProgram[SelectedBot.program_index]
+		if current_task is Vector2i:
+			var x = current_task.x
+			var y = current_task.y
+			return "MOVE_TO_POS (" + str(x) + "," + str(y) + ")"
 		else:
-			return str(SelectedBot.program_func.keys()[i])
+			return str(SelectedBot.program_func.keys()[current_task])
+	else:
+		return "Idle"
 
 func _on_status_btn_pressed():
 	var SelectedBot = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode.bot
@@ -103,8 +104,12 @@ func _on_status_btn_pressed():
 
 func _on_edit_name_btn_pressed():
 	var SelectedBot = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode.bot
-	SelectedBot.botname = newbotname
-	Robotlist.populate_bot_list()
+	if newbotname != "":
+		SelectedBot.botname = newbotname
+		Robotlist.populate_bot_list()
+		newbotname = ""
+	else:
+		pass
 
 
 func _on_line_edit_text_changed(new_text):
