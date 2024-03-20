@@ -401,14 +401,13 @@ offset_left = 16.0
 offset_right = 160.0
 offset_bottom = 50.0
 focus_mode = 1
-theme_override_font_sizes/font_size = 20
-placeholder_text = "botname"
+theme_override_font_sizes/font_size = 17
+placeholder_text = "temp text"
 max_length = 10
 context_menu_enabled = false
 virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
 
 [node name="consolePanel" type="Panel" parent="Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu"]
 layout_mode = 0
@@ -438,5 +437,5 @@ text = "temp text"
 [connection signal="pressed" from="Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/status_btn" to="." method="_on_status_btn_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/edit_name_btn" to="." method="_on_edit_name_btn_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/hide_btn" to="." method="_on_hide_btn_pressed"]
-[connection signal="gui_input" from="Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/LineEdit" to="." method="_on_line_edit_gui_input"]
+[connection signal="focus_exited" from="Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/LineEdit" to="." method="_on_line_edit_focus_exited"]
 [connection signal="text_changed" from="Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/LineEdit" to="." method="_on_line_edit_text_changed"]

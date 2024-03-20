@@ -3,9 +3,10 @@ extends Node2D
 @onready var tile_map = $"TileMap"
 @onready var Robotlist = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode
 @onready var botmenu = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu
-@onready var botmenu_name = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/LineEdit
+@onready var botmenu_lineEdit = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/LineEdit
 @onready var botmenu_console = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/consolePanel/Console
-var newbotname:String = "ProgBot"
+
+var newbotname:String = "UnEdited"
 var botnamecounter:int = 1
 
 var bot = preload("res://Scenes/bot.tscn")
@@ -37,15 +38,14 @@ func _process(delta):
 	var SelectedBot = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode.bot
 	# Update lineedit to selected bot name
 	if SelectedBot == null:
-		botmenu_name.text = "No Bot Selected"
+		botmenu_lineEdit.placeholder_text = "No Bot Selected"
 	else:
-		botmenu_name.text = str(SelectedBot.botname)
+		botmenu_lineEdit.placeholder_text = str(SelectedBot.botname)
 		
-	
-
 
 
 func _on_temp_button_pressed():
+	#Spawn a bot and update the robotlist
 	spawnbot()
 	Robotlist.populate_bot_list()
 
@@ -55,6 +55,7 @@ func _on_temp_button_pressed():
 func _on_robotlist_control_node__on_select(index):
 	var botmenu_console = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/consolePanel/Console
 	botmenu_console.clear()
+	botmenu_lineEdit.text = ""
 	botmenu.visible = true
 
 
@@ -63,15 +64,41 @@ func _on_hide_btn_pressed():
 
 
 func _on_rtn_to_base_btn_pressed():
-	pass # Replace with function body.
+	var SelectedBot = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode.bot
+	var botmenu_console = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/consolePanel/Console
+	
+	# Clear the bots program array and append MOVE_TO_POS function with homebase coordinates, then run it. clear the array and print to bot console.
+	SelectedBot.program_array.clear()
+	SelectedBot.program_array.append(SelectedBot.program_func.MOVE_TO_POS)
+	SelectedBot.program_array.append(Vector2i(1,-1))
+	SelectedBot.reset_program_state()
+	SelectedBot.program_array.clear()
+	
+	botmenu_console.clear()
+	botmenu_console.append_text(str(SelectedBot.botname) + " returning to base")
 
+func get_current_program():
+	var SelectedBot = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode.bot
+	
+	# Get current program from selected bot.
+	var ActiveProgram = SelectedBot.program_array
+	for i in ActiveProgram:
+		if i is Vector2i:
+			var x = i.x
+			var y = i.y
+			var coord_string = "MOVE_TO_POS (" + str(x) + "," + str(y) + ")"
+			return coord_string
+		else:
+			return str(SelectedBot.program_func.keys()[i])
 
 func _on_status_btn_pressed():
 	var SelectedBot = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode.bot
 	var botmenu_console = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/consolePanel/Console
 	
 	botmenu_console.clear()
-	botmenu_console.text = "[i]Status on " + str(SelectedBot.botname) + ":[/i]" + "\n" + "Current Health: " + str(SelectedBot.health.MAX_HEALTH) + "\n" + "Current Program: " + "TEMP" + "\n"
+	botmenu_console.append_text("Current Health: " + str(SelectedBot.health.MAX_HEALTH) + "\n")
+	botmenu_console.append_text("Current Program: " + str(get_current_program()) + "\n")
+	botmenu_console.append_text("Position: " + str(SelectedBot.current_bot_position) + "\n")
 	
 
 func _on_edit_name_btn_pressed():
@@ -79,11 +106,10 @@ func _on_edit_name_btn_pressed():
 	SelectedBot.botname = newbotname
 	Robotlist.populate_bot_list()
 
-func _on_line_edit_text_changed():
-	newbotname = botmenu_name.text
 
-func _on_line_edit_gui_input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		botmenu_name.grab_focus()
-		set_process_input(true)
-		set_process_unhandled_key_input(true)
+func _on_line_edit_text_changed(new_text):
+	newbotname = new_text
+
+
+func _on_line_edit_focus_exited():
+	botmenu_lineEdit.text = ""
