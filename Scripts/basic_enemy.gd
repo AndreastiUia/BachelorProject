@@ -18,6 +18,11 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	if tile_map.check_tile_uncovered(global_position):
+		visible = true
+	else:
+		visible = false
+		
 	if idle && timer_wander_timeout:
 		wander_time = randf_range(0,3)
 		timer_wander.start(wander_time)
@@ -28,8 +33,8 @@ func _physics_process(delta):
 
 
 func wander():
-	var directions = [Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN]
-	var direction_index = randi_range(0,3)
+	var directions = [Vector2i.LEFT, Vector2i.UP]#, Vector2i.RIGHT, Vector2i.DOWN]
+	var direction_index = randi_range(0,directions.size()-1)
 	movement.calc_path(movement.calc_target_tile_by_direction(directions[direction_index]))
 
 

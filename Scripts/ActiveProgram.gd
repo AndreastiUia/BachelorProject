@@ -80,6 +80,7 @@ func _on_start_program_pressed():
 			program.append(bot.program_if.get(command_array[1]))
 		else:
 			program.append(bot.program_func.get(get_item_text(i)))
+	
 	bot.program_array = program
 	
 	# Reset the program array to be ready for a new program.

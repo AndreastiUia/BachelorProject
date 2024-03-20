@@ -8,7 +8,6 @@ var bot
 func populate_bot_list():
 	for bot in Global.bots:
 		$RobotList.add_item(str(bot.botname), null, true)
-		print("Adding bot:", str(bot))
 
 
 #Clears the RobotList when resuming from upgradescreen
