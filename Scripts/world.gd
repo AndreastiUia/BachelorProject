@@ -10,7 +10,7 @@ var newbotname:String = ""
 var botnamecounter:int = 1
 
 var bot = preload("res://Scenes/bot.tscn")
-var enemy = preload("res://Scenes/enemy.tscn")
+var enemy = preload("res://Scenes/basic_enemy.tscn")
 var number_enemies = 150
 
 func incrementbotname(botnamecounter):
