@@ -3,8 +3,8 @@ extends Node2D
 @onready var tile_map = $"TileMap"
 
 var bot = preload("res://Scenes/bot.tscn")
-var enemy = preload("res://Scenes/basic_enemy.tscn")
-var number_enemies = 15
+var enemy = preload("res://Scenes/enemy.tscn")
+var number_enemies = 150
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
