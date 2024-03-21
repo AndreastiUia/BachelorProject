@@ -63,6 +63,7 @@ animations = [{
 }]
 
 [node name="bot" type="CharacterBody2D"]
+collision_layer = 3
 script = ExtResource("1_bmq70")
 SPEED = 300
 

@@ -15,7 +15,6 @@ func _ready():
 	print(Global.bots)
 	add_child(b)
 
-
 	for i in range(number_enemies):
 		spawn_enemy()
 	
@@ -32,7 +31,6 @@ func _on_temp_button_pressed():
 	b.position = position
 	Global.bots.append(b)
 	b.botname = "Bot_1337"
-	print(Global.bots)
 	add_child(b)
 	
 func spawn_enemy():
@@ -63,3 +61,11 @@ func spawn_enemy_from_queue(spawn_position:Vector2i):
 	e.position = spawn_position
 	add_child(e)
 	Global.enemies.append(e)
+	e.fire.connect(_on_laser_shot)
+
+
+func _on_laser_shot(pos_from, target, laser_scene):
+	var l = laser_scene.instantiate()
+	l.position = pos_from
+	l.target = target
+	add_child(l)

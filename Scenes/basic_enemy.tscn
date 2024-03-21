@@ -43,8 +43,11 @@ shape = SubResource("RectangleShape2D_jsybb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InRange"]
 shape = SubResource("RectangleShape2D_dqk7l")
 
+[node name="Timer_FireRate" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer_wander" to="." method="_on_timer_wander_timeout"]
 [connection signal="body_entered" from="Detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Detection_area" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="InRange" to="." method="_on_in_range_body_entered"]
 [connection signal="body_exited" from="InRange" to="." method="_on_in_range_body_exited"]
+[connection signal="timeout" from="Timer_FireRate" to="." method="_on_timer_fire_rate_timeout"]

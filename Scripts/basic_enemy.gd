@@ -1,16 +1,24 @@
 extends CharacterBody2D
 
+var laser_scene = preload("res://Scenes/Components/laser.tscn")
+
+signal fire(pos_from, target, laser_scene)
+
 @onready var movement = $"Movement"
 @onready var tile_map = $"../TileMap"
 @onready var timer_wander = $Timer_wander
+@onready var timer_fire_rate = $Timer_FireRate
+
 
 @export var SPEED = 50
+@export var fireRate = 0.5
 
 var idle = true
 var timer_wander_timeout = true
 var wander_time
-var target = false
+var target = null
 var target_in_range = false
+var ready_to_fire = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +30,12 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	if ready_to_fire && target_in_range:
+		fire.emit(global_position, target.global_position, laser_scene)
+		ready_to_fire = false
+		timer_fire_rate.start(fireRate)
+		
+		
 	if tile_map.check_tile_uncovered(global_position):
 		visible = true
 	else:
@@ -57,17 +71,19 @@ func _on_detection_area_body_exited(body):
 	if body.has_method("program_bot"):
 		if body == target:
 			target = null
+			movement.current_id_path.clear()
+			idle = true
 
 
 func _on_in_range_body_entered(body):
 	if body.has_method("program_bot"):
-		print("bot in range")
 		target_in_range = true
-		print(movement.current_id_path)
 		movement.current_id_path.clear()
-		print(movement.current_id_path)
 
 
 func _on_in_range_body_exited(body):
 	if body.has_method("program_bot"):
 		target_in_range = false
+
+func _on_timer_fire_rate_timeout():
+	ready_to_fire = true
