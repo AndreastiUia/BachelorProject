@@ -31,7 +31,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	if ready_to_fire && target_in_range:
-		fire.emit(global_position, target.global_position, laser_scene)
+		fire.emit(global_position, target, laser_scene)
 		ready_to_fire = false
 		timer_fire_rate.start(fireRate)
 		

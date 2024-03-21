@@ -14,6 +14,8 @@ func _process(delta):
 func take_damage(damage: int):
 	# Take damage.
 	health -= damage
+	if health <= 0:
+		get_parent().queue_free()
 
 func repair(repair: int):
 	# Repair bot.
