@@ -96,20 +96,31 @@ func _on_status_btn_pressed():
 	var SelectedBot = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode.bot
 	var botmenu_console = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/consolePanel/Console
 	
-	botmenu_console.clear()
-	botmenu_console.append_text("Current Health: " + str(SelectedBot.health.MAX_HEALTH) + "\n")
-	botmenu_console.append_text("Current Program: " + str(get_current_program()) + "\n")
-	botmenu_console.append_text("Position: " + str(SelectedBot.current_bot_position) + "\n")
-	
+	if SelectedBot != null:
+		botmenu_console.clear()
+		botmenu_console.append_text("Current Health: " + str(SelectedBot.health.MAX_HEALTH) + "\n")
+		botmenu_console.append_text("Current Program: " + str(get_current_program()) + "\n")
+		botmenu_console.append_text("Position: " + str(SelectedBot.current_bot_position) + "\n")
+	else:
+		botmenu_console.clear()
+		botmenu_console.append_text("No Bot Selected \n")
+		botmenu_console.append_text("Please reselect a bot")
 
 func _on_edit_name_btn_pressed():
 	var SelectedBot = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode.bot
-	if newbotname != "":
-		SelectedBot.botname = newbotname
-		Robotlist.populate_bot_list()
-		newbotname = ""
+	
+	if SelectedBot != null:
+		
+		if newbotname != "":
+			SelectedBot.botname = newbotname
+			Robotlist.populate_bot_list()
+			newbotname = ""
+		else:
+			pass
 	else:
-		pass
+		botmenu_console.clear()
+		botmenu_console.append_text("No Bot Selected for rename\n")
+		botmenu_console.append_text("Please reselect a bot")
 
 
 func _on_line_edit_text_changed(new_text):
