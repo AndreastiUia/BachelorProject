@@ -5,7 +5,7 @@ extends Node2D
 @onready var health = $healthComponent
 
 # Bot attributes
-@export var botname: String = "KevinBot"
+@export var botname: String = "ProgBot"
 @export var armor: int = 0
 @export var fueltank: int = 100
 @export var fueltank_size = 100
@@ -14,6 +14,8 @@ extends Node2D
 @export var mining_time = 0.001
 @export var attackpower = 25
 var idle = true
+
+var current_bot_position
 
 # Pathfinding
 var current_id_path: Array[Vector2i]
@@ -82,9 +84,8 @@ func _ready():
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#UpgradeTreeUnlocks()
-	pass
-
+	var bot_position_map = tile_map.local_to_map(global_position)
+	current_bot_position = bot_position_map
 	
 func _physics_process(delta):
 	if !current_id_path.is_empty():

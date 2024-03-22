@@ -26,6 +26,7 @@ offset_right = -0.114014
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+allow_reselect = true
 
 [connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="hidden" from="RobotList" to="." method="_on_robot_list_hidden"]
