@@ -3,13 +3,17 @@ extends ItemList
 signal show_coordinate_edit_box
 signal show_ifStatement_edit_box
 var new_icon = preload("res://Sprites/Icons/icon.svg")
-var Programs = null
 var CoordinateInputDialog = preload("res://Scenes/CoordinateInputDialog.tscn")
 var selected_item_index = -1
+var start_stop_container
+var Programs = null
 var bot
 
 func _ready():
 	Programs = get_parent().get_node("Programs")
+	start_stop_container = get_parent().get_node("HBoxContainer")
+	if bot == null:
+		start_stop_container.visible = false
 
 func remove_item_from_list():
 	var selected_items = get_selected_items()
@@ -121,3 +125,5 @@ func _on_remove_pressed():
 func _on_robotlist_control_node__on_select(index):
 	bot = Global.bots[index]
 	get_current_program()
+	start_stop_container.visible = true
+	
