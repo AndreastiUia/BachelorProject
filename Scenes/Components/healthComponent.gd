@@ -15,6 +15,11 @@ func take_damage(damage: int):
 	# Take damage.
 	health -= damage
 	if health <= 0:
+		# Remove bot from global bot array.
+		var bot_index = Global.bots.find(get_parent())
+		if bot_index != -1:
+			Global.bots.remove_at(bot_index)
+		
 		get_parent().queue_free()
 
 func repair(repair: int):
