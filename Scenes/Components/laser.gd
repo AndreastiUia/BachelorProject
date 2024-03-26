@@ -11,7 +11,7 @@ var target = Vector2(0,0)
 func _ready():
 	direction = (global_position-target.global_position).normalized()
 	global_rotation = global_position.direction_to(target.global_position).angle()
-	get_node("Laser_fired").play(0.1)
+	get_node("Laser_fired").play(0.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -26,6 +26,11 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_body_entered(body):
 	if body.has_method("program_bot"):
+		get_node("Laser_hit").play(0.0)
 		if body.has_method("damage"):
 			body.damage(damage)
-		queue_free()
+		get_node("Sprite2D").visible = false
+
+
+func _on_laser_hit_finished():
+	queue_free()
