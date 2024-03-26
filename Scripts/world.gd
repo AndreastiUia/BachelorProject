@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var tile_map = $"TileMap"
+@onready var camera = $Camera2D
 @onready var Robotlist = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode
 @onready var botmenu = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu
 @onready var botmenu_lineEdit = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/LineEdit
@@ -15,6 +16,16 @@ func incrementbotname(botnamecounter):
 	botnamecounter += 1
 	return botnamecounter
 
+func centercameraposition():
+	# Get the position of the center of the camera in global coordinates
+	var screen_center = get_viewport_rect().size / 2
+	# Get the position of the center of the tile (0, 0) in local coordinates
+	var tile_center_global = tile_map.map_to_local(Vector2(0, 0))
+	# Calculate the offset to align the camera's center with the position of tile (0, 0)
+	var offset = tile_center_global - screen_center
+	# Set the Camera2D's global position to the calculated position
+	camera.global_position = offset
+
 func spawnbot():
 	var b = bot.instantiate()
 	var position = Vector2(25, -20)
@@ -27,7 +38,7 @@ func spawnbot():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	centercameraposition()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -129,3 +140,7 @@ func _on_line_edit_text_changed(new_text):
 
 func _on_line_edit_focus_exited():
 	botmenu_lineEdit.text = ""
+
+
+func _on_center_camera_btn_pressed():
+	centercameraposition()
