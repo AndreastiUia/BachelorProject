@@ -8,11 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dh0py3fdnppn3" path="res://Sprites/Bot/botsprite_left_2.png" id="7_qdiet"]
 [ext_resource type="Texture2D" uid="uid://dfpxkmf6vsf68" path="res://Sprites/Bot/botsprite_right_0.png" id="8_sfma6"]
 [ext_resource type="Texture2D" uid="uid://ddtx4yvs8p2l6" path="res://Sprites/Bot/botsprite_right_1.png" id="9_utsi4"]
-<<<<<<< HEAD
-[ext_resource type="PackedScene" uid="uid://buuod7mdy8ofe" path="res://Scenes/Components/healthComponent.tscn" id="10_rufj1"]
-=======
-[ext_resource type="PackedScene" path="res://Scenes/Components/healthComponent.tscn" id="10_rufj1"]
->>>>>>> fff2fd9 (Modified bot.gd to be more independent)
+[ext_resource type="PackedScene" uid="uid://cymsqhhusayl5" path="res://Scenes/Components/healthComponent.tscn" id="10_rufj1"]
 [ext_resource type="Texture2D" uid="uid://hxb5bopn3l70" path="res://Sprites/Bot/botsprite_right_3.png" id="10_sxtvm"]
 [ext_resource type="PackedScene" uid="uid://0hel61iqys76" path="res://Scenes/Components/movement.tscn" id="11_u4kmm"]
 
@@ -87,10 +83,6 @@ scale = Vector2(0.0640625, 0.0640625)
 sprite_frames = SubResource("SpriteFrames_dmixi")
 animation = &"right"
 frame_progress = 0.331972
-
-[node name="Timer_reset_idle" type="Timer" parent="."]
-
-[node name="healthComponent" parent="." instance=ExtResource("10_rufj1")]
 
 [node name="Timer_reset_idle" type="Timer" parent="."]
 

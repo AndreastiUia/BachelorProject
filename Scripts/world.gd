@@ -27,11 +27,8 @@ func spawnbot():
 	print(Global.bots)
 	add_child(b)
 
-<<<<<<< HEAD
 # Called when the node enters the scene tree for the first time.
 func _ready():
-=======
->>>>>>> 1ed7e64 (Enemies can now fire lasers at bots.)
 	for i in range(number_enemies):
 		spawn_enemy()
 	
