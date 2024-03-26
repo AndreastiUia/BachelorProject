@@ -11,6 +11,7 @@ var target = Vector2(0,0)
 func _ready():
 	direction = (global_position-target.global_position).normalized()
 	global_rotation = global_position.direction_to(target.global_position).angle()
+	get_node("Laser_fired").play(0.1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
