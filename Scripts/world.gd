@@ -101,7 +101,7 @@ func _on_status_btn_pressed():
 	
 	if SelectedBot != null:
 		botmenu_console.clear()
-		botmenu_console.append_text("Current Health: " + str(SelectedBot.health.MAX_HEALTH) + "\n")
+		botmenu_console.append_text("Current Health: " + str(SelectedBot.health_component.MAX_HEALTH) + "\n")
 		botmenu_console.append_text("Current Program: " + str(get_current_program()) + "\n")
 		botmenu_console.append_text("Position: " + str(SelectedBot.current_bot_position) + "\n")
 	else:
