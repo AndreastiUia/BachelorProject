@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cuhi4t00wx2iu"]
+[gd_scene load_steps=15 format=3 uid="uid://cuhi4t00wx2iu"]
 
 [ext_resource type="Script" path="res://Scripts/bot.gd" id="1_bmq70"]
 [ext_resource type="Texture2D" uid="uid://cq5gwt08d2ev1" path="res://Sprites/Bot/botsprite_left_idle.png" id="3_vhjvu"]
@@ -62,6 +62,9 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbncd"]
+size = Vector2(144, 144)
+
 [node name="bot" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_bmq70")
@@ -89,3 +92,14 @@ frame_progress = 0.331972
 [node name="healthComponent" parent="." instance=ExtResource("10_rufj1")]
 
 [node name="Movement" parent="." instance=ExtResource("11_u4kmm")]
+
+[node name="InRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InRange"]
+shape = SubResource("RectangleShape2D_cbncd")
+
+[node name="Timer_FireRate" type="Timer" parent="."]
+
+[connection signal="body_entered" from="InRange" to="." method="_on_in_range_body_entered"]
+[connection signal="body_exited" from="InRange" to="." method="_on_in_range_body_exited"]
+[connection signal="timeout" from="Timer_FireRate" to="." method="_on_timer_fire_rate_timeout"]

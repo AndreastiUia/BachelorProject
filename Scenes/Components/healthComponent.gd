@@ -19,6 +19,8 @@ func _process(delta):
 func take_damage(damage: int):
 	# Take damage.
 	health -= damage
+	if get_parent().has_method("wander"):
+		print(health)
 	if health <= 0:
 		if parent.has_method("program_bot"):
 		# Remove bot from global bot array.
@@ -28,6 +30,8 @@ func take_damage(damage: int):
 			# update robotlist in HUD
 			var robotlist = parent.get_parent().get_node("Camera2D/GUI/ListGUI/Panel/RobotlistControlNode")
 			robotlist._on_draw()
+			parent.queue_free()
+		if parent.has_method("wander"):
 			parent.queue_free()
 
 func repair(repair: int):
