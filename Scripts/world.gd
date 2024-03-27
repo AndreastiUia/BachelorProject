@@ -70,6 +70,12 @@ func _on_rtn_to_base_btn_pressed():
 	var SelectedBot = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode.bot
 	var botmenu_console = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/consolePanel/Console
 	
+	if SelectedBot == null:
+		botmenu_console.clear()
+		botmenu_console.append_text("No Bot Selected \n")
+		botmenu_console.append_text("Please reselect a bot")
+		return
+	
 	# Clear the bots program array and append MOVE_TO_POS function with homebase coordinates, then run it. clear the array and print to bot console.
 	SelectedBot.program_array.clear()
 	SelectedBot.program_array.append(SelectedBot.program_func.MOVE_TO_POS)
@@ -101,7 +107,7 @@ func _on_status_btn_pressed():
 	
 	if SelectedBot != null:
 		botmenu_console.clear()
-		botmenu_console.append_text("Current Health: " + str(SelectedBot.health_component.MAX_HEALTH) + "\n")
+		botmenu_console.append_text("Current Health: " + str(SelectedBot.health_component.health) + "\n")
 		botmenu_console.append_text("Current Program: " + str(get_current_program()) + "\n")
 		botmenu_console.append_text("Position: " + str(SelectedBot.current_bot_position) + "\n")
 	else:
