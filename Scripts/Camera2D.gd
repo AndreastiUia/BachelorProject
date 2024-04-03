@@ -56,6 +56,16 @@ func _process(delta):
 		arrow_movement.y += 1
 	if Input.is_action_pressed("ui_up"):
 		arrow_movement.y -= 1
+	
+	# Camera movement with WASD keys. 
+	if Input.is_action_pressed("right"):
+		arrow_movement.x += 1
+	if Input.is_action_pressed("left"):
+		arrow_movement.x -= 1
+	if Input.is_action_pressed("down"):
+		arrow_movement.y += 1
+	if Input.is_action_pressed("up"):
+		arrow_movement.y -= 1
 
 
 	# Go back to main menu
