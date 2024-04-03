@@ -42,6 +42,10 @@ func _process(delta):
 	else:
 		botmenu_lineEdit.placeholder_text = str(SelectedBot.botname)
 	
+	# Update mouse coordinates label
+	var Coordlabel = $Camera2D/GUI/SideGUI/HBoxPosLabels/Coordtext
+	var mousecoord = get_local_mouse_position()
+	Coordlabel.text = str(tile_map.local_to_map(mousecoord))
 
 
 func _on_temp_button_pressed():
