@@ -1,21 +1,24 @@
 extends Control
 signal _on_select(index:int)
 
+@onready var robot_list = $RobotList
+
 var bot
+
 
 #Add bots to Robotlist in upgradescreen
 func populate_bot_list():
-	$RobotList.clear()
+	robot_list.clear()
 	for bot in Global.bots:
 		if bot != null:
-			$RobotList.add_item(str(bot.botname), null, true)
+			robot_list.add_item(str(bot.botname), null, true)
 			print("Adding bot:", str(bot))
 		else:
 			pass
 
 #Clears the RobotList when resuming from upgradescreen
 func clear_bot_list():
-	$RobotList.clear()
+	robot_list.clear()
 
 #Clear robotlist on robotlist hidden
 func _on_robot_list_hidden():
@@ -23,9 +26,20 @@ func _on_robot_list_hidden():
 
 #Populate robotlist on RobotlistControlNode draw
 func _on_draw():
+	clear_bot_list()
+	if Global.bots.is_empty():
+		return
 	populate_bot_list()
+	# only select the first bot in the list if the robotlist is used in "programbots"
+	if get_parent().get_parent().has_method("programbots"):
+		robot_list.select(0)
+		bot = Global.bots[0]
+		emit_signal("_on_select", 0)
 
 #Store the selected robotlist item
 func _on_robot_list_item_selected(index):
 	bot = Global.bots[index]
 	emit_signal("_on_select", index)
+
+func _bot_destroyed(bot):
+	pass
