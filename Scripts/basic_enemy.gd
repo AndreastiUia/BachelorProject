@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var laser_scene = preload("res://Scenes/Components/laser.tscn")
 
-signal fire(pos_from, target, laser_scene)
+signal fire(pos_from, target, laser_scene, color, damage)
 
 @onready var movement = $"Movement"
 @onready var tile_map = $"../TileMap"
@@ -12,6 +12,7 @@ signal fire(pos_from, target, laser_scene)
 
 @export var SPEED = 50
 @export var fireRate = 0.5
+@export var attackpower = 10
 
 var idle = true
 var timer_wander_timeout = true
@@ -31,7 +32,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	if ready_to_fire && target_in_range:
-		fire.emit(global_position, target, laser_scene)
+		fire.emit(global_position, target, laser_scene, "red", attackpower)
 		ready_to_fire = false
 		timer_fire_rate.start(fireRate)
 		
@@ -87,3 +88,6 @@ func _on_in_range_body_exited(body):
 
 func _on_timer_fire_rate_timeout():
 	ready_to_fire = true
+
+func damage(damage:int):
+	get_node("healthComponent").take_damage(damage)

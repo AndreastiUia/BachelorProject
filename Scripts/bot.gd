@@ -1,9 +1,12 @@
 extends Node2D
 
+signal fire(pos_from, target, laser_scene, color, damage)
+
 @onready var tile_map = $"../TileMap"
 @onready var timer_reset_idle = $Timer_reset_idle
 @onready var health_component = $healthComponent
 @onready var movement = $Movement
+@onready var timer_fire_rate = $Timer_FireRate
 
 # Bot attributes
 @export var botname: String = "ProgBot"
@@ -14,6 +17,7 @@ extends Node2D
 @export var search_radius = 5
 @export var mining_time = 0.001
 @export var attackpower = 25
+@export var fireRate = 0.5
 var idle = true
 
 var current_bot_position
@@ -81,6 +85,13 @@ var program_array = []
 enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE, DELIVER_RESOURCE}
 enum program_if {INVENTORY_FULL, INVENTORY_EMPTY, ATTACKED, GOLD, STONE, WOOD, RESOURCES}
 
+# Target
+var target_in_range = false
+var targets = []
+var ready_to_fire = true
+var laser_scene = preload("res://Scenes/Components/laser.tscn")
+
+
 func _ready():
 	pass
 	
@@ -90,6 +101,12 @@ func _process(delta):
 	current_bot_position = bot_position_map
 	
 func _physics_process(delta):
+	if ready_to_fire && !targets.is_empty():
+		print("FIRE!")
+		fire.emit(global_position, targets[0], laser_scene, "green", attackpower)
+		ready_to_fire = false
+		timer_fire_rate.start(fireRate)
+		
 	
 	if program_array.is_empty():
 		return
@@ -271,3 +288,21 @@ func move(target_position, velocity):
 
 func damage(damage:int):
 	get_node("healthComponent").take_damage(damage)
+
+
+
+func _on_in_range_body_entered(body):
+	if body.has_method("wander"):
+		target_in_range = true
+		targets.append(body)
+		print(targets)
+
+
+func _on_in_range_body_exited(body):
+	if body.has_method("wander"):
+		target_in_range = false
+		targets.remove_at(targets.find(body))
+
+
+func _on_timer_fire_rate_timeout():
+	ready_to_fire = true

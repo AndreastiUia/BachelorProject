@@ -24,6 +24,7 @@ func spawnbot():
 	Global.bots.append(b)
 	b.botname += " " + str(botnamecounter)
 	botnamecounter = incrementbotname(botnamecounter)
+	b.fire.connect(_on_laser_shot)
 	print(Global.bots)
 	add_child(b)
 
@@ -169,8 +170,11 @@ func spawn_enemy_from_queue(spawn_position:Vector2i):
 	e.fire.connect(_on_laser_shot)
 
 
-func _on_laser_shot(pos_from, target, laser_scene):
+func _on_laser_shot(pos_from, target, laser_scene, color, damage):
 	var l = laser_scene.instantiate()
 	l.position = pos_from
 	l.target = target
+	l.color = color
+	l.damage = damage
+	print(l.damage)
 	add_child(l)

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctqvv7n20pvgj"
-path="res://.godot/imported/Laser.png-518973097d468c94a443966bd034256d.ctex"
+path="res://.godot/imported/Laser_red.png-cf4b8eca81934b14cc3b6f910ae584b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/weapons/Laser.png"
-dest_files=["res://.godot/imported/Laser.png-518973097d468c94a443966bd034256d.ctex"]
+source_file="res://Sprites/weapons/Laser_red.png"
+dest_files=["res://.godot/imported/Laser_red.png-cf4b8eca81934b14cc3b6f910ae584b3.ctex"]
 
 [params]
 

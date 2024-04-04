@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctpp8tlq1ykp7"]
+[gd_scene load_steps=5 format=3 uid="uid://ctpp8tlq1ykp7"]
 
 [ext_resource type="Script" path="res://Scenes/Components/laser.gd" id="1_eelib"]
-[ext_resource type="Texture2D" uid="uid://ctqvv7n20pvgj" path="res://Sprites/weapons/Laser.png" id="1_yy321"]
 [ext_resource type="AudioStream" uid="uid://tap1e7knc5s4" path="res://Sounds/laser-gun.mp3" id="3_ni1lj"]
 [ext_resource type="AudioStream" uid="uid://bvjsppknlx03s" path="res://Sounds/laser-hit.mp3" id="4_m42lw"]
 
@@ -20,7 +19,6 @@ shape = SubResource("RectangleShape2D_2p4k5")
 position = Vector2(6, 8)
 rotation = 1.5708
 scale = Vector2(0.69, 0.69)
-texture = ExtResource("1_yy321")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-6.5, 8)
