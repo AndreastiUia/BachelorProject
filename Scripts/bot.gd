@@ -1,8 +1,12 @@
 extends Node2D
 
+signal fire(pos_from, target, laser_scene, color, damage)
+
 @onready var tile_map = $"../TileMap"
-@onready var timer_reset_idle = $timer_reset_idle
-@onready var health = $healthComponent
+@onready var timer_reset_idle = $Timer_reset_idle
+@onready var health_component = $healthComponent
+@onready var movement = $Movement
+@onready var timer_fire_rate = $Timer_FireRate
 
 # Bot attributes
 @export var botname: String = "ProgBot"
@@ -13,6 +17,7 @@ extends Node2D
 @export var search_radius = 5
 @export var mining_time = 0.001
 @export var attackpower = 25
+@export var fireRate = 0.5
 var idle = true
 
 var current_bot_position
@@ -80,17 +85,29 @@ var program_array = []
 enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE, DELIVER_RESOURCE}
 enum program_if {INVENTORY_FULL, INVENTORY_EMPTY, ATTACKED, GOLD, STONE, WOOD, RESOURCES}
 
+# Target
+var target_in_range = false
+var targets = []
+var ready_to_fire = true
+var laser_scene = preload("res://Scenes/Components/laser.tscn")
+
+
 func _ready():
 	pass
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var bot_position_map = tile_map.local_to_map(global_position)
 	current_bot_position = bot_position_map
 	
 func _physics_process(delta):
-	if !current_id_path.is_empty():
-		idle = false
-		move_path(delta)
+	if ready_to_fire && !targets.is_empty():
+		print("FIRE!")
+		fire.emit(global_position, targets[0], laser_scene, "green", attackpower)
+		ready_to_fire = false
+		timer_fire_rate.start(fireRate)
+		
+	
 	if program_array.is_empty():
 		return
 	if idle && program_index < program_array.size():
@@ -103,57 +120,27 @@ func reset_program_state():
 	program_if_not_index = []
 	program_if_end_index = []
 
-func move_path(delta):
-	var velocity = SPEED * delta
-	var target_position = tile_map.map_to_local(current_id_path.front())
-	global_position = global_position.move_toward(target_position, velocity)
-	tile_map.uncover_map(global_position, search_radius)
-	
-	if global_position == target_position:
-		current_id_path.pop_front()
-
-		if current_id_path.is_empty():
-			idle = true
-
-func calc_target_tile_by_direction(direction: Vector2):
-	# Returns target tile based on direction.
-	var current_tile: Vector2i = tile_map.local_to_map(global_position)
-	var target_tile: Vector2i = Vector2i(
-		current_tile.x + direction.x,
-		current_tile.y + direction.y
-	)
-
-	return target_tile
-
-func calc_path(target_position: Vector2i):
-	# Calculate path from current position to targegt position.
-	var path = tile_map.astar_grid.get_id_path(
-		tile_map.local_to_map(global_position),
-		target_position
-	).slice(1)
-	current_id_path = path
-
 func program_bot(function: Array):
 	if !idle:
 		return
 	
 	match function[program_index]:
 		program_func.MOVE_UP:
-			calc_path(calc_target_tile_by_direction(Vector2i.UP))
+			movement.calc_path(movement.calc_target_tile_by_direction(Vector2i.UP))
 			
 		program_func.MOVE_DOWN:
-			calc_path(calc_target_tile_by_direction(Vector2i.DOWN))
+			movement.calc_path(movement.calc_target_tile_by_direction(Vector2i.DOWN))
 			
 		program_func.MOVE_LEFT:
-			calc_path(calc_target_tile_by_direction(Vector2i.LEFT))
+			movement.calc_path(movement.calc_target_tile_by_direction(Vector2i.LEFT))
 			
 		program_func.MOVE_RIGHT:
-			calc_path(calc_target_tile_by_direction(Vector2i.RIGHT))
+			movement.calc_path(movement.calc_target_tile_by_direction(Vector2i.RIGHT))
 			
 		program_func.MOVE_TO_POS:
 			# Move to tile based on grid-coordinates.
 			program_index += 1
-			calc_path(program_array[program_index])
+			movement.calc_path(program_array[program_index])
 			
 		program_func.WHILE_START:
 			# Intereate trough the program_array to find the next loop_end.
@@ -196,7 +183,6 @@ func program_bot(function: Array):
 			program_index = temp_program_index
 			
 			# If the statement is false, then skip to IF_END.
-			print(program_array[program_index])
 			if !check_if_statement(program_array[program_index]):
 				program_index = program_if_end_index.front()
 			program_if_end_index.pop_front()
@@ -286,6 +272,7 @@ func check_adjacent_tile(check_base: bool = false):
 func _on_timer_reset_idle_timeout():
 	idle = true
 
+
 func check_if_statement(statement):
 	var statement_string
 	match statement:
@@ -295,3 +282,27 @@ func check_if_statement(statement):
 			statement_string = "inventory <= 0"
 
 	return test_expression(statement_string)
+
+func move(target_position, velocity):
+	global_position = global_position.move_toward(target_position, velocity)
+
+func damage(damage:int):
+	get_node("healthComponent").take_damage(damage)
+
+
+
+func _on_in_range_body_entered(body):
+	if body.has_method("wander"):
+		target_in_range = true
+		targets.append(body)
+		print(targets)
+
+
+func _on_in_range_body_exited(body):
+	if body.has_method("wander"):
+		target_in_range = false
+		targets.remove_at(targets.find(body))
+
+
+func _on_timer_fire_rate_timeout():
+	ready_to_fire = true

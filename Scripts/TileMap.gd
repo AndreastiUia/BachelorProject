@@ -76,7 +76,7 @@ func cover_map():
 			# Make cell blacked out
 			set_cell(2, center_chunk, 1, Vector2i(0,0))
 			# Diable pathfinding on undiscovered map
-			astar_grid.set_point_solid(center_chunk, true)
+			#astar_grid.set_point_solid(center_chunk, true)
 
 func generate_resources():
 	# Randomly generate resourcvalue.
@@ -124,6 +124,16 @@ func setup_astargrid2d():
 	astar_grid.cell_size = Vector2(16, 16)
 	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar_grid.update()
+	
+	var tile_pos = local_to_map(Vector2i(0,0))
+	for x in range(width):
+		for y in range(height):
+			var center_chunk = Vector2i(tile_pos.x-width/2+y,tile_pos.y-height/2+x)
+			# Diable pathfinding on non walkabel tiles
+			var tile_data_resources = get_cell_tile_data(1, center_chunk)
+			var tile_data_floor = get_cell_tile_data(0, center_chunk)
+			if tile_data_resources != null || tile_data_floor == null:
+				astar_grid.set_point_solid(center_chunk, true)
 
 func uncover_map(position: Vector2i, radius: int):
 	var diameter = radius*2
@@ -132,9 +142,37 @@ func uncover_map(position: Vector2i, radius: int):
 		for y in range(diameter):
 			var center_chunk = Vector2i(tile_pos.x-diameter/2+y,tile_pos.y-diameter/2+x)
 			set_cell(2, center_chunk, -1, Vector2i(0,0))
+			erase_cell(2, center_chunk)
 			# Make cell walkable if there is no resources/base tile and there is a floor tile.
 			var tile_data_resources = get_cell_tile_data(1, center_chunk)
 			var tile_data_floor = get_cell_tile_data(0, center_chunk)
 			
 			if tile_data_resources == null && tile_data_floor != null:
 				astar_grid.set_point_solid(center_chunk, false)
+			
+			spawn_enemy_from_queue(center_chunk)
+			
+func spawn_enemy_from_queue(position:Vector2i):
+	var spawn_queue_result = Global.spawn_queue.find(map_to_local(position))
+	if spawn_queue_result != -1:
+		get_parent().spawn_enemy_from_queue(map_to_local(position))
+		Global.spawn_queue.remove_at(spawn_queue_result)
+	
+
+func check_tile_free(position:Vector2i):
+	# Check if the tile is free
+	var tile_pos = local_to_map(position)
+	var tile_data = get_cell_tile_data(1, tile_pos)
+	if tile_data == null:
+		return true
+	else:
+		return false
+
+func check_tile_uncovered(position:Vector2i):
+	# Check if the tile is uncovered
+	var tile_pos = local_to_map(position)
+	var tile_data = get_cell_tile_data(2, tile_pos)
+	if tile_data == null:
+		return true
+	else:
+		return false

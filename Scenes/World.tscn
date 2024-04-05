@@ -117,6 +117,8 @@ custom_data_layer_1/name = "resource_type"
 custom_data_layer_1/type = 4
 custom_data_layer_2/name = "base"
 custom_data_layer_2/type = 1
+custom_data_layer_3/name = "uncovered"
+custom_data_layer_3/type = 1
 sources/0 = SubResource("TileSetAtlasSource_4gbcf")
 sources/1 = SubResource("TileSetAtlasSource_q5s10")
 

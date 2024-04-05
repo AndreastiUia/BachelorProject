@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctpp8tlq1ykp7"]
+
+[ext_resource type="Script" path="res://Scenes/Components/laser.gd" id="1_eelib"]
+[ext_resource type="AudioStream" uid="uid://tap1e7knc5s4" path="res://Sounds/laser-gun.mp3" id="3_ni1lj"]
+[ext_resource type="AudioStream" uid="uid://bvjsppknlx03s" path="res://Sounds/laser-hit.mp3" id="4_m42lw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2p4k5"]
+size = Vector2(12, 4)
+
+[node name="laser" type="Area2D"]
+position = Vector2(0, -8)
+script = ExtResource("1_eelib")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, 8)
+shape = SubResource("RectangleShape2D_2p4k5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6, 8)
+rotation = 1.5708
+scale = Vector2(0.69, 0.69)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-6.5, 8)
+scale = Vector2(0.15, 0.3)
+
+[node name="Laser_fired" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ni1lj")
+pitch_scale = 1.7
+
+[node name="Laser_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_m42lw")
+pitch_scale = 1.6
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="finished" from="Laser_hit" to="." method="_on_laser_hit_finished"]
