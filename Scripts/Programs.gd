@@ -33,6 +33,11 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 			emit_signal("show_ifStatement_edit_box")
 		else:
 			target_item_list.add_item(selected_item_text)
+			if target_item_list.is_anything_selected():
+				var target_item_list_length = target_item_list.get_item_count()
+				var target_item_list_selected = target_item_list.get_selected_items()[0]
+				target_item_list.move_item(target_item_list_length-1, target_item_list_selected+1)
+				target_item_list.select(target_item_list_selected+1)
 			
 
 func _on_focus_exited():
