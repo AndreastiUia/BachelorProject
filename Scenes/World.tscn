@@ -182,10 +182,10 @@ patch_margin_bottom = 5
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
-offset_left = 32.0
-offset_top = 30.0
-offset_right = -22.0
-offset_bottom = 109.0
+offset_left = 448.0
+offset_top = 25.0
+offset_right = -258.0
+offset_bottom = 113.0
 theme_override_constants/separation = 20
 alignment = 1
 
@@ -207,12 +207,6 @@ theme_override_fonts/font = ExtResource("5_mai7t")
 theme_override_font_sizes/font_size = 25
 text = "Temp Button Spawn"
 
-[node name="Temp_Button3" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_mai7t")
-theme_override_font_sizes/font_size = 25
-text = "Temp Button Spawn"
-
 [node name="Program_Robots" type="Button" parent="Camera2D/GUI/BottomGUI/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_mai7t")
@@ -224,6 +218,21 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("5_mai7t")
 theme_override_font_sizes/font_size = 25
 text = "   Upgrade   "
+
+[node name="Left_Hbox" type="HBoxContainer" parent="Camera2D/GUI/BottomGUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.994
+offset_left = 27.0
+offset_top = 25.0
+offset_right = -1272.0
+offset_bottom = 113.0
+
+[node name="CenterCamera_btn" type="Button" parent="Camera2D/GUI/BottomGUI/Left_Hbox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_mai7t")
+theme_override_font_sizes/font_size = 25
+text = "Center Camera"
 
 [node name="SideGUI" type="NinePatchRect" parent="Camera2D/GUI"]
 anchors_preset = -1
@@ -431,9 +440,9 @@ text = "temp text"
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button" to="." method="_on_temp_button_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button5" to="." method="_on_temp_button_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button2" to="." method="_on_temp_button_pressed"]
-[connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button3" to="." method="_on_temp_button_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/Program_Robots" to="Camera2D/CanvasLayer/Programbot" method="_on_program_robots_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/BottomGUI/HBoxContainer/UpgradeScreen" to="Camera2D/CanvasLayer/UpgradeScreen" method="_on_upgrade_screen_pressed"]
+[connection signal="pressed" from="Camera2D/GUI/BottomGUI/Left_Hbox/CenterCamera_btn" to="." method="_on_center_camera_btn_pressed"]
 [connection signal="_on_select" from="Camera2D/GUI/ListGUI/Panel/RobotlistControlNode" to="." method="_on_robotlist_control_node__on_select"]
 [connection signal="pressed" from="Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/rtn_to_base_btn" to="." method="_on_rtn_to_base_btn_pressed"]
 [connection signal="pressed" from="Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/status_btn" to="." method="_on_status_btn_pressed"]

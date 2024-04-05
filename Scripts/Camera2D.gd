@@ -1,15 +1,12 @@
 extends Camera2D
 
-# Threshold for where it register mouse near the edge ( in pixels)
-
+# Threshold for where it register mouse near the edge (in pixels)
 var edge_threshold = 20.0
 var camera_speed = 800.0
 
-
-var camera_zoom = 1.0
+var camera_zoom = 1.5
 var min_zoom = 0.3
-var max_zoom = 1.5
-
+var max_zoom = 2.5
 
 
 func _ready():
@@ -42,7 +39,6 @@ func zoom(delta):
 	var new_camera_position = screen_center - (screen_center / get_zoom().x)
 	set_offset(new_camera_position)
 
-
 func _process(delta):
 	# Used for getting size of game windows
 	var viewport_rect = get_viewport_rect()
@@ -60,6 +56,17 @@ func _process(delta):
 		arrow_movement.y += 1
 	if Input.is_action_pressed("ui_up"):
 		arrow_movement.y -= 1
+	
+	# Camera movement with WASD keys. 
+	if Input.is_action_pressed("right"):
+		arrow_movement.x += 1
+	if Input.is_action_pressed("left"):
+		arrow_movement.x -= 1
+	if Input.is_action_pressed("down"):
+		arrow_movement.y += 1
+	if Input.is_action_pressed("up"):
+		arrow_movement.y -= 1
+
 
 	# Go back to main menu
 	if Input.is_action_pressed("quit_to_menu"):
