@@ -67,6 +67,7 @@ func get_current_program():
 			var if_string = "IF " + bot.program_if.keys()[i]
 			set_item_text(item_count-1, if_string)
 			IF = false
+		set_item_tooltip(item_count-1, "test tooltip")
 	set_color_active_step()
 
 # Set a text-color to show active step in program
@@ -93,7 +94,6 @@ func _on_start_program_pressed():
 			program.append(bot.program_if.get(command_array[1]))
 		else:
 			program.append(bot.program_func.get(get_item_text(i)))
-	print(program)
 	
 	bot.program_array = program
 	

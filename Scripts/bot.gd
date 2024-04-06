@@ -82,8 +82,9 @@ var program_loop_end_index = []
 var program_if_not_index = []
 var program_if_end_index = []
 var program_array = []
-enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_NOT, IF_END, SEARCH, GATHER_RESOURCE, DELIVER_RESOURCE}
+enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_END, GATHER_RESOURCE, DELIVER_RESOURCE}
 enum program_if {INVENTORY_FULL, INVENTORY_EMPTY, ATTACKED, GOLD, STONE, WOOD, RESOURCES}
+
 
 # Target
 var target_in_range = false

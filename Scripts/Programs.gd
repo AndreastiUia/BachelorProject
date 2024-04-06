@@ -2,9 +2,9 @@ extends ItemList
 
 signal show_coordinate_edit_box
 signal show_ifStatement_edit_box
+const PROG_TOOLTIP = "res://Tooltip/prog_tooltip.txt"
 var new_icon = preload("res://Sprites/Icons/icon.svg")
 var icon_size = Vector2(16, 16)
-
 # Reference to the second ItemList
 var target_item_list = null
 
@@ -56,10 +56,14 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 func _on_focus_exited():
 	deselect_all()
 
-
 # Populate list of function basen on bot selected.
 func _on_robotlist_control_node__on_select(index):
 	var bot = Global.bots[index]
 	clear()
+	var file = FileAccess.open(PROG_TOOLTIP, FileAccess.READ)
 	for i in bot.program_func:
+		var tooltip = file.get_line()
 		add_item(i)
+		print(tooltip)
+		set_item_tooltip(item_count-1, tooltip)
+		
