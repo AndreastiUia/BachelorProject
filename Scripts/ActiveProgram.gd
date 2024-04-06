@@ -50,14 +50,23 @@ func get_current_program():
 	clear()
 	# Get current program from selected bot.
 	var ActiveProgram = bot.program_array
+	var IF = false
 	for i in ActiveProgram:
-		if i is Vector2i:
-			var x = i.x
-			var y = i.y
-			var coord_string = "MOVE_TO_POS (" + str(x) + "," + str(y) + ")"
-			set_item_text(item_count-1, coord_string)
+		if !IF: 
+			if i is Vector2i:
+				var x = i.x
+				var y = i.y
+				var coord_string = "MOVE_TO_POS (" + str(x) + "," + str(y) + ")"
+				set_item_text(item_count-1, coord_string)			
+			else:
+				var prog_string = bot.program_func.keys()[i]
+				add_item(prog_string)
+			if i == 8:
+				IF = true
 		else:
-			add_item(bot.program_func.keys()[i])
+			var if_string = "IF " + bot.program_if.keys()[i]
+			set_item_text(item_count-1, if_string)
+			IF = false
 	set_color_active_step()
 
 # Set a text-color to show active step in program
@@ -84,6 +93,7 @@ func _on_start_program_pressed():
 			program.append(bot.program_if.get(command_array[1]))
 		else:
 			program.append(bot.program_func.get(get_item_text(i)))
+	print(program)
 	
 	bot.program_array = program
 	

@@ -29,7 +29,7 @@ var current_id_path: Array[Vector2i]
 @export var gold: int = 0
 @export var wood: int = 0
 @export var stone: int = 0
-@export var inventory: int = 0
+var inventory: int = 0
 @export var inventory_size: int = 10
 
 # Robot Upgrade Bools
@@ -254,6 +254,7 @@ func test_expression(statement):
 
 func update_inventory():
 	inventory = gold + stone + wood
+	print("inventory: ", inventory)
 
 
 func check_adjacent_tile(check_base: bool = false):
