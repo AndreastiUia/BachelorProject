@@ -13,6 +13,11 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 		ActiveProgram.set_item_text(edit_index, statement_string)
 	else:
 		ActiveProgram.add_item(statement_string)
+		if ActiveProgram.is_anything_selected():
+				var ActiveProgram_length = ActiveProgram.get_item_count()
+				var ActiveProgram_selected = ActiveProgram.get_selected_items()[0]
+				ActiveProgram.move_item(ActiveProgram_length-1, ActiveProgram_selected+1)
+				ActiveProgram.select(ActiveProgram_selected+1)
 		
 	visible = false
 	
