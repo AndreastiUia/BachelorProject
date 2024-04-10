@@ -128,6 +128,10 @@ func _on_status_btn_pressed():
 		botmenu_console.append_text("Current Health: " + str(SelectedBot.health_component.health) + "\n")
 		botmenu_console.append_text("Current Program: " + str(get_current_program()) + "\n")
 		botmenu_console.append_text("Position: " + str(SelectedBot.current_bot_position) + "\n")
+		botmenu_console.append_text("Inventory: " + "(" + str(SelectedBot.inventory) + "/" + str(SelectedBot.inventory_size) + ")" + "\n")
+		botmenu_console.append_text("Wood: " + str(SelectedBot.wood) + "\n")
+		botmenu_console.append_text("Stone: " + str(SelectedBot.stone) + "\n")
+		botmenu_console.append_text("Gold: " + str(SelectedBot.gold) + "\n")
 	else:
 		botmenu_console.clear()
 		botmenu_console.append_text("No Bot Selected \n")
