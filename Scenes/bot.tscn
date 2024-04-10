@@ -69,6 +69,7 @@ size = Vector2(144, 144)
 collision_layer = 3
 script = ExtResource("1_bmq70")
 SPEED = 300
+mining_time = 0.01
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -100,6 +101,7 @@ shape = SubResource("RectangleShape2D_cbncd")
 
 [node name="Timer_FireRate" type="Timer" parent="."]
 
+[connection signal="timeout" from="Timer_reset_idle" to="." method="_on_timer_reset_idle_timeout"]
 [connection signal="body_entered" from="InRange" to="." method="_on_in_range_body_entered"]
 [connection signal="body_exited" from="InRange" to="." method="_on_in_range_body_exited"]
 [connection signal="timeout" from="Timer_FireRate" to="." method="_on_timer_fire_rate_timeout"]
