@@ -316,6 +316,7 @@ layout_mode = 1
 [connection signal="show_whileStatement_edit_box" from="BackdropPanel/Programs" to="BackdropPanel/WhileStatements" method="_on_programs_show_while_statement_edit_box"]
 [connection signal="item_clicked" from="BackdropPanel/ActiveProgram" to="BackdropPanel/ActiveProgram" method="_on_item_clicked"]
 [connection signal="item_selected" from="BackdropPanel/ActiveProgram" to="BackdropPanel/ActiveProgram" method="_on_item_selected"]
+[connection signal="list_changed" from="BackdropPanel/ActiveProgram" to="BackdropPanel/ActiveProgram" method="_on_list_changed"]
 [connection signal="show_coordinate_edit_box" from="BackdropPanel/ActiveProgram" to="CoordinateInputDialog" method="_on_active_program_show_coordinate_edit_box"]
 [connection signal="show_ifStatement_edit_box" from="BackdropPanel/ActiveProgram" to="BackdropPanel/IfStatements" method="_on_active_program_show_if_statement_edit_box"]
 [connection signal="show_whileStatement_edit_box" from="BackdropPanel/ActiveProgram" to="BackdropPanel/WhileStatements" method="_on_active_program_show_while_statement_edit_box"]

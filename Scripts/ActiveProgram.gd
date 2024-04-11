@@ -3,12 +3,15 @@ extends ItemList
 signal show_coordinate_edit_box
 signal show_ifStatement_edit_box
 signal show_whileStatement_edit_box
+signal list_changed
 var new_icon = preload("res://Sprites/Icons/icon.svg")
 var CoordinateInputDialog = preload("res://Scenes/CoordinateInputDialog.tscn")
 var selected_item_index = -1
 var start_stop_container
 var Programs = null
 var bot
+var indent_string = " | "
+
 
 func _ready():
 	Programs = get_parent().get_node("Programs")
@@ -30,6 +33,7 @@ func move_selected_item_up():
 		if selected_index > 0:
 			move_item(selected_index, selected_index - 1)
 			select(selected_index - 1)
+	emit_signal("list_changed")
 
 func move_selected_item_down():
 	var selected_items = get_selected_items()
@@ -148,3 +152,32 @@ func _on_robotlist_control_node__on_select(index):
 	get_current_program()
 	start_stop_container.visible = true
 	
+
+func _on_list_changed():
+# update list indents to make the list more readable.
+	var list_lenght = get_item_count()
+	var list_index = 0
+	var indents = 0
+	print(list_index)
+	while list_index < list_lenght:
+		var text = get_item_text(list_index)
+		
+		# Remove indents
+		while text.contains(indent_string):
+			text.lstrip(indent_string)
+		
+		# Count down indents if loop is i ended.
+		if text.contains("_END"):
+			indents -= 1
+	
+		# Add indents
+		for i in range(indents):
+			text = indent_string + text
+			
+		# Increse indents if loop is starting
+		if text.contains("IF ") || text.contains("WHILE "):
+			indents += 1
+			
+		list_index += 1
+		print(text)
+		set_item_text(list_index-1, text)
