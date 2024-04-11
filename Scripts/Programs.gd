@@ -2,6 +2,7 @@ extends ItemList
 
 signal show_coordinate_edit_box
 signal show_ifStatement_edit_box
+signal show_whileStatement_edit_box
 const PROG_TOOLTIP = "res://Tooltip/prog_tooltip.txt"
 var new_icon = preload("res://Sprites/Icons/icon.svg")
 var icon_size = Vector2(16, 16)
@@ -31,6 +32,8 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 			emit_signal("show_coordinate_edit_box")
 		elif selected_item_text == "IF":
 			emit_signal("show_ifStatement_edit_box")
+		elif selected_item_text == "WHILE":
+			emit_signal("show_whileStatement_edit_box")
 		else:
 			target_item_list.add_item(selected_item_text)
 			if selected_item_text == "WHILE_START":
@@ -64,6 +67,5 @@ func _on_robotlist_control_node__on_select(index):
 	for i in bot.program_func:
 		var tooltip = file.get_line()
 		add_item(i)
-		print(tooltip)
 		set_item_tooltip(item_count-1, tooltip)
 		

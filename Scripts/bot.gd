@@ -82,8 +82,9 @@ var program_loop_end_index = []
 var program_if_not_index = []
 var program_if_end_index = []
 var program_array = []
-enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_END, GATHER_RESOURCE, DELIVER_RESOURCE}
+enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE, WHILE_BREAK, WHILE_END, IF, IF_END, GATHER_RESOURCE, DELIVER_RESOURCE}
 enum program_if {INVENTORY_FULL, INVENTORY_EMPTY, ATTACKED, GOLD, STONE, WOOD, RESOURCES}
+enum program_while {INVENTORY_NOT_FULL, INVENTORY_NOT_EMPTY, ATTACKED, GOLD, STONE, WOOD, RESOURCES}
 
 
 # Target
@@ -143,7 +144,7 @@ func program_bot(function: Array):
 			program_index += 1
 			movement.calc_path(program_array[program_index])
 			
-		program_func.WHILE_START:
+		program_func.WHILE:
 			# Intereate trough the program_array to find the next loop_end.
 			program_loop_index.append(program_index)
 			while function[program_index] != program_func.WHILE_END || program_loop_end_index.find(program_index) > -1:

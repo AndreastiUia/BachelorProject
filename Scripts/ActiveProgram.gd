@@ -2,6 +2,7 @@ extends ItemList
 
 signal show_coordinate_edit_box
 signal show_ifStatement_edit_box
+signal show_whileStatement_edit_box
 var new_icon = preload("res://Sprites/Icons/icon.svg")
 var CoordinateInputDialog = preload("res://Scenes/CoordinateInputDialog.tscn")
 var selected_item_index = -1
@@ -38,21 +39,20 @@ func move_selected_item_down():
 			move_item(selected_index, selected_index + 1)
 			select(selected_index + 1)
 			
-
 func _on_moveup_pressed():
 	move_selected_item_up()
 
 func _on_movedown_pressed():
 	move_selected_item_down()
 
-
 func get_current_program():
 	clear()
 	# Get current program from selected bot.
 	var ActiveProgram = bot.program_array
 	var IF = false
+	var WHILE = false
 	for i in ActiveProgram:
-		if !IF: 
+		if !IF && !WHILE: 
 			if i is Vector2i:
 				var x = i.x
 				var y = i.y
@@ -63,11 +63,14 @@ func get_current_program():
 				add_item(prog_string)
 				if i == 8:
 					IF = true
-		else:
+		elif IF:
 			var if_string = "IF " + bot.program_if.keys()[i]
 			set_item_text(item_count-1, if_string)
 			IF = false
-		set_item_tooltip(item_count-1, "test tooltip")
+		elif WHILE:
+			var if_string = "WHILE " + bot.program_while.keys()[i]
+			set_item_text(item_count-1, if_string)
+			WHILE = false
 	set_color_active_step()
 
 # Set a text-color to show active step in program
@@ -92,6 +95,10 @@ func _on_start_program_pressed():
 			var command_array = command.split(" ", 1)
 			program.append(bot.program_func.get(command_array[0]))
 			program.append(bot.program_if.get(command_array[1]))
+		elif command.contains("WHILE "):
+			var command_array = command.split(" ", 1)
+			program.append(bot.program_func.get(command_array[0]))
+			program.append(bot.program_while.get(command_array[1]))
 		else:
 			program.append(bot.program_func.get(get_item_text(i)))
 	
@@ -112,7 +119,7 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 	selected_item_index = index
 	var selected_item_text = get_item_text(selected_item_index)
 	var Edit_button = get_parent().get_node("Control").get_node("Edit")
-	if selected_item_text.contains(",") || selected_item_text.contains("IF "):
+	if selected_item_text.contains(",") || selected_item_text.contains("IF ") || selected_item_text.contains("WHILE "):
 		Edit_button.set_disabled(false)
 	else:
 		Edit_button.set_disabled(true)
@@ -127,6 +134,8 @@ func _on_edit_pressed():
 		emit_signal("show_coordinate_edit_box")
 	elif get_item_text(selected_item_index).contains("IF"):
 		emit_signal("show_ifStatement_edit_box")
+	elif get_item_text(selected_item_index).contains("WHILE"):
+		emit_signal("show_whileStatement_edit_box")
 
 
 func _on_remove_pressed():
