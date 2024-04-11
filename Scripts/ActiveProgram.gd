@@ -68,8 +68,8 @@ func get_current_program():
 			set_item_text(item_count-1, if_string)
 			IF = false
 		elif WHILE:
-			var if_string = "WHILE " + bot.program_while.keys()[i]
-			set_item_text(item_count-1, if_string)
+			var while_string = "WHILE " + bot.program_while.keys()[i]
+			set_item_text(item_count-1, while_string)
 			WHILE = false
 	set_color_active_step()
 
@@ -103,6 +103,7 @@ func _on_start_program_pressed():
 			program.append(bot.program_func.get(get_item_text(i)))
 	
 	bot.program_array = program
+	print(program)
 	
 	# Reset the program array to be ready for a new program.
 	bot.reset_program_state()
