@@ -67,7 +67,7 @@ func get_current_program():
 			else:
 				var prog_string = bot.program_func.keys()[i]
 				add_item(prog_string)
-				if i == 8:
+				if i == 7:
 					IF = true
 				if i == 5:
 					WHILE = true
