@@ -61,8 +61,8 @@ func get_current_program():
 			else:
 				var prog_string = bot.program_func.keys()[i]
 				add_item(prog_string)
-			if i == 8:
-				IF = true
+				if i == 8:
+					IF = true
 		else:
 			var if_string = "IF " + bot.program_if.keys()[i]
 			set_item_text(item_count-1, if_string)
