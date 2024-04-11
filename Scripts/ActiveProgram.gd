@@ -33,7 +33,6 @@ func move_selected_item_up():
 		if selected_index > 0:
 			move_item(selected_index, selected_index - 1)
 			select(selected_index - 1)
-	emit_signal("list_changed")
 
 func move_selected_item_down():
 	var selected_items = get_selected_items()
@@ -45,9 +44,11 @@ func move_selected_item_down():
 			
 func _on_moveup_pressed():
 	move_selected_item_up()
+	emit_signal("list_changed")
 
 func _on_movedown_pressed():
 	move_selected_item_down()
+	emit_signal("list_changed")
 
 func get_current_program():
 	clear()
@@ -56,6 +57,7 @@ func get_current_program():
 	var IF = false
 	var WHILE = false
 	for i in ActiveProgram:
+		print(i)
 		if !IF && !WHILE: 
 			if i is Vector2i:
 				var x = i.x
@@ -67,6 +69,8 @@ func get_current_program():
 				add_item(prog_string)
 				if i == 8:
 					IF = true
+				if i == 5:
+					WHILE = true
 		elif IF:
 			var if_string = "IF " + bot.program_if.keys()[i]
 			set_item_text(item_count-1, if_string)
@@ -76,6 +80,7 @@ func get_current_program():
 			set_item_text(item_count-1, while_string)
 			WHILE = false
 	set_color_active_step()
+	emit_signal("list_changed")
 
 # Set a text-color to show active step in program
 func set_color_active_step():
@@ -128,6 +133,12 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 		Edit_button.set_disabled(false)
 	else:
 		Edit_button.set_disabled(true)
+	
+	var Remove_button = get_parent().get_node("Control").get_node("Remove")
+	if selected_item_text.contains("END"):
+		Remove_button.set_disabled(true)
+	else:
+		Remove_button.set_disabled(false)
 
 
 func _on_item_selected(index):
@@ -145,6 +156,7 @@ func _on_edit_pressed():
 
 func _on_remove_pressed():
 	remove_item_from_list()
+	emit_signal("list_changed")
 
 # store selected bot
 func _on_robotlist_control_node__on_select(index):
@@ -164,7 +176,7 @@ func _on_list_changed():
 		
 		# Remove indents
 		while text.contains(indent_string):
-			text.lstrip(indent_string)
+			text = text.lstrip(indent_string)
 		
 		# Count down indents if loop is i ended.
 		if text.contains("_END"):

@@ -55,6 +55,7 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 					target_item_list.select(target_item_list_selected+1)
 			if !target_item_list.is_anything_selected():
 				target_item_list.select(0)
+	target_item_list.emit_signal("list_changed")
 
 func _on_focus_exited():
 	deselect_all()

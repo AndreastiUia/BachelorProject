@@ -86,7 +86,7 @@ position = Vector2(21, 15)
 scale = Vector2(0.0640625, 0.0640625)
 sprite_frames = SubResource("SpriteFrames_dmixi")
 animation = &"idle_left"
-frame_progress = 0.0784877
+frame_progress = 0.0633307
 
 [node name="Timer_reset_idle" type="Timer" parent="."]
 

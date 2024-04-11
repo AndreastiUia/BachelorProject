@@ -28,6 +28,7 @@ func _on_item_clicked(index, at_position, mouse_button_index):
 			ActiveProgram.select(0)
 		
 	visible = false
+	ActiveProgram.emit_signal("list_changed")
 
 func _on_robotlist_control_node__on_select(index):
 	clear()
