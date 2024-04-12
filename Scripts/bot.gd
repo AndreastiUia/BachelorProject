@@ -84,7 +84,7 @@ var program_if_end_index = []
 var program_array = []
 enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE, WHILE_BREAK, WHILE_END, IF, IF_END, GATHER_RESOURCE, DELIVER_RESOURCE}
 enum program_if {INVENTORY_FULL, INVENTORY_EMPTY, ATTACKED, GOLD, STONE, WOOD, RESOURCES}
-enum program_while {INVENTORY_NOT_FULL, INVENTORY_NOT_EMPTY, ATTACKED, GOLD, STONE, WOOD, RESOURCES}
+enum program_while {INVENTORY_NOT_FULL, INVENTORY_NOT_EMPTY, TRUE, ATTACKED, GOLD, STONE, WOOD, RESOURCES}
 
 
 # Target
@@ -311,6 +311,8 @@ func check_while_condition(condition):
 			condition_string = "inventory < inventory_size"
 		program_while.INVENTORY_NOT_EMPTY:
 			condition_string = "inventory > inventory_size"
+		program_while.TRUE:
+			condition_string = "true"
 	return test_expression(condition_string)
 
 func move(target_position, velocity):
