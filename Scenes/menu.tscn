@@ -112,7 +112,7 @@ position = Vector2(42.0001, 224)
 scale = Vector2(0.714844, 0.671875)
 texture = ExtResource("2_kl8rn")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Background/ColorRect"]
+[node name="LogoRect" type="NinePatchRect" parent="Background/ColorRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
