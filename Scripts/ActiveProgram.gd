@@ -67,7 +67,7 @@ func get_current_program():
 			else:
 				var prog_string = bot.program_func.keys()[i]
 				add_item(prog_string)
-				if i == 7:
+				if i == 8:
 					IF = true
 				if i == 5:
 					WHILE = true
@@ -92,6 +92,10 @@ func _on_start_program_pressed():
 	var program = []
 	for i in item_count:
 		var command = get_item_text(i)
+		# Remove indents
+		while command.contains(indent_string):
+			command = command.lstrip(indent_string)
+			
 		if command.contains("MOVE_TO_POS"):
 			var command_array = command.split(" ", 1)
 			program.append(bot.program_func.get(command_array[0]))
@@ -109,7 +113,7 @@ func _on_start_program_pressed():
 			program.append(bot.program_func.get(command_array[0]))
 			program.append(bot.program_while.get(command_array[1]))
 		else:
-			program.append(bot.program_func.get(get_item_text(i)))
+			program.append(bot.program_func.get(command))
 	
 	bot.program_array = program
 	print(program)
