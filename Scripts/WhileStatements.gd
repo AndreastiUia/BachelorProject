@@ -44,3 +44,7 @@ func _on_programs_show_while_statement_edit_box():
 func _on_active_program_show_while_statement_edit_box():
 	edit = true
 	visible = true
+
+
+func _on_programs_close_condition_window():
+	visible = false

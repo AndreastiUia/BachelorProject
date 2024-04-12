@@ -43,9 +43,21 @@ text = "Y-Coordinate
 layout_mode = 2
 theme = ExtResource("2_ash5y")
 
-[node name="Confirm" type="Button" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+
+[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("2_ash5y")
+text = "Cancel"
+
+[node name="Confirm" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 theme = ExtResource("2_ash5y")
 text = "Confirm"
 
-[connection signal="pressed" from="VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Confirm" to="." method="_on_confirm_pressed"]

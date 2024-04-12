@@ -44,3 +44,6 @@ func _on_programs_show_coordinate_edit_box():
 	edit = false
 	show()
 
+
+func _on_cancel_pressed():
+	hide()

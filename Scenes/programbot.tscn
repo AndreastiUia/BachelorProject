@@ -308,6 +308,9 @@ visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="BackdropPanel/ReturnVbox/TempReturn" to="." method="_on_temp_return_pressed"]
+[connection signal="close_condition_window" from="BackdropPanel/Programs" to="BackdropPanel/IfStatements" method="_on_programs_close_condition_window"]
+[connection signal="close_condition_window" from="BackdropPanel/Programs" to="BackdropPanel/WhileStatements" method="_on_programs_close_condition_window"]
+[connection signal="close_condition_window" from="BackdropPanel/Programs" to="CoordinateInputDialog" method="_on_programs_close_condition_window"]
 [connection signal="focus_exited" from="BackdropPanel/Programs" to="BackdropPanel/Programs" method="_on_focus_exited"]
 [connection signal="item_clicked" from="BackdropPanel/Programs" to="BackdropPanel/Programs" method="_on_item_clicked"]
 [connection signal="item_selected" from="BackdropPanel/Programs" to="BackdropPanel/Programs" method="_on_item_selected"]

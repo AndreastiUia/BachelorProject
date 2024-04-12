@@ -3,6 +3,7 @@ extends ItemList
 signal show_coordinate_edit_box
 signal show_ifStatement_edit_box
 signal show_whileStatement_edit_box
+signal close_condition_window
 const PROG_TOOLTIP = "res://Tooltip/prog_tooltip.txt"
 var new_icon = preload("res://Sprites/Icons/icon.svg")
 var icon_size = Vector2(16, 16)
@@ -21,6 +22,9 @@ func _process(delta):
 
 # Function to handle item selection
 func _on_item_clicked(index, at_position, mouse_button_index):
+	
+	emit_signal("close_condition_window")
+	
 	if mouse_button_index != 1:
 		return
 	# Get the text of the selected item
