@@ -31,7 +31,7 @@ func _on_confirm_pressed():
 				var ActiveProgram_selected = ActiveProgram.get_selected_items()[0]
 				ActiveProgram.move_item(ActiveProgram_length-1, ActiveProgram_selected+1)
 				ActiveProgram.select(ActiveProgram_selected+1)
-	
+	ActiveProgram.emit_signal("list_changed")
 	# Close the dialog
 	hide()
 
