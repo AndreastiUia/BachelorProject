@@ -24,6 +24,32 @@ func remove_item_from_list():
 	if selected_items.size() > 0:
 		var selected_index = selected_items[0]
 		var selected_item_text = get_item_text(selected_index)
+		
+		# Count indents
+		var indents_selected_item = 0
+		while selected_item_text.contains(indent_string):
+			selected_item_text = selected_item_text.lstrip(indent_string)
+			indents_selected_item += 1
+		
+		# Scan to find the first END with matching indents
+		var scanning_index = selected_index + 1
+		while scanning_index < item_count:
+			var scanning_text = get_item_text(scanning_index)
+			var scanning_indents = 0
+			
+			# Only scans if the string contains _END
+			if scanning_text.contains("_END"):
+				while scanning_text.contains(indent_string):
+					scanning_text = scanning_text.lstrip(indent_string)
+					scanning_indents += 1
+				# Remove the item if the command is indented the same amount as the selected command.
+				if scanning_indents == indents_selected_item:
+					remove_item(scanning_index)
+					
+			scanning_index += 1
+		
+		
+		
 		remove_item(selected_index)
 
 func move_selected_item_up():
