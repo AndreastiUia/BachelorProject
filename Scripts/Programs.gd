@@ -64,13 +64,12 @@ func _on_focus_exited():
 func _on_robotlist_control_node__on_select(index):
 	var bot = Global.bots[index]
 	clear()
-	var file = FileAccess.open(PROG_TOOLTIP, FileAccess.READ)
 	for i in bot.program_func:
 		var text = str(i)
 		# Do not add *_END to the list.
 		if text.contains("END"):
 			continue
-		#var tooltip = file.get_line()
+		var tooltip = Tooltips.prog_tooltips[item_count]
 		add_item(i)
-		#set_item_tooltip(item_count-1, tooltip)
+		set_item_tooltip(item_count-1, tooltip)
 		
