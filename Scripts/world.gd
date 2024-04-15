@@ -14,9 +14,9 @@ var bot = preload("res://Scenes/bot.tscn")
 var enemy = preload("res://Scenes/basic_enemy.tscn")
 var number_enemies = 150
 
-func incrementbotname(botnamecounter):
-	botnamecounter += 1
-	return botnamecounter
+func incrementbotname(counter):
+	counter += 1
+	return counter
 
 func centercameraposition():
 	# Get the position of the center of the camera in global coordinates
@@ -30,8 +30,8 @@ func centercameraposition():
 
 func spawnbot():
 	var b = bot.instantiate()
-	var position = Vector2(25, -20)
-	b.position = position
+	var spawn_position = Vector2(25, -20)
+	b.position = spawn_position
 	Global.bots.append(b)
 	b.botname += " " + str(botnamecounter)
 	botnamecounter = incrementbotname(botnamecounter)
@@ -47,7 +47,7 @@ func _ready():
 		spawn_enemy()
   
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	get_node("Camera2D/GUI/SideGUI/HBoxContainer/GoldIcon/Gold_Label").text = str(Global.base_gold)
 	get_node("Camera2D/GUI/SideGUI/HBoxContainer/WoodIcon/Wood_Label").text = str(Global.base_wood)
 	get_node("Camera2D/GUI/SideGUI/HBoxContainer/StoneIcon/Stone_Label").text = str(Global.base_stone)
@@ -73,8 +73,7 @@ func _on_temp_button_pressed():
 
 # Selected Bot Menu Functions:
 
-func _on_robotlist_control_node__on_select(index):
-	var botmenu_console = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/consolePanel/Console
+func _on_robotlist_control_node__on_select(_index):
 	botmenu_console.clear()
 	botmenu_lineEdit.text = ""
 	botmenu.visible = true
@@ -86,7 +85,6 @@ func _on_hide_btn_pressed():
 
 func _on_rtn_to_base_btn_pressed():
 	var SelectedBot = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode.bot
-	var botmenu_console = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/consolePanel/Console
 	
 	if SelectedBot == null:
 		botmenu_console.clear()
@@ -121,7 +119,6 @@ func get_current_program():
 
 func _on_status_btn_pressed():
 	var SelectedBot = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode.bot
-	var botmenu_console = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode/SelectedBotMenu/consolePanel/Console
 	
 	if SelectedBot != null:
 		botmenu_console.clear()

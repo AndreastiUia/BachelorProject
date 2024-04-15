@@ -15,7 +15,7 @@ func _ready():
 		search_radius = parent.search_radius
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	idle = get_parent().idle
 
 func _physics_process(delta):

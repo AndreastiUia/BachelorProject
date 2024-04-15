@@ -21,16 +21,7 @@ var target = null
 var target_in_range = false
 var ready_to_fire = true
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _physics_process(delta):
+func _physics_process(_delta):
 	if ready_to_fire && target_in_range:
 		fire.emit(global_position, target, laser_scene, "red", attackpower)
 		ready_to_fire = false
@@ -89,5 +80,5 @@ func _on_in_range_body_exited(body):
 func _on_timer_fire_rate_timeout():
 	ready_to_fire = true
 
-func damage(damage:int):
-	get_node("healthComponent").take_damage(damage)
+func damage(damage_taken:int):
+	get_node("healthComponent").take_damage(damage_taken)

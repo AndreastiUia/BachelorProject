@@ -12,10 +12,6 @@ func _ready():
 	health = MAX_HEALTH
 	parent = get_parent()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func take_damage(damage: int):
 	# Take damage.
 	health -= damage
@@ -34,6 +30,6 @@ func take_damage(damage: int):
 		if parent.has_method("wander"):
 			parent.queue_free()
 
-func repair(repair: int):
+func repair(repair_amount: int):
 	# Repair bot.
-	health += repair
+	health += repair_amount

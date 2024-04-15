@@ -18,10 +18,6 @@ func _ready():
 	global_rotation = global_position.direction_to(target.global_position).angle()
 	get_node("Laser_fired").play(0.0)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func _physics_process(delta):
 	global_position += direction * speed * delta
 

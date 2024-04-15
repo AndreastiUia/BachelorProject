@@ -5,16 +5,12 @@ signal _on_select(index:int)
 
 var bot
 
-
 #Add bots to Robotlist in upgradescreen
 func populate_bot_list():
 	robot_list.clear()
-	for bot in Global.bots:
-		if bot != null:
-			robot_list.add_item(str(bot.botname), null, true)
-			print("Adding bot:", str(bot))
-		else:
-			pass
+	for b in Global.bots:
+		if b != null:
+			robot_list.add_item(str(b.botname), null, true)
 
 #Clears the RobotList when resuming from upgradescreen
 func clear_bot_list():
@@ -40,6 +36,3 @@ func _on_draw():
 func _on_robot_list_item_selected(index):
 	bot = Global.bots[index]
 	emit_signal("_on_select", index)
-
-func _bot_destroyed(bot):
-	pass
