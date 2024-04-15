@@ -109,6 +109,8 @@ func get_current_program():
 
 # Set a text-color to show active step in program
 func set_color_active_step():
+	if item_count <= 0:
+		return
 	var bot_program_index = bot.program_index
 	set_item_custom_fg_color(bot_program_index, "green")
 	
@@ -151,7 +153,7 @@ func _on_clear_pressed():
 	clear()
 
 
-func _on_item_clicked(index, at_position, mouse_button_index):
+func _on_item_clicked(index, _at_position, mouse_button_index):
 	if mouse_button_index != 1:
 		return
 		

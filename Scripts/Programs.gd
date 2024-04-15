@@ -16,12 +16,8 @@ func _ready():
 	# Access the second ItemList and assign it to target_item_list
 	target_item_list = get_parent().get_node("ActiveProgram")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 # Function to handle item selection
-func _on_item_clicked(index, at_position, mouse_button_index):
+func _on_item_clicked(index, _at_position, mouse_button_index):
 	
 	emit_signal("close_condition_window")
 	

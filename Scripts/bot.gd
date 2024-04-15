@@ -98,11 +98,11 @@ func _ready():
 	pass
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var bot_position_map = tile_map.local_to_map(global_position)
 	current_bot_position = bot_position_map
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if ready_to_fire && !targets.is_empty():
 		print("FIRE!")
 		fire.emit(global_position, targets[0], laser_scene, "green", attackpower)
@@ -318,8 +318,8 @@ func check_while_condition(condition):
 func move(target_position, velocity):
 	global_position = global_position.move_toward(target_position, velocity)
 
-func damage(damage:int):
-	get_node("healthComponent").take_damage(damage)
+func damage(damage_taken:int):
+	get_node("healthComponent").take_damage(damage_taken)
 
 
 

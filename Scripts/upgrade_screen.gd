@@ -17,7 +17,7 @@ func _on_return_button_pressed():
 	resume()
 
 
-func _process(delta):
+func _process(_delta):
 	#Update Base stat labels
 	$TabContainer/Base/HitpointsBackground/Health_label/Health_value.text = str(Global.base_health)
 	$TabContainer/Base/HitpointsBackground/Armor_label/armor_value.text = str(Global.base_armor)

@@ -3,7 +3,7 @@ extends ItemList
 var edit = false
 
 # Add While-statement to active program
-func _on_item_clicked(index, at_position, mouse_button_index):
+func _on_item_clicked(index, _at_position, _mouse_button_index):
 	var ActiveProgram = get_parent().get_node("ActiveProgram")
 	var selected_statement = get_item_text(index)
 	var statement_string = "WHILE " + selected_statement
