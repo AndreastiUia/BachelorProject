@@ -82,8 +82,9 @@ var program_loop_end_index = []
 var program_if_not_index = []
 var program_if_end_index = []
 var program_array = []
-enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE_START, WHILE_BREAK, WHILE_END, IF, IF_END, GATHER_RESOURCE, DELIVER_RESOURCE}
+enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE, WHILE_BREAK, WHILE_END, IF, IF_END, GATHER_RESOURCE, DELIVER_RESOURCE}
 enum program_if {INVENTORY_FULL, INVENTORY_EMPTY, ATTACKED, GOLD, STONE, WOOD, RESOURCES}
+enum program_while {INVENTORY_NOT_FULL, INVENTORY_NOT_EMPTY, TRUE, ATTACKED, GOLD, STONE, WOOD, RESOURCES}
 
 
 # Target
@@ -143,11 +144,13 @@ func program_bot(function: Array):
 			program_index += 1
 			movement.calc_path(program_array[program_index])
 			
-		program_func.WHILE_START:
+		program_func.WHILE:
 			# Intereate trough the program_array to find the next loop_end.
 			program_loop_index.append(program_index)
+			# Skip the next index since this is the condition for the while-loop
+			program_index += 1
 			while function[program_index] != program_func.WHILE_END || program_loop_end_index.find(program_index) > -1:
-				if function[program_index] == program_func.MOVE_TO_POS || function[program_index] == program_func.IF:
+				if function[program_index] == program_func.MOVE_TO_POS || function[program_index] == program_func.IF || function[program_index] == program_func.WHILE:
 					program_index += 2
 				else:
 					program_index += 1
@@ -155,9 +158,25 @@ func program_bot(function: Array):
 			program_loop_end_index.sort()
 			program_index = program_loop_index.back()
 			
+			# Test while condition.
+			program_index += 1
+			if !check_while_condition(program_array[program_index]):
+				# Skip to end of loop. Since program_index is incremented after this, the program will cuntinue on first command after WHILE_END.
+				program_index = program_loop_end_index.front()
+				program_loop_index.pop_back()
+				program_loop_end_index.pop_front()
+			
 		program_func.WHILE_END:
-			# Jump back to start of the start of the loop.
-			program_index = program_loop_index.back()
+			# Jump back to start of the while-loop if the condition for looping is still met.
+			var condition_index = program_loop_index.back()+1
+			if !check_while_condition(program_array[condition_index]):
+				program_index = program_loop_end_index.front()
+				program_loop_index.pop_back()
+				program_loop_end_index.pop_front()
+			else: 
+				program_index = program_loop_index.back()+1
+			
+			
 			
 		program_func.WHILE_BREAK:
 			# Skip to end of loop. Since program_index is incremented after this, the program will cuntinue on first command after WHILE_END.
@@ -195,6 +214,7 @@ func program_bot(function: Array):
 			# check if there is resources on adjacent tiles.
 			var resource_tile = check_adjacent_tile()
 			if resource_tile == null:
+				program_index += 1
 				return
 			# Get resource_count on current tile from global dict.
 			var resource_count = Global.resource_count.get(resource_tile)
@@ -282,8 +302,18 @@ func check_if_statement(statement):
 			statement_string = "inventory >= inventory_size"
 		program_if.INVENTORY_EMPTY:
 			statement_string = "inventory <= 0"
-
 	return test_expression(statement_string)
+
+func check_while_condition(condition):
+	var condition_string
+	match condition:
+		program_while.INVENTORY_NOT_FULL:
+			condition_string = "inventory < inventory_size"
+		program_while.INVENTORY_NOT_EMPTY:
+			condition_string = "inventory > inventory_size"
+		program_while.TRUE:
+			condition_string = "true"
+	return test_expression(condition_string)
 
 func move(target_position, velocity):
 	global_position = global_position.move_toward(target_position, velocity)
