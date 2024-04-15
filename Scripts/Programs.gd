@@ -70,7 +70,7 @@ func _on_robotlist_control_node__on_select(index):
 		# Do not add *_END to the list.
 		if text.contains("END"):
 			continue
-		var tooltip = file.get_line()
+		#var tooltip = file.get_line()
 		add_item(i)
-		set_item_tooltip(item_count-1, tooltip)
+		#set_item_tooltip(item_count-1, tooltip)
 		
