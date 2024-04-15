@@ -63,11 +63,92 @@ func _process(delta):
 	var Coordlabel = $Camera2D/GUI/SideGUI/HBoxPosLabels/Coordtext
 	var mousecoord = get_local_mouse_position()
 	Coordlabel.text = str(tile_map.local_to_map(mousecoord))
+	
+	spawnbuttontooltipupdate()
+
+func spawnbuttontooltipupdate():
+	var botlist = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode
+	var spawnbutton = $Camera2D/GUI/BottomGUI/HBoxContainer/Temp_Button
+	
+	# Fetches the amount of spawned bots
+	var currentbotamount = botlist.robot_list.get_item_count()
+	
+	# Check bot count and set button tooltip accordingly
+	match currentbotamount:
+		0: 
+			spawnbutton.set_tooltip_text("Cost: 100 Wood")
+		1:
+			spawnbutton.set_tooltip_text("Cost: 100 Wood + 100 Stone")
+		2:
+			spawnbutton.set_tooltip_text("Cost: 300 Wood + 100 Stone + 100 Gold")
+		3:
+			spawnbutton.set_tooltip_text("Cost: 300 Wood + 300 Stone + 300 Gold")
+		4:
+			spawnbutton.set_tooltip_text("Cost: 600 Wood + 100 Stone + 400 Gold")
+		5:
+			spawnbutton.set_tooltip_text("Cost: 600 Wood + 500 Stone + 500 Gold")
+		6:
+			spawnbutton.set_tooltip_text("Cost: 1000 Wood + 500 Stone + 1000 Gold")
+		7:
+			spawnbutton.set_tooltip_text("Cost: 2000 Wood + 2000 Gold")
+		8:
+			spawnbutton.set_tooltip_text("Cost: 5000 Gold")
+		9:
+			spawnbutton.set_tooltip_text("Max Bots Reached")
+
+func robotcost():
+	var botlist = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode
+	# Fetches the amount of spawned bots
+	var currentbotamount = botlist.robot_list.get_item_count()
+	
+	#Check bot count and cost. Then spawn bot
+	if currentbotamount == 0 && Global.base_wood >= 100:
+		Global.base_wood -= 100
+		spawnbot()
+	elif currentbotamount == 1 && Global.base_wood >= 100 && Global.base_stone >= 100:
+		Global.base_wood -= 100
+		Global.base_stone -= 100
+		spawnbot()
+	elif currentbotamount == 2 && Global.base_wood >= 300 && Global.base_stone >= 100 && Global.base_gold >= 100:
+		Global.base_wood -= 300
+		Global.base_stone -= 100
+		Global.base_gold -= 100
+		spawnbot()
+	elif currentbotamount == 3 && Global.base_wood >= 300 && Global.base_stone >= 300 && Global.base_gold >= 300:
+		Global.base_wood -= 300
+		Global.base_stone -= 300
+		Global.base_gold -= 300
+		spawnbot()
+	elif currentbotamount == 4 && Global.base_wood >= 600 && Global.base_stone >= 100 && Global.base_gold >= 400:
+		Global.base_wood -= 600
+		Global.base_stone -= 100
+		Global.base_gold -= 400
+		spawnbot()
+	elif currentbotamount == 5 && Global.base_wood >= 600 && Global.base_stone >= 500 && Global.base_gold >= 500:
+		Global.base_wood -= 600
+		Global.base_stone -= 500
+		Global.base_gold -= 500
+		spawnbot()
+	elif currentbotamount == 6 && Global.base_wood >= 1000 && Global.base_stone >= 500 && Global.base_gold >= 1000:
+		Global.base_wood -= 1000
+		Global.base_stone -= 500
+		Global.base_gold -= 1000
+		spawnbot()
+	elif currentbotamount == 7 && Global.base_wood >= 2000 && Global.base_gold >= 2000:
+		Global.base_wood -= 2000
+		Global.base_stone -= 0
+		Global.base_gold -= 2000
+		spawnbot()
+	elif currentbotamount == 8 && Global.base_gold >= 5000:
+		Global.base_wood -= 0
+		Global.base_stone -= 0
+		Global.base_gold -= 5000
+		spawnbot()
 
 
 func _on_temp_button_pressed():
 	#Spawn a bot and update the robotlist
-	spawnbot()
+	robotcost()
 	Robotlist.populate_bot_list()
 
 

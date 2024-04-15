@@ -5,7 +5,6 @@ signal _on_select(index:int)
 
 var bot
 
-
 #Add bots to Robotlist in upgradescreen
 func populate_bot_list():
 	robot_list.clear()
