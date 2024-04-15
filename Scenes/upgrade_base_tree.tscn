@@ -45,6 +45,7 @@ offset_bottom = 768.0
 tooltip_text = "Increase Health"
 disabled = false
 texture_normal = ExtResource("2_ebgv1")
+UpgradeCost = 300
 MaxUpgrade = 2
 
 [node name="HitpointsLabel" type="Label" parent="HealthUpgradeButton1"]
@@ -66,6 +67,7 @@ tooltip_text = "Increase Health Tier 2"
 texture_normal = ExtResource("4_u3f6p")
 UpgradeVisible = false
 UpgradeLabelVis = false
+UpgradeCost = 600
 MaxUpgrade = 1
 
 [node name="ArmorUpgradeButton1" parent="HealthUpgradeButton1/HealthUpgradeButton2" instance=ExtResource("1_us5tp")]
@@ -77,6 +79,7 @@ tooltip_text = "Increase Armor"
 texture_normal = ExtResource("5_k6s1s")
 UpgradeVisible = false
 UpgradeLabelVis = false
+UpgradeCost = 500
 MaxUpgrade = 1
 
 [node name="ArmorUpgradeButton2" parent="HealthUpgradeButton1/HealthUpgradeButton2/ArmorUpgradeButton1" instance=ExtResource("1_us5tp")]
@@ -88,6 +91,7 @@ tooltip_text = "Increase Armor Tier 2"
 texture_normal = ExtResource("6_2xh13")
 UpgradeVisible = false
 UpgradeLabelVis = false
+UpgradeCost = 1500
 MaxUpgrade = 1
 
 [node name="HealthUpgradeButton3" parent="HealthUpgradeButton1/HealthUpgradeButton2" instance=ExtResource("1_us5tp")]
@@ -99,6 +103,7 @@ tooltip_text = "Increase Health Tier 3"
 texture_normal = ExtResource("7_dn656")
 UpgradeVisible = false
 UpgradeLabelVis = false
+UpgradeCost = 1500
 MaxUpgrade = 1
 
 [node name="DefenseUpgradeButton1" parent="." instance=ExtResource("1_us5tp")]
@@ -110,6 +115,7 @@ offset_bottom = 768.0
 tooltip_text = "Increase Attack Power"
 disabled = false
 texture_normal = ExtResource("8_qclpu")
+UpgradeCost = 3000
 MaxUpgrade = 2
 
 [node name="DefenseLabel" type="Label" parent="DefenseUpgradeButton1"]
@@ -131,6 +137,7 @@ tooltip_text = "Increase Attack Power Tier 2"
 texture_normal = ExtResource("9_pesab")
 UpgradeVisible = false
 UpgradeLabelVis = false
+UpgradeCost = 5000
 MaxUpgrade = 1
 
 [node name="DefenseUpgradeButton3" parent="DefenseUpgradeButton1/DefenseUpgradeButton2" instance=ExtResource("1_us5tp")]
@@ -142,6 +149,7 @@ tooltip_text = "Increase Attack Power Tier 3"
 texture_normal = ExtResource("10_ctvlu")
 UpgradeVisible = false
 UpgradeLabelVis = false
+UpgradeCost = 5000
 MaxUpgrade = 1
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

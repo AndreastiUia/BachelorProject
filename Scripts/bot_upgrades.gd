@@ -29,16 +29,16 @@ extends Control
 #Checks if BotUpgrades are True and gives selected bot upgraded stats once
 func UpgradeTreeUnlocks(Bot):
 	
-	if Bot.healthupgrade_1 == true && Bot.health.MAX_HEALTH == 100:
-		Bot.health.MAX_HEALTH += 100
+	if Bot.healthupgrade_1 == true && Bot.health_component.MAX_HEALTH == 100:
+		Bot.health_component.MAX_HEALTH += 100
 		print("Health1 upgraded for " + "" + str(Bot.botname))
 
-	if Bot.healthupgrade_2 == true && Bot.health.MAX_HEALTH == 200:
-		Bot.health.MAX_HEALTH += 100
+	if Bot.healthupgrade_2 == true && Bot.health_component.MAX_HEALTH == 200:
+		Bot.health_component.MAX_HEALTH += 100
 		print("Health2 upgraded for " + "" + str(Bot.botname))
 
-	if Bot.healthupgrade_3 == true && Bot.health.MAX_HEALTH == 300:
-		Bot.health.MAX_HEALTH += 100
+	if Bot.healthupgrade_3 == true && Bot.health_component.MAX_HEALTH == 300:
+		Bot.health_component.MAX_HEALTH += 100
 		print("Health3 upgraded for " + "" + str(Bot.botname))
 
 	if Bot.armorupgrade_1 == true && Bot.armor == 0:

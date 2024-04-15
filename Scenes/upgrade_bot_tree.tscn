@@ -87,9 +87,11 @@ offset_left = 448.0
 offset_top = 896.0
 offset_right = 576.0
 offset_bottom = 1024.0
-tooltip_text = "Increase Health"
+tooltip_text = "Increase Health.
+Cost: 200 Gold"
 disabled = false
 texture_normal = ExtResource("5_y47u5")
+UpgradeCost = 200
 
 [node name="ArmorUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 1
@@ -98,9 +100,11 @@ offset_left = 704.0
 offset_top = 896.0
 offset_right = 832.0
 offset_bottom = 1024.0
-tooltip_text = "Increase Armor"
+tooltip_text = "Increase Armor
+Cost: 400 Gold"
 disabled = false
 texture_normal = ExtResource("6_4tys1")
+UpgradeCost = 400
 
 [node name="InventoryUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
 layout_mode = 1
@@ -109,10 +113,12 @@ offset_left = 960.0
 offset_top = 896.0
 offset_right = 1088.0
 offset_bottom = 1024.0
-tooltip_text = "Increase Inventory Size"
+tooltip_text = "Increase Inventory Size
+Cost: 400 Gold"
 disabled = false
 texture_normal = ExtResource("4_32nwd")
 UpgradeLabelVis = false
+UpgradeCost = 400
 MaxUpgrade = 1
 
 [node name="FuelCapacityUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
@@ -122,9 +128,11 @@ offset_left = 1216.0
 offset_top = 896.0
 offset_right = 1344.0
 offset_bottom = 1024.0
-tooltip_text = "Increase Fuel Capacity"
+tooltip_text = "Increase Fuel Capacity
+Cost: 1000 Gold"
 disabled = false
 texture_normal = ExtResource("5_pje4b")
+UpgradeCost = 1000
 MaxUpgrade = 4
 
 [node name="SpeedUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
@@ -134,9 +142,11 @@ offset_left = 1472.0
 offset_top = 896.0
 offset_right = 1600.0
 offset_bottom = 1024.0
-tooltip_text = "Increase Speed"
+tooltip_text = "Increase Speed
+Cost: 100 Gold"
 disabled = false
 texture_normal = ExtResource("6_h6gow")
+UpgradeCost = 100
 MaxUpgrade = 4
 
 [node name="MiningBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
@@ -146,10 +156,12 @@ offset_left = 448.0
 offset_top = 704.0
 offset_right = 576.0
 offset_bottom = 832.0
-tooltip_text = "Mining Bot Upgrade"
+tooltip_text = "Mining Bot Upgrade
+Cost: 700 Gold"
 disabled = false
 texture_normal = ExtResource("5_4tjtw")
 UpgradeLabelVis = false
+UpgradeCost = 700
 MaxUpgrade = 1
 
 [node name="MiningBotSpeedUpgradeButton1" parent="MiningBotUpgradeButton" instance=ExtResource("1_wkdpk")]
@@ -157,10 +169,12 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
-tooltip_text = "Increase Mining Speed"
+tooltip_text = "Increase Mining Speed
+Cost: 1500 Gold"
 texture_normal = ExtResource("6_kljhr")
 UpgradeVisible = false
 UpgradeLabelVis = false
+UpgradeCost = 1500
 MaxUpgrade = 1
 
 [node name="MiningBotSpeedUpgradeButton2" parent="MiningBotUpgradeButton/MiningBotSpeedUpgradeButton1" instance=ExtResource("1_wkdpk")]
@@ -168,10 +182,12 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
-tooltip_text = "Increase Mining Speed Tier 2"
+tooltip_text = "Increase Mining Speed Tier 2
+Cost: 1500 Gold"
 texture_normal = ExtResource("7_t27wh")
 UpgradeVisible = false
 UpgradeLabelVis = false
+UpgradeCost = 1500
 MaxUpgrade = 1
 
 [node name="SearchBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
@@ -181,10 +197,12 @@ offset_left = 704.0
 offset_top = 704.0
 offset_right = 832.0
 offset_bottom = 832.0
-tooltip_text = "Search Bot Upgrade"
+tooltip_text = "Search Bot Upgrade
+Cost: 300 Gold"
 disabled = false
 texture_normal = ExtResource("8_5oj08")
 UpgradeLabelVis = false
+UpgradeCost = 300
 MaxUpgrade = 1
 
 [node name="SearchBotSizeUpgradeButton1" parent="SearchBotUpgradeButton" instance=ExtResource("1_wkdpk")]
@@ -192,10 +210,12 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
-tooltip_text = "Increase Search Size"
+tooltip_text = "Increase Search Size
+Cost: 500 Gold"
 texture_normal = ExtResource("9_6pc2w")
 UpgradeVisible = false
 UpgradeLabelVis = false
+UpgradeCost = 500
 MaxUpgrade = 1
 
 [node name="AttackBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
@@ -205,10 +225,12 @@ offset_left = 960.0
 offset_top = 704.0
 offset_right = 1088.0
 offset_bottom = 832.0
-tooltip_text = "Attack Bot Upgrade"
+tooltip_text = "Attack Bot Upgrade
+Cost: 500 Gold"
 disabled = false
 texture_normal = ExtResource("2_rb0hu")
 UpgradeLabelVis = false
+UpgradeCost = 500
 MaxUpgrade = 1
 
 [node name="AttackBotDmgUpgradeButton1" parent="AttackBotUpgradeButton" instance=ExtResource("1_wkdpk")]
@@ -216,10 +238,12 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
-tooltip_text = "Increase Attack Power "
+tooltip_text = "Increase Attack Power 
+Cost: 500 Gold"
 texture_normal = ExtResource("3_qg1gi")
 UpgradeVisible = false
 UpgradeLabelVis = false
+UpgradeCost = 500
 MaxUpgrade = 1
 
 [node name="AttackBotDmgUpgradeButton2" parent="AttackBotUpgradeButton/AttackBotDmgUpgradeButton1" instance=ExtResource("1_wkdpk")]
@@ -227,9 +251,11 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
-tooltip_text = "Increase Attack Power Tier 2"
+tooltip_text = "Increase Attack Power Tier 2
+Cost: 800 Gold"
 texture_normal = ExtResource("4_piobm")
 UpgradeVisible = false
+UpgradeCost = 800
 MaxUpgrade = 2
 
 [node name="TransportBotUpgradeButton" parent="." instance=ExtResource("1_wkdpk")]
@@ -239,10 +265,12 @@ offset_left = 1216.0
 offset_top = 704.0
 offset_right = 1344.0
 offset_bottom = 832.0
-tooltip_text = "Transport Bot Upgrade"
+tooltip_text = "Transport Bot Upgrade
+Cost: 600 Gold"
 disabled = false
 texture_normal = ExtResource("13_p5v32")
 UpgradeLabelVis = false
+UpgradeCost = 600
 MaxUpgrade = 1
 
 [node name="TransportBotInvUpgradeButton1" parent="TransportBotUpgradeButton" instance=ExtResource("1_wkdpk")]
@@ -250,9 +278,11 @@ layout_mode = 0
 offset_top = -256.0
 offset_right = 128.0
 offset_bottom = -128.0
-tooltip_text = "Increase Inventory Size"
+tooltip_text = "Increase Inventory Size
+Cost: 400 Gold"
 texture_normal = ExtResource("14_yornm")
 UpgradeVisible = false
+UpgradeCost = 400
 MaxUpgrade = 5
 
 [node name="RobotlistControlNode" parent="." instance=ExtResource("17_02cm6")]
