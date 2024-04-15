@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dm8nkplh1yqq7" path="res://Sprites/Icons/icon.svg" id="2_kl8rn"]
 [ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="3_a5y6d"]
 [ext_resource type="FontFile" uid="uid://ct4ox56t42ck3" path="res://External Resources/Fonts/Teko/Teko-VariableFont_wght.ttf" id="3_eese3"]
-[ext_resource type="Texture2D" uid="uid://ngosysk6utpv" path="res://External Resources/Pictures/kisspng-china-primate-golden-snub-nosed-monkey-ape-2017-golden-monkey-face-closeup-5a7de5033a7664.4448749815182000672395.png" id="4_4risx"]
+[ext_resource type="Texture2D" uid="uid://bhcx3kkpl7ty8" path="res://External Resources/Pictures/ProgBot_Logo.png" id="5_msjpq"]
 
 [sub_resource type="Theme" id="Theme_1eteu"]
 Button/fonts/font = null
@@ -87,30 +87,19 @@ text = "Quit
 [node name="IconContainer" type="VBoxContainer" parent="Background/ColorRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.604
-anchor_top = 0.296
-anchor_right = 0.646
-anchor_bottom = 0.599
-offset_left = 0.387817
-offset_top = 0.432007
-offset_right = -0.177856
-offset_bottom = 0.282959
+anchor_left = 0.5
+anchor_top = 0.208
+anchor_right = 0.5
+anchor_bottom = 0.208
+offset_left = 375.884
+offset_top = -112.264
+offset_right = 455.884
+offset_bottom = 223.736
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_a5y6d")
 theme_override_constants/separation = 106
 alignment = 1
-
-[node name="Monkey_label" type="Label" parent="Background/ColorRect/IconContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_eese3")
-theme_override_font_sizes/font_size = 25
-text = "Made by"
-
-[node name="MonkeIcon" type="Sprite2D" parent="Background/ColorRect/IconContainer/Monkey_label"]
-position = Vector2(32, 85)
-scale = Vector2(0.0999999, 0.107324)
-texture = ExtResource("4_4risx")
 
 [node name="Godot_Label" type="Label" parent="Background/ColorRect/IconContainer"]
 layout_mode = 2
@@ -118,10 +107,23 @@ theme_override_fonts/font = ExtResource("3_eese3")
 theme_override_font_sizes/font_size = 25
 text = "Made with"
 
-[node name="Icon" type="Sprite2D" parent="Background/ColorRect/IconContainer/Godot_Label"]
-position = Vector2(26.25, 87)
+[node name="Icon" type="Sprite2D" parent="Background/ColorRect/IconContainer"]
+position = Vector2(42.0001, 224)
 scale = Vector2(0.714844, 0.671875)
 texture = ExtResource("2_kl8rn")
+
+[node name="LogoRect" type="NinePatchRect" parent="Background/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.22
+anchor_right = 0.5
+anchor_bottom = 0.22
+offset_left = -328.116
+offset_top = -165.26
+offset_right = 327.884
+offset_bottom = 146.74
+texture = ExtResource("5_msjpq")
 
 [connection signal="pressed" from="Background/ColorRect/MenuContainer/ContinueButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Background/ColorRect/MenuContainer/StartButton" to="." method="_on_start_button_pressed"]
