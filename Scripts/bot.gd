@@ -107,7 +107,6 @@ func _process(_delta):
 	
 func _physics_process(_delta):
 	if ready_to_fire && !targets.is_empty():
-		print("FIRE!")
 		fire.emit(global_position, targets[0], laser_scene, "green", attackpower)
 		ready_to_fire = false
 		timer_fire_rate.start(fireRate)
@@ -284,7 +283,6 @@ func program_bot(function: Array):
 				idle = false
 				timer_repair.start(repair_time)
 				health_component.repair(repair_amount)
-				print(health_component.health)
 			
 	program_index += 1
 
@@ -296,7 +294,6 @@ func test_expression(statement):
 
 func update_inventory():
 	inventory = gold + stone + wood
-	print("inventory: ", inventory)
 
 
 func check_adjacent_tile(check_base: bool = false):
@@ -350,7 +347,6 @@ func _on_in_range_body_entered(body):
 	if body.has_method("wander"):
 		target_in_range = true
 		targets.append(body)
-		print(targets)
 
 
 func _on_in_range_body_exited(body):

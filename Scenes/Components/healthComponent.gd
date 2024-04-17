@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var health_bar = $HealthBar
+
 @export var MAX_HEALTH: int = 100
 
 signal _bot_destroyed(bot)
@@ -11,6 +13,7 @@ var parent
 func _ready():
 	health = MAX_HEALTH
 	parent = get_parent()
+	update_healthbar()
 
 func take_damage(damage: int):
 	# Take damage.
@@ -29,9 +32,14 @@ func take_damage(damage: int):
 			parent.queue_free()
 		if parent.has_method("wander"):
 			parent.queue_free()
+	update_healthbar()
 
 func repair(repair_amount: int):
 	# Repair bot.
 	health += repair_amount
 	if health > MAX_HEALTH:
 		health = MAX_HEALTH
+	update_healthbar()
+		
+func update_healthbar():
+	health_bar.value = health * 100 / MAX_HEALTH
