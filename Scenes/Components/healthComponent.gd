@@ -13,6 +13,7 @@ var parent
 func _ready():
 	health = MAX_HEALTH
 	parent = get_parent()
+	health_bar.visible = false
 	update_healthbar()
 
 func take_damage(damage: int):
@@ -43,3 +44,12 @@ func repair(repair_amount: int):
 		
 func update_healthbar():
 	health_bar.value = health * 100 / MAX_HEALTH
+	if health_bar.value < 25:
+		health_bar.visible = true
+
+func _on_mouse_over_mouse_entered():
+	health_bar.visible = true
+
+func _on_mouse_over_mouse_exited():
+	if health_bar.value > 25:
+		health_bar.visible = false
