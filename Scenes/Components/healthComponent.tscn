@@ -4,9 +4,20 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_waujs"]
 bg_color = Color(0.580392, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jswpo"]
 bg_color = Color(0, 0.537255, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 
 [sub_resource type="Theme" id="Theme_b1nsx"]
 ProgressBar/styles/background = SubResource("StyleBoxFlat_waujs")
