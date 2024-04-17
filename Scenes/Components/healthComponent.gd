@@ -44,12 +44,17 @@ func repair(repair_amount: int):
 		
 func update_healthbar():
 	health_bar.value = health * 100 / MAX_HEALTH
-	if health_bar.value < 25:
+	# If a bot has less then 25% helath, set healthbar as visible.
+	if health_bar.value < 25 && get_parent().has_method("program_bot"):
 		health_bar.visible = true
 
+# Mouse over bot
 func _on_mouse_over_mouse_entered():
 	health_bar.visible = true
 
+# Mouse over bot
 func _on_mouse_over_mouse_exited():
-	if health_bar.value > 25:
-		health_bar.visible = false
+	# If a bot has less then 25% helath, healthbar is always visible.
+	if get_parent().has_method("program_bot") && health_bar.value < 25:
+		return
+	health_bar.visible = false
