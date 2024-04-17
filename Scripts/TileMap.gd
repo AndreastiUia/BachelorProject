@@ -7,8 +7,8 @@ var gold = FastNoiseLite.new()
 
 
 # Map Size
-var width = 500
-var height = 500
+var width = 100
+var height = 100
 
 # Resources
 const rasource_count_min = 500

@@ -9,5 +9,6 @@ var prog_tooltips = ["Move one tile left.",
 	"Break out of the current while-loop.",
 	"Use this to create an IF-statement, this will check if a selected statement is TRUE and only then run the program between the IF and next IF_END.",
 	"Collect one resource of an adjacent resourse, if there is any. The bot will only collect one item for each time this command is ran.",
-	"Deliver one resource if the bot is standing next to the base. The bot will only collect one item for each time this command is ran."
+	"Deliver one resource if the bot is standing next to the base. The bot will only collect one item for each time this command is ran.",
+	"Repair the bot. NOTE: The bot HAS to be next to the base to be repaired."
 	]

@@ -7,6 +7,7 @@ signal fire(pos_from, target, laser_scene, color, damage)
 @onready var health_component = $healthComponent
 @onready var movement = $Movement
 @onready var timer_fire_rate = $Timer_FireRate
+@onready var timer_repair = $Timer_Repair
 
 # Bot attributes
 @export var botname: String = "ProgBot"
@@ -18,6 +19,8 @@ signal fire(pos_from, target, laser_scene, color, damage)
 @export var mining_time = 0.001
 @export var attackpower = 25
 @export var fireRate = 0.5
+@export var repair_time = 1
+@export var repair_amount = 1
 var idle = true
 
 var current_bot_position
@@ -82,9 +85,9 @@ var program_loop_end_index = []
 var program_if_not_index = []
 var program_if_end_index = []
 var program_array = []
-enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE, WHILE_BREAK, WHILE_END, IF, IF_END, GATHER_RESOURCE, DELIVER_RESOURCE}
+enum program_func {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_TO_POS, WHILE, WHILE_BREAK, WHILE_END, IF, IF_END, GATHER_RESOURCE, DELIVER_RESOURCE, REPAIR}
 enum program_if {INVENTORY_FULL, INVENTORY_EMPTY, ATTACKED, GOLD, STONE, WOOD, RESOURCES}
-enum program_while {INVENTORY_NOT_FULL, INVENTORY_NOT_EMPTY, TRUE, ATTACKED, GOLD, STONE, WOOD, RESOURCES}
+enum program_while {INVENTORY_NOT_FULL, INVENTORY_NOT_EMPTY, TRUE, ATTACKED, GOLD, STONE, WOOD, RESOURCES, DAMAGED}
 
 
 # Target
@@ -264,6 +267,24 @@ func program_bot(function: Array):
 					stone -= 1
 					Global.base_stone += 1
 				update_inventory()
+				
+		# Repair bot
+		program_func.REPAIR:
+			# Check if bot is next to base
+			var base_tile = check_adjacent_tile(true)
+			if base_tile == null:
+				return
+			var tile_data = tile_map.get_cell_tile_data(1, base_tile)
+	
+			# Return if there is no resource on the current tile.
+			if tile_data == null:
+				return
+			
+			if tile_data.get_custom_data("base"):
+				idle = false
+				timer_repair.start(repair_time)
+				health_component.repair(repair_amount)
+				print(health_component.health)
 			
 	program_index += 1
 
@@ -313,6 +334,8 @@ func check_while_condition(condition):
 			condition_string = "inventory > inventory_size"
 		program_while.TRUE:
 			condition_string = "true"
+		program_while.DAMAGED:
+			condition_string = "health_component.health < health_component.MAX_HEALTH"
 	return test_expression(condition_string)
 
 func move(target_position, velocity):
@@ -338,3 +361,7 @@ func _on_in_range_body_exited(body):
 
 func _on_timer_fire_rate_timeout():
 	ready_to_fire = true
+
+
+func _on_timer_repair_timeout():
+	idle = true

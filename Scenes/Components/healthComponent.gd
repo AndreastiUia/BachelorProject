@@ -33,3 +33,5 @@ func take_damage(damage: int):
 func repair(repair_amount: int):
 	# Repair bot.
 	health += repair_amount
+	if health > MAX_HEALTH:
+		health = MAX_HEALTH
