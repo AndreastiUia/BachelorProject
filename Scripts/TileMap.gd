@@ -102,15 +102,6 @@ func generate_resources():
 					var resource_count = randi_range(rasource_count_min,resource_count_max)
 					Global.resource_count[tile_position] = resource_count
 	
-func _input(event):
-	# TESTING: This is just used to check resource_count on a spesific tile.
-	if event.is_action_pressed("clicked"):
-		var resource_count = Global.resource_count.get(local_to_map(get_global_mouse_position()))
-		if resource_count == null:
-			return
-		print(resource_count)
-		print(local_to_map(get_global_mouse_position()))	
-	
 func setup_astargrid2d():
 	# Setup pathfinding
 	

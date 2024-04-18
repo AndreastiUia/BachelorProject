@@ -36,7 +36,6 @@ func spawnbot():
 	b.botname += " " + str(botnamecounter)
 	botnamecounter = incrementbotname(botnamecounter)
 	b.fire.connect(_on_laser_shot)
-	print(Global.bots)
 	add_child(b)
 
 # Called when the node enters the scene tree for the first time.
@@ -279,5 +278,4 @@ func _on_laser_shot(pos_from, target, laser_scene, color, damage):
 	l.target = target
 	l.color = color
 	l.damage = damage
-	print(l.damage)
 	add_child(l)

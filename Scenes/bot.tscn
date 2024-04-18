@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cuhi4t00wx2iu"]
+[gd_scene load_steps=16 format=3 uid="uid://cuhi4t00wx2iu"]
 
 [ext_resource type="Script" path="res://Scripts/bot.gd" id="1_bmq70"]
 [ext_resource type="Texture2D" uid="uid://cq5gwt08d2ev1" path="res://Sprites/Bot/botsprite_left_idle.png" id="3_vhjvu"]
@@ -65,6 +65,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cbncd"]
 size = Vector2(144, 144)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_xteur"]
+radius = 16.0
+
 [node name="bot" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_bmq70")
@@ -100,7 +103,17 @@ shape = SubResource("RectangleShape2D_cbncd")
 
 [node name="Timer_FireRate" type="Timer" parent="."]
 
+[node name="Timer_Repair" type="Timer" parent="."]
+
+[node name="MouseOver" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseOver"]
+shape = SubResource("CircleShape2D_xteur")
+
 [connection signal="timeout" from="Timer_reset_idle" to="." method="_on_timer_reset_idle_timeout"]
 [connection signal="body_entered" from="InRange" to="." method="_on_in_range_body_entered"]
 [connection signal="body_exited" from="InRange" to="." method="_on_in_range_body_exited"]
 [connection signal="timeout" from="Timer_FireRate" to="." method="_on_timer_fire_rate_timeout"]
+[connection signal="timeout" from="Timer_Repair" to="." method="_on_timer_repair_timeout"]
+[connection signal="mouse_entered" from="MouseOver" to="healthComponent" method="_on_mouse_over_mouse_entered"]
+[connection signal="mouse_exited" from="MouseOver" to="healthComponent" method="_on_mouse_over_mouse_exited"]
