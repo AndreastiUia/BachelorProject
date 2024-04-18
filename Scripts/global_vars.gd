@@ -1,8 +1,8 @@
 extends Node
 
 # Base variables
-var base_gold = 500
-var base_wood = 0
+var base_gold = 0
+var base_wood = 100
 var base_stone = 0
 
 var base_health = 100

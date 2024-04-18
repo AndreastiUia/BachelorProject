@@ -68,7 +68,6 @@ size = Vector2(144, 144)
 [node name="bot" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_bmq70")
-SPEED = 300
 mining_time = 0.01
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

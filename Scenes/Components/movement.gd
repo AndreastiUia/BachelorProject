@@ -2,7 +2,7 @@ extends Node2D
 
 var tile_map
 var current_id_path: Array[Vector2i]
-var SPEED: int = 500
+var SPEED: int = 30
 var search_radius: int = 5
 var idle: bool = true
 
@@ -17,6 +17,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	idle = get_parent().idle
+	var parent = get_parent()
+	SPEED = parent.SPEED
+	if parent.has_method("program_bot"):
+		search_radius = parent.search_radius
 
 func _physics_process(delta):
 	if !current_id_path.is_empty():
