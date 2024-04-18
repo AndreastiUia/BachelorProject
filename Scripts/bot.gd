@@ -328,7 +328,7 @@ func check_while_condition(condition):
 		program_while.INVENTORY_NOT_FULL:
 			condition_string = "inventory < inventory_size"
 		program_while.INVENTORY_NOT_EMPTY:
-			condition_string = "inventory > inventory_size"
+			condition_string = "inventory > 0"
 		program_while.TRUE:
 			condition_string = "true"
 		program_while.DAMAGED:
