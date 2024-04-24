@@ -12,7 +12,10 @@ var botnamecounter:int = 1
 
 var bot = preload("res://Scenes/bot.tscn")
 var enemy = preload("res://Scenes/basic_enemy.tscn")
-var number_enemies = 150
+@export var number_enemies = 150
+@export var starting_wood = 100
+@export var starting_gold = 0
+@export var starting_stone = 0
 
 func incrementbotname(counter):
 	counter += 1
@@ -42,6 +45,8 @@ func spawnbot():
 func _ready():
 
 	centercameraposition()
+	set_starting_resources(starting_gold, starting_wood, starting_stone)
+	
 	for i in range(number_enemies):
 		spawn_enemy()
   
@@ -64,6 +69,11 @@ func _process(_delta):
 	Coordlabel.text = str(tile_map.local_to_map(mousecoord))
 	
 	spawnbuttontooltipupdate()
+
+func set_starting_resources(gold, wood, stone):
+	Global.base_gold = gold
+	Global.base_stone = stone
+	Global.base_wood = wood
 
 func spawnbuttontooltipupdate():
 	var botlist = $Camera2D/GUI/ListGUI/Panel/RobotlistControlNode

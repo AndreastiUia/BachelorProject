@@ -197,7 +197,9 @@ func program_bot(function: Array):
 			while function[program_index] != program_func.IF_END || program_if_end_index.find(program_index) > -1 || if_count > 0:
 				if function[program_index] == program_func.IF:
 					if_count += 1
-				if function[program_index] == program_func.MOVE_TO_POS || function[program_index] == program_func.IF:
+				if function[program_index] == program_func.IF_END:
+					if_count -= 1
+				if function[program_index] == program_func.MOVE_TO_POS || function[program_index] == program_func.IF || function[program_index] == program_func.WHILE:
 					program_index += 2
 				else:
 					program_index += 1
