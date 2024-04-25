@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnukc0xes30pw"]
+[gd_scene load_steps=3 format=3 uid="uid://dnukc0xes30pw"]
 
 [ext_resource type="Theme" uid="uid://cvdn2gv12w2k1" path="res://Themes/ThemeButtons.tres" id="2_ash5y"]
-[ext_resource type="Script" path="res://Scripts/CoordinateInputDialog.gd" id="2_ohk7v"]
 
 [sub_resource type="GDScript" id="GDScript_qea1g"]
 script/source = "extends Control
@@ -110,7 +109,6 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 theme = ExtResource("2_ash5y")
 text = "Confirm"
-script = ExtResource("2_ohk7v")
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
