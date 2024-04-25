@@ -151,7 +151,12 @@ func program_bot(function: Array):
 			program_loop_index.append(program_index)
 			# Skip the next index since this is the condition for the while-loop
 			program_index += 2
-			while function[program_index] != program_func.WHILE_END || program_loop_end_index.find(program_index) > -1:
+			var while_count = 0
+			while function[program_index] != program_func.WHILE_END || program_loop_end_index.find(program_index) > -1 || while_count > 0:
+				if function[program_index] == program_func.WHILE:
+					while_count += 1
+				if function[program_index] == program_func.WHILE_END:
+					while_count -= 1	
 				if function[program_index] == program_func.MOVE_TO_POS || function[program_index] == program_func.IF || function[program_index] == program_func.WHILE:
 					program_index += 2
 				else:
