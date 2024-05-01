@@ -6,7 +6,6 @@ signal fire(pos_from, target, laser_scene, color, damage)
 @onready var timer_reset_idle = $Timer_reset_idle
 @onready var health_component = $healthComponent
 @onready var movement = $Movement
-@onready var timer_fire_rate = $Timer_FireRate
 @onready var timer_repair = $Timer_Repair
 
 # Bot attributes
@@ -90,13 +89,6 @@ enum program_if {INVENTORY_FULL, INVENTORY_EMPTY, ATTACKED, GOLD, STONE, WOOD, R
 enum program_while {INVENTORY_NOT_FULL, INVENTORY_NOT_EMPTY, TRUE, ATTACKED, GOLD, STONE, WOOD, RESOURCES, DAMAGED}
 
 
-# Target
-var target_in_range = false
-var targets = []
-var ready_to_fire = true
-var laser_scene = preload("res://Scenes/Components/laser.tscn")
-
-
 func _ready():
 	pass
 	
@@ -105,12 +97,7 @@ func _process(_delta):
 	var bot_position_map = tile_map.local_to_map(global_position)
 	current_bot_position = bot_position_map
 	
-func _physics_process(_delta):
-	if ready_to_fire && !targets.is_empty():
-		fire.emit(global_position, targets[0], laser_scene, "green", attackpower)
-		ready_to_fire = false
-		timer_fire_rate.start(fireRate)
-		
+func _physics_process(_delta):		
 	
 	if program_array.is_empty():
 		return
@@ -347,24 +334,6 @@ func move(target_position, velocity):
 
 func damage(damage_taken:int):
 	get_node("healthComponent").take_damage(damage_taken)
-
-
-
-func _on_in_range_body_entered(body):
-	if body.has_method("wander"):
-		target_in_range = true
-		targets.append(body)
-
-
-func _on_in_range_body_exited(body):
-	if body.has_method("wander"):
-		target_in_range = false
-		targets.remove_at(targets.find(body))
-
-
-func _on_timer_fire_rate_timeout():
-	ready_to_fire = true
-
 
 func _on_timer_repair_timeout():
 	idle = true

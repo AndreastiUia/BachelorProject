@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://umr6lrnhse2n"]
+
+[ext_resource type="Script" path="res://Scenes/Components/LaserGun.gd" id="1_ecxcf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mav51"]
+radius = 120.266
+
+[node name="LaserGun" type="Node2D"]
+script = ExtResource("1_ecxcf")
+
+[node name="FiringRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FiringRange"]
+shape = SubResource("CircleShape2D_mav51")
+
+[node name="Timer_fire_rate" type="Timer" parent="."]
+
+[connection signal="body_entered" from="FiringRange" to="." method="_on_firing_range_body_entered"]
+[connection signal="body_exited" from="FiringRange" to="." method="_on_firing_range_body_exited"]
+[connection signal="timeout" from="Timer_fire_rate" to="." method="_on_timer_fire_rate_timeout"]

@@ -12,7 +12,7 @@ var botnamecounter:int = 1
 
 var bot = preload("res://Scenes/bot.tscn")
 var enemy = preload("res://Scenes/basic_enemy.tscn")
-@export var number_enemies = 150
+@export var number_enemies = 600
 @export var starting_wood = 100
 @export var starting_gold = 0
 @export var starting_stone = 0
@@ -38,7 +38,7 @@ func spawnbot():
 	Global.bots.append(b)
 	b.botname += " " + str(botnamecounter)
 	botnamecounter = incrementbotname(botnamecounter)
-	b.fire.connect(_on_laser_shot)
+	b.get_node("./LaserGun").fire.connect(_on_laser_shot)
 	add_child(b)
 
 # Called when the node enters the scene tree for the first time.
@@ -279,7 +279,7 @@ func spawn_enemy_from_queue(spawn_position:Vector2i):
 	e.position = spawn_position
 	add_child(e)
 	Global.enemies.append(e)
-	e.fire.connect(_on_laser_shot)
+	e.get_node("./LaserGun").fire.connect(_on_laser_shot)
 
 
 func _on_laser_shot(pos_from, target, laser_scene, color, damage):

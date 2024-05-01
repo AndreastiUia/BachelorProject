@@ -82,7 +82,6 @@ func get_current_program():
 	var IF = false
 	var WHILE = false
 	for i in ActiveProgram:
-		print(i)
 		if !IF && !WHILE: 
 			if i is Vector2i:
 				var x = i.x
@@ -143,7 +142,6 @@ func _on_start_program_pressed():
 			program.append(bot.program_func.get(command))
 	
 	bot.program_array = program
-	print(program)
 	
 	# Reset the program array to be ready for a new program.
 	bot.reset_program_state()
@@ -201,7 +199,6 @@ func _on_list_changed():
 	var list_lenght = get_item_count()
 	var list_index = 0
 	var indents = 0
-	print(list_index)
 	while list_index < list_lenght:
 		var text = get_item_text(list_index)
 		
@@ -222,5 +219,4 @@ func _on_list_changed():
 			indents += 1
 			
 		list_index += 1
-		print(text)
 		set_item_text(list_index-1, text)
