@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfre148rtjurk"]
+[gd_scene load_steps=11 format=3 uid="uid://dfre148rtjurk"]
 
 [ext_resource type="Script" path="res://Scripts/basic_enemy.gd" id="1_awpoy"]
 [ext_resource type="PackedScene" uid="uid://0hel61iqys76" path="res://Scenes/Components/movement.tscn" id="2_6jov8"]
 [ext_resource type="PackedScene" uid="uid://cymsqhhusayl5" path="res://Scenes/Components/healthComponent.tscn" id="2_na5fj"]
 [ext_resource type="Texture2D" uid="uid://e2kdu40udetl" path="res://External Resources/Enemy_robot/Robot1-all-sprites.png" id="4_2dohk"]
+[ext_resource type="PackedScene" uid="uid://umr6lrnhse2n" path="res://Scenes/Components/laser_gun.tscn" id="5_h8f88"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rooba"]
 size = Vector2(16, 16)
@@ -52,6 +53,8 @@ shape = SubResource("RectangleShape2D_dqk7l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseOver"]
 shape = SubResource("CircleShape2D_k3for")
+
+[node name="LaserGun" parent="." instance=ExtResource("5_h8f88")]
 
 [connection signal="timeout" from="Timer_wander" to="." method="_on_timer_wander_timeout"]
 [connection signal="body_entered" from="Detection_area" to="." method="_on_detection_area_body_entered"]
