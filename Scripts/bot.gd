@@ -15,7 +15,7 @@ signal fire(pos_from, target, laser_scene, color, damage)
 @export var fueltank_size = 100
 @export var SPEED = 30
 @export var search_radius = 5
-@export var mining_time = 0.001
+@export var mining_time = 1
 @export var attackpower = 25
 @export var fireRate = 0.5
 @export var repair_time = 1

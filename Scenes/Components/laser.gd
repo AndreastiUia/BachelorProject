@@ -15,7 +15,7 @@ func _ready():
 	else:
 		get_node("Sprite2D").texture = load("res://Sprites/weapons/Laser_green.png")
 	direction = (global_position-target.global_position).normalized()
-	global_rotation = global_position.direction_to(target.global_position).angle()
+	global_rotation = direction.angle()
 	get_node("Laser_fired").play(0.0)
 
 func _physics_process(delta):
