@@ -78,13 +78,13 @@ func UpgradeTreeUnlocks(Bot):
 		Bot.SPEED = 250
 
 	if Bot.miningupgrade == true:
-		Bot.mining_time = 0.01
+		Bot.mining_time = 1
 
-	if Bot.miningspeedupgrade_1 == true && Bot.mining_time == 0.01:
-		Bot.mining_time = 0.03
+	if Bot.miningspeedupgrade_1 == true && Bot.mining_time == 1:
+		Bot.mining_time = 0.6
 
-	if Bot.miningspeedupgrade_2 == true && Bot.mining_time == 0.01:
-		Bot.mining_time = 0.05
+	if Bot.miningspeedupgrade_2 == true && Bot.mining_time == 0.6:
+		Bot.mining_time = 0.3
 
 	if Bot.searchupgrade == true:
 		Bot.search_radius = 8
