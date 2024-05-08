@@ -254,17 +254,14 @@ func _on_center_camera_btn_pressed():
 func spawn_enemy():
 	var map_width = tile_map.width
 	var map_height = tile_map.height
-	var spawn_x = 0
-	var spawn_y = 0
+	var spawn_x = -map_width/2+randi_range(0, map_width-1)
+	var spawn_y = -map_height/2+randi_range(0, map_height-1)
 	var e = enemy.instantiate()
 	var spawn_position = Vector2i(0,0)
 	while !tile_map.check_tile_free(Vector2i(spawn_x, spawn_y)):
-		spawn_x = randi_range(0, map_width-1)
-		spawn_y = randi_range(0, map_height-1)
-		# offset spawnpoint since (0,0) is in the center of the map.
-		spawn_x = -map_width/2+spawn_x
-		spawn_y = -map_height/2+spawn_y
-		spawn_position = tile_map.map_to_local(Vector2i(spawn_x,spawn_y))
+		spawn_x = -map_width/2+randi_range(0, map_width-1)
+		spawn_y = -map_height/2+randi_range(0, map_height-1)
+	spawn_position = tile_map.map_to_local(Vector2i(spawn_x,spawn_y))
 	
 	# Check if area is uncoverd at location.
 	if !tile_map.check_tile_uncovered(spawn_position):

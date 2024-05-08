@@ -21,7 +21,7 @@ var current_id_path: Array[Vector2i]
 func _ready():
 	generate_map()
 	setup_astargrid2d()
-	cover_map()
+	#cover_map()
 	generate_resources()
 	uncover_map(Vector2i(0,0), 10)
 	
@@ -147,7 +147,7 @@ func spawn_enemy_from_queue(position:Vector2i):
 
 func check_tile_free(position:Vector2i):
 	# Check if the tile is free
-	var tile_pos = local_to_map(position)
+	var tile_pos = position
 	var tile_data = get_cell_tile_data(1, tile_pos)
 	if tile_data == null:
 		return true
