@@ -21,7 +21,7 @@ var current_id_path: Array[Vector2i]
 func _ready():
 	generate_map()
 	setup_astargrid2d()
-	#cover_map()
+	cover_map()
 	generate_resources()
 	uncover_map(Vector2i(0,0), 10)
 	
